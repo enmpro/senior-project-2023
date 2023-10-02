@@ -1,0 +1,71 @@
+/*
+    color pallete temporary
+    #462976
+    #f0f0e9
+    #f33963
+    #222020
+*/
+
+body {
+    background-color: #272432;
+    color: #f1eeef;
+}
+
+.preloader-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #111;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 1s ease;
+    z-index: 3;
+}
+
+.fade-out-animation {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.login-box {
+    background-color: #0154e6;
+    color: #f1eeef;
+}
+
+.input-box {
+    background-color: #272432;
+    color:#f1eeef;
+    border: none;
+}
+
+.login-btn {
+    background-color: #49bec2;
+    color: #f1eeef;
+    border: none;
+}
+
+.login-btn:hover {
+    background-color: #272432;
+}
+
+.checkbox-box {
+    background-color: #272432;
+    border: none;
+}
+
+.checkbox-box::after {
+    background-color: #49bec2;
+}
+
+.submit-btn {
+    background-color: #49bec2;
+    border: none;
+}
+
+.submit-btn:hover {
+    background-color: #0154e6;
+    border: none;
+}
