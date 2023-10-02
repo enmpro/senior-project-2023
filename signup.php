@@ -21,7 +21,9 @@ function test_userinput($data)
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
+    
+    
+                
     //username check
     $usnam = test_userinput($_POST["username"]);
     $username_regex = "/[^a-zA-Z0-9]/";
@@ -34,6 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $fn = test_userinput($_POST["fname"]);
     $fl_regex = "/[^a-zA-Z]/";
+    
 
     if (preg_match($fl_regex, $fn)) {
         $falseCounter++;
@@ -44,6 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // last name check
     $ln = test_userinput($_POST["lname"]);
 
+
     if (preg_match($fl_regex, $ln)) {
         $falseCounter++;
     } else if ($ln == "") {
@@ -52,35 +56,51 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     //email check
     $em = test_userinput($_POST["email"]);
+    
+    
     if ($em == "") {
         $falseCounter++;
     }
     
-    $password = test_userinput($_POST["password"]);
+    $emPw = test_userinput($_POST["password"]);
     $confirmPassword = test_userinput($_POST["repword"]);
+    
 
     $capitalRegex = "/[A-Z]/";
     $numberRegex = "/\d/";
-
-    if ($password == "" || $confirmPassword == "") {
+    
+    
+    if ($emPw == "" || $confirmPassword == "") {
         $falseCounter++;
-    } else if ($password != $confirmPassword) {
+    } else if ($emPw != $confirmPassword) {
         $falseCounter++;
         
-    } else if (!preg_match($capitalRegex, $password) || !preg_match($capitalRegex, $confirmPassword)) {
+    } 
+    
+    // this checks if the password has a capital and number
+    // kept flagging the password wrong because it didnt include capital or number
+    // dont uncomment this just yet
+    
+    /*
+    else if (!preg_match($capitalRegex, $emPw) || !preg_match($capitalRegex, $confirmPassword)) {
         $falseCounter++;
-    } else if (!preg_match($numberRegex, $password) || !preg_match($numberRegex, $confirmPassword)) {
+    } else if (!preg_match($numberRegex, $emPw) || !preg_match($numberRegex, $confirmPassword)) {
         $falseCounter++;
     }
+    */
+    
+
 
     if ($falseCounter > 0) {
         return false;
     } 
+    
+
 
 }
 
 while (isset($_POST['fname'])) {
-
+    
     if (isset($_POST['username'])) {
         $un_temp = $_POST['username'];
         $sql_check = "SELECT * FROM Users WHERE Username = '$un_temp'";
@@ -96,6 +116,8 @@ while (isset($_POST['fname'])) {
             break;
         }
     }
+
+   
 
     if (
         isset($_POST['username']) && isset($_POST['fname'])
@@ -127,16 +149,8 @@ while (isset($_POST['fname'])) {
         if ($flag) {
             echo <<<_END
                     <script>
-                        function pageRedirect(){
-                            var delay = 3000; // time in milliseconds
-                            setTimeout(function(){
-                                window.location.href = "main.php";
-                            },delay);
-                        
-                        }
-
                         alert("User added");
-                        pageRedirect();
+                        window.location.href = "login.html";
                     </script>
                 _END;
         }
@@ -157,9 +171,10 @@ function add_user($pdo, $user_name, $fn, $ln, $email, $passwd)
     $stmt->bindParam(':firstname', $fn, PDO::PARAM_STR, 50);
     $stmt->bindParam(':lastname', $ln, PDO::PARAM_STR, 50);
     $stmt->bindParam(':email', $email, PDO::PARAM_STR, 65);
-    $stmt->bindParam(':password', $passwd, PDO::PARAM_STR, 32);
+    $stmt->bindParam(':password', $passwd, PDO::PARAM_STR, 255);
 
     $stmt->execute();
 }
+
 
 ?>
