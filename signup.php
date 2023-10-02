@@ -1,5 +1,4 @@
 <?php
-#I certify that this submission is my own original work, Enmanuel Proano
 require_once 'login.php';
 
 try {
@@ -8,83 +7,6 @@ try {
     throw new PDOException($e->getMessage(), (int) $e->getCode());
 }
 
-echo <<<_END
-<!DOCTYPE html>
-
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>sign up</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-            <!-- Latest compiled and minified CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="signup.css">
-    <!-- Latest compiled JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
-    </head>
-    <body>
-        <a class="m-3 btn btn-primary back-btn" href="login.html">Go Back</a>
-
-        <div class="preloader-wrapper">
-            <div class="spinner-border text-primary">
-                <span class="visually-hidden">Loading...</span>
-            </div>
-        </div>
-        <div class="container-fluid p-2">
-            <header>
-                <p class="display-1 text-center">
-                    Signup
-                </p>
-            </header>
-        </div>
-
-        <div class="container w-50 card mt-3 signup-box">
-            <form action="signup.php" method="post">
-                <div class="mb-3 mt-3 form-floating">
-                    <input class="form-control input-box" type="text" name="username" placeholder="Enter Username" required/>
-                    <label for="username">
-                        Username
-                    </label>
-                </div>
-                <div class="mb-3 mt-3 form-floating">
-                    <input class="form-control input-box" type="text" name="fname" placeholder="Enter Username" required/>
-                    <label for="fname">
-                        First Name
-                    </label>
-                </div>
-                <div class="mb-3 mt-3 form-floating">
-                    <input class="form-control input-box" type="text" name="lname" placeholder="Enter Username" required/>
-                    <label for="lname">
-                        Last Name
-                    </label>
-                </div>
-                <div class="mb-3 mt-3 form-floating">
-                    <input class="form-control input-box" type="email" name="email" placeholder="Enter Username" required/>
-                    <label for="email">
-                        Email
-                    </label>
-                </div>
-                <div class="mb-3 form-floating">
-                    <input class="form-control input-box" minlength="8" type="password" name="pword" placeholder="Enter Password" required/>
-                    <label for="password">
-                        Password
-                    </label>
-                </div>
-                <div class="mb-3 form-floating">
-                    <input class="form-control input-box" minlength="8" type="password" name="repword" placeholder="Enter Password" required/>
-                    <label for="repword">
-                        Re-enter Password
-                    </label>
-                </div>
-                <div class="text-center">
-                    <input class="my-3 btn btn-primary signup-btn" type="submit" value="Sign up">
-                </div>
-            </form>
-    <script src="signup.js"></script>
-    </body>
-</html>
-
-_END;
 
 $flag = false;
 
