@@ -1,3 +1,14 @@
+<?php
+#I certify that this submission is my own original work, Enmanuel Proano
+require_once 'login.php';
+
+try {
+    $pdo = new PDO($attr, $user, $pass, $opts);
+} catch (PDOException $e) {
+    throw new PDOException($e->getMessage(), (int) $e->getCode());
+}
+
+echo <<<_END
 <!DOCTYPE html>
 
 <html lang="en">
@@ -28,7 +39,7 @@
         </div>
 
         <div class="container w-50 card mt-3 signup-box">
-            <form action="" method="post">
+            <form action="signup.php" method="post">
                 <div class="mb-3 mt-3 form-floating">
                     <input class="form-control input-box" type="text" name="username" placeholder="Enter Username" required/>
                     <label for="username">
@@ -72,3 +83,161 @@
     <script src="signup.js"></script>
     </body>
 </html>
+
+_END;
+
+$flag = false;
+
+$falseCounter = 0;
+
+function test_userinput($data)
+{
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    //username check
+    $usnam = test_userinput($_POST["username"]);
+    $username_regex = "/[^a-zA-Z0-9]/";
+
+    if (preg_match($username_regex, $usnam)) {
+        $falseCounter++;
+    } else if ($usnam == "") {
+        $falseCounter++;
+    }
+
+    $fn = test_userinput($_POST["fname"]);
+    $fl_regex = "/[^a-zA-Z]/";
+
+    if (preg_match($fl_regex, $fn)) {
+        $falseCounter++;
+    } else if ($fn == "") {
+        $falseCounter++;
+    } 
+
+    // last name check
+    $ln = test_userinput($_POST["lname"]);
+
+    if (preg_match($fl_regex, $ln)) {
+        $falseCounter++;
+    } else if ($ln == "") {
+        $falseCounter++;
+    } 
+
+    //email check
+    $em = test_userinput($_POST["email"]);
+    if ($em == "") {
+        $falseCounter++;
+    }
+    
+    $password = test_userinput($_POST["password"]);
+    $confirmPassword = test_userinput($_POST["repword"]);
+
+    $capitalRegex = "/[A-Z]/";
+    $numberRegex = "/\d/";
+
+    if ($password == "" || $confirmPassword == "") {
+        $falseCounter++;
+    } else if ($password != $confirmPassword) {
+        $falseCounter++;
+        
+    } else if (!preg_match($capitalRegex, $password) || !preg_match($capitalRegex, $confirmPassword)) {
+        $falseCounter++;
+    } else if (!preg_match($numberRegex, $password) || !preg_match($numberRegex, $confirmPassword)) {
+        $falseCounter++;
+    }
+
+    if ($falseCounter > 0) {
+        return false;
+    } 
+
+}
+
+while (isset($_POST['fname'])) {
+
+    if (isset($_POST['username'])) {
+        $un_temp = $_POST['username'];
+        $sql_check = "SELECT * FROM Users WHERE Username = '$un_temp'";
+        $result = $pdo->query($sql_check);
+
+        if ($result->rowCount()) {
+            echo <<<_END
+                    <script>
+                        alert("Username taken");
+                    </script>
+                _END;
+
+            break;
+        }
+    }
+
+    if (
+        isset($_POST['username']) && isset($_POST['fname'])
+        && isset($_POST['lname']) && isset($_POST['email']) && isset($_POST['password']) 
+        && isset($_POST['repword'])
+    ) {
+        $username = $_POST['username'];
+        $username = trim($username);
+        $username = stripslashes($username);
+
+        $firstname = $_POST['fname'];
+        $firstname = trim($firstname);
+        $firstname = stripslashes($firstname);
+
+        $lastname = $_POST['lname'];
+        $lastname = trim($lastname);
+        $lastname = stripslashes($lastname);
+        
+        $email = $_POST['email'];
+        $email = trim($email);
+        $email = stripslashes($email);
+
+        $password = $_POST['repword'];
+        $hash = password_hash($password, PASSWORD_DEFAULT);
+
+        add_user($pdo, $username, $firstname, $lastname, $email, $hash);
+        $flag = true;
+
+        if ($flag) {
+            echo <<<_END
+                    <script>
+                        function pageRedirect(){
+                            var delay = 3000; // time in milliseconds
+                            setTimeout(function(){
+                                window.location.href = "main.php";
+                            },delay);
+                        
+                        }
+
+                        alert("User added");
+                        pageRedirect();
+                    </script>
+                _END;
+        }
+
+        break;
+    }
+
+
+}
+
+function add_user($pdo, $user_name, $fn, $ln, $email, $passwd)
+{
+    $sql = "INSERT INTO Users(Username, FirstName, LastName, Email, Password) 
+            VALUES(:username, :firstname, :lastname, :email, :password)";
+    $stmt = $pdo->prepare($sql);
+
+    $stmt->bindParam(':username', $user_name, PDO::PARAM_STR, 25);
+    $stmt->bindParam(':firstname', $fn, PDO::PARAM_STR, 50);
+    $stmt->bindParam(':lastname', $ln, PDO::PARAM_STR, 50);
+    $stmt->bindParam(':email', $email, PDO::PARAM_STR, 65);
+    $stmt->bindParam(':password', $passwd, PDO::PARAM_STR, 32);
+
+    $stmt->execute();
+}
+
+?>

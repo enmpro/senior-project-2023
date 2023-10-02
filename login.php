@@ -1,3 +1,15 @@
+<?php
+#I certify that this submission is my own original work, Enmanuel Proano
+require_once 'login.php';
+
+try {
+    $pdo = new PDO($attr, $user, $pass, $opts);
+} catch (PDOException $e) {
+    throw new PDOException($e->getMessage(), (int) $e->getCode());
+}
+
+
+echo <<< _END
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,7 +39,7 @@
         </header>
     </div>
     <div class="container w-50 card mt-3 login-box">
-        <form action="" method="post">
+        <form action="login.php" method="post">
             <div class="mb-3 mt-3 form-floating">
                 <input class="form-control input-box" type="text" name="username" placeholder="Enter Username" />
                 <label for="username">
@@ -58,3 +70,45 @@
 </body>
 
 </html>
+
+_END;
+
+session_start();
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $username = $_POST['username'];
+    $username = trim($username);
+    $username = stripslashes($username);
+    $password = $_POST['password'];
+    $password = trim($password);
+    $password = stripslashes($password);
+
+    $stmt = $pdo->prepare("SELECT * FROM Users WHERE Username = :username");
+    $result = $stmt->execute([':username' => $username]);
+
+    $result_row = $stmt->fetch();
+
+    $hash = $result_row['Password'] ?? '';
+
+    $stmt = $pdo->prepare('SELECT * FROM Users WHERE Username = ? AND Password = ?');
+    $stmt->execute(array($username, password_verify($password, $hash)));
+
+    if (password_verify($password, $hash)) {
+         // The user is authenticated
+         $_SESSION['user_id'] = $result_row['Username'];
+         
+         header('Location: main_menu.html');
+
+         exit;
+       } else {
+         // The user is not authenticated
+         echo 
+         <<<_END
+             <script>
+                 alert("Invalid username or password");
+             </script>
+         _END;
+       }
+    
+}
+
+?>
