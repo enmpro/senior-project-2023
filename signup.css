@@ -1,0 +1,52 @@
+body {
+    background-color: #272432;
+    color: #f1eeef;
+}
+
+.preloader-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #111;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 1s ease;
+    z-index: 3;
+}
+
+.fade-out-animation {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.signup-box {
+    background-color: #0154e6;
+    color: #f1eeef;
+}
+
+.input-box {
+    background-color: #272432;
+    color:#f1eeef;
+    border: none;
+}
+
+.signup-btn {
+    background-color: #49bec2;
+}
+
+
+.signup-btn:hover {
+    background-color: #272432;
+}
+
+.signup-btn:active {
+    background-color: #362088;
+}
+
+.back-btn {
+    background-color: #49bec2;
+    border: none;
+}
