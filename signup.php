@@ -1,5 +1,5 @@
 <?php
-require_once 'login.php';
+require_once 'logindb.php';
 
 try {
     $pdo = new PDO($attr, $user, $pass, $opts);

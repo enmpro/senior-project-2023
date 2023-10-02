@@ -1,6 +1,6 @@
 <?php
 #I certify that this submission is my own original work, Enmanuel Proano
-require_once 'login.php';
+require_once 'logindb.php';
 
 try {
     $pdo = new PDO($attr, $user, $pass, $opts);
@@ -39,7 +39,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
          echo 
          <<<_END
              <script>
+                function pageRedirect(){
+                    var delay = 3000; // time in milliseconds
+                    setTimeout(function(){
+                        window.location.href = "login.html";
+                    },delay);
+                
+                }
+
                  alert("Invalid username or password");
+                 pageRedirect();
              </script>
          _END;
        }
