@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
          // The user is authenticated
          $_SESSION['user_id'] = $result_row['Username'];
          
-         header('Location: main_menu.html');
+         header('Location: homepage.html');
 
          exit;
        } else {
@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 function pageRedirect(){
                     var delay = 3000; // time in milliseconds
                     setTimeout(function(){
-                        window.location.href = "homepage.html";
+                        window.location.href = "login.html";
                     },delay);
                 
                 }
