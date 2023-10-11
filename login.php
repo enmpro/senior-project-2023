@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 function pageRedirect(){
                     var delay = 3000; // time in milliseconds
                     setTimeout(function(){
-                        window.location.href = "login.html";
+                        window.location.href = "homepage.html";
                     },delay);
                 
                 }
