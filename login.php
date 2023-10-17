@@ -39,16 +39,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
          echo 
          <<<_END
              <script>
-                function pageRedirect(){
-                    var delay = 3000; // time in milliseconds
-                    setTimeout(function(){
-                        window.location.href = "login.html";
-                    },delay);
                 
-                }
-
                  alert("Invalid username or password");
-                 pageRedirect();
+                 window.location.href = "login.html";
              </script>
          _END;
        }
