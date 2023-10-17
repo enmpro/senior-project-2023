@@ -167,7 +167,7 @@ while (isset($_POST['FirstName'])) {
 
 function add_user($pdo, $user_name, $passwd, $email, $fn, $ln, $zip)
 {
-    $sql = "INSERT INTO Users(Username, Password, Email, FirstName, LastName, Zip) 
+    $sql = "INSERT INTO User(Username, Password, Email, FirstName, LastName, Zip) 
             VALUES(:username, :password, :email, :firstname, :lastname, :zip)";
     $stmt = $pdo->prepare($sql);
 
