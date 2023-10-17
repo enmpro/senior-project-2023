@@ -121,10 +121,10 @@ while (isset($_POST['FirstName'])) {
 
     if (
         isset($_POST['Username']) && isset($_POST['FirstName'])
-        && isset($_POST['lname']) && isset($_POST['email']) && isset($_POST['password']) 
-        && isset($_POST['repword'])
+        && isset($_POST['LastName']) && isset($_POST['Email']) && isset($_POST['Password']) 
+        && isset($_POST['repword'] && isset($_POST['Zip']))
     ) {
-        $username = $_POST['username'];
+        $username = $_POST['Username'];
         $username = trim($username);
         $username = stripslashes($username);
 
@@ -132,18 +132,22 @@ while (isset($_POST['FirstName'])) {
         $firstname = trim($firstname);
         $firstname = stripslashes($firstname);
 
-        $lastname = $_POST['lname'];
+        $lastname = $_POST['LastName'];
         $lastname = trim($lastname);
         $lastname = stripslashes($lastname);
         
-        $email = $_POST['email'];
+        $email = $_POST['Email'];
         $email = trim($email);
         $email = stripslashes($email);
 
         $password = $_POST['repword'];
         $hash = password_hash($password, PASSWORD_DEFAULT);
 
-        add_user($pdo, $username, $firstname, $lastname, $email, $hash);
+        $zip = $_POST['Zip'];
+        $zip = trim($zip);
+        $zip = stripslashes($zip);
+
+        add_user($pdo, $username, $hash, $email, $firstname, $lastname, $zip );
         $flag = true;
 
         if ($flag) {
@@ -161,17 +165,19 @@ while (isset($_POST['FirstName'])) {
 
 }
 
-function add_user($pdo, $user_name, $fn, $ln, $email, $passwd)
+function add_user($pdo, $user_name, $passwd, $email, $fn, $ln, $zip)
 {
-    $sql = "INSERT INTO Users(Username, FirstName, LastName, Email, Password) 
-            VALUES(:username, :firstname, :lastname, :email, :password)";
+    $sql = "INSERT INTO Users(Username, Password, Email, FirstName, LastName, Zip) 
+            VALUES(:username, :password, :email, :firstname, :lastname, :zip)";
     $stmt = $pdo->prepare($sql);
 
     $stmt->bindParam(':username', $user_name, PDO::PARAM_STR, 25);
+    $stmt->bindParam(':password', $passwd, PDO::PARAM_STR, 255);
+    $stmt->bindParam(':email', $email, PDO::PARAM_STR, 65);
     $stmt->bindParam(':firstname', $fn, PDO::PARAM_STR, 50);
     $stmt->bindParam(':lastname', $ln, PDO::PARAM_STR, 50);
-    $stmt->bindParam(':email', $email, PDO::PARAM_STR, 65);
-    $stmt->bindParam(':password', $passwd, PDO::PARAM_STR, 255);
+    $stmt->bindParam(':zip', $zip, PDO::PARAM_STR, 5);
+
 
     $stmt->execute();
 }
