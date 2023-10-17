@@ -17,14 +17,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $password = trim($password);
     $password = stripslashes($password);
 
-    $stmt = $pdo->prepare("SELECT * FROM Users WHERE Username = :username");
+    $stmt = $pdo->prepare("SELECT * FROM User WHERE Username = :username");
     $result = $stmt->execute([':username' => $username]);
 
     $result_row = $stmt->fetch();
 
     $hash = $result_row['Password'] ?? '';
 
-    $stmt = $pdo->prepare('SELECT * FROM Users WHERE Username = ? AND Password = ?');
+    $stmt = $pdo->prepare('SELECT * FROM User WHERE Username = ? AND Password = ?');
     $stmt->execute(array($username, password_verify($password, $hash)));
 
     if (password_verify($password, $hash)) {
