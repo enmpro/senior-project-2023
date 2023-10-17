@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
                 
     //username check
-    $usnam = test_userinput($_POST["username"]);
+    $usnam = test_userinput($_POST["Username"]);
     $username_regex = "/[^a-zA-Z0-9]/";
 
     if (preg_match($username_regex, $usnam)) {
@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $falseCounter++;
     }
 
-    $fn = test_userinput($_POST["fname"]);
+    $fn = test_userinput($_POST["FirstName"]);
     $fl_regex = "/[^a-zA-Z]/";
     
 
@@ -45,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } 
 
     // last name check
-    $ln = test_userinput($_POST["lname"]);
+    $ln = test_userinput($_POST["LastName"]);
 
 
     if (preg_match($fl_regex, $ln)) {
@@ -55,14 +55,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } 
 
     //email check
-    $em = test_userinput($_POST["email"]);
+    $em = test_userinput($_POST["Email"]);
     
     
     if ($em == "") {
         $falseCounter++;
     }
     
-    $emPw = test_userinput($_POST["password"]);
+    $emPw = test_userinput($_POST["Password"]);
     $confirmPassword = test_userinput($_POST["repword"]);
     
 
@@ -99,11 +99,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 }
 
-while (isset($_POST['fname'])) {
+while (isset($_POST['FirstName'])) {
     
-    if (isset($_POST['username'])) {
-        $un_temp = $_POST['username'];
-        $sql_check = "SELECT * FROM Users WHERE Username = '$un_temp'";
+    if (isset($_POST['Username'])) {
+        $un_temp = $_POST['Username'];
+        $sql_check = "SELECT * FROM User WHERE Username = '$un_temp'";
         $result = $pdo->query($sql_check);
 
         if ($result->rowCount()) {
@@ -120,7 +120,7 @@ while (isset($_POST['fname'])) {
    
 
     if (
-        isset($_POST['username']) && isset($_POST['fname'])
+        isset($_POST['Username']) && isset($_POST['FirstName'])
         && isset($_POST['lname']) && isset($_POST['email']) && isset($_POST['password']) 
         && isset($_POST['repword'])
     ) {
@@ -128,7 +128,7 @@ while (isset($_POST['fname'])) {
         $username = trim($username);
         $username = stripslashes($username);
 
-        $firstname = $_POST['fname'];
+        $firstname = $_POST['FirstName'];
         $firstname = trim($firstname);
         $firstname = stripslashes($firstname);
 
