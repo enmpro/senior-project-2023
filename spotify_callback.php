@@ -29,7 +29,7 @@ if (isset($_GET['code'])) {
     $_SESSION['access_token'] = $tokens['access_token'];
 
     // Redirect user to the frontend page that will display their Spotify data
-    header('Location: http://yourwebsite.com/userdata.html');
+    header('Location: https://cantio.live/spotify_userdata.html');
     exit();
 }
 ?>
