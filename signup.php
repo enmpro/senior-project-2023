@@ -122,7 +122,7 @@ while (isset($_POST['FirstName'])) {
     if (
         isset($_POST['Username']) && isset($_POST['FirstName'])
         && isset($_POST['LastName']) && isset($_POST['Email']) && isset($_POST['Password']) 
-        && isset($_POST['repword'] && isset($_POST['Zip']))
+        && isset($_POST['repword']) && isset($_POST['Zip']))
     ) {
         $username = $_POST['Username'];
         $username = trim($username);
