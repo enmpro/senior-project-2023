@@ -1,8 +1,7 @@
-
 <?php
 $CLIENT_ID = 'e6f6744c543743be87a5cc703087931c';
 $CLIENT_SECRET = '908bf89c013c4ed1994bfec220c7398d';
-$REDIRECT_URI = 'https://cantio.live/homepage.html';  // e.g., 'http://yourwebsite.com/callback.php'
+$REDIRECT_URI = 'https://cantio.live/callback.php';
 
 if (isset($_GET['code'])) {
     $code = $_GET['code'];
@@ -25,7 +24,12 @@ if (isset($_GET['code'])) {
     $response = curl_exec($ch);
     curl_close($ch);
 
-    $tokens = json_decode($response);
-    // Save these tokens for use in your app. For example, save them in a session or a database.
+    $tokens = json_decode($response, true);
+    session_start();
+    $_SESSION['access_token'] = $tokens['access_token'];
+
+    // Redirect user to the frontend page that will display their Spotify data
+    header('Location: http://yourwebsite.com/userdata.html');
+    exit();
 }
 ?>
