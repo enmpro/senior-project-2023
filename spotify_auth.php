@@ -1,4 +1,7 @@
 <?php
+
+require_once('session_manager.php');
+
 $CLIENT_ID = 'e6f6744c543743be87a5cc703087931c';
 $REDIRECT_URI = 'https://cantio.live/spotify_callback.php';
 

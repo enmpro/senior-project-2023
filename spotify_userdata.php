@@ -1,4 +1,7 @@
 <?php
+
+require_once('session_manager.php');
+
 session_start();
 
 if (!isset($_SESSION['access_token'])) {

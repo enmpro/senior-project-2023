@@ -8,7 +8,7 @@ function authenticateWithSpotify() {
 }
 
 function fetchUserData() {
-    fetch('/userdata.php')
+    fetch('/spotify_userdata.php')
         .then(response => response.json())
         .then(data => {
             if (data.error) {

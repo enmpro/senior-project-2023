@@ -1,7 +1,11 @@
 <?php
+require_once('session_manager.php');
+
 $CLIENT_ID = 'e6f6744c543743be87a5cc703087931c';
 $CLIENT_SECRET = '908bf89c013c4ed1994bfec220c7398d';
 $REDIRECT_URI = 'https://cantio.live/spotify_callback.php';
+
+start_session();
 
 if (isset($_GET['code'])) {
     $code = $_GET['code'];
@@ -25,7 +29,7 @@ if (isset($_GET['code'])) {
     curl_close($ch);
 
     $tokens = json_decode($response, true);
-    session_start();
+    
     $_SESSION['access_token'] = $tokens['access_token'];
     $_SESSION['refresh_token'] = $tokens['refresh_token'];
 
