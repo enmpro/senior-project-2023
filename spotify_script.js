@@ -8,13 +8,13 @@ function authenticateWithSpotify() {
 }
 
 function fetchUserData() {
-    fetch('/spotify_userdata.php')
+    fetch('/userdata.php')
         .then(response => response.json())
         .then(data => {
-            document.getElementById('spotifyData').textContent = JSON.stringify(data, null, 2);
+            if (data.error) {
+                alert(data.error);
+            } else {
+                document.getElementById('spotifyData').textContent = JSON.stringify(data, null, 2);
+            }
         });
 }
-
-document.addEventListener("DOMContentLoaded", function() {
-    fetchUserData();
-});

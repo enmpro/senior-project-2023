@@ -7,3 +7,5 @@ $AUTH_URL = "https://accounts.spotify.com/authorize?client_id={$CLIENT_ID}&respo
 header('Location: ' . $AUTH_URL);
 exit();
 ?>
+
+
