@@ -1,6 +1,7 @@
 <?php
 session_start();
 $accessToken = $_SESSION['access_token'];
+$headers = ['Authorization: Bearer ' . $accessToken];
 
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, 'https://api.spotify.com/v1/me/top/tracks?time_range=short_term&limit=5');
