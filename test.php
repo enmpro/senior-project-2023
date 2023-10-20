@@ -15,6 +15,11 @@
     $name = "John Doe";
     echo "Hello, $name!";
     ?>
-
+    
+    <?php
+    // This is embedded PHP code within the HTML file
+    $name = "John Doe";
+    echo "Hello, $name!";
+    ?>
 </body>
 </html>
