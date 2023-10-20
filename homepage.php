@@ -123,7 +123,7 @@ $username = $_SESSION['user_id'];
                     <li class="nav-item"><a class="nav-link" href="landing.html" style="color: #a7cb3d;backdrop-filter: opacity(1);opacity: 0.40;">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="projects-grid-cards.html" style="opacity: 0.40;color: #a7cb3d;">About</a></li>
                     <li class="nav-item"><a class="nav-link" href="cv.html" style="opacity: 0.40;color: #a7cb3d;">Profile</a></li>
-                    <li class="nav-item"><a class="nav-link" href="hire-me.html" style="opacity: 0.40;color: #a7cb3d;">Community</a></li>
+                    <li class="nav-item"><a class="nav-link" href="community.php" style="opacity: 0.40;color: #a7cb3d;">Community</a></li>
                 </ul>
             </div>
             <div class="theme-switcher dropdown"><a class="dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" href="#" style="color: rgba(255,255,255,0.75);"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-sun-fill mb-1">
