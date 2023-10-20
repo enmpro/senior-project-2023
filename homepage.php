@@ -1,3 +1,18 @@
+<?php
+require_once 'login.php';
+
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    // The user is not logged in, redirect them to the login page
+    header('Location: main.php');
+    exit;
+}
+
+$username = $_SESSION['user_id'];
+
+
+?>
+
 <!DOCTYPE html>
 <html data-bs-theme="light" style="font-size: 14px;">
 
@@ -122,6 +137,11 @@
                         </svg>Dark</a><a class="dropdown-item d-flex align-items-center" href="#" data-bs-theme-value="auto"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-circle-half opacity-50 me-2">
                             <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"></path>
                         </svg>Auto</a></div>
+            </div>
+            <div>
+                <form method="post" action="user_logout.php">
+                    <button type="submit" name="logout">Log Out</button>
+                </form>
             </div>
         </div>
     </nav>
