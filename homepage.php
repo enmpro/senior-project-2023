@@ -120,9 +120,9 @@ $username = $_SESSION['user_id'];
         <div class="container"><a class="navbar-brand logo" href="#" style="color: #a7cb3d;font-weight: bold;font-size: 30px;">CANTIO</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navbarNav"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="landing.html" style="color: #a7cb3d;backdrop-filter: opacity(1);opacity: 0.40;">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="projects-grid-cards.html" style="opacity: 0.40;color: #a7cb3d;">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="cv.html" style="opacity: 0.40;color: #a7cb3d;">Profile</a></li>
+                    <li class="nav-item"><a class="nav-link" href="homepage.php" style="color: #a7cb3d;backdrop-filter: opacity(1);opacity: 0.40;">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" style="opacity: 0.40;color: #a7cb3d;">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" style="opacity: 0.40;color: #a7cb3d;">Profile</a></li>
                     <li class="nav-item"><a class="nav-link" href="community.php" style="opacity: 0.40;color: #a7cb3d;">Community</a></li>
                 </ul>
             </div>
