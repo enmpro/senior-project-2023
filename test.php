@@ -1,5 +1,4 @@
-<!-- <?php
-#I certify that this submission is my own original work, Enmanuel Proano
+<?php
 require_once 'login.php';
 
 session_start();
@@ -12,7 +11,7 @@ if (!isset($_SESSION['user_id'])) {
 $username = $_SESSION['user_id'];
 
 
-?> -->
+?>
 
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="light" style="font-size: 14px;">

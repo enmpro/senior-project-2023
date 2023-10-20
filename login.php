@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
          // The user is authenticated
          $_SESSION['user_id'] = $result_row['Username'];
          
-         header('Location: homepage.html');
+         header('Location: test.html');
 
          exit;
        } else {
