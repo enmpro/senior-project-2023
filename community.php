@@ -121,10 +121,10 @@ $username = $_SESSION['user_id'];
         <div class="container"><a class="navbar-brand logo" href="#" style="font-size: 30px;color: #a7cb3d;font-weight: bold;">CANTIO</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navbarNav"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="landing.html" style="color: #a7cb3d;opacity: 0.40;">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="projects-grid-cards.html" style="color: #a7cb3d;opacity: 0.40;">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="cv.html" style="color: rgb(167,203,61);opacity: 0.40;">Profile</a></li>
-                    <li class="nav-item"><a class="nav-link" href="hire-me.html" style="color: #a7cb3d;opacity: 0.40;">Community</a></li>
+                    <li class="nav-item"><a class="nav-link" href="homepage.php" style="color: #a7cb3d;opacity: 0.40;">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" style="color: #a7cb3d;opacity: 0.40;">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" style="color: rgb(167,203,61);opacity: 0.40;">Profile</a></li>
+                    <li class="nav-item"><a class="nav-link" href="community.php" style="color: #a7cb3d;opacity: 0.40;">Community</a></li>
                 </ul>
             </div>
             <div class="theme-switcher dropdown"><a class="dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" href="#" style="color: rgba(255,255,255,0.75);"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-sun-fill mb-1">
