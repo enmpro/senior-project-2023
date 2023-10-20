@@ -92,6 +92,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans&amp;display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&amp;display=swap">
     <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
+    <link rel="stylesheet" href="assets/css/bs-theme-overrides.css">
+    <link rel="stylesheet" href="assets/css/animate.min.css">
     <link rel="stylesheet" href="assets/css/Banner-Heading-Image-images.css">
     <link rel="stylesheet" href="assets/css/Gamanet_Pagination_bs5.css">
     <link rel="stylesheet" href="assets/css/Hero-Features-icons.css">
@@ -99,17 +101,17 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg fixed-top portfolio-navbar gradient navbar-dark">
-        <div class="container"><a class="navbar-brand logo" href="#">Cantio Live</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navbarNav"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+    <nav class="navbar navbar-expand-lg fixed-top portfolio-navbar gradient navbar-dark" style="background: #1f262d;font-family: Roboto, sans-serif;font-size: 14px;border-style: none;box-shadow: 0px 0px;">
+        <div class="container"><a class="navbar-brand logo" href="#" style="font-size: 30px;color: #a7cb3d;font-weight: bold;">CANTIO</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navbarNav"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="landing.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Profile</a></li>
-                    <li class="nav-item"><a class="nav-link" href="community.html">Community</a></li>
+                    <li class="nav-item"><a class="nav-link" href="landing.html" style="color: #a7cb3d;opacity: 0.40;">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="projects-grid-cards.html" style="color: #a7cb3d;opacity: 0.40;">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="cv.html" style="color: rgb(167,203,61);opacity: 0.40;">Profile</a></li>
+                    <li class="nav-item"><a class="nav-link" href="hire-me.html" style="color: #a7cb3d;opacity: 0.40;">Community</a></li>
                 </ul>
             </div>
-            <div class="theme-switcher dropdown"><a class="dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-sun-fill mb-1">
+            <div class="theme-switcher dropdown"><a class="dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" href="#" style="color: rgba(255,255,255,0.75);"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-sun-fill mb-1">
                         <path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"></path>
                     </svg></a>
                 <div class="dropdown-menu"><a class="dropdown-item d-flex align-items-center" href="#" data-bs-theme-value="light"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-sun-fill opacity-50 me-2">
@@ -128,76 +130,62 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-4">
-                        <div class="card"><img class="card-img-top w-100 d-block" src="assets/img/testPic.png" style="border-style: hidden;">
-                            <div class="card-body">
-                                <h4 class="card-title">Emily</h4>
-                                <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p><button class="btn btn-primary" type="button">Like</button>
+                        <div class="card" style="border-style: none;"><img class="card-img-top w-100 d-block" src="assets/img/testPic.png" style="border-style: hidden;">
+                            <div class="card-body" style="border-width: 1px;border-style: none;border-right-style: solid;border-right-color: rgba(167,203,61,0.1);border-bottom-style: ridge;border-bottom-color: rgba(167,203,61,0.6);border-left-style: solid;border-left-color: rgba(167,203,61,0.1);">
+                                <h4 class="card-title" style="font-weight: bold;font-family: Roboto, sans-serif;">Emily</h4>
+                                <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p><button class="btn btn-primary border rounded-0" data-bss-disabled-mobile="true" data-bss-hover-animate="jello" type="button" style="opacity: 0.80;background: rgb(167,203,61);border-style: none;color: rgb(4,4,4);">Like</button>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="card"></div><div class="card mb-3" style="max-width: 540px;">
-  <div class="row g-0">
-    <div class="col-md-4">
-      <img class="img-fluid" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_3M6nNvfhzkEUIE--nerDyJUQfIUygRVwEg&usqp=CAU" class="img-fluid rounded-start" alt="...">
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title">Emily</h5>
-        <p class="card-text">What is love, baby dont hurt me. I like to ignore people.</p>
-          <button class="btn btn-primary" type="button">Load</button>
-          
-      </div>
-    </div>
-  </div>
-</div><div class="card mb-3" style="max-width: 540px;">
-  <div class="row g-0">
-    <div class="col-md-4">
-      <img class="img-fluid" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_3M6nNvfhzkEUIE--nerDyJUQfIUygRVwEg&usqp=CAU" class="img-fluid rounded-start" alt="...">
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title">SadPenguinGrill</h5>
-        <p class="card-text">Im more sad than the guy below me, music is my passion. I mostly listen to Ice spice.</p>
-          <button class="btn btn-primary" type="button">Load</button>
-      </div>
-    </div>
-  </div>
-</div><div class="card mb-3" style="max-width: 540px;">
-  <div class="row g-0">
-    <div class="col-md-4">
-      <img class="img-fluid" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_3M6nNvfhzkEUIE--nerDyJUQfIUygRVwEg&usqp=CAU" class="img-fluid rounded-start" alt="...">
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title">SadBoy96</h5>
-        <p class="card-text">My life is always a constant battle, everything that can go wrong will go wrong. I listen to emo
-          Core and Goth soul, come through for my concert.</p>
-          <button class="btn btn-primary" type="button">Load</button>
-      </div>
-    </div>
-  </div>
-</div>
-                        <div id="pagination" class="d-flex justify-content-center"><a class="pagination-item disabled" href="#"><img src="assets/img/icon_arrow-left.svg"><span>Previos</span></a><a class="pagination-item active" href="#">1</a><a class="pagination-item" href="#">2</a><a class="pagination-item" href="#">3</a><a class="pagination-item" href="#">...</a><a class="pagination-item" href="#"><span>Next</span><img src="assets/img/icon_arrow-right.svg"></a></div>
+                        <div class="card" style="opacity: 1;border: 1px none #373737 ;border-bottom-style: none;"><img class="card-img-top w-100 d-block" style="font-family: Roboto, sans-serif;border-style: none;" src="assets/img/testPic.png" width="417" height="100">
+                            <div class="card-body" style="border-style: none;border-bottom: 1px dashed rgba(167,203,61,0.5) ;">
+                                <h4 class="card-title" style="font-family: Roboto, sans-serif;border-style: none;font-weight: bold;">Emily</h4>
+                                <p class="card-text" style="font-family: Lato, sans-serif;border-style: none;">Nullam id dolor id nibh ultricies vehicula ut id elit.&nbsp;</p><button class="btn btn-primary border rounded-0" data-bss-hover-animate="jello" type="button" style="border-style: none;background: rgb(167,203,61);color: rgb(0,0,0);opacity: 0.80;">Load</button>
+                            </div>
+                        </div>
+                        <div class="card" style="opacity: 0.80;margin-top: 15px;backdrop-filter: opacity(1);border: 1px none #ea0b0b ;border-top-style: none;border-right-style: none;border-bottom: 1px none #a7cb3d ;border-left-style: none;"><img class="card-img-top w-100 d-block" style="font-family: Roboto, sans-serif;border-style: none;" src="assets/img/testPic.png" width="417" height="100">
+                            <div class="card-body" style="border-style: none;border-bottom: 1px dashed rgba(167,203,61,0.5) ;">
+                                <h4 class="card-title" style="font-family: Roboto, sans-serif;border-style: none;font-weight: bold;">Emily</h4>
+                                <p class="card-text" style="font-family: Lato, sans-serif;border-style: none;">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p><button class="btn btn-primary border rounded-0" data-bss-hover-animate="jello" type="button" style="border-style: none;background: rgb(167,203,61);color: rgb(0,0,0);opacity: 0.80;">Load</button>
+                            </div>
+                        </div>
+                        <div class="card" style="opacity: 0.80;margin-top: 15px;backdrop-filter: opacity(1);border: 1px none #ea0b0b ;border-top-style: none;border-right-style: none;border-bottom: 1px none #a7cb3d ;border-left-style: none;"><img class="card-img-top w-100 d-block" style="font-family: Roboto, sans-serif;border-style: none;" src="assets/img/testPic.png" width="417" height="100">
+                            <div class="card-body" style="border-style: none;border-bottom: 1px dashed rgba(167,203,61,0.5) ;">
+                                <h4 class="card-title" style="font-family: Roboto, sans-serif;border-style: none;font-weight: bold;">Emily</h4>
+                                <p class="card-text" style="font-family: Lato, sans-serif;border-style: none;">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p><button class="btn btn-primary border rounded-0" data-bss-hover-animate="jello" type="button" style="border-style: none;background: rgb(167,203,61);color: rgb(0,0,0);opacity: 0.80;">Load</button>
+                            </div>
+                        </div>
+                        <nav style="margin-top: 15px;margin-left: 103px;">
+                            <ul class="pagination">
+                                <li class="page-item" data-bss-hover-animate="rubberBand"><a class="page-link" aria-label="Previous" href="#"><span aria-hidden="true">«</span></a></li>
+                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item"><a class="page-link" href="#">4</a></li>
+                                <li class="page-item"><a class="page-link" href="#">5</a></li>
+                                <li class="page-item" data-bss-hover-animate="rubberBand"><a class="page-link" aria-label="Next" href="#"><span aria-hidden="true">»</span></a></li>
+                            </ul>
+                        </nav>
                     </div>
                     <div class="col-md-4">
                         <div>
-                            <ul class="nav nav-tabs" role="tablist">
+                            <ul class="nav nav-tabs" role="tablist" style="opacity: 1;border-style: none;">
                                 <li class="nav-item" role="presentation"><a class="nav-link active" role="tab" data-bs-toggle="tab" href="#tab-1">Top 10 Songs</a></li>
                                 <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-2">Attending Events</a></li>
                                 <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-3">Matches</a></li>
                             </ul>
                             <div class="tab-content">
                                 <div class="tab-pane active" role="tabpanel" id="tab-1">
-                                    <p>Emily's top 10 songs</p>
-                                    <ul class="list-group text-start">
-                                        <li class="list-group-item">
+                                    <p style="font-family: Roboto, sans-serif;">Emily's top 10 songs</p>
+                                    <ul class="list-group text-start" style="border-style: none;">
+                                        <li class="list-group-item" style="border-style: none;">
                                             <picture><img width="100" height="100" style="padding-right: 0px;margin-right: 16px;"></picture><span>Ice Spice</span>
                                         </li>
-                                        <li class="list-group-item">
+                                        <li class="list-group-item" style="border-style: none;">
                                             <picture><img width="100" height="100" style="margin-right: 16px;"></picture><span>Ice Spice</span>
                                         </li>
-                                        <li class="list-group-item">
+                                        <li class="list-group-item" style="border-style: none;">
                                             <picture><img width="100" height="100" style="margin-right: 16px;"></picture><span>Ice Spice</span>
                                         </li>
                                     </ul>
@@ -215,13 +203,14 @@
             </div>
         </section>
     </main>
-    <footer class="page-footer py-3 border-top">
+    <footer class="page-footer py-3 border-top" style="font-family: Roboto, sans-serif;border-style: none;">
         <div class="container my-4">
-            <div class="links"><a href="#">Home</a><a href="#">About</a><a href="#">Disco Theme</a></div>
-            <div class="social-icons"><a class="me-3" href="#"><i class="icon ion-social-facebook"></i></a><a class="me-3" href="#"><i class="icon ion-social-instagram-outline"></i></a><a class="me-3" href="#"><i class="icon ion-social-twitter"></i></a></div>
+            <div class="links"><a href="#" style="opacity: 0.50;">Home</a><a href="#" style="opacity: 0.50;">About</a></div>
+            <div class="social-icons"><a class="me-3" href="#" style="opacity: 0.50;"><i class="icon ion-social-facebook"></i></a><a class="me-3" href="#" style="opacity: 0.50;"><i class="icon ion-social-instagram-outline"></i></a><a class="me-3" href="#" style="opacity: 0.50;"><i class="icon ion-social-twitter"></i></a></div>
         </div>
     </footer>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/bs-init.js"></script>
     <script src="assets/js/pikaday.min.js"></script>
     <script src="assets/js/theme.js"></script>
 </body>
