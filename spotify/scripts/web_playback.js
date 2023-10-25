@@ -8,7 +8,7 @@
 // Wait for player to be ready
 window.onSpotifyWebPlaybackSDKReady = () => {
     const player = new Spotify.Player({
-      name: "Music Utopia Player",
+      name: "Music Player",
       getOAuthToken: (cb) => {
         cb(token);
       },
