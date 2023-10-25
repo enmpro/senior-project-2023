@@ -32,9 +32,9 @@ $access_token = "Basic " . base64_encode("$CLIENT_ID:$CLIENT_SECRET");
 $used_token_data = $__cURL->post_request($url, $submit_post_fields, $access_token);
 
 // Debug 
-// echo '<pre>';
-// print_r($used_token_data);
-// echo '</pre>';
+echo '<pre>';
+print_r($used_token_data);
+echo '</pre>';
 
 // Store user token in Session
 $_SESSION['spotify_token'] = $used_token_data;

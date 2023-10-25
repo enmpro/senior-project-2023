@@ -26,8 +26,8 @@ class CurlServer
         $serverReponseObject = json_decode($server_output);
 
         // Debug
-        // print_r($server_output);
-        // print_r($serverReponseObject);
+        print_r($server_output);
+        print_r($serverReponseObject);
 
         return $serverReponseObject;
 
@@ -46,7 +46,7 @@ class CurlServer
         return $serverReponseObject;
 
         // Debug
-        //print_r ( $server_output );
-        //print_r($serverReponseObject);
+        print_r ( $server_output );
+        print_r($serverReponseObject);
     }
 }
