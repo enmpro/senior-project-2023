@@ -9,6 +9,7 @@
 // Include required files
 //require 'private/global.inc.php';
 require 'inc/curl.class.php';
+start_session();
 
 // Check to see if user session has been created
 if (!empty($_SESSION['spotify_token'])) {
