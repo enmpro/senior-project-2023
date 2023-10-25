@@ -22,10 +22,10 @@ $req_url = 'https://api.spotify.com/v1/me/top/artists';
 $top_user_artists = $__cURL->get_request($req_url, $_SESSION['spotify_token']->access_token);
 
 // Include page header
-include '_inc/html/header.inc.php';
+include 'inc/html/header.inc.php';
 ?>
 <header>
-    <p><img src="images/logo.png" alt="Music Utopia Logo" class="header_logo">
+    <p><img src="images/logo.png" alt="" class="header_logo">
         | <button onclick="window.open('logout.php', '_self');">Log Out</button>
         | <button id="togglePlay">Toggle Play</button></p>
     <h1>Helping you make the best of Spotfy!</h1>
@@ -34,7 +34,7 @@ include '_inc/html/header.inc.php';
     <script>
         const token = '<?php echo $_SESSION['spotify_token']->access_token; ?>';
     </script>
-    <script src="scripts/web_playback.js"></script>
+    <script src="../scripts/web_playback.js"></script>
     
 </header>
 <div class="container">
