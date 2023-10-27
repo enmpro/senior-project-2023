@@ -178,6 +178,16 @@ function add_user($pdo, $user_name, $passwd, $email, $fn, $ln, $zip)
     $stmt->bindParam(':lastname', $ln, PDO::PARAM_STR, 50);
     $stmt->bindParam(':zip', $zip, PDO::PARAM_STR, 5);
 
+    $stmt->execute();
+
+    $sql = "SET @newUserID = LAST_INSERT_ID();
+            INSERT INTO Profile(UserID, Username, FirstName, LastName) 
+            VALUES(@newUserID, :username, :firstname, :lastname);";
+    $stmt = $pdo->prepare($sql);
+
+    $stmt->bindParam(':username', $user_name, PDO::PARAM_STR, 25);
+    $stmt->bindParam(':firstname', $fn, PDO::PARAM_STR, 50);
+    $stmt->bindParam(':lastname', $ln, PDO::PARAM_STR, 50);
 
     $stmt->execute();
 }
