@@ -168,12 +168,8 @@ while (isset($_POST['FirstName'])) {
 function add_user($pdo, $user_name, $passwd, $email, $fn, $ln, $zip)
 {
     $sql = "INSERT INTO User(Username, Password, Email, FirstName, LastName, Zip) 
-            VALUES(:username, :password, :email, :firstname, :lastname, :zip)
-            SET @newUserID = LAST_INSERT_ID();
-            INSERT INTO Profile(UserID, Username, FirstName, LastName)
-            VALUES (@newUserID, :username, :firstname, :lastname";
+            VALUES(:username, :password, :email, :firstname, :lastname, :zip)";
     $stmt = $pdo->prepare($sql);
-
     $stmt->bindParam(':username', $user_name, PDO::PARAM_STR, 25);
     $stmt->bindParam(':password', $passwd, PDO::PARAM_STR, 255);
     $stmt->bindParam(':email', $email, PDO::PARAM_STR, 65);
@@ -182,6 +178,18 @@ function add_user($pdo, $user_name, $passwd, $email, $fn, $ln, $zip)
     $stmt->bindParam(':zip', $zip, PDO::PARAM_STR, 5);
 
     $stmt->execute();
+
+    $newUserID = $pdo->lastInsertId();
+    $sqlProfile = "INSERT INTO Profile (UserID, Username, FirstName, LastName) 
+                   VALUES (:userID, :username, :firstname, :lastname)";
+    $stmtProfile = $pdo->prepare($sqlProfile);
+
+    $stmtProfile->bindParam(':userID', $newUserID, PDO::PARAM_INT, 25);
+    $stmtProfile->bindParam(':username', $user_name, PDO::PARAM_STR, 25);
+    $stmtProfile->bindParam(':firstname', $fn, PDO::PARAM_STR, 50);
+    $stmtProfile->bindParam(':username', $ln, PDO::PARAM_STR, 50);
+    
+    $stmtProfile->execute();
 }
 
 
