@@ -184,7 +184,7 @@ function add_user($pdo, $user_name, $passwd, $email, $fn, $ln, $zip)
                    VALUES (:userID, :username, :firstname, :lastname)";
     $stmtProfile = $pdo->prepare($sqlProfile);
 
-    $stmtProfile->bindParam(':userID', $newUserID, PDO::PARAM_INT, 25);
+    $stmtProfile->bindParam(':userID', $newUserID, PDO::PARAM_STR, 25);
     $stmtProfile->bindParam(':username', $user_name, PDO::PARAM_STR, 25);
     $stmtProfile->bindParam(':firstname', $fn, PDO::PARAM_STR, 50);
     $stmtProfile->bindParam(':username', $ln, PDO::PARAM_STR, 50);
