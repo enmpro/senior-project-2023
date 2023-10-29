@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <a class="m-3 btn btn-primary back-btn" href="login.html">Go Back</a>
+
 
     <div class="preloader-wrapper">
         <div class="spinner-border text-primary">
@@ -28,65 +28,38 @@
     </div>
 
     <div class="container w-50 card mt-3 signup-box">
-        <form action="signup.php" method="post">
-            <div class="mb-3 mt-3 form-floating">
-                <input class="form-control input-box" type="text" name="Username" placeholder="Enter Username"
-                    required />
-                <label for="Username">
-                    Username
+        <form action="signup.php" method="post" enctype="multipart/form-data">
+            <div class="mb-3 mt-3">
+                <label for="description">
+                    Description
                 </label>
-            </div>
-            <div class="mb-3 mt-3 form-floating">
-                <input class="form-control input-box" type="text" name="FirstName" placeholder="Enter Username"
-                    required />
-                <label for="FirstName">
-                    First Name
-                </label>
-            </div>
-            <div class="mb-3 mt-3 form-floating">
-                <input class="form-control input-box" type="text" name="LastName" placeholder="Enter Username"
-                    required />
-                <label for="LastName">
-                    Last Name
-                </label>
-            </div>
+                <textarea class="container-fluid" name="description" id="description">Insert description</textarea>
 
-            <div class="mb-3 mt-3 form-floating">
-                <input class="form-control input-box" type="email" name="Email" placeholder="Enter Username" required />
-                <label for="Email">
-                    Email
-                </label>
             </div>
-
-            <div class="mb-3 form-floating">
-                <input class="form-control input-box" minlength="8" type="password" name="Password"
-                    placeholder="Enter Password" required />
-                <label for="Password">
-                    Password
-                </label>
+            <div class="">
+                <label for="userphoto">Upload Your Photo (JPG, GIF, PNG or TIF File):</label>
+                <input type="file" id="userphoto" name="userphoto" size="10">
             </div>
-
-            <div class="mb-3 form-floating">
-                <input class="form-control input-box" minlength="8" type="password" name="repword"
-                    placeholder="Enter Password" required />
-                <label for="repword">
-                    Re-enter Password
-                </label>
+            <div>
+                <div>
+                    <input type="checkbox" id="location-chk" name="location-chk" value="showLocation">
+                    <label for="location-chk">Show location</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="age-chk" name="age-chk" value="showLocation">
+                    <label for="age-chk">Show Age</label>
+                </div>
             </div>
-
-            <div class="mb-3 form-floating">
-                <input class="form-control input-box" minlength="5" type="text" name="Zip" placeholder="Enter Zip Code"
-                    required />
-                <label for="Zip">
-                    Enter Zip Code
-                </label>
-            </div>
-
             <div class="text-center">
-                <input class="my-3 btn btn-primary signup-btn" type="submit" value="Sign up">
+                <input class="my-3 btn btn-primary signup-btn" type="submit" value="Save changes">
             </div>
         </form>
-        <script src="loading_anim.js"></script>
+    </div>
+    <div class="text-center">
+        <a class="m-3 btn btn-primary back-btn" href="homepage_page.html">Skip for now</a>
+    </div>
+    
+    <script src="loading_anim.js"></script>
 </body>
 
 </html>
