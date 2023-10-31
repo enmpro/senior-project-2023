@@ -1,11 +1,22 @@
 <?php
 require_once 'logindb.php';
+require_once 'login.php';
 
 try {
     $pdo = new PDO($attr, $user, $pass, $opts);
 } catch (PDOException $e) {
     throw new PDOException($e->getMessage(), (int) $e->getCode());
 }
+
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    // The user is not logged in, redirect them to the login page
+    header('Location: main.php');
+    exit;
+}
+
+$username = $_SESSION['user_id'];
+$user_id = $_SESSION['user_num'];
 
 
 function test_userinput($data)
@@ -22,23 +33,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $facebook = test_userinput($_POST['facebook']);
     $twitter = test_userinput($_POST['twitter']);
     $instagram = test_userinput($_POST['instagram']);
-    
-    
+
+    alter_social($pdo, $facebook, 'Facebook', $user_id);
+    alter_social($pdo, $twitter, 'Twitter', $user_id);
+    alter_social($pdo, $instagram, 'Instagram', $user_id);
+
 
 }
 
 
-function update_social($pdo, $handleID, $profileID, $platform, $handle, $url) {
+function alter_social($pdo, $newUrl, $platform, $userid) {
     
-    $sqlProfile = "INSERT INTO SocialMediaHandles (HandleID, ProfileID, Platform, Handle, URL) 
-                   VALUES (:handleID, :profileID, :platform, :handle, :url)";
-    $stmtProfile = $pdo->prepare($sqlProfile);
+    $editProfile = "UPDATE SocialMediaHandles
+                   SET Url = :newUrl
+                   WHERE Platform = :platform AND ProfileID = 
+                   (SELECT ProfileID FROM Profile WHERE UserID LIKE :userid)";
+    $stmtProfile = $pdo->prepare($editProfile);
 
-    $stmtProfile->bindParam(':handleID', $handleID, PDO::PARAM_STR, 11);
-    $stmtProfile->bindParam(':profileID', $profileID, PDO::PARAM_STR, 11);
+    $stmtProfile->bindParam(':newUrl', $newUrl, PDO::PARAM_STR, 255);
     $stmtProfile->bindParam(':platform', $platform, PDO::PARAM_STR, 50);
-    $stmtProfile->bindParam(':handle', $handle, PDO::PARAM_STR, 100);
-    $stmtProfile->bindParam(':url', $url, PDO::PARAM_STR, 255);
+    $stmtProfile->bindParam(':userid', $userid, PDO::PARAM_STR, 11);
     
     $stmtProfile->execute();
 }
