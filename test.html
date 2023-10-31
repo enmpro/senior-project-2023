@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Multi-Section Signup</title>
+    <style>
+        .form-section {
+            display: none;
+        }
+        .current-section {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div id="section1" class="form-section current-section">
+        <!-- Section 1 content (e.g., email, password) -->
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password">
+        <button onclick="nextSection(1)">Next</button>
+    </div>
+    <div id="section2" class="form-section">
+        <!-- Section 2 content (e.g., name, age) -->
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name">
+        <label for="age">Age:</label>
+        <input type="text" id="age" name="age">
+        <button onclick="nextSection(2)">Next</button>
+        <button onclick="previousSection(2)">Previous</button>
+    </div>
+    <div id="section3" class="form-section">
+        <!-- Section 3 content (e.g., address, interests) -->
+        <label for="address">Address:</label>
+        <input type="text" id="address" name="address">
+        <label for="interests">Interests:</label>
+        <input type="text" id="interests" name="interests">
+        <button onclick="previousSection(3)">Previous</button>
+        <button type="submit">Sign Up</button>
+    </div>
+    <script>
+        function nextSection(currentSection) {
+    // Hide the current section
+    document.getElementById("section" + currentSection).classList.remove("current-section");
+
+    // Show the next section
+    currentSection++;
+    document.getElementById("section" + currentSection).classList.add("current-section");
+}
+
+function previousSection(currentSection) {
+    // Hide the current section
+    document.getElementById("section" + currentSection).classList.remove("current-section");
+
+    // Show the previous section
+    currentSection--;
+    document.getElementById("section" + currentSection).classList.add("current-section");
+}
+    </script>
+</body>
+</html>
