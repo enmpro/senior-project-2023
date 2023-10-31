@@ -17,6 +17,10 @@ try {
     $pdo = new PDO($attr, $user, $pass, $opts);
 } catch (PDOException $e) {
     throw new PDOException($e->getMessage(), (int) $e->getCode());
+    //<?php add_artist($pdo, $artist['name'])
+    //<?php add_song($pdo, $track['artists'][0]['name']);
+
+
 }
 
 // Fetch Top Artists
@@ -43,7 +47,6 @@ $tracks = json_decode($response, true)['items'];
     <ul>
         <?php foreach($artists as $artist): ?>
             <li><?php echo $artist['name']; ?></li>
-            <?php add_artist($pdo, $artist['name'])?>
         <?php endforeach; ?>
     </ul>
 
@@ -51,7 +54,6 @@ $tracks = json_decode($response, true)['items'];
     <ul>
         <?php foreach($tracks as $track): ?>
             <li><?php echo $track['name']; ?> by <?php echo $track['artists'][0]['name']; ?></li>
-            <?php add_song($pdo, $track['artists'][0]['name']);?>
         <?php endforeach; ?>
     </ul>
 </body>
