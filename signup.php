@@ -207,7 +207,7 @@ while (isset($_POST['FirstName'])) {
 
 function add_user($pdo, $event, $user_name, $passwd, $email, $fn, $ln, $gend, $birth, $zip)
 {
-    $sql = "INSERT INTO User (Username, Password, Email, FirstName, LastName, Zip) 
+    $sql = "INSERT INTO User (Username, Password, Email, FirstName, LastName, Gender, Birthday, Zip) 
             VALUES(:event, :username, :password, :email, :firstname, :lastname, :gender, :birthday, :zip)";
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(':event', $event, PDO::PARAM_STR, 2);
