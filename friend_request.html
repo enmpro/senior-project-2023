@@ -6,10 +6,17 @@
     <title>PROFILE</title>
 </head>
 <body>
-    <h1>User Profile</h1>
-    <!-- Display user information here -->
-    
-    <!-- Add a form to send friend requests -->
+    <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container">
+            <p class="navbar-brand">
+                CANTIO
+            </p>
+            <a href="homepage.php">Home</a>
+            <a href="#">About</a>
+            <a href="profile.html">Profile</a>
+            <a href="community.php">Community</a>
+        </div>
+    </nav>
     <form action="friend_request.php" method="post">
         <input type="hidden" name="RequestReceive" value="<?php echo $UserID; ?>">
         <button type="submit">Send Friend Request</button>
