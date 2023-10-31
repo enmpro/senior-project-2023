@@ -100,7 +100,7 @@ if ($row = $result->fetch()) {
           $handle = $row['Handle'];
           $url = $row['URL'];
 
-          echo ' '.$handle_label.' '.$handle.' '.$url.
+          echo ' '.$handle_label.' '.$handle.' '.$url;
         }
         ?>
       </p>
