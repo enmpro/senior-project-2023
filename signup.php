@@ -212,19 +212,18 @@ while (isset($_POST['FirstName'])) {
         $newProfileID = $pdo->lastInsertId();
 
         $handles = [
-            ['HandleID' => 1, 'Platform' => 'Facebook', 'Handle' => 'user123', 'URL' => $facebook],
-            ['HandleID' => 2, 'Platform' => 'Twitter', 'Handle' => 'user456', 'URL' => $twitter],
-            ['HandleID' => 3, 'Platform' => 'Instagram', 'Handle' => 'user789', 'URL' =>  $instagram],
+            ['Platform' => 'Facebook', 'Handle' => 'user123', 'URL' => $facebook],
+            ['Platform' => 'Twitter', 'Handle' => 'user456', 'URL' => $twitter],
+            ['Platform' => 'Instagram', 'Handle' => 'user789', 'URL' =>  $instagram],
         ];
 
         foreach ($handles as $handleData) {
 
-            $handleid = $handleData['HandleID'];
             $platform = $handleData['Platform'];
             $handle = $handleData['Handle'];
             $url = $handleData['URL'];
 
-            update_social($pdo, $handleid, $newProfileID, $platform, $handle, $url);
+            update_social($pdo, $newProfileID, $platform, $handle, $url);
         }   
                 
         $flag = true;
@@ -278,13 +277,12 @@ function update_profile($pdo, $description, $profilepic, $showgender, $showlocat
     $stmtProfile->execute();
 }
 
-function update_social($pdo, $handleID, $profileID, $platform, $handle, $url) {
+function update_social($pdo,$profileID, $platform, $handle, $url) {
     
-    $sqlProfile = "INSERT INTO SocialMediaHandles (HandleID, ProfileID, Platform, Handle, URL) 
-                   VALUES (:handleID, :profileID, :platform, :handle, :url)";
+    $sqlProfile = "INSERT INTO SocialMediaHandles (ProfileID, Platform, Handle, URL) 
+                   VALUES (:profileID, :platform, :handle, :url)";
     $stmtProfile = $pdo->prepare($sqlProfile);
 
-    $stmtProfile->bindParam(':handleID', $handleID, PDO::PARAM_STR, 11);
     $stmtProfile->bindParam(':profileID', $profileID, PDO::PARAM_STR, 11);
     $stmtProfile->bindParam(':platform', $platform, PDO::PARAM_STR, 50);
     $stmtProfile->bindParam(':handle', $handle, PDO::PARAM_STR, 100);
