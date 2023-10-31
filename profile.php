@@ -1,3 +1,40 @@
+<?php
+require_once 'login.php';
+
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    // The user is not logged in, redirect them to the login page
+    header('Location: main.php');
+    exit;
+}
+
+$username = $_SESSION['user_id'];
+$user_id = $_SESSION['user_num'];
+
+echo $username;
+
+$query  = "SELECT * FROM User WHERE UserID LIKE $user_id";
+$result = $pdo->query($query);
+
+if ($row = $result->fetch()) {
+  $fullname = $row['FirstName'].' '.$row['LastName'];
+  $gender = $row['Gender'];
+  $zip = $row['Zip'];
+  $birthday = $row['Birthday'];
+}
+
+$query2  = "SELECT * FROM User WHERE UserID LIKE $user_id";
+$result2 = $pdo->query($query);
+
+if ($row = $result->fetch()) {
+  $description = $row['Description'];
+  $showgender = $row['ShowGender'];
+  $showlocation = $row['ShowLocation'];
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,22 +57,28 @@
         <a href="homepage.php">Home</a>
         <a href="#">About</a>
         <a href="profile.html">Profile</a>
-        <a href="community.php">Community</a>
+        <a href="community.php">Community</a>-
     </div>
 </nav>
 
   <div class="card container-fluid w-75 mt-5">
-    <h1>Username</h1>
+    <h1><?php echo $username;?></h1>
 
     <section>
       <img src="your-profile-image.jpg" alt="Profile Image" class="profile-image">
-      <h2>Your Name</h2>
+      <h2><?php echo $fullname;?></h2>
       <p>Musician | Music Enthusiast</p>
     </section>
     <section>
       <h2>About Me</h2>
       <p>
-        Description
+      <?php echo $description;?>
+      </p>
+      <p>
+      <?php echo $gender;?>
+      </p>
+      <p>
+      <?php echo $birthday;?>
       </p>
     </section>
     <section>
