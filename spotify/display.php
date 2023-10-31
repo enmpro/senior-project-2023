@@ -1,4 +1,6 @@
 <?php
+require_once 'logindb.php';
+
 session_start();
 $access_token = $_SESSION['access_token'];
 
@@ -16,6 +18,16 @@ $response = curl_exec($ch);
 $tracks = json_decode($response, true)['items'];
 ?>
 
+<?php
+function add_song($pdo, $user_id, $song_name){
+    $sql = "INSERT INTO Song (UserID, SongName) VALUE(:userid, :songname)";
+
+    $stmt = $pdo->prepare($sql);
+
+}
+?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,6 +38,7 @@ $tracks = json_decode($response, true)['items'];
     <ul>
         <?php foreach($artists as $artist): ?>
             <li><?php echo $artist['name']; ?></li>
+
         <?php endforeach; ?>
     </ul>
 
