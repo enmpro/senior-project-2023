@@ -11,17 +11,17 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 $access_token = $_SESSION['access_token'];
-$username = $_SESSION['user_id'];
+//$username = $_SESSION['user_id'];
 
-try {
-    $pdo = new PDO($attr, $user, $pass, $opts);
-} catch (PDOException $e) {
-    throw new PDOException($e->getMessage(), (int) $e->getCode());
-    //<?php add_artist($pdo, $artist['name'])
-    //<?php add_song($pdo, $track['artists'][0]['name']);
+// try {
+//     $pdo = new PDO($attr, $user, $pass, $opts);
+// } catch (PDOException $e) {
+//     throw new PDOException($e->getMessage(), (int) $e->getCode());
+//     //<?php add_artist($pdo, $artist['name'])
+//     //<?php add_song($pdo, $track['artists'][0]['name']);
 
 
-}
+// }
 
 // Fetch Top Artists
 $ch = curl_init();
