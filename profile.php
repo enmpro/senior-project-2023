@@ -11,6 +11,8 @@ if (!isset($_SESSION['user_id'])) {
 $username = $_SESSION['user_id'];
 $user_id = $_SESSION['user_num'];
 
+echo $username;
+
 $query  = "SELECT * FROM User WHERE UserID LIKE $user_id";
 $result = $pdo->query($query);
 
@@ -64,7 +66,7 @@ if ($row = $result->fetch()) {
 
     <section>
       <img src="your-profile-image.jpg" alt="Profile Image" class="profile-image">
-      <h2><?php $firstname?></h2>
+      <h2><?php $fullname?></h2>
       <p>Musician | Music Enthusiast</p>
     </section>
     <section>
