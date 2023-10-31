@@ -1,18 +1,11 @@
 <?php
 require_once 'logindb.php';
-require_once 'login.php';
 
 try {
     $pdo = new PDO($attr, $user, $pass, $opts);
 } catch (PDOException $e) {
     throw new PDOException($e->getMessage(), (int) $e->getCode());
 }
-
-session_start();
-
-
-$username = $_SESSION['user_id'];
-$user_id = $_SESSION['user_num'];
 
 
 function test_userinput($data)
