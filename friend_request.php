@@ -12,7 +12,7 @@ $RequestSend = $_SESSION['UserID']; #gets the id of the user that sends the requ
 $RequestReceive = $_POST['RequestReceive']; #gets the id of the user that receives the request
 
 #inserts the friend request into the database
-$sql = "INSERT INTO FriendRequest (RequestSend, RequestSend) VALUES ($RequestSend, $RequestReceived)";
+$sql = "INSERT INTO FriendRequest (RequestSend, RequestReceive) VALUES ($RequestSend, $RequestReceived)";
 $conn->query($sql);
 
 #accepting or rejecting friend requests
@@ -22,4 +22,8 @@ $action = $_POST['action']; //gets the action (accept or reject)
 #Update the status of the friend request
 $sql = "UPDATE FriendRequest SET status = '$action' WHERE id = $$RequestID";
 $conn->query($sql);
+
+#redirects user back to the profile page
+header("Location: profile.php?UserID=".$RequestReceive);
+exit(); 
 ?>
