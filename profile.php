@@ -21,14 +21,16 @@ if ($row = $result->fetch()) {
   $birthday = $row['Birthday'];
 }
 
-$query2  = "SELECT * FROM User WHERE UserID LIKE $user_id";
-$result2 = $pdo->query($query);
+$query2  = "SELECT * FROM Profile WHERE UserID LIKE $user_id";
+$result2 = $pdo->query($query2);
 
 if ($row = $result->fetch()) {
   $description = $row['Description'];
   $showgender = $row['ShowGender'];
   $showlocation = $row['ShowLocation'];
 }
+
+
 
 ?>
 
@@ -80,7 +82,7 @@ if ($row = $result->fetch()) {
       </p>
     </section>
     <section>
-      <h2>Favorite Music</h2>
+      <h2>Top Music</h2>
       <p>
         FIXME
       </p>
@@ -88,7 +90,19 @@ if ($row = $result->fetch()) {
     <section>
       <h2>Social Media</h2>
       <p>
-        FIXME
+        <?php 
+        $query3  = "SELECT * FROM SocialMediaHandles WHERE ProfileID LIKE 
+        (SELECT ProfileID FROM Profile WHERE UserID LIKE $user_id)";
+        $result = $pdo->query($query3);
+        
+        while ($row = $result->fetch()) {
+          $handle_label = $row['Platform'];
+          $handle = $row['Handle'];
+          $url = $row['URL'];
+
+          echo ' '.$handle_label.' '.$handle.' '.$url.
+        }
+        ?>
       </p>
     </section>
   </div>
