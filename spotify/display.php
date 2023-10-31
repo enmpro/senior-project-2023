@@ -1,27 +1,6 @@
 <?php
-
-// require_once 'logindb.php';
-
-
-// session_start();
-// if (!isset($_SESSION['user_id'])) {
-//     // The user is not logged in, redirect them to the login page
-//     header('Location: main.php');
-//     exit;
-// }
-
+session_start();
 $access_token = $_SESSION['access_token'];
-//$username = $_SESSION['user_id'];
-
-// try {
-//     $pdo = new PDO($attr, $user, $pass, $opts);
-// } catch (PDOException $e) {
-//     throw new PDOException($e->getMessage(), (int) $e->getCode());
-//     //<?php add_artist($pdo, $artist['name'])
-//     //<?php add_song($pdo, $track['artists'][0]['name']);
-
-
-// }
 
 // Fetch Top Artists
 $ch = curl_init();
@@ -58,28 +37,3 @@ $tracks = json_decode($response, true)['items'];
     </ul>
 </body>
 </html>
-<?php
-
-
-    echo "Test";
-    function add_song($pdo, $song_name){
-        $sql = "INSERT INTO Song(SongName) VALUES(:songname)";
-        
-        $stmt = $pdo->prepare($sql);
-        $stmt->bindParm(':songname', $song_name, PDO::PARAM_STR, 50);
-
-        $stmt->execute();
-
-    }
-
-    function add_artist($pdo, $artist_name){
-        $sql = "INSERT INTO Artist(ArtistName) VALUES(:artistname)";
-        
-        $stmt = $pdo->prepare($sql);
-        $stmt->bindParam (':artistname', $artist_name, PDO::PARAM_STR, 50);
-        
-        $stmt->execute();
-
-    }
-
-?>
