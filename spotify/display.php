@@ -1,23 +1,6 @@
 <?php
-
-require_once 'logindb.php';
-
-
 session_start();
-if (!isset($_SESSION['user_id'])) {
-    // The user is not logged in, redirect them to the login page
-    header('Location: main.php');
-    exit;
-}
-
 $access_token = $_SESSION['access_token'];
-$username = $_SESSION['user_id'];
-
-try {
-    $pdo = new PDO($attr, $user, $pass, $opts);
-} catch (PDOException $e) {
-    throw new PDOException($e->getMessage(), (int) $e->getCode());
-}
 
 // Fetch Top Artists
 $ch = curl_init();
@@ -43,7 +26,6 @@ $tracks = json_decode($response, true)['items'];
     <ul>
         <?php foreach($artists as $artist): ?>
             <li><?php echo $artist['name']; ?></li>
-            <?php add_artist($pdo, $artist['name'])?>
         <?php endforeach; ?>
     </ul>
 
@@ -51,33 +33,7 @@ $tracks = json_decode($response, true)['items'];
     <ul>
         <?php foreach($tracks as $track): ?>
             <li><?php echo $track['name']; ?> by <?php echo $track['artists'][0]['name']; ?></li>
-            <?php add_song($pdo, $track['artists'][0]['name']);?>
         <?php endforeach; ?>
     </ul>
 </body>
 </html>
-<?php
-
-
-    echo "Test";
-    function add_song($pdo, $song_name){
-        $sql = "INSERT INTO Song(SongName) VALUES(:songname)";
-        
-        $stmt = $pdo->prepare($sql);
-        $stmt->bindParm(':songname', $song_name, PDO::PARAM_STR, 50);
-
-        $stmt->execute();
-
-    }
-
-    function add_artist($pdo, $artist_name){
-        $sql = "INSERT INTO Artist(ArtistName) VALUES(:artistname)";
-        
-        $stmt = $pdo->prepare($sql);
-        $stmt->bindParam (':artistname', $artist_name, PDO::PARAM_STR, 50);
-        
-        $stmt->execute();
-
-    }
-
-?>
