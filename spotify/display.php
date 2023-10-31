@@ -1,6 +1,8 @@
 <?php
 require_once 'logindb.php';
 
+echo "test1";
+
 try {
     echo "test";
     $pdo = new PDO($attr, $user, $pass, $opts);
