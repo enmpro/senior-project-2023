@@ -25,18 +25,23 @@
     </nav>
 
     <div class="container w-50 card mt-3 login-box">
-        <form action="login.php" method="post">
-            <div class="mb-3 mt-3 form-floating">
-                <input class="form-control input-box" type="text" name="username" placeholder="Enter Username" />
+        <form action="profile_edit.php" method="post">
+            <div class="mb-3 mt-3">
                 <label for="username">
                     Description
                 </label>
+                <input class="" type="text" name="username" placeholder="Insert description" />
+                
             </div>
-            <div class="mb-3 form-floating">
-                <input class="form-control input-box" type="password" minlength="8" name="password" placeholder="Enter Password" />
-                <label for="password">
-                    Password
-                </label>
+            <div class="container-fluid">
+                <label for="facebook">Facebook:</label>
+                <input type="text" id="facebook" name="facebook">
+                <br>
+                <label for="twitter">Twitter:</label>
+                <input type="text" id="twitter" name="twitter">
+                <br>
+                <label for="instagram">Instagram:</label>
+                <input type="text" id="instagram" name="instagram">
             </div>
             <div>
                 <div>
