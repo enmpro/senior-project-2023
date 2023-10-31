@@ -46,7 +46,7 @@ function alter_social($pdo, $newUrl, $platform, $userid) {
     
     $editProfile = "UPDATE SocialMediaHandles
                    SET Url = :newUrl
-                   WHERE Platform = :platform AND ProfileID = 
+                   WHERE Platform LIKE :platform AND ProfileID LIKE 
                    (SELECT ProfileID FROM Profile WHERE UserID LIKE :userid)";
     $stmtProfile = $pdo->prepare($editProfile);
 
