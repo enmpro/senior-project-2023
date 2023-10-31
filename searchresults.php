@@ -1,5 +1,4 @@
 <?php
-require_once 'login.php';
 session_start(); 
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {

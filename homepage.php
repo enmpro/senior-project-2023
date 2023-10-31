@@ -38,6 +38,9 @@ $username = $_SESSION['user_id'];
             <a href="community.php">Community</a>
         </div>
     </nav>
+    <div class="container">
+        <a href="/spotify/index.php">Spotify Sign In </a>
+    </div>
     <div>
         <p>THIS IS THE HOMEPAGE</p>
     </div>
