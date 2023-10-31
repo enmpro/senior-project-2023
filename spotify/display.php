@@ -1,14 +1,14 @@
 <?php
 
-require_once 'logindb.php';
+// require_once 'logindb.php';
 
 
-session_start();
-if (!isset($_SESSION['user_id'])) {
-    // The user is not logged in, redirect them to the login page
-    header('Location: main.php');
-    exit;
-}
+// session_start();
+// if (!isset($_SESSION['user_id'])) {
+//     // The user is not logged in, redirect them to the login page
+//     header('Location: main.php');
+//     exit;
+// }
 
 $access_token = $_SESSION['access_token'];
 //$username = $_SESSION['user_id'];
