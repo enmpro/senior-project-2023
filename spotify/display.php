@@ -43,7 +43,7 @@ $tracks = json_decode($response, true)['items'];
     <ul>
         <?php foreach($artists as $artist): ?>
             <li><?php echo $artist['name']; ?></li>
-            <?php add_artist($pdo, $art)?>
+            <?php add_artist($pdo, $artist['name'])?>
         <?php endforeach; ?>
     </ul>
 
@@ -51,6 +51,7 @@ $tracks = json_decode($response, true)['items'];
     <ul>
         <?php foreach($tracks as $track): ?>
             <li><?php echo $track['name']; ?> by <?php echo $track['artists'][0]['name']; ?></li>
+            <?php add_song($pdo, $track['artists'][0]['name']);?>
         <?php endforeach; ?>
     </ul>
 </body>
