@@ -34,7 +34,7 @@ $username = $_SESSION['user_id'];
             </p>
             <a href="homepage.php">Home</a>
             <a href="#">About</a>
-            <a href="profile.html">Profile</a>
+            <a href="profile.php">Profile</a>
             <a href="community.php">Community</a>
         </div>
     </nav>
