@@ -62,23 +62,23 @@ if ($row = $result->fetch()) {
 </nav>
 
   <div class="card container-fluid w-75 mt-5">
-    <h1><?php $username?></h1>
+    <h1><?php echo $username;?></h1>
 
     <section>
       <img src="your-profile-image.jpg" alt="Profile Image" class="profile-image">
-      <h2><?php $fullname?></h2>
+      <h2><?php echo $fullname;?></h2>
       <p>Musician | Music Enthusiast</p>
     </section>
     <section>
       <h2>About Me</h2>
       <p>
-      <?php $description?>
+      <?php echo $description;?>
       </p>
       <p>
-      <?php $gender?>
+      <?php echo $gender;?>
       </p>
       <p>
-      <?php $birthday?>
+      <?php echo $birthday;?>
       </p>
     </section>
     <section>
