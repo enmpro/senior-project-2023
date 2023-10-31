@@ -107,7 +107,7 @@ if ($row = $result->fetch()) {
     </section>
   </div>
   <div class="container text-center mt-5">
-    <a class="btn btn-primary submit-btn" href="signup.html">Edit Profile</a>
+    <a class="btn btn-primary submit-btn" href="profile_edit.html">Edit Profile</a>
 </div>
 
 </body>
