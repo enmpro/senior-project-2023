@@ -123,6 +123,7 @@ while (isset($_POST['FirstName'])) {
         isset($_POST['Username']) && isset($_POST['FirstName'])
         && isset($_POST['LastName']) && isset($_POST['Email']) && isset($_POST['Password']) 
         && isset($_POST['repword']) && isset($_POST['Zip'])
+        && isset($_POST['gender']) && isset($_POST['event-yesno'])
     ) {
         $username = $_POST['Username'];
         $username = trim($username);
@@ -147,7 +148,85 @@ while (isset($_POST['FirstName'])) {
         $zip = trim($zip);
         $zip = stripslashes($zip);
 
-        add_user($pdo, $username, $hash, $email, $firstname, $lastname, $zip );
+        $gender = $_POST['gender'];
+
+        $eventyn = $_POST['event-yesno'];
+
+        $birthday = $_POST['birthday'];
+
+        if(isset($_POST['description'])) {
+            $description = $_POST['description'];
+        } else {
+            $description = '';
+        }
+
+        if(isset($_POST['userphoto'])) {
+            $userphoto = $_POST['userphoto'];
+        } else {
+            $userphoto = '';
+        }
+
+
+        if(isset($_POST['location-chk'])) {
+            $locationChk = $_POST['location-chk'];
+        } else {
+            $locationChk = '';
+        }
+
+        if(isset($_POST['age-chk'])) {
+            $ageChk = $_POST['age-chk'];
+        } else {
+            $ageChk = '';
+        }
+
+        if(isset($_POST['gender-chk'])) {
+            $genderChk = $_POST['gender-chk'];
+        } else {
+            $genderChk = '';
+        }
+
+        // social medias
+        if(isset($_POST['facebook'])) {
+            $facebook = $_POST['facebook'];
+        } else {
+            $facebook = '';
+        }
+        if(isset($_POST['twitter'])) {
+            $twitter = $_POST['twitter'];
+        } else {
+            $twitter = '';
+        }
+        if(isset($_POST['instagram'])) {
+            $instagram = $_POST['instagram'];
+        } else {
+            $instagram = '';
+        }
+
+       
+
+        
+        add_user($pdo, $eventyn, $username, $hash, $email, $firstname, $lastname, $gender, $birthday, $zip);
+        update_profile($pdo, $description, $userphoto, $genderChk, $locationChk, $ageChk);
+        
+
+        $newProfileID = $pdo->lastInsertId();
+
+        $handles = [
+            ['HandleID' => 1, 'Platform' => 'Facebook', 'Handle' => 'user123', 'URL' => $facebook],
+            ['HandleID' => 2, 'Platform' => 'Twitter', 'Handle' => 'user456', 'URL' => $twitter],
+            ['HandleID' => 3, 'Platform' => 'Instagram', 'Handle' => 'user789', 'URL' =>  $instagram],
+        ];
+
+        foreach ($handles as $handleData) {
+
+            $handleid = $handleData['HandleID'];
+            $platform = $handleData['Platform'];
+            $handle = $handleData['Handle'];
+            $url = $handleData['URL'];
+
+            update_social($pdo, $handleid, $newProfileID, $platform, $handle, $url);
+        }   
+                
         $flag = true;
 
         if ($flag) {
@@ -165,29 +244,51 @@ while (isset($_POST['FirstName'])) {
 
 }
 
-function add_user($pdo, $user_name, $passwd, $email, $fn, $ln, $zip)
+function add_user($pdo, $event, $user_name, $passwd, $email, $fn, $ln, $gend, $birth, $zip)
 {
-    $sql = "INSERT INTO User(Username, Password, Email, FirstName, LastName, Zip) 
-            VALUES(:username, :password, :email, :firstname, :lastname, :zip)";
+    $sql = "INSERT INTO User (EventYesNo, Username, Password, Email, FirstName, LastName, Gender, Birthday, Zip) 
+            VALUES(:event, :username, :password, :email, :firstname, :lastname, :gender, :birthday, :zip)";
     $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':event', $event, PDO::PARAM_STR, 2);
     $stmt->bindParam(':username', $user_name, PDO::PARAM_STR, 25);
     $stmt->bindParam(':password', $passwd, PDO::PARAM_STR, 255);
     $stmt->bindParam(':email', $email, PDO::PARAM_STR, 65);
     $stmt->bindParam(':firstname', $fn, PDO::PARAM_STR, 50);
     $stmt->bindParam(':lastname', $ln, PDO::PARAM_STR, 50);
+    $stmt->bindParam(':gender', $gend, PDO::PARAM_STR, 25);
+    $stmt->bindParam(':birthday', $birth, PDO::PARAM_STR, 50);
     $stmt->bindParam(':zip', $zip, PDO::PARAM_STR, 5);
 
     $stmt->execute();
+}
 
+function update_profile($pdo, $description, $profilepic, $showgender, $showlocation, $showbirthday) {
     $newUserID = $pdo->lastInsertId();
-    $sqlProfile = "INSERT INTO Profile (UserID, Username, FirstName, LastName) 
-                   VALUES (:userID, :username, :firstname, :lastname)";
+    $sqlProfile = "INSERT INTO Profile (UserID, Description, ProfilePic, ShowGender, ShowLocation, ShowBirthday) 
+                   VALUES (:userID, :descr, :profilepic, :showgend, :showloc, :showbirth)";
     $stmtProfile = $pdo->prepare($sqlProfile);
 
     $stmtProfile->bindParam(':userID', $newUserID, PDO::PARAM_STR, 10);
-    $stmtProfile->bindParam(':username', $user_name, PDO::PARAM_STR, 25);
-    $stmtProfile->bindParam(':firstname', $fn, PDO::PARAM_STR, 50);
-    $stmtProfile->bindParam(':lastname', $ln, PDO::PARAM_STR, 50);
+    $stmtProfile->bindParam(':descr', $description, PDO::PARAM_STR, 50);
+    $stmtProfile->bindParam(':profilepic', $profilepic, PDO::PARAM_LOB);
+    $stmtProfile->bindParam(':showgend', $showgender, PDO::PARAM_STR, 12);
+    $stmtProfile->bindParam(':showloc', $showlocation, PDO::PARAM_STR, 12);
+    $stmtProfile->bindParam(':showbirth', $showbirthday, PDO::PARAM_STR, 12);
+    
+    $stmtProfile->execute();
+}
+
+function update_social($pdo, $handleID, $profileID, $platform, $handle, $url) {
+    
+    $sqlProfile = "INSERT INTO SocialMediaHandles (HandleID, ProfileID, Platform, Handle, URL) 
+                   VALUES (:handleID, :profileID, :platform, :handle, :url)";
+    $stmtProfile = $pdo->prepare($sqlProfile);
+
+    $stmtProfile->bindParam(':handleID', $handleID, PDO::PARAM_STR, 11);
+    $stmtProfile->bindParam(':profileID', $profileID, PDO::PARAM_STR, 11);
+    $stmtProfile->bindParam(':platform', $platform, PDO::PARAM_STR, 50);
+    $stmtProfile->bindParam(':handle', $handle, PDO::PARAM_STR, 100);
+    $stmtProfile->bindParam(':url', $url, PDO::PARAM_STR, 255);
     
     $stmtProfile->execute();
 }
