@@ -11,8 +11,6 @@ if (!isset($_SESSION['user_id'])) {
 $username = $_SESSION['user_id'];
 $user_id = $_SESSION['user_num'];
 
-echo $username;
-
 $query  = "SELECT * FROM User WHERE UserID LIKE $user_id";
 $result = $pdo->query($query);
 
@@ -71,26 +69,26 @@ if ($row = $result->fetch()) {
     </section>
     <section>
       <h2>About Me</h2>
-      <p>
+      <p>Description:
       <?php echo $description;?>
       </p>
-      <p>
+      <p>Gender:
       <?php echo $gender;?>
       </p>
-      <p>
+      <p>Birthday:
       <?php echo $birthday;?>
       </p>
     </section>
     <section>
       <h2>Favorite Music</h2>
       <p>
-        Insert
+        FIXME
       </p>
     </section>
     <section>
       <h2>Social Media</h2>
       <p>
-        media handles
+        FIXME
       </p>
     </section>
   </div>

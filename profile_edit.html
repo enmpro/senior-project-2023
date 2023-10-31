@@ -24,11 +24,42 @@
         </div>
     </nav>
 
-    <div>
-        <form>
-            
+    <div class="container w-50 card mt-3 login-box">
+        <form action="login.php" method="post">
+            <div class="mb-3 mt-3 form-floating">
+                <input class="form-control input-box" type="text" name="username" placeholder="Enter Username" />
+                <label for="username">
+                    Description
+                </label>
+            </div>
+            <div class="mb-3 form-floating">
+                <input class="form-control input-box" type="password" minlength="8" name="password" placeholder="Enter Password" />
+                <label for="password">
+                    Password
+                </label>
+            </div>
+            <div>
+                <div>
+                    <input type="checkbox" id="gender-chk" name="gender-chk" value="showGender">
+                    <label for="gender-chk">Show gender</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="location-chk" name="location-chk" value="showLocation">
+                    <label for="location-chk">Show location</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="age-chk" name="age-chk" value="showAge">
+                    <label for="age-chk">Show Age</label>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <input class="my-3 btn btn-primary login-btn" type="submit" value="Login">
+            </div>
         </form>
     </div>
+
+
 
 </body>
 

@@ -185,9 +185,48 @@ while (isset($_POST['FirstName'])) {
             $genderChk = '';
         }
 
+        // social medias
+        if(isset($_POST['facebook'])) {
+            $facebook = $_POST['facebook'];
+        } else {
+            $facebook = '';
+        }
+        if(isset($_POST['twitter'])) {
+            $twitter = $_POST['twitter'];
+        } else {
+            $twitter = '';
+        }
+        if(isset($_POST['instagram'])) {
+            $instagram = $_POST['instagram'];
+        } else {
+            $instagram = '';
+        }
+
+       
+
         
         add_user($pdo, $eventyn, $username, $hash, $email, $firstname, $lastname, $gender, $birthday, $zip);
         update_profile($pdo, $description, $userphoto, $genderChk, $locationChk, $ageChk);
+        
+
+        $newProfileID = $pdo->lastInsertId();
+
+        $handles = [
+            ['HandleID' => 1, 'Platform' => 'Facebook', 'Handle' => 'user123', 'URL' => $facebook],
+            ['HandleID' => 2, 'Platform' => 'Twitter', 'Handle' => 'user456', 'URL' => $twitter],
+            ['HandleID' => 3, 'Platform' => 'Instagram', 'Handle' => 'user789', 'URL' =>  $instagram],
+        ];
+
+        foreach ($handles as $handleData) {
+
+            $handleid = $handleData['HandleID'];
+            $platform = $handleData['Platform'];
+            $handle = $handleData['Handle'];
+            $url = $handleData['URL'];
+
+            update_social($pdo, $handleid, $newProfileID, $platform, $handle, $url);
+        }   
+                
         $flag = true;
 
         if ($flag) {
@@ -235,6 +274,21 @@ function update_profile($pdo, $description, $profilepic, $showgender, $showlocat
     $stmtProfile->bindParam(':showgend', $showgender, PDO::PARAM_STR, 12);
     $stmtProfile->bindParam(':showloc', $showlocation, PDO::PARAM_STR, 12);
     $stmtProfile->bindParam(':showbirth', $showbirthday, PDO::PARAM_STR, 12);
+    
+    $stmtProfile->execute();
+}
+
+function update_social($pdo, $handleID, $profileID, $platform, $handle, $url) {
+    
+    $sqlProfile = "INSERT INTO SocialMediaHandles (HandleID, ProfileID, Platform, Handle, URL) 
+                   VALUES (:handleID, :profileID, :platform, :handle, :url)";
+    $stmtProfile = $pdo->prepare($sqlProfile);
+
+    $stmtProfile->bindParam(':handleID', $handleID, PDO::PARAM_STR, 11);
+    $stmtProfile->bindParam(':profileID', $profileID, PDO::PARAM_STR, 11);
+    $stmtProfile->bindParam(':platform', $platform, PDO::PARAM_STR, 50);
+    $stmtProfile->bindParam(':handle', $handle, PDO::PARAM_STR, 100);
+    $stmtProfile->bindParam(':url', $url, PDO::PARAM_STR, 255);
     
     $stmtProfile->execute();
 }
