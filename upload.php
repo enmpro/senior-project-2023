@@ -31,7 +31,7 @@ if (isset($_POST["submit"])) {
         // Set transfer mode to binary for image files
         ftp_set_option($ftpConnection, FTP_BINARY, true);
 
-        $remoteDirectory = "/home/gummybea/public_html/userphoto/"; // Replace with the remote directory path
+        $remoteDirectory = "/public_html/userphoto/"; // Replace with the remote directory path
 
         // Generate a unique remote file name using timestamp
         $remoteFile = $remoteDirectory . time() . "_" . $fileName;
