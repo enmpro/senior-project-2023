@@ -75,8 +75,10 @@ if ($row2 = $result2->fetch()) {
       if ($result) {
         $profilePicture = $result['ProfilePic'];
         echo $profilePicture;
+        echo 'asdasd';
       } else {
         $profilePicture = '';
+        echo 'book';
       }
 
 
