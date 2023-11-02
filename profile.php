@@ -3,25 +3,25 @@ require_once 'login.php';
 
 session_start();
 if (!isset($_SESSION['user_name'])) {
-    // The user is not logged in, redirect them to the login page
-    header('Location: main.php');
-    exit;
+  // The user is not logged in, redirect them to the login page
+  header('Location: main.php');
+  exit;
 }
 
 $username = $_SESSION['user_name'];
 $user_id = $_SESSION['user_id'];
 
-$query  = "SELECT * FROM User WHERE UserID LIKE $user_id";
+$query = "SELECT * FROM User WHERE UserID LIKE $user_id";
 $result = $pdo->query($query);
 
 if ($row = $result->fetch()) {
-  $fullname = $row['FirstName'].' '.$row['LastName'];
+  $fullname = $row['FirstName'] . ' ' . $row['LastName'];
   $gender = $row['Gender'];
   $zip = $row['Zip'];
   $birthday = $row['Birthday'];
 }
 
-$query2  = "SELECT * FROM Profile WHERE UserID LIKE $user_id";
+$query2 = "SELECT * FROM Profile WHERE UserID LIKE $user_id";
 $result2 = $pdo->query($query2);
 
 if ($row2 = $result2->fetch()) {
@@ -51,34 +51,60 @@ if ($row2 = $result2->fetch()) {
 <body>
   <nav class="navbar navbar-expand-lg bg-light">
     <div class="container">
-        <p class="navbar-brand">
-            CANTIO
-        </p>
-        <a href="homepage.php">Home</a>
-        <a href="#">About</a>
-        <a href="profile.html">Profile</a>
-        <a href="community.php">Community</a>-
+      <p class="navbar-brand">
+        CANTIO
+      </p>
+      <a href="homepage.php">Home</a>
+      <a href="#">About</a>
+      <a href="profile.html">Profile</a>
+      <a href="community.php">Community</a>-
     </div>
-</nav>
+  </nav>
 
   <div class="card container-fluid w-75 mt-5">
-    <h1><?php echo $username;?></h1>
+    <h1><?php echo $username; ?></h1>
 
     <section>
+      <?php
+      $sql = "SELECT ProfilePic FROM Profile WHERE UserID = :userid";
+      $stmt = $pdo->prepare($sql);
+      $stmt->bindParam(':userid', $userID, PDO::PARAM_INT);
+      $stmt->execute();
+
+      $result = $stmt->fetch(PDO::FETCH_ASSOC);
+      if ($result) {
+        $profilePicture = $result['ProfilePic'];
+        echo $profilePicture;
+      } else {
+        $profilePicture = '';
+      }
+
+
+      if (!empty($profilePicture)) {
+        $profilePicture = base64_encode($profilePicture);
+        $imageSrc = 'data:image/jpeg;base64,' . $imageData; // Adjust the image type accordingly
+      
+        echo "<img src='$imageSrc' alt='Image'>";
+      } else {
+        echo "Image not found.";
+      }
+
+      ?>
+
       <img src="show_profilepic.php" alt="Profile Image" class="profile-image">
-      <h2><?php echo $fullname;?></h2>
+      <h2><?php echo $fullname; ?></h2>
       <p>Musician | Music Enthusiast</p>
     </section>
     <section>
       <h2>About Me</h2>
       <p>Description:
-      <?php echo $description;?>
+        <?php echo $description; ?>
       </p>
       <p>Gender:
-      <?php echo $gender;?>
+        <?php echo $gender; ?>
       </p>
       <p>Birthday:
-      <?php echo $birthday;?>
+        <?php echo $birthday; ?>
       </p>
     </section>
     <section>
@@ -90,17 +116,17 @@ if ($row2 = $result2->fetch()) {
     <section>
       <h2>Social Media</h2>
       <p>
-        <?php 
-        $query3  = "SELECT * FROM SocialMediaHandles WHERE ProfileID LIKE 
+        <?php
+        $query3 = "SELECT * FROM SocialMediaHandles WHERE ProfileID LIKE 
         (SELECT ProfileID FROM Profile WHERE UserID LIKE $user_id)";
         $result = $pdo->query($query3);
-        
+
         while ($row = $result->fetch()) {
           $handle_label = $row['Platform'];
           $handle = $row['Handle'];
           $url = $row['URL'];
 
-          echo ' '.$handle_label.' '.$handle.' '.$url . '<br>';
+          echo ' ' . $handle_label . ' ' . $handle . ' ' . $url . '<br>';
         }
         ?>
       </p>
@@ -108,7 +134,7 @@ if ($row2 = $result2->fetch()) {
   </div>
   <div class="container text-center mt-5">
     <a class="btn btn-primary submit-btn" href="profile_edit.html">Edit Profile</a>
-</div>
+  </div>
 
 </body>
 
