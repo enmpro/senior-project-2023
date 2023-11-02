@@ -5,6 +5,9 @@ if (isset($_POST["submit"])) {
         $localFile = $_FILES["fileToUpload"]["tmp_name"]; // Temporary uploaded file
         $fileName = $_FILES["fileToUpload"]["name"]; // Original file name
 
+        echo $localFile;
+        echo $fileName;
+
         $ftpServer = "ftp.cantio.live";
         $ftpUsername = "enmanuel@cantio.live";
         $ftpPassword = "VsCfKTDy9m@N";
