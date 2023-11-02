@@ -2,14 +2,14 @@
 require_once 'login.php';
 
 session_start();
-if (!isset($_SESSION['user_id'])) {
+if (!isset($_SESSION['user_name'])) {
     // The user is not logged in, redirect them to the login page
     header('Location: main.php');
     exit;
 }
 
-$username = $_SESSION['user_id'];
-$user_id = $_SESSION['user_num'];
+$username = $_SESSION['user_name'];
+$user_id = $_SESSION['user_id'];
 
 $query  = "SELECT * FROM User WHERE UserID LIKE $user_id";
 $result = $pdo->query($query);
@@ -24,12 +24,10 @@ if ($row = $result->fetch()) {
 $query2  = "SELECT * FROM Profile WHERE UserID LIKE $user_id";
 $result2 = $pdo->query($query2);
 
-if ($row = $result->fetch()) {
-  $description = $row['Description'];
-  $showgender = $row['ShowGender'];
-  $showlocation = $row['ShowLocation'];
-  $showPic = $row['ProfilePic'];
-  header("Content-Type: image/jpeg");
+if ($row2 = $result2->fetch()) {
+  $description = $row2['Description'];
+  $showgender = $row2['ShowGender'];
+  $showlocation = $row2['ShowLocation'];
 }
 
 
@@ -67,7 +65,7 @@ if ($row = $result->fetch()) {
     <h1><?php echo $username;?></h1>
 
     <section>
-      <img src="<?php echo $showPic ?>" alt="Profile Image" class="profile-image">
+      <img src="" alt="Profile Image" class="profile-image">
       <h2><?php echo $fullname;?></h2>
       <p>Musician | Music Enthusiast</p>
     </section>

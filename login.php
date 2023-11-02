@@ -29,8 +29,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if (password_verify($password, $hash)) {
          // The user is authenticated
-         $_SESSION['user_id'] = $result_row['Username'];
-         $_SESSION['user_num'] = $result_row['UserID'];
+         $_SESSION['user_name'] = $result_row['Username'];
+         $_SESSION['user_id'] = $result_row['UserID'];
          header('Location: homepage.php');
 
          exit;
