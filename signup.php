@@ -269,7 +269,7 @@ function update_profile($pdo, $description, $profilepic, $showgender, $showlocat
     $stmtProfile = $pdo->prepare($sqlProfile);
 
     $stmtProfile->bindParam(':userID', $newUserID, PDO::PARAM_STR, 10);
-    $stmtProfile->bindParam(':descr', $description, PDO::PARAM_STR, 50);
+    $stmtProfile->bindParam(':descr', $description, PDO::PARAM_STR);
     $stmtProfile->bindParam(':profilepic', $profilepic, PDO::PARAM_LOB);
     $stmtProfile->bindParam(':showgend', $showgender, PDO::PARAM_STR, 12);
     $stmtProfile->bindParam(':showloc', $showlocation, PDO::PARAM_STR, 12);

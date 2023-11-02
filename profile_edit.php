@@ -35,6 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     alter_social($pdo, $facebook, 'Facebook', $userID);
     alter_social($pdo, $twitter, 'Twitter', $userID);
     alter_social($pdo, $instagram, 'Instagram', $userID);
+    alter_profile($pdo, $description, $userID);
 
     header('Location: profile.php');
 
@@ -51,6 +52,19 @@ function alter_social($pdo, $newUrl, $platform, $userid) {
 
     $stmtProfile->bindParam(':newUrl', $newUrl, PDO::PARAM_STR, 255);
     $stmtProfile->bindParam(':platform', $platform, PDO::PARAM_STR, 50);
+    $stmtProfile->bindParam(':userid', $userid, PDO::PARAM_STR, 11);
+    
+    $stmtProfile->execute();
+}
+
+function alter_profile($pdo, $description, $userid) {
+    
+    $editProfile = "UPDATE Profile
+                   SET Description = :newDesc
+                   WHERE UserID = :userid";
+    $stmtProfile = $pdo->prepare($editProfile);
+
+    $stmtProfile->bindParam(':newDesc', $description, PDO::PARAM_STR, 50);
     $stmtProfile->bindParam(':userid', $userid, PDO::PARAM_STR, 11);
     
     $stmtProfile->execute();
