@@ -45,16 +45,6 @@ if (isset($_POST["submit"])) {
             echo "File upload failed";
         }
 
-        $file = "localfile.txt";
-
-        // upload file
-        if (ftp_put($ftpConnection, "serverfile.txt", $file, FTP_ASCII)) {
-            echo "Successfully uploaded $file.";
-        } else {
-            echo "Error uploading $file.";
-        }
-
-
         // Close the FTP connection
         ftp_close($ftpConnection);
     } else {
