@@ -23,6 +23,13 @@ $result = $stmt->fetch(PDO::FETCH_ASSOC);
 if ($result) {
     $profilePicture = $result['ProfilePic'];
     echo $profilePicture;
+
+
+    $imageData = base64_encode($profilePicture);
+    $imageSrc = 'data:image/jpeg;base64,' . $imageData; // Adjust the image type accordingly
+
+        echo "<img src='$imageSrc' alt='Image'>";
+
 } else {
     $profilePicture = '';
 }
