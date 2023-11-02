@@ -36,6 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     alter_social($pdo, $twitter, 'Twitter', $userID);
     alter_social($pdo, $instagram, 'Instagram', $userID);
 
+    header('Location: profile.php');
 
 }
 
