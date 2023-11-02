@@ -22,6 +22,7 @@ $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if ($result) {
     $profilePicture = $result['ProfilePic'];
+    echo $profilePicture;
 } else {
     $profilePicture = '';
 }
