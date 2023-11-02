@@ -27,6 +27,6 @@ if ($result) {
     $profilePicture = '';
 }
 
-header("Content-Type: image/jpeg"); 
+header("Content-Type: image"); 
 
 ?>
