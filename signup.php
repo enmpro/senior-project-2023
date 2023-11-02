@@ -170,7 +170,7 @@ while (isset($_POST['FirstName'])) {
         if (isset($_POST['submit'])) {
             // Check if a file was uploaded without errors
             if (isset($_FILES["userphoto"]) && $_FILES["userphoto"]["error"] == 0) {
-                $targetDirectory = "public_html/userphoto"; // Specify the directory where you want to save the uploaded images
+                $targetDirectory = "/home/gummybea/public_html/userphoto"; // Specify the directory where you want to save the uploaded images
         
                 $originalFileName = basename($_FILES["userphoto"]["name"]);
                 $extension = pathinfo($originalFileName, PATHINFO_EXTENSION);
