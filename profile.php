@@ -68,7 +68,7 @@ if ($row2 = $result2->fetch()) {
       <?php
       $sql = "SELECT ProfilePic FROM Profile WHERE UserID = :userid";
       $stmt = $pdo->prepare($sql);
-      $stmt->bindParam(':userid', $userID, PDO::PARAM_INT);
+      $stmt->bindParam(':userid', $user_id, PDO::PARAM_INT);
       $stmt->execute();
 
       $result = $stmt->fetch(PDO::FETCH_ASSOC);
