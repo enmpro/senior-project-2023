@@ -13,11 +13,15 @@ if (isset($_POST["submit"])) {
         $ftpConnection = ftp_connect($ftpServer);
         if ($ftpConnection === false) {
             die("Could not connect to the FTP server");
+        } else {
+            echo "connected";
         }
 
         // Login to the FTP server
         if (!ftp_login($ftpConnection, $ftpUsername, $ftpPassword)) {
             die("FTP login failed");
+        } else {
+            echo "connected";
         }
 
         // Set transfer mode to binary for image files
