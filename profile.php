@@ -65,34 +65,6 @@ if ($row2 = $result2->fetch()) {
     <h1><?php echo $username; ?></h1>
 
     <section>
-      <?php
-      $sql = "SELECT ProfilePic FROM Profile WHERE UserID = :userid";
-      $stmt = $pdo->prepare($sql);
-      $stmt->bindParam(':userid', $user_id, PDO::PARAM_INT);
-      $stmt->execute();
-
-      $result = $stmt->fetch(PDO::FETCH_ASSOC);
-      if ($result) {
-        $profilePicture = $result['ProfilePic'];
-        echo $profilePicture;
-        echo 'asdasd';
-      } else {
-        $profilePicture = '';
-        echo 'book';
-      }
-
-
-      if (!empty($profilePicture)) {
-        $profilePicture = base64_encode($profilePicture);
-        $imageSrc = 'data:image/jpeg;base64,' . $imageData; // Adjust the image type accordingly
-      
-        echo "<img src='$imageSrc' alt='Image'>";
-      } else {
-        echo "Image not found.";
-      }
-
-      ?>
-
       <img src="show_profilepic.php" alt="Profile Image" class="profile-image">
       <h2><?php echo $fullname; ?></h2>
       <p>Musician | Music Enthusiast</p>

@@ -167,6 +167,28 @@ while (isset($_POST['FirstName'])) {
             $userphoto = '';
         }
 
+        if (isset($_POST['submit'])) {
+            // Check if a file was uploaded without errors
+            if (isset($_FILES["userphoto"]) && $_FILES["userphoto"]["error"] == 0) {
+                $targetDirectory = "public_html/userphoto"; // Specify the directory where you want to save the uploaded images
+        
+                $originalFileName = basename($_FILES["userphoto"]["name"]);
+                $extension = pathinfo($originalFileName, PATHINFO_EXTENSION);
+                
+                // Generate a unique filename using a timestamp
+                $newFileName = $targetDirectory . time() . "_" . $originalFileName;
+                
+                // Move the uploaded file to the specified directory with the new filename
+                if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $newFileName)) {
+                    echo "The file " . $originalFileName . " has been uploaded as " . $newFileName;
+                } else {
+                    echo "Sorry, there was an error uploading your file.";
+                }
+            } else {
+                echo "Error: " . $_FILES["fileToUpload"]["error"];
+            }
+        }
+
 
         if(isset($_POST['location-chk'])) {
             $locationChk = $_POST['location-chk'];
