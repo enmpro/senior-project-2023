@@ -15,7 +15,7 @@ if (isset($_SESSION['user_id'])) {
 
 $sql = "SELECT ProfilePic FROM Profile WHERE UserID = :userid";
 $stmt = $pdo->prepare($sql);
-$stmt->bindParam(':userid', $userID, PDO::PARAM_STR, 11);
+$stmt->bindParam(':userid', $userID, PDO::PARAM_INT);
 $stmt->execute();
 
 $result = $stmt->fetch(PDO::FETCH_ASSOC);
