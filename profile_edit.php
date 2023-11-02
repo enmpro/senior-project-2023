@@ -27,7 +27,7 @@ function test_userinput($data)
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
-    $description = test_userinput($_POST["description"]);
+    $description = test_userinput($_POST['description']);
     $facebook = test_userinput($_POST['facebook']);
     $twitter = test_userinput($_POST['twitter']);
     $instagram = test_userinput($_POST['instagram']);
