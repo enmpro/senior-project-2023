@@ -21,7 +21,7 @@ if (isset($_POST["submit"])) {
             $ftplogin = ftp_login($ftpcon, $ftpUsername, $ftpPassword);
 
             // ftp upload
-            if (ftp_put($ftpcon, $dst_file, $src_file, FTP_ASCII))
+            if (ftp_put($ftpcon, $dst_file, $src_file, FTP_BINARY))
                 echo 'File uploaded successfully to FTP server!';
             else
                 echo 'Error uploading file! Please try again later.';
