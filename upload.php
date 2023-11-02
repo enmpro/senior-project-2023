@@ -17,8 +17,9 @@ if (isset($_POST["submit"])) {
             echo "connected";
         }
 
+        $login_result = ftp_login($ftpConnection, $ftpUsername, $ftpPassword);
         // Login to the FTP server
-        if (!ftp_login($ftpConnection, $ftpUsername, $ftpPassword)) {
+        if (!$login_result) {
             die("FTP login failed");
         } else {
             echo "connected";
@@ -40,6 +41,16 @@ if (isset($_POST["submit"])) {
         } else {
             echo "File upload failed";
         }
+
+        $file = "localfile.txt";
+
+        // upload file
+        if (ftp_put($ftpConnection, "serverfile.txt", $file, FTP_ASCII)) {
+            echo "Successfully uploaded $file.";
+        } else {
+            echo "Error uploading $file.";
+        }
+
 
         // Close the FTP connection
         ftp_close($ftpConnection);
