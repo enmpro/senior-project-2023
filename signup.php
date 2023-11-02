@@ -22,9 +22,9 @@ function test_userinput($data)
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    
-    
-                
+
+
+
     //username check
     $usnam = test_userinput($_POST["Username"]);
     $username_regex = "/[^a-zA-Z0-9]/";
@@ -37,13 +37,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $fn = test_userinput($_POST["FirstName"]);
     $fl_regex = "/[^a-zA-Z]/";
-    
+
 
     if (preg_match($fl_regex, $fn)) {
         $falseCounter++;
     } else if ($fn == "") {
         $falseCounter++;
-    } 
+    }
 
     // last name check
     $ln = test_userinput($_POST["LastName"]);
@@ -53,35 +53,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $falseCounter++;
     } else if ($ln == "") {
         $falseCounter++;
-    } 
+    }
 
     //email check
     $em = test_userinput($_POST["Email"]);
-    
-    
+
+
     if ($em == "") {
         $falseCounter++;
     }
-    
+
     $emPw = test_userinput($_POST["Password"]);
     $confirmPassword = test_userinput($_POST["repword"]);
-    
+
 
     $capitalRegex = "/[A-Z]/";
     $numberRegex = "/\d/";
-    
-    
+
+
     if ($emPw == "" || $confirmPassword == "") {
         $falseCounter++;
     } else if ($emPw != $confirmPassword) {
         $falseCounter++;
-        
-    } 
-    
+
+    }
+
     // this checks if the password has a capital and number
     // kept flagging the password wrong because it didnt include capital or number
     // dont uncomment this just yet
-    
+
     /*
     else if (!preg_match($capitalRegex, $emPw) || !preg_match($capitalRegex, $confirmPassword)) {
         $falseCounter++;
@@ -89,19 +89,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $falseCounter++;
     }
     */
-    
+
 
 
     if ($falseCounter > 0) {
         return false;
-    } 
-    
+    }
+
 
 
 }
 
 while (isset($_POST['FirstName'])) {
-    
+
     if (isset($_POST['Username'])) {
         $un_temp = $_POST['Username'];
         $sql_check = "SELECT * FROM User WHERE Username = '$un_temp'";
@@ -118,11 +118,11 @@ while (isset($_POST['FirstName'])) {
         }
     }
 
-   
+
 
     if (
         isset($_POST['Username']) && isset($_POST['FirstName'])
-        && isset($_POST['LastName']) && isset($_POST['Email']) && isset($_POST['Password']) 
+        && isset($_POST['LastName']) && isset($_POST['Email']) && isset($_POST['Password'])
         && isset($_POST['repword']) && isset($_POST['Zip'])
         && isset($_POST['gender']) && isset($_POST['event-yesno'])
     ) {
@@ -137,7 +137,7 @@ while (isset($_POST['FirstName'])) {
         $lastname = $_POST['LastName'];
         $lastname = trim($lastname);
         $lastname = stripslashes($lastname);
-        
+
         $email = $_POST['Email'];
         $email = trim($email);
         $email = stripslashes($email);
@@ -155,89 +155,122 @@ while (isset($_POST['FirstName'])) {
 
         $birthday = $_POST['birthday'];
 
-        if(isset($_POST['description'])) {
+        if (isset($_POST['description'])) {
             $description = $_POST['description'];
         } else {
             $description = '';
         }
 
-        if(isset($_POST['userphoto'])) {
-            $userphoto = $_POST['userphoto'];
-        } else {
-            $userphoto = '';
-        }
+        // if (isset($_POST['userphoto'])) {
+        //     $userphoto = $_POST['userphoto'];
+        // } else {
+        //     $userphoto = '';
+        // }
 
         if (isset($_POST['submit'])) {
             // Check if a file was uploaded without errors
-            if (isset($_FILES["userphoto"]) && $_FILES["userphoto"]["error"] == 0) {
-                $targetDirectory = "/home/gummybea/public_html/userphoto"; // Specify the directory where you want to save the uploaded images
-        
-                $originalFileName = basename($_FILES["userphoto"]["name"]);
-                $extension = pathinfo($originalFileName, PATHINFO_EXTENSION);
-                
-                // Generate a unique filename using a timestamp
-                $newFileName = $targetDirectory . time() . "_" . $originalFileName;
-                
-                // Move the uploaded file to the specified directory with the new filename
-                if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $newFileName)) {
-                    echo "The file " . $originalFileName . " has been uploaded as " . $newFileName;
-                } else {
-                    echo "Sorry, there was an error uploading your file.";
+            if (isset($_FILES["userphoto"]) && $_FILES["userphoto"]["error"] == 4) {
+
+                $localFile = $_FILES["userphoto"]["tmp_name"]; // Temporary uploaded file
+                $fileName = $_FILES["userphoto"]["name"]; // Original file name
+
+                $ftpServer = "ftp.cantio.live";
+                $ftpUsername = "enmanuel@cantio.live";
+                $ftpPassword = "VsCfKTDy9m@N";
+
+                $ftpConnection = ftp_connect($ftpServer);
+                if ($ftpConnection === false) {
+                    die("Could not connect to the FTP server");
                 }
+
+                // Login to the FTP server
+                if (!ftp_login($ftpConnection, $ftpUsername, $ftpPassword)) {
+                    die("FTP login failed");
+                }
+
+                // Set transfer mode to binary for image files
+                ftp_set_option($ftpConnection, FTP_BINARY, true);
+
+                $remoteDirectory = "/public_html/userphoto/";
+                $remoteFile = $remoteDirectory . time() . "_" . $fileName;
+
+
+                // Upload the file to the FTP server
+                if (ftp_put($ftpConnection, $remoteFile, $localFile, FTP_BINARY)) {
+                    echo "File uploaded successfully";
+                } else {
+                    echo "File upload failed";
+                }
+
+                // Close the FTP connection
+                ftp_close($ftpConnection);
+
+                // $originalFileName = basename($_FILES["userphoto"]["name"]);
+                // $extension = pathinfo($originalFileName, PATHINFO_EXTENSION);
+
+                // // Generate a unique filename using a timestamp
+                // $newFileName = $targetDirectory . time() . "_" . $originalFileName;
+
+                // // Move the uploaded file to the specified directory with the new filename
+                // if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $newFileName)) {
+                //     echo "The file " . $originalFileName . " has been uploaded as " . $newFileName;
+                // } else {
+                //     echo "Sorry, there was an error uploading your file.";
+                // }
             } else {
                 echo "Error: " . $_FILES["fileToUpload"]["error"];
             }
         }
+        
 
-
-        if(isset($_POST['location-chk'])) {
+        if (isset($_POST['location-chk'])) {
             $locationChk = $_POST['location-chk'];
         } else {
             $locationChk = '';
         }
 
-        if(isset($_POST['age-chk'])) {
+        if (isset($_POST['age-chk'])) {
             $ageChk = $_POST['age-chk'];
         } else {
             $ageChk = '';
         }
 
-        if(isset($_POST['gender-chk'])) {
+        if (isset($_POST['gender-chk'])) {
             $genderChk = $_POST['gender-chk'];
         } else {
             $genderChk = '';
         }
 
         // social medias
-        if(isset($_POST['facebook'])) {
+        if (isset($_POST['facebook'])) {
             $facebook = $_POST['facebook'];
         } else {
             $facebook = '';
         }
-        if(isset($_POST['twitter'])) {
+        if (isset($_POST['twitter'])) {
             $twitter = $_POST['twitter'];
         } else {
             $twitter = '';
         }
-        if(isset($_POST['instagram'])) {
+        if (isset($_POST['instagram'])) {
             $instagram = $_POST['instagram'];
         } else {
             $instagram = '';
         }
 
-       
 
-        
+
+
         add_user($pdo, $eventyn, $username, $hash, $email, $firstname, $lastname, $gender, $birthday, $zip);
-        update_profile($pdo, $description, $userphoto, $genderChk, $locationChk, $ageChk);
-        
+        update_profile($pdo, $description, $remoteFile, $genderChk, $locationChk, $ageChk);
+
 
         $newProfileID = $pdo->lastInsertId();
 
         $handles = [
             ['Platform' => 'Facebook', 'Handle' => 'user123', 'URL' => $facebook],
             ['Platform' => 'Twitter', 'Handle' => 'user456', 'URL' => $twitter],
-            ['Platform' => 'Instagram', 'Handle' => 'user789', 'URL' =>  $instagram],
+            ['Platform' => 'Instagram', 'Handle' => 'user789', 'URL' => $instagram],
         ];
 
         foreach ($handles as $handleData) {
@@ -247,8 +280,8 @@ while (isset($_POST['FirstName'])) {
             $url = $handleData['URL'];
 
             update_social($pdo, $newProfileID, $platform, $handle, $url);
-        }   
-                
+        }
+
         $flag = true;
 
         if ($flag) {
@@ -284,7 +317,8 @@ function add_user($pdo, $event, $user_name, $passwd, $email, $fn, $ln, $gend, $b
     $stmt->execute();
 }
 
-function update_profile($pdo, $description, $profilepic, $showgender, $showlocation, $showbirthday) {
+function update_profile($pdo, $description, $profilepic, $showgender, $showlocation, $showbirthday)
+{
     $newUserID = $pdo->lastInsertId();
     $sqlProfile = "INSERT INTO Profile (UserID, Description, ProfilePic, ShowGender, ShowLocation, ShowBirthday) 
                    VALUES (:userID, :descr, :profilepic, :showgend, :showloc, :showbirth)";
@@ -296,12 +330,13 @@ function update_profile($pdo, $description, $profilepic, $showgender, $showlocat
     $stmtProfile->bindParam(':showgend', $showgender, PDO::PARAM_STR, 12);
     $stmtProfile->bindParam(':showloc', $showlocation, PDO::PARAM_STR, 12);
     $stmtProfile->bindParam(':showbirth', $showbirthday, PDO::PARAM_STR, 12);
-    
+
     $stmtProfile->execute();
 }
 
-function update_social($pdo,$profileID, $platform, $handle, $url) {
-    
+function update_social($pdo, $profileID, $platform, $handle, $url)
+{
+
     $sqlProfile = "INSERT INTO SocialMediaHandles (ProfileID, Platform, Handle, URL) 
                    VALUES (:profileID, :platform, :handle, :url)";
     $stmtProfile = $pdo->prepare($sqlProfile);
@@ -310,7 +345,7 @@ function update_social($pdo,$profileID, $platform, $handle, $url) {
     $stmtProfile->bindParam(':platform', $platform, PDO::PARAM_STR, 50);
     $stmtProfile->bindParam(':handle', $handle, PDO::PARAM_STR, 100);
     $stmtProfile->bindParam(':url', $url, PDO::PARAM_STR, 255);
-    
+
     $stmtProfile->execute();
 }
 
