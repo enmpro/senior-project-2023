@@ -32,6 +32,8 @@ if (isset($_POST["submit"])) {
         // Generate a unique remote file name using timestamp
         $remoteFile = $remoteDirectory . time() . "_" . $fileName;
 
+        echo $remoteFile;
+
         // Upload the file to the FTP server
         if (ftp_put($ftpConnection, $remoteFile, $localFile, FTP_BINARY)) {
             echo "File uploaded successfully";
