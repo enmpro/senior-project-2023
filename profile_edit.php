@@ -64,7 +64,7 @@ function alter_profile($pdo, $description, $userid) {
                    WHERE UserID = :userid";
     $stmtProfile = $pdo->prepare($editProfile);
 
-    $stmtProfile->bindParam(':newDesc', $description, PDO::PARAM_STR);
+    $stmtProfile->bindParam(':newDesc', $description, PDO::PARAM_STR, 50);
     $stmtProfile->bindParam(':userid', $userid, PDO::PARAM_STR, 11);
     
     $stmtProfile->execute();
