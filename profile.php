@@ -2,14 +2,14 @@
 require_once 'login.php';
 
 session_start();
-if (!isset($_SESSION['user_id'])) {
+if (!isset($_SESSION['user_name'])) {
     // The user is not logged in, redirect them to the login page
     header('Location: main.php');
     exit;
 }
 
-$username = $_SESSION['user_id'];
-$user_id = $_SESSION['user_num'];
+$username = $_SESSION['user_name'];
+$user_id = $_SESSION['user_id'];
 
 $query  = "SELECT * FROM User WHERE UserID LIKE $user_id";
 $result = $pdo->query($query);
