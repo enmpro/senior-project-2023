@@ -1,18 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Profile Picture Upload</title>
 </head>
 <body>
-    <h1>Upload an Image</h1>
+    <h1>Upload Profile Picture</h1>
     <form action="upload.php" method="post" enctype="multipart/form-data">
-        <label for="fileToUpload">
-            Upload image
-        </label>
-        <input type="file" name="fileToUpload" id="fileToUpload">
-        <input type="submit" value="Upload Image" name="submit">
+        Select profile picture:
+        <input type="file" name="profilePicture" id="profilePicture">
+        <input type="submit" value="Upload" name="submit">
     </form>
 </body>
 </html>
