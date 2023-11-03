@@ -191,6 +191,13 @@ while (isset($_POST['FirstName'])) {
                     _END;
                 }
         } else {
+            echo <<<_END
+                    <script>
+                    alert("not wokring");
+                        
+                        
+                    </script>
+                    _END;
             $targetPhotoFile = '';
         }
 
