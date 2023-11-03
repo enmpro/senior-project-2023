@@ -161,8 +161,8 @@ while (isset($_POST['FirstName'])) {
             $description = '';
         }
 
-        if (isset($_POST['submit'])) {
-            if (isset($_POST['userphoto'])) {
+
+        if (isset($_POST['userphoto'])) {
                 $targetDirectory = "userphoto/"; // Directory to store profile pictures
 
                 $randomFileName = uniqid();
@@ -183,7 +183,6 @@ while (isset($_POST['FirstName'])) {
                     </script>
                     _END;
                 }
-            }
         } else {
             $targetPhotoFile = '';
         }
