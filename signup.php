@@ -161,6 +161,26 @@ while (isset($_POST['FirstName'])) {
             $description = '';
         }
 
+        if (isset($_POST['userphoto'])) {
+            $userphoto = $_POST['userphoto'];
+            echo <<<_END
+                    <script>
+                    alert("user photo");
+                        
+                        
+                    </script>
+                    _END;
+        } else {
+            $userphoto = '';
+            echo <<<_END
+                    <script>
+                    alert("what");
+                        
+                        
+                    </script>
+                    _END;
+        }
+
 
         if (isset($_POST['userphoto'])) {
                 $targetDirectory = "userphoto/"; // Directory to store profile pictures
