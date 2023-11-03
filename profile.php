@@ -66,7 +66,7 @@ if ($row2 = $result2->fetch()) {
     <h1><?php echo $username; ?></h1>
 
     <section>
-      <img src="<?php echo $profilePic; ?>" alt="Profile Image" class="profile-image">
+      <img src="<?php echo $profilePic; ?>" style="width: 150px" alt="Profile Image" class="profile-image">
       <h2><?php echo $fullname; ?></h2>
       <p>Musician | Music Enthusiast</p>
     </section>
