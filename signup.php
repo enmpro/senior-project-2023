@@ -161,67 +161,35 @@ while (isset($_POST['FirstName'])) {
             $description = '';
         }
 
-        // if (isset($_POST['userphoto'])) {
-        //     $userphoto = $_POST['userphoto'];
-        // } else {
-        //     $userphoto = '';
-        // }
-
         if (isset($_POST['submit'])) {
-            // Check if a file was uploaded without errors
-            if (isset($_FILES["userphoto"]) && $_FILES["userphoto"]["error"] == 4) {
+            if (isset($_POST["userphoto"])) {
+                $targetDirectory = "userphoto/"; // Directory to store profile pictures
 
-                $localFile = $_FILES["userphoto"]["tmp_name"]; // Temporary uploaded file
-                $fileName = $_FILES["userphoto"]["name"]; // Original file name
+                $randomFileName = uniqid();
+                $targetPhotoFile = $targetDirectory . $randomFileName . '_' . basename($_FILES["userphoto"]["name"]);
 
-                $ftpServer = "ftp.cantio.live";
-                $ftpUsername = "enmanuel@cantio.live";
-                $ftpPassword = "VsCfKTDy9m@N";
-
-                $ftpConnection = ftp_connect($ftpServer);
-                if ($ftpConnection === false) {
-                    die("Could not connect to the FTP server");
-                }
-
-                // Login to the FTP server
-                if (!ftp_login($ftpConnection, $ftpUsername, $ftpPassword)) {
-                    die("FTP login failed");
-                }
-
-                // Set transfer mode to binary for image files
-                ftp_set_option($ftpConnection, FTP_BINARY, true);
-
-                $remoteDirectory = "/public_html/userphoto/";
-                $remoteFile = $remoteDirectory . time() . "_" . $fileName;
-
-
-                // Upload the file to the FTP server
-                if (ftp_put($ftpConnection, $remoteFile, $localFile, FTP_BINARY)) {
-                    echo "File uploaded successfully";
+                if (move_uploaded_file($_FILES["profilePicture"]["tmp_name"], $targetPhotoFile)) {
+                    echo <<<_END
+                    <script>
+                        alert("Photo added");
+                        
+                    </script>
+                    _END;
                 } else {
-                    echo "File upload failed";
+                    echo <<<_END
+                    <script>
+                        alert("Photo not added");
+                        
+                    </script>
+                    _END;
                 }
-
-                // Close the FTP connection
-                ftp_close($ftpConnection);
-
-                // $originalFileName = basename($_FILES["userphoto"]["name"]);
-                // $extension = pathinfo($originalFileName, PATHINFO_EXTENSION);
-
-                // // Generate a unique filename using a timestamp
-                // $newFileName = $targetDirectory . time() . "_" . $originalFileName;
-
-                // // Move the uploaded file to the specified directory with the new filename
-                // if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $newFileName)) {
-                //     echo "The file " . $originalFileName . " has been uploaded as " . $newFileName;
-                // } else {
-                //     echo "Sorry, there was an error uploading your file.";
-                // }
-            } else {
-                echo "Error: " . $_FILES["fileToUpload"]["error"];
             }
+        } else {
+            $targetPhotoFile = '';
         }
-        
+
+
+
 
         if (isset($_POST['location-chk'])) {
             $locationChk = $_POST['location-chk'];
@@ -262,7 +230,7 @@ while (isset($_POST['FirstName'])) {
 
 
         add_user($pdo, $eventyn, $username, $hash, $email, $firstname, $lastname, $gender, $birthday, $zip);
-        update_profile($pdo, $description, $remoteFile, $genderChk, $locationChk, $ageChk);
+        update_profile($pdo, $description, $targetPhotoFile, $genderChk, $locationChk, $ageChk);
 
 
         $newProfileID = $pdo->lastInsertId();
