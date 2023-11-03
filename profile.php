@@ -28,6 +28,7 @@ if ($row2 = $result2->fetch()) {
   $description = $row2['Description'];
   $showgender = $row2['ShowGender'];
   $showlocation = $row2['ShowLocation'];
+  $profilePic = $row2['ProfilePic'];
 }
 
 
@@ -65,7 +66,7 @@ if ($row2 = $result2->fetch()) {
     <h1><?php echo $username; ?></h1>
 
     <section>
-      <img src="show_profilepic.php" alt="Profile Image" class="profile-image">
+      <img src="<?php echo $profilePic; ?>" alt="Profile Image" class="profile-image">
       <h2><?php echo $fullname; ?></h2>
       <p>Musician | Music Enthusiast</p>
     </section>
