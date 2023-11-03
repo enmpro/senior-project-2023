@@ -28,7 +28,7 @@
     </div>
 
     <div class="container w-50 card mt-3 signup-box">
-        <form action="signup.php" method="post">
+        <form action="signup.php" method="post" enctype="multipart/form-data">
             <div class="container-fluid mt-3">
                 <label for="event-yesno">Are you an event coordinator?</label>
                 <select name="event-yesno" id="event-yesno">
@@ -106,7 +106,7 @@
                 </label>
             </div>
 
-            
+
             <div class="container-fluid p-2">
                 <header>
                     <p class="display-1 text-center">
@@ -114,53 +114,52 @@
                     </p>
                 </header>
             </div>
-        
+
             <div class="container card mt-3 signup-box">
-                <form action="singup_profile.php" method="post" enctype="multipart/form-data">
-                    <div class="mb-3 mt-3">
-                        <label for="description">
-                            Description
-                        </label>
-                        <textarea class="container-fluid" name="description" id="description">Insert description</textarea>
-        
-                    </div>
-                    <div class="">
-                        <label for="userphoto">Upload Your Photo (JPG, GIF, PNG or TIF File):</label>
-                        <input type="file" id="userphoto" name="userphoto" size="10">
+
+                <div class="mb-3 mt-3">
+                    <label for="description">
+                        Description
+                    </label>
+                    <textarea class="container-fluid" name="description" id="description">Insert description</textarea>
+
+                </div>
+                <div class="">
+                    <label for="userphoto">Upload Your Photo (JPG, GIF, PNG or TIF File):</label>
+                    <input type="file" id="userphoto" name="userphoto" size="10">
+                </div>
+                <div>
+                    <div>
+                        <input type="checkbox" id="gender-chk" name="gender-chk" value="showGender">
+                        <label for="gender-chk">Show gender</label>
                     </div>
                     <div>
-                        <div>
-                            <input type="checkbox" id="gender-chk" name="gender-chk" value="showGender">
-                            <label for="gender-chk">Show gender</label>
-                        </div>
-                        <div>
-                            <input type="checkbox" id="location-chk" name="location-chk" value="showLocation">
-                            <label for="location-chk">Show location</label>
-                        </div>
-                        <div>
-                            <input type="checkbox" id="age-chk" name="age-chk" value="showAge">
-                            <label for="age-chk">Show Age</label>
-                        </div>
+                        <input type="checkbox" id="location-chk" name="location-chk" value="showLocation">
+                        <label for="location-chk">Show location</label>
                     </div>
-                    <div class="container-fluid">
-                        <label for="facebook">Facebook:</label>
-                        <input type="text" id="facebook" name="facebook">
-                        
-                        <label for="twitter">Twitter:</label>
-                        <input type="text" id="twitter" name="twitter">
-                        
-                        <label for="instagram">Instagram:</label>
-                        <input type="text" id="instagram" name="instagram">
-                        
+                    <div>
+                        <input type="checkbox" id="age-chk" name="age-chk" value="showAge">
+                        <label for="age-chk">Show Age</label>
+                    </div>
+                </div>
+                <div class="container-fluid">
+                    <label for="facebook">Facebook:</label>
+                    <input type="text" id="facebook" name="facebook">
 
-                    </div>
-                    <div class="text-center">
-                        <input class="my-3 btn btn-primary signup-btn" type="submit" name="submit" value="Sign up">
-                    </div>
-                    <!-- <div class="text-center">
+                    <label for="twitter">Twitter:</label>
+                    <input type="text" id="twitter" name="twitter">
+
+                    <label for="instagram">Instagram:</label>
+                    <input type="text" id="instagram" name="instagram">
+
+
+                </div>
+                <div class="text-center">
+                    <input class="my-3 btn btn-primary signup-btn" type="submit" name="submit" value="Sign up">
+                </div>
+                <!-- <div class="text-center">
                         <input class="my-3 btn btn-primary signup-btn" type="submit" value="Save changes">
                     </div> -->
-                </form>
             </div>
             <!-- <div class="text-center">
                 <a class="m-3 btn btn-primary back-btn" href="homepage_page.html">Skip for now</a>
