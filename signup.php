@@ -168,7 +168,7 @@ while (isset($_POST['FirstName'])) {
                 $randomFileName = uniqid();
                 $targetPhotoFile = $targetDirectory . $randomFileName . '_' . basename($_FILES["userphoto"]["name"]);
 
-                if (move_uploaded_file($_FILES["profilePicture"]["tmp_name"], $targetPhotoFile)) {
+                if (move_uploaded_file($_FILES["userphoto"]["tmp_name"], $targetPhotoFile)) {
                     echo <<<_END
                     <script>
                         alert("Photo added");
