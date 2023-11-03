@@ -164,9 +164,16 @@ while (isset($_POST['FirstName'])) {
 
         if (isset($_POST['userphoto'])) {
                 $targetDirectory = "userphoto/"; // Directory to store profile pictures
-
+                $test = $_POST['userphoto'];
                 $randomFileName = uniqid();
                 $targetPhotoFile = $targetDirectory . $randomFileName . '_' . basename($_FILES["userphoto"]["name"]);
+                echo <<<_END
+                    <script>
+                    alert("$targetPhotoFile");
+                        alert("$test");
+                        
+                    </script>
+                    _END;
 
                 if (move_uploaded_file($_FILES["userphoto"]["tmp_name"], $targetPhotoFile)) {
                     echo <<<_END
