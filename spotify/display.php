@@ -13,12 +13,12 @@ try {
 
 session_start();
 $access_token = $_SESSION['access_token'];
-echo $access_token;
+//echo $access_token;
 
 
 // TODO: fetch the users id from the session or our db 
 $user_id = $_SESSION['user_id'];
-echo $user_id;
+//echo $user_id;
 
 // Fetch Top Artists
 $ch = curl_init();
@@ -44,6 +44,19 @@ function add_song($pdo, $user_id, $song_name){
 
     $stmt->execute();
 
+}
+?>
+
+<?php
+function add_artist($pdo, $user_id, $artist_name){
+    $sql = "INSERT INTO Artist (UserID, ArtistName) VALUES(:userid, :artistname)";
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':userid', $user_id, PDO::PARAM_INT, 11);
+    $stmt->bindParam(':artistname', $artist_name, PDO::PARAM_STR, 255);
+    
+    $stmt->execute();
+    
 }
 ?>
 
