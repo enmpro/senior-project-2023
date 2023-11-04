@@ -1,13 +1,14 @@
 <?php
 require_once '../logindb.php';
+
+// TODO: establish a connection to our database
 try {
     $pdo = new PDO($attr, $user, $pass, $opts);
 } catch (PDOException $e) {
     throw new PDOException($e->getMessage(), (int) $e->getCode());
 }
-// TODO: establish a connection to our database
 
-// TODO: Send songs to the database
+
 // SongID	UserID	SongName
 
 session_start();
@@ -38,6 +39,10 @@ function add_song($pdo, $user_id, $song_name){
     $sql = "INSERT INTO Song (UserID, SongName) VALUE(:userid, :songname)";
 
     $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':userid', $user_id, PDO::PARAM_INT, 11);
+    $stmt->bindParam(':songname', $song_name, PDO::PARAM_STR, 50);
+
+    $stmt->execute();
 
 }
 ?>
@@ -61,6 +66,7 @@ function add_song($pdo, $user_id, $song_name){
     <ul>
         <?php foreach($tracks as $track): ?>
             <li><?php echo $track['name']; ?> by <?php echo $track['artists'][0]['name']; ?></li>
+            <?php add_song($pdo, $user_id, $track['name']);?>
         <?php endforeach; ?>
     </ul>
 </body>
