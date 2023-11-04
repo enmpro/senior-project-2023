@@ -1,8 +1,6 @@
 <?php
 //require_once '/logindb.php';
 
-echo "test1";
-
 
 // try {
 //     echo "test";
@@ -11,7 +9,6 @@ echo "test1";
 //     throw new PDOException($e->getMessage(), (int) $e->getCode());
 // }
 
-// TODO: fetch the users id from the session or our db
 // TODO: establish a connection to our database
 // TODO: Send songs to the database
 // SongID	UserID	SongName
@@ -20,10 +17,10 @@ session_start();
 $access_token = $_SESSION['access_token'];
 echo $access_token;
 
-echo "Space /n";
 
-$temp = $_SESSION['user_id'];
-echo $temp;
+// TODO: fetch the users id from the session or our db 
+$user_id = $_SESSION['user_id'];
+echo $user_id;
 
 // Fetch Top Artists
 $ch = curl_init();
