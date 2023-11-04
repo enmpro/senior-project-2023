@@ -1,6 +1,5 @@
 <?php
-//require_once '*/logindb.php';
-
+require_once '../logindb.php';
 
 // try {
 //     echo "test";
