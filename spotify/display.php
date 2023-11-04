@@ -10,6 +10,11 @@ echo "test1";
 //     throw new PDOException($e->getMessage(), (int) $e->getCode());
 // }
 
+// TODO: fetch the users id from the session or our db
+// TODO: establish a connection to our database
+// TODO: Send songs to the database
+// SongID	UserID	SongName
+
 session_start();
 $access_token = $_SESSION['access_token'];
 
