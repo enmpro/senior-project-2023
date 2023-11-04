@@ -66,6 +66,7 @@ function add_song($pdo, $user_id, $song_name){
     <ul>
         <?php foreach($tracks as $track): ?>
             <li><?php echo $track['name']; ?> by <?php echo $track['artists'][0]['name']; ?></li>
+            <?php echo "Testing";?>
             <?php add_song($pdo, $user_id, $track['name']); ?>
         <?php endforeach; ?>
     </ul>
