@@ -13,33 +13,78 @@
 
 <body>
     
-    <div>
-        <p class="header_logo container-fluid">CANTIO</p>
-    </div>
-    <div>
-        <p class="container-fluid text-center ">this is the landing page</p>
-    </div>
-    <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown button
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">CANTIO</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">About</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Button trigger modal -->
+      <div class="text-center">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            Sign In
+          </button>
+      </div>
+
+  
+  <!-- Modal -->
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Sign In</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="container mt-3 login-box">
+                <form action="login.php" method="post">
+                    <div class="mb-3 mt-3 form-floating">
+                        <input class="form-control input-box" type="text" name="username" placeholder="Enter Username" />
+                        <label for="username">
+                            Username
+                        </label>
+                    </div>
+                    <div class="mb-3 form-floating">
+                        <input class="form-control input-box" type="password" minlength="8" name="password" placeholder="Enter Password" />
+                        <label for="password">
+                            Password
+                        </label>
+                    </div>
+                    <div class="form-check mb-3">
+                        <label class="form-check-label">
+                            <input class="form-check-input checkbox-box" type="checkbox" name="remember"> Remember me
+                        </label>
+                    </div>
+                    <div class="text-center">
+                        <input class="my-3 btn btn-primary login-btn" type="submit" value="Login">
+                    </div>
+                </form>
+                <div class="container-fluid text-center p-2">
+                    <p>
+                        If you are new...
+                    </p>
+                    
+                    <a class="btn btn-primary submit-btn" href="signup.html">Sign Up</a>
+                </div>
+            </div>
         </div>
       </div>
-      
-    <div class="card w-50 container-fluid">
-        <div class="container-fluid text-center p-2">
-            Login
-            <a class="btn btn-primary submit-btn" href="login.html">Login</a>
-        </div>
-        <div class="container-fluid text-center p-2">
-            signup
-            <a class="btn btn-primary submit-btn" href="signup.html">signup</a>
-        </div>
     </div>
+  </div>
+
 </body>
 
 </html>
