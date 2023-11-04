@@ -22,21 +22,21 @@ echo $user_id;
 
 // Fetch Top Artists
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, 'https://api.spotify.com/v1/me/top/artists?limit=20');
+curl_setopt($ch, CURLOPT_URL, 'https://api.spotify.com/v1/me/top/artists?limit=10');
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 curl_setopt($ch, CURLOPT_HTTPHEADER, array("Authorization: Bearer {$access_token}"));
 $response = curl_exec($ch);
 $artists = json_decode($response, true)['items'];
 
 // Fetch Top Tracks
-curl_setopt($ch, CURLOPT_URL, 'https://api.spotify.com/v1/me/top/tracks?limit=20');
+curl_setopt($ch, CURLOPT_URL, 'https://api.spotify.com/v1/me/top/tracks?limit=10');
 $response = curl_exec($ch);
 $tracks = json_decode($response, true)['items'];
 ?>
 
 <?php
 function add_song($pdo, $user_id, $song_name){
-    $sql = "INSERT INTO Song (UserID, SongName) VALUE(:userid, :songname)";
+    $sql = "INSERT INTO Song (UserID, SongName) VALUES(:userid, :songname)";
 
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(':userid', $user_id, PDO::PARAM_INT, 11);
