@@ -1,14 +1,12 @@
 <?php
 require_once '../logindb.php';
-
-// try {
-//     echo "test";
-//     $pdo = new PDO($attr, $user, $pass, $opts);
-// } catch (PDOException $e) {
-//     throw new PDOException($e->getMessage(), (int) $e->getCode());
-// }
-
+try {
+    $pdo = new PDO($attr, $user, $pass, $opts);
+} catch (PDOException $e) {
+    throw new PDOException($e->getMessage(), (int) $e->getCode());
+}
 // TODO: establish a connection to our database
+
 // TODO: Send songs to the database
 // SongID	UserID	SongName
 
