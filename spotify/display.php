@@ -1,7 +1,8 @@
 <?php
-//require_once 'logindb.php';
+require_once 'logindb.php';
 
 echo "test1";
+
 
 // try {
 //     echo "test";
@@ -17,6 +18,10 @@ echo "test1";
 
 session_start();
 $access_token = $_SESSION['access_token'];
+echo $access_token;
+
+$temp = $_SESSION['user_id'];
+echo $temp;
 
 // Fetch Top Artists
 $ch = curl_init();
