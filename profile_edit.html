@@ -19,7 +19,7 @@
             </p>
             <a href="homepage.php">Home</a>
             <a href="#">About</a>
-            <a href="profile.html">Profile</a>
+            <a href="profile.php">Profile</a>
             <a href="community.php">Community</a>
             <div>
                 <form method="post" action="user_logout.php">
@@ -29,42 +29,43 @@
         </div>
     </nav>
 
-    <div class="container w-50 card mt-3 login-box">
+    <div class="container w-50 mt-3 login-box">
         <form action="profile_edit.php" method="post">
-            <div class="mb-3 mt-3">
-                <label for="description">
-                    Description
-                </label>
-                <input class="" type="text" name="description" placeholder="Insert description" />
-                
-            </div>
-            <div class="container-fluid">
-                <label for="facebook">Facebook:</label>
-                <input type="text" id="facebook" name="facebook">
-                <br>
-                <label for="twitter">Twitter:</label>
-                <input type="text" id="twitter" name="twitter">
-                <br>
-                <label for="instagram">Instagram:</label>
-                <input type="text" id="instagram" name="instagram">
-            </div>
-            <div>
-                <div>
-                    <input type="checkbox" id="gender-chk" name="gender-chk" value="showGender">
-                    <label for="gender-chk">Show gender</label>
-                </div>
-                <div>
-                    <input type="checkbox" id="location-chk" name="location-chk" value="showLocation">
-                    <label for="location-chk">Show location</label>
-                </div>
-                <div>
-                    <input type="checkbox" id="age-chk" name="age-chk" value="showAge">
-                    <label for="age-chk">Show Age</label>
-                </div>
-            </div>
+            <div class="card p-3">
+                <div class="mb-3 mt-3">
+                    <label for="description">
+                        Description
+                    </label>
+                    <input class="" type="text" name="description" placeholder="Insert description" />
 
+                </div>
+                <div class="container-fluid">
+                    <label for="facebook">Facebook:</label>
+                    <input type="text" id="facebook" name="facebook">
+                    <br>
+                    <label for="twitter">Twitter:</label>
+                    <input type="text" id="twitter" name="twitter">
+                    <br>
+                    <label for="instagram">Instagram:</label>
+                    <input type="text" id="instagram" name="instagram">
+                </div>
+                <div>
+                    <div>
+                        <input type="checkbox" id="gender-chk" name="gender-chk" value="showGender">
+                        <label for="gender-chk">Show gender</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="location-chk" name="location-chk" value="showLocation">
+                        <label for="location-chk">Show location</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="age-chk" name="age-chk" value="showAge">
+                        <label for="age-chk">Show Age</label>
+                    </div>
+                </div>
+            </div>
             <div class="text-center">
-                <input class="my-3 btn btn-primary login-btn" type="submit" value="Login">
+                <input class="my-3 btn btn-primary login-btn" type="submit" value="Save Changes">
             </div>
         </form>
     </div>
