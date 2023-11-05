@@ -57,7 +57,7 @@ if ($row2 = $result2->fetch()) {
       </p>
       <a href="homepage.php">Home</a>
       <a href="#">About</a>
-      <a href="profile.html">Profile</a>
+      <a href="profile.php">Profile</a>
       <a href="community.php">Community</a>
       <div>
         <form method="post" action="user_logout.php">
