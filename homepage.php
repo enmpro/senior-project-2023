@@ -36,6 +36,11 @@ $username = $_SESSION['user_name'];
             <a href="#">About</a>
             <a href="profile.php">Profile</a>
             <a href="community.php">Community</a>
+            <div>
+                <form method="post" action="user_logout.php">
+                    <button type="submit" name="logout">Log Out</button>
+                </form>
+            </div>
         </div>
     </nav>
     <div class="container">
