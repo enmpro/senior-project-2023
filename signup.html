@@ -12,10 +12,22 @@
     <style>
         .form-section {
             display: none;
+            animation: fade-in 0.5s ease-in-out;
         }
 
         .current-section {
             display: block;
+            animation: fade-in 0.5s ease-in-out;
+        }
+
+        @keyframes fade-in {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
         }
     </style>
 </head>
@@ -55,13 +67,13 @@
                         <option value="Non-binary">Non-binary</option>
                         <option value="Prefer not to say">Prefer not to say</option>
                     </select>
-    
+
                 </div>
                 <div class="container-fluid mt-3">
                     <label for="birthday">Birthday</label>
                     <input type="date" id="birthday" name="birthday" required>
                 </div>
-                
+
                 <div class="mb-3 mt-3 form-floating">
                     <input class="form-control input-box" type="text" name="Username" placeholder="Enter Username"
                         required />
@@ -70,7 +82,8 @@
                     </label>
                 </div>
                 <div class="mb-3 mt-3 form-floating">
-                    <input class="form-control input-box" type="email" name="Email" placeholder="Enter Username" required />
+                    <input class="form-control input-box" type="email" name="Email" placeholder="Enter Username"
+                        required />
                     <label for="Email">
                         Email
                     </label>
@@ -82,7 +95,7 @@
                         Password
                     </label>
                 </div>
-    
+
                 <div class="mb-3 form-floating">
                     <input class="form-control input-box" minlength="8" type="password" name="repword"
                         placeholder="Enter Password" required />
@@ -95,7 +108,7 @@
             <div class="container-fluid text-center mt-3">
                 <button onclick="nextSection(1)">Next</button>
             </div>
-            
+
         </div>
         <div id="section2" class="form-section">
             <div class="container-fluid p-2">
@@ -119,7 +132,7 @@
                     <label for="userphoto">Upload Your Photo (JPG, GIF, PNG or TIF File):</label>
                     <input type="file" id="userphoto" name="userphoto">
                 </div>
-                
+
                 <div class="container-fluid card mb-3">
                     <label for="facebook">Facebook:</label>
                     <input type="text" id="facebook" name="facebook">
@@ -137,7 +150,7 @@
                 <button onclick="previousSection(2)">Previous</button>
                 <button onclick="nextSection(2)">Next</button>
             </div>
-           
+
         </div>
         <div id="section3" class="form-section container-fluid w-50">
             <div class="container-fluid p-2">
@@ -155,18 +168,18 @@
                         <option value="y">Yes</option>
                         <option value="n">No</option>
                     </select>
-    
+
                 </div>
-    
+
                 <div class="mb-3 form-floating">
-                    <input class="form-control input-box" minlength="5" type="text" name="Zip" placeholder="Enter Zip Code"
-                        required />
+                    <input class="form-control input-box" minlength="5" type="text" name="Zip"
+                        placeholder="Enter Zip Code" required />
                     <label for="Zip">
                         Enter Zip Code
                     </label>
                 </div>
                 <div>
-                    
+
                     <div>
                         <input type="checkbox" id="gender-chk" name="gender-chk" value="showGender">
                         <label for="gender-chk">Show gender</label>
@@ -181,13 +194,13 @@
                     </div>
                 </div>
             </div>
-            
-            
+
+
             <div class="container-fluid text-center mt-3">
                 <button onclick="previousSection(3)">Previous</button>
                 <button type="submit">Sign Up</button>
             </div>
-            
+
         </div>
     </form>
 </body>
