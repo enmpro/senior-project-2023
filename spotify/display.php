@@ -56,7 +56,7 @@ function add_artist($pdo, $user_id, $artist_name){
     $stmt->bindParam(':artistname', $artist_name, PDO::PARAM_STR, 255);
     
     $stmt->execute();
-    
+
 }
 ?>
 
@@ -71,6 +71,7 @@ function add_artist($pdo, $user_id, $artist_name){
     <ul>
         <?php foreach($artists as $artist): ?>
             <li><?php echo $artist['name']; ?></li>
+            <?php add_artist($pdo, $user_id, $artist['name']); ?>
 
         <?php endforeach; ?>
     </ul>
