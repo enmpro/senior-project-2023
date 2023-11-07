@@ -272,7 +272,7 @@ while (isset($_POST['FirstName'])) {
             echo <<<_END
                     <script>
                         alert("User added");
-                        window.location.href = "login.html";
+                        window.location.href = "landing.html";
                     </script>
                 _END;
         }
