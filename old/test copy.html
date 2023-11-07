@@ -1,73 +1,51 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Multi-Section Sign-up Form</title>
+    <title>Conditional Signup Form</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
-<style>
-    .form-section {
-    display: none;
-    animation: fade-in 0.5s ease-in-out;
-}
-
-.form-section.active {
-    display: block;
-    animation: fade-in 0.5s ease-in-out;
-}
-
-@keyframes fade-in {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
-
-</style>
 <body>
-    <div class="signup-form">
-        <div class="form-section" id="section1">
-            <!-- Section 1 Content -->
-            <h2>Section 1</h2>
-            <button onclick="showSection(2)">Next</button>
+    <h1>Signup Form</h1>
+    <form action="process_form.php" method="post">
+        <label for="organization">Are you part of an organization?</label>
+        <select id="organization" name="organization" onchange="toggleOrganizationDetails(this.value)">
+            <option value="no">No</option>
+            <option value="yes">Yes</option>
+        </select>
+
+        <div id="organizationDetails" style="display: none;">
+            <!-- Organization Details Section -->
+            <h2>Organization Details</h2>
+            <label for="orgName">Organization Name:</label>
+            <input type="text" id="orgName" name="orgName">
+            <label for="orgType">Organization Type:</label>
+            <input type="text" id="orgType" name="orgType">
         </div>
-        <div class="form-section" id="section2">
-            <!-- Section 2 Content -->
-            <h2>Section 2</h2>
-            <button onclick="showSection(1)">Previous</button>
-            <button onclick="showSection(3)">Next</button>
-        </div>
-        <div class="form-section" id="section3">
-            <!-- Section 3 Content -->
-            <h2>Section 3</h2>
-            <button onclick="showSection(2)">Previous</button>
-            <button onclick="showSection(4)">Next</button>
-        </div>
-        <div class="form-section" id="section4">
-            <!-- Section 4 Content -->
-            <h2>Section 4</h2>
-            <button onclick="showSection(3)">Previous</button>
-        </div>
-    </div>
+
+        <!-- Other form fields -->
+
+        <input type="submit" value="Submit">
+    </form>
 
     <script>
-        // Function to show a specific section
-function showSection(sectionNumber) {
-    // Hide all sections
-    let sections = document.querySelectorAll('.form-section');
-    sections.forEach((section) => {
-        section.classList.remove('active');
-    });
-
-    // Show the selected section
-    let activeSection = document.getElementById('section' + sectionNumber);
-    activeSection.classList.add('active');
+        // Function to toggle the visibility of the organization details section
+function toggleOrganizationDetails(value) {
+    const organizationDetails = document.getElementById("organizationDetails");
+    if (value === "yes") {
+        organizationDetails.style.display = "block";
+    } else {
+        organizationDetails.style.display = "none";
+    }
 }
 
-// Show the first section by default
-showSection(1);
+// Initialize the form
+function initForm() {
+    const organizationSelect = document.getElementById("organization");
+    toggleOrganizationDetails(organizationSelect.value);
+}
 
+// Show organization details section based on initial value
+initForm();
     </script>
 </body>
 </html>
