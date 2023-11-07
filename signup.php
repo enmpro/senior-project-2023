@@ -238,11 +238,15 @@ while (isset($_POST['FirstName'])) {
             $instagram = '';
         }
 
-
-
+        
 
         add_user($pdo, $eventyn, $username, $hash, $email, $firstname, $lastname, $gender, $birthday, $zip);
-        update_profile($pdo, $description, $targetPhotoFile, $genderChk, $locationChk, $ageChk);
+        $newUserID = $pdo->lastInsertId();
+        // if ($eventyn == 'yes') {
+        //     add_eventcoord($pdo, $newUserID, $username, $hash,
+        // }
+
+        update_profile($pdo, $newUserID, $description, $targetPhotoFile, $genderChk, $locationChk, $ageChk);
 
 
         $newProfileID = $pdo->lastInsertId();
@@ -297,14 +301,14 @@ function add_user($pdo, $event, $user_name, $passwd, $email, $fn, $ln, $gend, $b
     $stmt->execute();
 }
 
-function update_profile($pdo, $description, $profilepic, $showgender, $showlocation, $showbirthday)
+function update_profile($pdo, $userid, $description, $profilepic, $showgender, $showlocation, $showbirthday)
 {
-    $newUserID = $pdo->lastInsertId();
+    // $newUserID = $pdo->lastInsertId();
     $sqlProfile = "INSERT INTO Profile (UserID, Description, ProfilePic, ShowGender, ShowLocation, ShowBirthday) 
                    VALUES (:userID, :descr, :profilepic, :showgend, :showloc, :showbirth)";
     $stmtProfile = $pdo->prepare($sqlProfile);
 
-    $stmtProfile->bindParam(':userID', $newUserID, PDO::PARAM_STR, 10);
+    $stmtProfile->bindParam(':userID', $userid, PDO::PARAM_STR, 10);
     $stmtProfile->bindParam(':descr', $description, PDO::PARAM_STR);
     $stmtProfile->bindParam(':profilepic', $profilepic, PDO::PARAM_STR);
     $stmtProfile->bindParam(':showgend', $showgender, PDO::PARAM_STR, 12);
@@ -325,6 +329,24 @@ function update_social($pdo, $profileID, $platform, $handle, $url)
     $stmtProfile->bindParam(':platform', $platform, PDO::PARAM_STR, 50);
     $stmtProfile->bindParam(':handle', $handle, PDO::PARAM_STR, 100);
     $stmtProfile->bindParam(':url', $url, PDO::PARAM_STR, 255);
+
+    $stmtProfile->execute();
+}
+
+function add_eventcoord($pdo, $orgName, $orgType, $address, $phone, $email, $url, $userid)
+{
+
+    $sqlProfile = "INSERT INTO EventOrganizer (OrganizerName, OrganizerType, Address, Phone, ContactEmail, WebsiteURL, UserID) 
+                   VALUES (:orgName, :orgType, :address, :phone, :email, :url, :userid)";
+    $stmtProfile = $pdo->prepare($sqlProfile);
+
+    $stmtProfile->bindParam(':orgName', $orgName, PDO::PARAM_STR, 255);
+    $stmtProfile->bindParam(':orgType', $orgType, PDO::PARAM_STR, 255);
+    $stmtProfile->bindParam(':address', $address, PDO::PARAM_STR, 255);
+    $stmtProfile->bindParam(':phone', $phone, PDO::PARAM_STR, 20);
+    $stmtProfile->bindParam(':email', $email, PDO::PARAM_STR, 100);
+    $stmtProfile->bindParam(':url', $url, PDO::PARAM_STR, 255);
+    $stmtProfile->bindParam(':userid', $userid, PDO::PARAM_STR, 11);
 
     $stmtProfile->execute();
 }

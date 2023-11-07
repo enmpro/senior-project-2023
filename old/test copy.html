@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Conditional Signup Form</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
+
 <body>
     <h1>Signup Form</h1>
     <form action="process_form.php" method="post">
@@ -29,23 +31,32 @@
 
     <script>
         // Function to toggle the visibility of the organization details section
-function toggleOrganizationDetails(value) {
-    const organizationDetails = document.getElementById("organizationDetails");
-    if (value === "yes") {
-        organizationDetails.style.display = "block";
-    } else {
-        organizationDetails.style.display = "none";
-    }
-}
+        function toggleOrganizationDetails(value) {
+            const organizationDetails = document.getElementById("organizationDetails");
+            if (value === "yes") {
+                organizationDetails.style.display = "block";
+            } else {
+                organizationDetails.style.display = "none";
+            }
+            // Get the value of the "Are you an event coordinator?" select element
+            var isCoordinator = document.getElementById("organization").value;
 
-// Initialize the form
-function initForm() {
-    const organizationSelect = document.getElementById("organization");
-    toggleOrganizationDetails(organizationSelect.value);
-}
+            // Get the input fields you want to conditionally require
+            var eventDetails = document.getElementById("orgName");
 
-// Show organization details section based on initial value
-initForm();
+            // Set the 'required' attribute based on the user's choice
+            eventDetails.required = isCoordinator === "yes";
+        }
+
+        // Initialize the form
+        function initForm() {
+            const organizationSelect = document.getElementById("organization");
+            toggleOrganizationDetails(organizationSelect.value);
+        }
+
+        // Show organization details section based on initial value
+        initForm();
     </script>
 </body>
+
 </html>
