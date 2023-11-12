@@ -234,7 +234,7 @@
                 </div>
             </div>
 
-<!-- 
+            <!-- 
             <div class="container-fluid text-center mt-3">
                 <button onclick="previousSection(3)">Previous</button>
             </div> -->
@@ -242,7 +242,7 @@
         </div>
     </form>
 </body>
- <script>
+<script>
     function nextSection(currentSection) {
         // Hide the current section
         document.getElementById("section" + currentSection).classList.remove("current-section");
@@ -270,14 +270,43 @@
             organizationDetails.style.display = "none";
         }
 
-        // Get the value of the "Are you an event coordinator?" select element
-        var isCoordinator = document.getElementById("organizationDetails").value;
+        var isCoordinator = document.getElementById("event-yesno").value;
 
         // Get the input fields you want to conditionally require
-        var eventDetails = document.getElementById("orgName");
+        var eventDetails1 = document.getElementById("orgName");
+
+        // Get the input fields you want to conditionally require
+        var eventDetails2 = document.getElementById("orgType");
+
+        // Get the input fields you want to conditionally require
+        var eventDetails3 = document.getElementById("address");
+
+        // Get the input fields you want to conditionally require
+        var eventDetails4 = document.getElementById("phone");
+
+        // Get the input fields you want to conditionally require
+        var eventDetails5 = document.getElementById("email");
+
+        // Get the input fields you want to conditionally require
+        var eventDetails6 = document.getElementById("website");
 
         // Set the 'required' attribute based on the user's choice
-        eventDetails.required = isCoordinator === "yes";
+        eventDetails1.required = isCoordinator === "yes";
+
+        // Set the 'required' attribute based on the user's choice
+        eventDetails2.required = isCoordinator === "yes";
+
+        // Set the 'required' attribute based on the user's choice
+        eventDetails3.required = isCoordinator === "yes";
+
+        // Set the 'required' attribute based on the user's choice
+        eventDetails4.required = isCoordinator === "yes";
+
+        // Set the 'required' attribute based on the user's choice
+        eventDetails5.required = isCoordinator === "yes";
+
+        // Set the 'required' attribute based on the user's choice
+        eventDetails6.required = isCoordinator === "yes";
     }
 
     // Initialize the form
