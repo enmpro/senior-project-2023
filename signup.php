@@ -163,34 +163,34 @@ while (isset($_POST['FirstName'])) {
 
 
         if (isset($_POST['submit'])) {
-                $targetDirectory = "userphoto/"; // Directory to store profile pictures
+            $targetDirectory = "userphoto/"; // Directory to store profile pictures
 
-                $randomFileName = uniqid();
-                $targetPhotoFile = $targetDirectory . $randomFileName . '_' . basename($_FILES['userphoto']['name']);
-                echo <<<_END
+            $randomFileName = uniqid();
+            $targetPhotoFile = $targetDirectory . $randomFileName . '_' . basename($_FILES['userphoto']['name']);
+            echo <<<_END
                     <script>
                     alert("$targetPhotoFile");
                         
                     </script>
                     _END;
 
-                if (move_uploaded_file($_FILES['userphoto']['tmp_name'], $targetPhotoFile)) {
-                    echo <<<_END
+            if (move_uploaded_file($_FILES['userphoto']['tmp_name'], $targetPhotoFile)) {
+                echo <<<_END
                     <script>
                         alert("Photo added");
                         
                     </script>
                     _END;
-                    break;
-                } else {
-                    echo <<<_END
+                break;
+            } else {
+                echo <<<_END
                     <script>
                         alert("Photo not added");
                         
                     </script>
                     _END;
-                    break;
-                }
+                break;
+            }
         } else {
             echo <<<_END
                     <script>
@@ -248,7 +248,43 @@ while (isset($_POST['FirstName'])) {
                     _END;
         }
 
-        
+        if (isset($_POST['orgName'])) {
+            $orgName = $_POST['orgName'];
+        } else {
+            $orgName = '';
+        }
+
+        if (isset($_POST['orgType'])) {
+            $orgType = $_POST['orgType'];
+        } else {
+            $orgName = '';
+        }
+
+        if (isset($_POST['address'])) {
+            $address = $_POST['address'];
+        } else {
+            $address = '';
+        }
+
+        if (isset($_POST['phone'])) {
+            $phone = $_POST['phone'];
+        } else {
+            $phone = '';
+        }
+
+        if (isset($_POST['email'])) {
+            $email = $_POST['email'];
+        } else {
+            $email = '';
+        }
+
+        if (isset($_POST['website'])) {
+            $website = $_POST['website'];
+        } else {
+            $website = '';
+        }
+
+
 
         add_user($pdo, $eventyn, $username, $hash, $email, $firstname, $lastname, $gender, $birthday, $zip);
         $newUserID = $pdo->lastInsertId();
@@ -261,42 +297,8 @@ while (isset($_POST['FirstName'])) {
                         
                     </script>
                     _END;
-            if (isset($_POST['orgName'])) {
-                $orgName = $_POST['orgName'];
-            } else {
-                $orgName = '';
-            }
 
-            if (isset($_POST['orgType'])) {
-                $orgType = $_POST['orgType'];
-            } else  {
-                $orgName = '';
-            }
 
-            if (isset($_POST['address'])) {
-                $address = $_POST['address'];
-            } else {
-                $address = '';
-            }
-
-            if (isset($_POST['phone'])) {
-                $phone = $_POST['phone'];
-            } else {
-                $phone = '';
-            }
-
-            if (isset($_POST['email'])) {
-                $email = $_POST['email'];
-            } else { 
-                $email = '';
-            }
-
-            if (isset($_POST['website'])) {
-                $website = $_POST['website'];
-            } else {
-                $website = '';
-            }
-            
             add_eventcoord($pdo, $orgName, $orgType, $address, $phone, $email, $url, $newUserID);
         }
 
