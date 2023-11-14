@@ -254,41 +254,41 @@ while (isset($_POST['FirstName'])) {
                     _END;
         }
 
-        // if (isset($_POST['orgName'])) {
-        //     $orgName = $_POST['orgName'];
-        // } else {
-        //     $orgName = '';
-        // }
+        if (isset($_POST['orgName'])) {
+            $orgName = $_POST['orgName'];
+        } else {
+            $orgName = '';
+        }
 
-        // if (isset($_POST['orgType'])) {
-        //     $orgType = $_POST['orgType'];
-        // } else {
-        //     $orgName = '';
-        // }
+        if (isset($_POST['orgType'])) {
+            $orgType = $_POST['orgType'];
+        } else {
+            $orgName = '';
+        }
 
-        // if (isset($_POST['address'])) {
-        //     $address = $_POST['address'];
-        // } else {
-        //     $address = '';
-        // }
+        if (isset($_POST['address'])) {
+            $address = $_POST['address'];
+        } else {
+            $address = '';
+        }
 
-        // if (isset($_POST['phone'])) {
-        //     $phone = $_POST['phone'];
-        // } else {
-        //     $phone = '';
-        // }
+        if (isset($_POST['phone'])) {
+            $phone = $_POST['phone'];
+        } else {
+            $phone = '';
+        }
 
-        // if (isset($_POST['email'])) {
-        //     $email = $_POST['email'];
-        // } else {
-        //     $email = '';
-        // }
+        if (isset($_POST['email'])) {
+            $email = $_POST['email'];
+        } else {
+            $email = '';
+        }
 
-        // if (isset($_POST['website'])) {
-        //     $website = $_POST['website'];
-        // } else {
-        //     $website = '';
-        // }
+        if (isset($_POST['website'])) {
+            $website = $_POST['website'];
+        } else {
+            $website = '';
+        }
 
 
 
