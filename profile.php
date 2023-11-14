@@ -80,7 +80,21 @@ if ($row2 = $result2->fetch()) {
 
   <div class="card container-fluid w-75 mt-5">
     <h1><?php echo $username; ?></h1>
+    <?php 
+      $query3 = "SELECT * FROM EventOrganizer WHERE UserID LIKE $user_id";
+      $result3 = $pdo->query($query3);
 
+      if ($row3 = $result3->fetch()) {
+        echo <<<_END
+        <h1>Event Organizer</h1>
+
+        _END;
+
+
+        
+      }
+
+    ?>
     <section>
       <img src="<?php echo $profilePic; ?>" style="width: 250px" alt="Profile Image" class="profile-image">
       <h2><?php echo $fullname; ?></h2>
