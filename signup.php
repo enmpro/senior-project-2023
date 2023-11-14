@@ -161,14 +161,6 @@ while (isset($_POST['FirstName'])) {
             $description = '';
         }
 
-        echo <<<_END
-                    <script>
-                    alert("$eventyn");
-                        
-                        
-                    </script>
-                    _END;
-
 
         if (isset($_POST['submit'])) {
             $targetDirectory = "userphoto/"; // Directory to store profile pictures
@@ -245,13 +237,6 @@ while (isset($_POST['FirstName'])) {
             $instagram = $_POST['instagram'];
         } else {
             $instagram = '';
-            echo <<<_END
-                    <script>
-                    alert("insta");
-                        
-                        
-                    </script>
-                    _END;
         }
 
         if (isset($_POST['orgName'])) {
@@ -296,25 +281,10 @@ while (isset($_POST['FirstName'])) {
         $newUserID = $pdo->lastInsertId();
 
         if ($eventyn == 'yes') {
-            echo <<<_END
-                    <script>
-                    alert("event working");
-                        
-                        
-                    </script>
-                    _END;
-
 
             add_eventcoord($pdo, $orgName, $orgType, $orgAddress, $orgPhone, $orgEmail, $orgWebsite, $newUserID);
         }
 
-        echo <<<_END
-                    <script>
-                    alert("after");
-                        
-                        
-                    </script>
-                    _END;
 
         update_profile($pdo, $newUserID, $description, $targetPhotoFile, $genderChk, $locationChk, $ageChk);
 
