@@ -256,59 +256,59 @@ while (isset($_POST['FirstName'])) {
                     _END;
         }
 
-        if (isset($_POST['orgName'])) {
-            $orgName = $_POST['orgName'];
-        } else {
-            $orgName = '';
-        }
+        // if (isset($_POST['orgName'])) {
+        //     $orgName = $_POST['orgName'];
+        // } else {
+        //     $orgName = '';
+        // }
 
-        if (isset($_POST['orgType'])) {
-            $orgType = $_POST['orgType'];
-        } else {
-            $orgName = '';
-        }
+        // if (isset($_POST['orgType'])) {
+        //     $orgType = $_POST['orgType'];
+        // } else {
+        //     $orgName = '';
+        // }
 
-        if (isset($_POST['address'])) {
-            $address = $_POST['address'];
-        } else {
-            $address = '';
-        }
+        // if (isset($_POST['address'])) {
+        //     $address = $_POST['address'];
+        // } else {
+        //     $address = '';
+        // }
 
-        if (isset($_POST['phone'])) {
-            $phone = $_POST['phone'];
-        } else {
-            $phone = '';
-        }
+        // if (isset($_POST['phone'])) {
+        //     $phone = $_POST['phone'];
+        // } else {
+        //     $phone = '';
+        // }
 
-        if (isset($_POST['email'])) {
-            $email = $_POST['email'];
-        } else {
-            $email = '';
-        }
+        // if (isset($_POST['email'])) {
+        //     $email = $_POST['email'];
+        // } else {
+        //     $email = '';
+        // }
 
-        if (isset($_POST['website'])) {
-            $website = $_POST['website'];
-        } else {
-            $website = '';
-        }
+        // if (isset($_POST['website'])) {
+        //     $website = $_POST['website'];
+        // } else {
+        //     $website = '';
+        // }
 
 
 
         add_user($pdo, $eventyn, $username, $hash, $email, $firstname, $lastname, $gender, $birthday, $zip);
         $newUserID = $pdo->lastInsertId();
 
-        if ($eventyn == 'yes') {
-            echo <<<_END
-                    <script>
-                    alert("event working");
+        // if ($eventyn == 'yes') {
+        //     echo <<<_END
+        //             <script>
+        //             alert("event working");
                         
                         
-                    </script>
-                    _END;
+        //             </script>
+        //             _END;
 
 
-            add_eventcoord($pdo, $orgName, $orgType, $address, $phone, $email, $url, $newUserID);
-        }
+        //     add_eventcoord($pdo, $orgName, $orgType, $address, $phone, $email, $url, $newUserID);
+        // }
 
         echo <<<_END
                     <script>
