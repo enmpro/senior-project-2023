@@ -295,18 +295,18 @@ while (isset($_POST['FirstName'])) {
         add_user($pdo, $eventyn, $username, $hash, $email, $firstname, $lastname, $gender, $birthday, $zip);
         $newUserID = $pdo->lastInsertId();
 
-        // if ($eventyn == 'yes') {
-        //     echo <<<_END
-        //             <script>
-        //             alert("event working");
+        if ($eventyn == 'yes') {
+            echo <<<_END
+                    <script>
+                    alert("event working");
                         
                         
-        //             </script>
-        //             _END;
+                    </script>
+                    _END;
 
 
-        //     add_eventcoord($pdo, $orgName, $orgType, $address, $phone, $email, $url, $newUserID);
-        // }
+            add_eventcoord($pdo, $orgName, $orgType, $address, $phone, $email, $url, $newUserID);
+        }
 
         echo <<<_END
                     <script>
