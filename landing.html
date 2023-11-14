@@ -11,6 +11,27 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
+<style>
+    .profile {
+        position: relative;
+        height: 75vw;
+        width: 75vw;
+        border-radius: 5vw;
+        margin-top: 5vw;
+        max-height: 20rem;
+        max-width: 20rem;
+    }
+
+    .profile .profile-img {
+        height: 80vw;
+        max-height: 25rem;
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+</style>
+
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -33,6 +54,32 @@
             </div>
         </div>
     </nav>
+    <header class="py-5">
+        <div class="container px-5">
+            <div class="row gx-5 align-items-center">
+                <div class="col-xxl-5">
+                    <div class="text-center text-xxl-start">
+                        <p class="fs-1">
+                            Welcome to Cantio!
+                        </p>
+                        <p class="fs-2">
+                            A place where you connect with your music and meet new people
+                        </p>
+                    </div>
+                </div>
+                <div class="col-xxl-7">
+                    <div class="d-flex justify-content-center mt-5 mt-xxl-0">
+                        <div class="profile bg-gradient-primary-to-secondary">
+                            <img class="profile-img" src="modern-blue-dots-circle-background-vector.jpg">
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </header>
+
 
     <!-- Button trigger modal -->
     <div class="text-center">
