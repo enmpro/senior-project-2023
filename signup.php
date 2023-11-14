@@ -266,26 +266,26 @@ while (isset($_POST['FirstName'])) {
             $orgName = '';
         }
 
-        if (isset($_POST['address'])) {
-            $address = $_POST['address'];
+        if (isset($_POST['orgAddress'])) {
+            $address = $_POST['orgAddress'];
         } else {
             $address = '';
         }
 
-        if (isset($_POST['phone'])) {
-            $phone = $_POST['phone'];
+        if (isset($_POST['orgPhone'])) {
+            $phone = $_POST['orgPhone'];
         } else {
             $phone = '';
         }
 
-        if (isset($_POST['email'])) {
-            $email = $_POST['email'];
+        if (isset($_POST['orgEmail'])) {
+            $email = $_POST['orgEmail'];
         } else {
             $email = '';
         }
 
-        if (isset($_POST['website'])) {
-            $website = $_POST['website'];
+        if (isset($_POST['orgWebsite'])) {
+            $website = $_POST['orgWebsite'];
         } else {
             $website = '';
         }
