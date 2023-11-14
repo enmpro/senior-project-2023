@@ -352,7 +352,7 @@ function add_user($pdo, $event, $user_name, $passwd, $email, $fn, $ln, $gend, $b
     $sql = "INSERT INTO User (EventYesNo, Username, Password, Email, FirstName, LastName, Gender, Birthday, Zip) 
             VALUES(:event, :username, :password, :email, :firstname, :lastname, :gender, :birthday, :zip)";
     $stmt = $pdo->prepare($sql);
-    $stmt->bindParam(':event', $event, PDO::PARAM_STR, 2);
+    $stmt->bindParam(':event', $event, PDO::PARAM_STR, 4);
     $stmt->bindParam(':username', $user_name, PDO::PARAM_STR, 25);
     $stmt->bindParam(':password', $passwd, PDO::PARAM_STR, 255);
     $stmt->bindParam(':email', $email, PDO::PARAM_STR, 65);
