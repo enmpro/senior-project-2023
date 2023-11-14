@@ -112,8 +112,7 @@ if ($row2 = $result2->fetch()) {
                       <h5>Organization</h5>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
-              </div>
-              <div class="modal-body">
+                  <div class="modal-body">
                   <div>
                       <p>$organizerName</p>
                   </div>
@@ -133,6 +132,8 @@ if ($row2 = $result2->fetch()) {
                       <p>$organizerUrl</p>
                   </div>
               </div>
+              </div>
+              
           </div>
       </div>
 
