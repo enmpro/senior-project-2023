@@ -181,6 +181,7 @@ while (isset($_POST['FirstName'])) {
                         
                     </script>
                     _END;
+                    break;
                 } else {
                     echo <<<_END
                     <script>
@@ -188,6 +189,7 @@ while (isset($_POST['FirstName'])) {
                         
                     </script>
                     _END;
+                    break;
                 }
         } else {
             echo <<<_END
@@ -198,6 +200,7 @@ while (isset($_POST['FirstName'])) {
                     </script>
                     _END;
             $targetPhotoFile = '';
+            break;
         }
 
 
