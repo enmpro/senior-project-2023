@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
              <script>
                 
                  alert("Invalid username or password");
-                 window.location.href = "login.html";
+                 window.location.href = "landing.html";
              </script>
          _END;
        }
