@@ -242,9 +242,46 @@ while (isset($_POST['FirstName'])) {
 
         add_user($pdo, $eventyn, $username, $hash, $email, $firstname, $lastname, $gender, $birthday, $zip);
         $newUserID = $pdo->lastInsertId();
-        // if ($eventyn == 'yes') {
-        //     add_eventcoord($pdo, $newUserID, $username, $hash,
-        // }
+
+        if ($eventyn == 'yes') {
+            if (isset($_POST['orgName'])) {
+                $orgName = $_POST['orgName'];
+            } else {
+                $orgName = '';
+            }
+
+            if (isset($_POST['orgType'])) {
+                $orgType = $_POST['orgType'];
+            } else  {
+                $orgName = '';
+            }
+
+            if (isset($_POST['address'])) {
+                $address = $_POST['address'];
+            } else {
+                $address = '';
+            }
+
+            if (isset($_POST['phone'])) {
+                $phone = $_POST['phone'];
+            } else {
+                $phone = '';
+            }
+
+            if (isset($_POST['email'])) {
+                $email = $_POST['email'];
+            } else { 
+                $email = '';
+            }
+
+            if (isset($_POST['website'])) {
+                $website = $_POST['website'];
+            } else {
+                $website = '';
+            }
+            
+            add_eventcoord($pdo, $orgName, $orgType, $address, $phone, $email, $url, $newUserID);
+        }
 
         update_profile($pdo, $newUserID, $description, $targetPhotoFile, $genderChk, $locationChk, $ageChk);
 
