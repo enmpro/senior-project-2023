@@ -267,27 +267,27 @@ while (isset($_POST['FirstName'])) {
         }
 
         if (isset($_POST['orgAddress'])) {
-            $address = $_POST['orgAddress'];
+            $orgAddress = $_POST['orgAddress'];
         } else {
-            $address = '';
+            $orgAddress = '';
         }
 
         if (isset($_POST['orgPhone'])) {
-            $phone = $_POST['orgPhone'];
+            $orgPhone = $_POST['orgPhone'];
         } else {
-            $phone = '';
+            $orgPhone = '';
         }
 
         if (isset($_POST['orgEmail'])) {
-            $email = $_POST['orgEmail'];
+            $orgEmail = $_POST['orgEmail'];
         } else {
-            $email = '';
+            $orgEmail = '';
         }
 
         if (isset($_POST['orgWebsite'])) {
-            $website = $_POST['orgWebsite'];
+            $orgWebsite = $_POST['orgWebsite'];
         } else {
-            $website = '';
+            $orgWebsite = '';
         }
 
 
@@ -305,7 +305,7 @@ while (isset($_POST['FirstName'])) {
                     _END;
 
 
-            add_eventcoord($pdo, $orgName, $orgType, $address, $phone, $email, $url, $newUserID);
+            add_eventcoord($pdo, $orgName, $orgType, $orgAddress, $orgPhone, $orgEmail, $orgWebsite, $newUserID);
         }
 
         echo <<<_END
@@ -403,7 +403,7 @@ function update_social($pdo, $profileID, $platform, $handle, $url)
     $stmtProfile->execute();
 }
 
-function add_eventcoord($pdo, $orgName, $orgType, $address, $phone, $email, $url, $userid)
+function add_eventcoord($pdo, $orgName, $orgType, $orgAddress, $orgPhone, $orgEmail, $orgWebsite, $userid)
 {
 
     $sqlProfile = "INSERT INTO EventOrganizer (OrganizerName, OrganizerType, Address, Phone, ContactEmail, WebsiteURL, UserID) 
@@ -412,10 +412,10 @@ function add_eventcoord($pdo, $orgName, $orgType, $address, $phone, $email, $url
 
     $stmtProfile->bindParam(':orgName', $orgName, PDO::PARAM_STR, 255);
     $stmtProfile->bindParam(':orgType', $orgType, PDO::PARAM_STR, 255);
-    $stmtProfile->bindParam(':address', $address, PDO::PARAM_STR, 255);
-    $stmtProfile->bindParam(':phone', $phone, PDO::PARAM_STR, 20);
-    $stmtProfile->bindParam(':email', $email, PDO::PARAM_STR, 100);
-    $stmtProfile->bindParam(':url', $url, PDO::PARAM_STR, 255);
+    $stmtProfile->bindParam(':address', $orgAddress, PDO::PARAM_STR, 255);
+    $stmtProfile->bindParam(':phone', $orgPhone, PDO::PARAM_STR, 20);
+    $stmtProfile->bindParam(':email', $orgEmail, PDO::PARAM_STR, 100);
+    $stmtProfile->bindParam(':url', $orgWebsite, PDO::PARAM_STR, 255);
     $stmtProfile->bindParam(':userid', $userid, PDO::PARAM_STR, 11);
 
     $stmtProfile->execute();
