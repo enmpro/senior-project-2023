@@ -236,6 +236,13 @@ while (isset($_POST['FirstName'])) {
             $instagram = $_POST['instagram'];
         } else {
             $instagram = '';
+            echo <<<_END
+                    <script>
+                    alert("insta");
+                        
+                        
+                    </script>
+                    _END;
         }
 
         
@@ -244,6 +251,13 @@ while (isset($_POST['FirstName'])) {
         $newUserID = $pdo->lastInsertId();
 
         if ($eventyn == 'yes') {
+            echo <<<_END
+                    <script>
+                    alert("event working");
+                        
+                        
+                    </script>
+                    _END;
             if (isset($_POST['orgName'])) {
                 $orgName = $_POST['orgName'];
             } else {
@@ -282,6 +296,14 @@ while (isset($_POST['FirstName'])) {
             
             add_eventcoord($pdo, $orgName, $orgType, $address, $phone, $email, $url, $newUserID);
         }
+
+        echo <<<_END
+                    <script>
+                    alert("after");
+                        
+                        
+                    </script>
+                    _END;
 
         update_profile($pdo, $newUserID, $description, $targetPhotoFile, $genderChk, $locationChk, $ageChk);
 
