@@ -8,6 +8,7 @@
 <h1>Search Results</h1>
 
 <?php
+require_once 'login.php';
     session_start();
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $search_term = $_POST['search_term'];
