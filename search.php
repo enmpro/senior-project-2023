@@ -8,14 +8,14 @@
 <h1>Search Results</h1>
 
 <?php
-    // Database connection
+    #connect to database
     require_once 'logindb.php'; 
     session_start();
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $search_term = htmlspecialchars($_POST['search_term']);
 
-        // Your SQL query
+        #sql query
         $sql = "SELECT * FROM Users WHERE Username LIKE '%$search_term%'";
         $result = $conn->query($sql);
 
@@ -28,7 +28,7 @@
         }
     } else {
         header("Location: searchusers.html");
-        exit(); // Make sure to exit after redirecting
+        exit(); #ensures that the user exits after redirect
     }
 
     $conn->close();
