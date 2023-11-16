@@ -13,6 +13,8 @@ require_once 'login.php';
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $search_term = $_POST['search_term'];
 
+        $search_term = htmlspecialchars($_POST['search_term']);
+    }
     include 'logindb.php'; #database connection file
 
     $sql = "SELECT * FROM Users WHERE Username LIKE '%$search_term%'";
