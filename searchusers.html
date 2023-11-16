@@ -1,10 +1,13 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Look for a User</title>
+
     <!-- Latest compiled and minified CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <!-- Latest compiled JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
@@ -29,20 +32,22 @@
                     <li class="nav-item">
                         <a class="nav-link" href="community.php">Community</a>
                     </li>
-                    <div>
-                        <form method="post" action="user_logout.php">
-                            <button type="submit" name="logout">Log Out</button>
-                        </form>
-                    </div>
                 </ul>
+                <form method="post" action="user_logout.php" class="d-flex">
+                    <button type="submit" name="logout" class="btn btn-outline-danger">Log Out</button>
+                </form>
             </div>
         </div>
     </nav>
-    
-    <form action="search.php" method="post">
-        Search for a user or event coordinator: <input type="text" name="search_term">
-        <input type="submit" value="Search">
-    </form>
-    
+
+    <div class="container mt-3">
+        <form action="search.php" method="post">
+            <div class="mb-3">
+                <label for="search_term" class="form-label">Search for a user or event coordinator:</label>
+                <input type="text" name="search_term" class="form-control" id="search_term">
+            </div>
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+    </div>
 </body>
 </html>
