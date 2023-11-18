@@ -47,12 +47,39 @@
         <div class="row justify-content-md-center">
             <div class="col-md-auto p-3 card">
                 <h2>Create an event</h2>
-                <button type="button" class="btn btn-primary">Create event</button>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#eventCreateModal">Create event</button>
+                <div class="modal fade" id="eventCreateModal" data-bs-backdrop="static" 
+                data-bs-keyboard="false" tabindex="-1" aria-labelledby="eventHeading" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="eventHeading">New Event!</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                            <form action="" method="post">
+                                <div class="m-3">
+                                    <label for="eventName">Event Name</label>
+                                    <input id="eventName" name="eventName" type="text" required/>
+                                </div>
+                                <div class="m-3">
+                                    <label for="eventDesc">Event Description</label>
+                                    <textarea id="eventDesc" name="eventDesc" placeholder="Insert Description Here..." required></textarea>
+                                </div>
+                                <div class="m-3">
+                                    <label for="eventPhoto">Event Photo</label>
+                                    <input id="eventPhoto" name="eventPhoto" type="file" required/>
+                                </div>
+                                <div class="text-center">
+                                    <input class="my-3 btn btn-primary" type="submit" value="Create Event">
+                                </div>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                </div>
             </div>
-            <div class="col-md-auto p-3 card">
-                <h2>Edit events</h2>
-                <button type="button" class="btn btn-primary">Edit event</button>
-            </div>
+
             <div class="col-md-auto p-3 card">
                 <h2>Active events</h2>
                
