@@ -1,6 +1,8 @@
 <?php
-require_once 'logindb.php';
-$conn = new mysqli($servername, $username, $password, $dbname);
+
+#connect to database
+require_once 'logindb.php'; 
+session_start();
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
