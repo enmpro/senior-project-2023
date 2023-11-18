@@ -17,6 +17,6 @@ $conn->query($sql);
 $conn->close();
 
 // Redirect back to the main page
-header("Location: index.html");
+header("Location: homepage_page.html");
 exit();
 ?>
