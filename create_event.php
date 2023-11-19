@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       }
 
 
-    if (isset($_POST["submit"])) {
+    if (isset($_POST['submit'])) {
         $targetDirectory = "eventphoto/"; // Directory to store profile pictures
 
         $randomFileName = uniqid();
