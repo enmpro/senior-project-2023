@@ -82,7 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 function add_event($pdo, $eventName, $eventDesc, $eventPhoto, $numAttend, $organizerID)
 {
     $sql = "INSERT INTO Event (EventName, EventDesc, EventPhoto, UserNumAttend, OrganizerID) 
-            VALUES(:event, :eventName, :eventDesc, :eventPhoto, :numAttend, :organizerID)";
+            VALUES(:eventName, :eventDesc, :eventPhoto, :numAttend, :organizerID)";
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(':eventName', $eventName, PDO::PARAM_STR, 255);
     $stmt->bindParam(':eventDesc', $eventDesc, PDO::PARAM_STR, 255);
