@@ -73,7 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     }
 
-    //add_event($pdo, $eventName, $eventDesc, $eventPhoto, 0, )
+    add_event($pdo, $eventName, $eventDesc, $eventPhoto, 0, $organizerID);
 
 }
 
