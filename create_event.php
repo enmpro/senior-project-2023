@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $eventDesc = test_userinput($_POST["eventDesc"]);
     $eventPhoto = test_userinput($_POST["eventPhoto"]);
 
-    $query = "SELECT * FROM EventOrganizer WHERE UserID LIKE $user_id";
+    $query = "SELECT * FROM EventOrganizer WHERE UserID LIKE $userID";
     $result = $pdo->query($query);
 
     if ($row = $result->fetch()) {
