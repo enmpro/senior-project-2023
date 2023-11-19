@@ -57,7 +57,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                           </div>
                           <div class="modal-body">
-                            <form action="create_event.php" method="post" enctype="multipart/form-data">
+                            <form id="eventCreate" action="create_event.php" method="post" enctype="multipart/form-data">
                                 <div class="m-3">
                                     <label for="eventName">Event Name</label>
                                     <input id="eventName" name="eventName" type="text" required/>
@@ -71,7 +71,7 @@
                                     <input id="eventPhoto" name="eventPhoto" type="file" required/>
                                 </div>
                                 <div class="text-center">
-                                    <input class="my-3 btn btn-primary" type="submit" value="Create Event">
+                                    <button name="submit" form="eventCreate" type="submit">Sign Up</button>
                                 </div>
                             </form>
                           </div>
