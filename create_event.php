@@ -13,8 +13,9 @@ session_start();
 
 if (isset($_SESSION['user_id'])) {
 
-    $user_id = $_SESSION['user_id'];
+    $userID = $_SESSION['user_id'];
 }
+
 
 
 function test_userinput($data)
