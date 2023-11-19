@@ -75,7 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     add_event($pdo, $eventName, $eventDesc, $eventPhoto, 0, $organizerID);
-
+    header('Location: profile.php');
 }
 
 
