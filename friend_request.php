@@ -8,17 +8,17 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Get the username from the form
+#takes the username from the form (friend_request.html)
 $username = $_POST['username'];
 
-// Insert the friend request into the database
+#inserts the friend request into the database
 $sql = "INSERT INTO Users (Username) VALUES ('$username')";
 $conn->query($sql);
 
-// Close the database connection
+#database connection closes
 $conn->close();
 
-// Redirect back to the main page
+#takes user back to the homepage
 header("Location: homepage_page.html");
 exit();
 ?>
