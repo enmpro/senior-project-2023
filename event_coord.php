@@ -123,11 +123,27 @@ $username = $_SESSION['user_name'];
                 $result2 = $pdo->query($query2);
                 
                 foreach ($result2 as $row) {
-                    // $event_Name = $row["EventName"];
-                    // $event_Desc = $row["eventDesc"];
-                    // $event_Photo = $row["EventPhoto"];
-                    // $userNumAttend = $row["UserNumAttend"];
-                    echo "Event: ". $row["EventName"] ." ". $row["EventDesc"] ." ". $row["EventPhoto"] ." ". $row["UserNumAttend"] . "<br>";
+                    $event_Name = $row["EventName"];
+                    $event_Desc = $row["eventDesc"];
+                    $event_Photo = $row["EventPhoto"];
+                    $userNumAttend = $row["UserNumAttend"];
+                    echo <<<_END
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col">Event Name</div>
+                            <div class="col">Event Desc</div>
+                            <div class="col">Event Photo</div>
+                            <div class="col">User Attending</div>
+                        </div>
+                        <div class="row">
+                            <div class="col">$event_Name</div>
+                            <div class="col">$event_Desc</div>
+                            <div class="col">$event_Photo</div>
+                            <div class="col">$userNumAttend</div>
+                        </div>
+                    </div>
+                    _END;
+
                 }
                 
                 ?>
