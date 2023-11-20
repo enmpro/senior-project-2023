@@ -134,8 +134,9 @@ $username = $_SESSION['user_name'];
 
                         $query2 = "SELECT * FROM Event WHERE OrganizerID LIKE $organizerID";
                         $result2 = $pdo->query($query2);
-
+                        $count = 0;
                         foreach ($result2 as $row) {
+                            $count = $count + 1;
                             $event_Name = $row["EventName"];
                             $event_Desc = $row["EventDesc"];
                             $event_Photo = $row["EventPhoto"];
@@ -143,7 +144,7 @@ $username = $_SESSION['user_name'];
                             echo <<<_END
                         
                             <tr>
-                                <th scope="row">1</th>
+                                <th scope="row">$count</th>
                                 <td>$event_Name</td>
                                 <td>$event_Desc</td>
                                 <td>$event_Photo</td>
