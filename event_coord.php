@@ -124,7 +124,7 @@ $username = $_SESSION['user_name'];
                 
                 foreach ($result2 as $row) {
                     $event_Name = $row["EventName"];
-                    $event_Desc = $row["eventDesc"];
+                    $event_Desc = $row["EventDesc"];
                     $event_Photo = $row["EventPhoto"];
                     $userNumAttend = $row["UserNumAttend"];
                     echo <<<_END
