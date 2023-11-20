@@ -127,7 +127,7 @@ $username = $_SESSION['user_name'];
                     // $event_Desc = $row["eventDesc"];
                     // $event_Photo = $row["EventPhoto"];
                     // $userNumAttend = $row["UserNumAttend"];
-                    echo "Event: ". $row["EventName"] ." ". $row["EventDesc"] ." ". $row["EventPhoto"] ." ". $row["UserNumAttend"];
+                    echo "Event: ". $row["EventName"] ." ". $row["EventDesc"] ." ". $row["EventPhoto"] ." ". $row["UserNumAttend"] . "<br>";
                 }
                 
                 ?>

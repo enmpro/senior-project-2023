@@ -74,7 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     add_event($pdo, $eventName, $eventDesc, $targetPhotoFile, 0, $organizerID);
-    header('Location: event_coord.html');
+    header('Location: event_coord.php');
 }
 
 
