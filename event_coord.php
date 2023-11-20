@@ -147,7 +147,7 @@ $username = $_SESSION['user_name'];
                                 <th scope="row">$count</th>
                                 <td>$event_Name</td>
                                 <td>$event_Desc</td>
-                                <td>$event_Photo</td>
+                                <td> <img src="$event_Photo" style="width: 250px" alt="Profile Image" class="profile-image"></td>
                                 <td>$userNumAttend</td>
                             </tr>
                         _END;
