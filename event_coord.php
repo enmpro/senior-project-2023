@@ -122,7 +122,7 @@ $username = $_SESSION['user_name'];
                 $query2 = "SELECT * FROM Event WHERE OrganizerID LIKE $organizerID";
                 $result2 = $pdo->query($query2);
                 
-                foreach ($results2 as $row) {
+                foreach ($result2 as $row) {
                     // $event_Name = $row["EventName"];
                     // $event_Desc = $row["eventDesc"];
                     // $event_Photo = $row["EventPhoto"];
