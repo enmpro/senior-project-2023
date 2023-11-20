@@ -111,42 +111,51 @@ $username = $_SESSION['user_name'];
 
             <div class="col-md-auto p-3 card">
                 <h2>Active events</h2>
-                <?php
-                $query = "SELECT * FROM EventOrganizer WHERE UserID LIKE $userID";
-                $result = $pdo->query($query);
 
-                if ($row = $result->fetch()) {
-                    $organizerID = $row["OrganizerID"];
-                }
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Event Name</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Photo</th>
+                            <th scope="col">People Attending</th>
+                        </tr>
+                    </thead>
+                    <tbody>
 
-                $query2 = "SELECT * FROM Event WHERE OrganizerID LIKE $organizerID";
-                $result2 = $pdo->query($query2);
-                
-                foreach ($result2 as $row) {
-                    $event_Name = $row["EventName"];
-                    $event_Desc = $row["EventDesc"];
-                    $event_Photo = $row["EventPhoto"];
-                    $userNumAttend = $row["UserNumAttend"];
-                    echo <<<_END
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col">Event Name</div>
-                            <div class="col">Event Desc</div>
-                            <div class="col">Event Photo</div>
-                            <div class="col">User Attending</div>
-                        </div>
-                        <div class="row">
-                            <div class="col">$event_Name</div>
-                            <div class="col">$event_Desc</div>
-                            <div class="col">$event_Photo</div>
-                            <div class="col">$userNumAttend</div>
-                        </div>
-                    </div>
-                    _END;
+                        <?php
+                        $query = "SELECT * FROM EventOrganizer WHERE UserID LIKE $userID";
+                        $result = $pdo->query($query);
 
-                }
-                
-                ?>
+                        if ($row = $result->fetch()) {
+                            $organizerID = $row["OrganizerID"];
+                        }
+
+                        $query2 = "SELECT * FROM Event WHERE OrganizerID LIKE $organizerID";
+                        $result2 = $pdo->query($query2);
+
+                        foreach ($result2 as $row) {
+                            $event_Name = $row["EventName"];
+                            $event_Desc = $row["EventDesc"];
+                            $event_Photo = $row["EventPhoto"];
+                            $userNumAttend = $row["UserNumAttend"];
+                            echo <<<_END
+                        
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>$event_Name</td>
+                                <td>$event_Desc</td>
+                                <td>$event_Photo</td>
+                                <td>$userNumAttend</td>
+                            </tr>
+                        _END;
+
+                        }
+
+                        ?>
+
+                </table>
             </div>
         </div>
     </div>
