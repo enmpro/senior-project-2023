@@ -16,8 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $eventDesc = $_POST['eventDesc'];
     $eventPhoto = $_POST['eventPhoto'];
 
-    $query = "UPDATE Event WHERE EventID = $eventID";
-    $result = $pdo->query($query);
+    
     if (isset($_POST['submit'])) {
         $targetDirectory = "eventphoto/"; // Directory to store profile pictures
 
@@ -50,7 +49,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
     }
-    
+
+    $query = "UPDATE Event 
+    SET EventName = :eventName,
+    SET EventDesc = :eventDesc,
+    SET EventPhoto = :eventPhoto
+    WHERE EventID = $eventID";
+    $stmt = $pdo->prepare($query);
+    $stmt->bindParam(':eventName', $eventName, PDO::PARAM_STR, 255);
+    $stmt->bindParam(':eventDesc', $eventDesc, PDO::PARAM_STR, 255);
+    $stmt->bindParam(':eventPhoto', $eventPhoto, PDO::PARAM_STR, 255);
+
+    $stmt->execute();
 }
 
 

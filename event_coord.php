@@ -156,7 +156,45 @@ $username = $_SESSION['user_name'];
                                 <td>$event_Desc</td>
                                 <td> <img src="$event_Photo" style="width: 250px" alt="Profile Image" class="profile-image"></td>
                                 <td>$userNumAttend</td>
-                                <td> <a href="edit_event.php?id=<?= $event_id  ?>">Edit</a> |
+                                <td> 
+                                    <div>
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                            data-bs-target="#eventEdit">Edit</button>
+                                    </div>
+                                    <div class="modal fade" id="eventEdit" data-bs-backdrop="static" data-bs-keyboard="false"
+                                        tabindex="-1" aria-labelledby="eventEdit" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5>Edit Event</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form action="edit_event.php" method="post" enctype="multipart/form-data">
+                                                        <div class="m-3">
+                                                            <label for="eventName">Event Name</label>
+                                                            <input id="eventName" name="eventName" type="text" required />
+                                                        </div>
+                                                        <div class="m-3">
+                                                            <label for="eventDesc">Event Description</label>
+                                                            <textarea id="eventDesc" name="eventDesc" placeholder="Insert Description Here..."
+                                                                required></textarea>
+                                                        </div>
+                                                        <div class="m-3">
+                                                            <label for="eventPhoto">Event Photo</label>
+                                                            <input id="eventPhoto" name="eventPhoto" type="file" required />
+                                                        </div>
+                                                        <div class="text-center">
+                                                            <input type="hidden" name="id" value="$event_id">
+                                                            <button type="submit" name="submit">Save</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>    
+                                    |
                                     <form action="delete_event.php" method="post">
                                         <input type="hidden" name="id" value="$event_id">
                                         <button type="submit" onclick="return confirm('Are you sure you want to delete this event?')">Delete</button>
