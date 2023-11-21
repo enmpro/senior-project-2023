@@ -10,10 +10,18 @@ try {
 
 $eventID = $_POST['id'];
 
+function test_userinput($data)
+{
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $eventName = $_POST['eventName'];
-    $eventDesc = $_POST['eventDesc'];
+    $eventName = test_userinput($_POST['eventName']);
+    $eventDesc = test_userinput($_POST['eventDesc']);
     
     if (isset($_POST['submit'])) {
         $targetDirectory = "eventphoto/"; // Directory to store profile pictures
