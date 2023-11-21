@@ -68,7 +68,7 @@ $username = $_SESSION['user_name'];
         </div>
     </nav>
     <div class="d-flex justify-content-center">
-        <div class="p-3 card mt-3 w-75">
+        <div class="p-3 card mt-3 container-sm">
             <h2 class="text-center">Create an event</h2>
             <p>
                 As an event coordinator, you have the power to create
