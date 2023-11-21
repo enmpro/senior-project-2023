@@ -152,7 +152,7 @@ $username = $_SESSION['user_name'];
                                 <td>$userNumAttend</td>
                                 <td> <a href="edit_event.php?id=<?= $event_id  ?>">Edit</a> |
                                     <form action="delete_event.php" method="post">
-                                        <input type="hidden" name="id" value="<?= $event_id ?>">
+                                        <input type="hidden" name="id" value="$event_id">
                                         <button type="submit">Delete</button>
                                     </form>
                                 </td>
