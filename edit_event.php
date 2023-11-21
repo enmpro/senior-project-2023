@@ -7,3 +7,54 @@ try {
 } catch (PDOException $e) {
     throw new PDOException($e->getMessage(), (int) $e->getCode());
 }
+
+$eventID = $_POST['id'];
+
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $eventName = $_POST['eventName'];
+    $eventDesc = $_POST['eventDesc'];
+    $eventPhoto = $_POST['eventPhoto'];
+
+    $query = "UPDATE Event WHERE EventID = $eventID";
+    $result = $pdo->query($query);
+    if (isset($_POST['submit'])) {
+        $targetDirectory = "eventphoto/"; // Directory to store profile pictures
+
+        $randomFileName = uniqid();
+        $targetPhotoFile = $targetDirectory . $randomFileName . '_' . basename($_FILES['eventPhoto']['name']);
+        echo <<<_END
+                    <script>
+                    alert("$targetPhotoFile");
+                        
+                    </script>
+                    _END;
+
+        if (move_uploaded_file($_FILES['eventPhoto']['tmp_name'], $targetPhotoFile)) {
+            echo <<<_END
+                    <script>
+                        alert("Photo added");
+                        
+                    </script>
+                    _END;
+        } else {
+            echo <<<_END
+                    <script>
+                        alert("Photo not added");
+                        
+                    </script>
+                    _END;
+
+            $targetPhotoFile = '';
+        }
+
+
+    }
+    
+}
+
+
+
+header('Location: event_coord.php');
+
+?>
