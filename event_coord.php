@@ -137,6 +137,7 @@ $username = $_SESSION['user_name'];
                         $count = 0;
                         foreach ($result2 as $row) {
                             $count = $count + 1;
+                            $event_id = $row["EventID"];
                             $event_Name = $row["EventName"];
                             $event_Desc = $row["EventDesc"];
                             $event_Photo = $row["EventPhoto"];
@@ -149,6 +150,8 @@ $username = $_SESSION['user_name'];
                                 <td>$event_Desc</td>
                                 <td> <img src="$event_Photo" style="width: 250px" alt="Profile Image" class="profile-image"></td>
                                 <td>$userNumAttend</td>
+                                <td> <a href="edit.php?id=<?= $event_id  ?>">Edit</a> |
+                                <a href="delete.php?id=<?= $event_id  ?>" onclick="return confirm('Are you sure you want to delete this user?')">Delete</a></td>
                             </tr>
                         _END;
 
