@@ -31,7 +31,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo <<<_END
                     <script>
                     alert("$targetPhotoFile");
-                        
+                    alert("$eventName");     
+                    alert("$eventDesc");                       
                     </script>
                     _END;
 
