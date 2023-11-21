@@ -32,6 +32,14 @@ if ($row2 = $result2->fetch()) {
 }
 
 
+$query3 = "SELECT * FROM EventOrganizer WHERE UserID LIKE $userID";
+$result3 = $pdo->query($query3);
+
+if ($row3 = $result3->fetch()) {
+    $organizerBool = true;
+}
+
+
 
 ?>
 
@@ -68,6 +76,15 @@ if ($row2 = $result2->fetch()) {
           <li class="nav-item">
             <a class="nav-link" href="community.php">Community</a>
           </li>
+          <?php
+                        if ($organizerBool) {   
+                            echo <<<_END
+                            <li class="nav-item">
+                                <a class="nav-link" href="event_coord.php">Event Coordinator</a>
+                            </li>
+                            _END;
+                        }
+                    ?>
           <div>
             <form method="post" action="user_logout.php">
               <button type="submit" name="logout">Log Out</button>

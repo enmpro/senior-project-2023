@@ -60,7 +60,7 @@ if ($row = $result->fetch()) {
                         if ($organizerBool) {   
                             echo <<<_END
                             <li class="nav-item">
-                                <a class="nav-link" href="event_coord.html">Event Coordinator</a>
+                                <a class="nav-link" href="event_coord.php">Event Coordinator</a>
                             </li>
                             _END;
                         }
