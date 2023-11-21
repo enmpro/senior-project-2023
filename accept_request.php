@@ -22,6 +22,6 @@ $conn->query("INSERT INTO friends (user1_id, user2_id) VALUES ($sender_user_id, 
 $conn->close();
 
 // Redirect back to the main page
-header("Location: index.html");
+header("Location: homepage_page.html");
 exit();
 ?>
