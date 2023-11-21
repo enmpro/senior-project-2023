@@ -59,8 +59,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $query = "UPDATE Event 
     SET EventName = :eventName,
-    SET EventDesc = :eventDesc,
-    SET EventPhoto = :eventPhoto
+         EventDesc = :eventDesc,
+         EventPhoto = :eventPhoto
     WHERE EventID = $eventID";
     $stmt = $pdo->prepare($query);
     $stmt->bindParam(':eventName', $eventName, PDO::PARAM_STR, 255);
