@@ -9,7 +9,15 @@ if (!isset($_SESSION['user_name'])) {
 }
 
 $username = $_SESSION['user_name'];
+$userID = $_SESSION['user_id'];
 
+
+$query = "SELECT * FROM EventOrganizer WHERE UserID LIKE $userID";
+$result = $pdo->query($query);
+
+if ($row = $result->fetch()) {
+    $organizerBool = true;
+}
 
 ?>
 
@@ -47,6 +55,15 @@ $username = $_SESSION['user_name'];
                     <li class="nav-item">
                         <a class="nav-link" href="community.php">Community</a>
                     </li>
+                    <?php
+                        if ($organizerBool) {   
+                            echo <<<_END
+                            <li class="nav-item">
+                                <a class="nav-link" href="event_coord.html">Event Coordinator</a>
+                            </li>
+                            _END;
+                        }
+                    ?>
                     <div>
                         <form method="post" action="user_logout.php">
                             <button type="submit" name="logout">Log Out</button>
