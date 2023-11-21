@@ -14,8 +14,6 @@ $eventID = $_POST['id'];
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $eventName = $_POST['eventName'];
     $eventDesc = $_POST['eventDesc'];
-    $eventPhoto = $_POST['eventPhoto'];
-
     
     if (isset($_POST['submit'])) {
         $targetDirectory = "eventphoto/"; // Directory to store profile pictures
@@ -58,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt = $pdo->prepare($query);
     $stmt->bindParam(':eventName', $eventName, PDO::PARAM_STR, 255);
     $stmt->bindParam(':eventDesc', $eventDesc, PDO::PARAM_STR, 255);
-    $stmt->bindParam(':eventPhoto', $eventPhoto, PDO::PARAM_STR, 255);
+    $stmt->bindParam(':eventPhoto', $targetPhotoFile, PDO::PARAM_STR, 255);
 
     $stmt->execute();
 }
