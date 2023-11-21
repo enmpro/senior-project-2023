@@ -5,16 +5,16 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Get the ID of the friend request being rejected
+#rejected requested's id
 $request_id = $_GET['id'];
 
-// Update the friend request status to 'rejected'
+#status is changed to "rejected"
 $conn->query("UPDATE friend_requests SET status = 'rejected' WHERE id = $request_id");
 
-// Close the database connection
+#database connection is closed
 $conn->close();
 
-// Redirect back to the main page
+#redirects to homepage
 header("Location: homepage_page.html");
 exit();
 ?>
