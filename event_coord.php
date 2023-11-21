@@ -67,82 +67,88 @@ $username = $_SESSION['user_name'];
             </div>
         </div>
     </nav>
-    <div class="container mt-3">
-        <div class="row justify-content-md-center">
-            <div class="col-md-auto p-3 card">
-                <h2>Create an event</h2>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                    data-bs-target="#eventCreateModal">Create event</button>
-                <div class="modal fade" id="eventCreateModal" data-bs-backdrop="static" data-bs-keyboard="false"
-                    tabindex="-1" aria-labelledby="eventHeading" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="eventHeading">New Event!</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <form action="create_event.php" method="post" enctype="multipart/form-data">
-                                    <div class="m-3">
-                                        <label for="eventName">Event Name</label>
-                                        <input id="eventName" name="eventName" type="text" required />
-                                    </div>
-                                    <div class="m-3">
-                                        <label for="eventDesc">Event Description</label>
-                                        <textarea id="eventDesc" name="eventDesc"
-                                            placeholder="Insert Description Here..." required></textarea>
-                                    </div>
-                                    <div class="m-3">
-                                        <label for="eventPhoto">Event Photo</label>
-                                        <input id="eventPhoto" name="eventPhoto" type="file" required />
-                                    </div>
-                                    <div class="text-center">
-                                        <input class="my-3 btn btn-primary" name="submit" type="submit"
-                                            value="Create Event">
+    <div class="d-flex justify-content-center">
+        <div class="p-3 card mt-3 w-75">
+            <h2 class="text-center">Create an event</h2>
+            <p>
+                As an event coordinator, you have the power to create
+                events for people to view and show that they have
+                interest with those attending and events that appear
+                on their profiles.
+            </p>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                data-bs-target="#eventCreateModal">Create
+                event</button>
+            <div class="modal fade" id="eventCreateModal" data-bs-backdrop="static" data-bs-keyboard="false"
+                tabindex="-1" aria-labelledby="eventHeading" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="eventHeading">New Event!</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="create_event.php" method="post" enctype="multipart/form-data">
+                                <div class="m-3">
+                                    <label for="eventName">Event Name</label>
+                                    <input id="eventName" name="eventName" type="text" required />
+                                </div>
+                                <div class="m-3">
+                                    <label for="eventDesc">Event Description</label>
+                                    <textarea id="eventDesc" name="eventDesc" placeholder="Insert Description Here..."
+                                        required></textarea>
+                                </div>
+                                <div class="m-3">
+                                    <label for="eventPhoto">Event Photo</label>
+                                    <input id="eventPhoto" name="eventPhoto" type="file" required />
+                                </div>
+                                <div class="text-center">
+                                    <input class="my-3 btn btn-primary" name="submit" type="submit"
+                                        value="Create Event">
 
-                                    </div>
-                                </form>
-                            </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="container mt-3">
+        <div class="p-3 card">
+            <h2>Active events</h2>
 
-            <div class="col-md-auto p-3 card">
-                <h2>Active events</h2>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Event Name</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Photo</th>
+                        <th scope="col">People Attending</th>
+                    </tr>
+                </thead>
+                <tbody>
 
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Event Name</th>
-                            <th scope="col">Description</th>
-                            <th scope="col">Photo</th>
-                            <th scope="col">People Attending</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+                    <?php
+                    $query = "SELECT * FROM EventOrganizer WHERE UserID LIKE $userID";
+                    $result = $pdo->query($query);
 
-                        <?php
-                        $query = "SELECT * FROM EventOrganizer WHERE UserID LIKE $userID";
-                        $result = $pdo->query($query);
+                    if ($row = $result->fetch()) {
+                        $organizerID = $row["OrganizerID"];
+                    }
 
-                        if ($row = $result->fetch()) {
-                            $organizerID = $row["OrganizerID"];
-                        }
-
-                        $query2 = "SELECT * FROM Event WHERE OrganizerID LIKE $organizerID";
-                        $result2 = $pdo->query($query2);
-                        $count = 0;
-                        foreach ($result2 as $row) {
-                            $count = $count + 1;
-                            $event_id = $row["EventID"];
-                            $event_Name = $row["EventName"];
-                            $event_Desc = $row["EventDesc"];
-                            $event_Photo = $row["EventPhoto"];
-                            $userNumAttend = $row["UserNumAttend"];
-                            echo <<<_END
+                    $query2 = "SELECT * FROM Event WHERE OrganizerID LIKE $organizerID";
+                    $result2 = $pdo->query($query2);
+                    $count = 0;
+                    foreach ($result2 as $row) {
+                        $count = $count + 1;
+                        $event_id = $row["EventID"];
+                        $event_Name = $row["EventName"];
+                        $event_Desc = $row["EventDesc"];
+                        $event_Photo = $row["EventPhoto"];
+                        $userNumAttend = $row["UserNumAttend"];
+                        echo <<<_END
                         
                             <tr>
                                 <th scope="row">$count</th>
@@ -159,13 +165,13 @@ $username = $_SESSION['user_name'];
                             </tr>
                         _END;
 
-                        }
+                    }
 
-                        ?>
+                    ?>
 
-                </table>
-            </div>
+            </table>
         </div>
+    </div>
     </div>
 </body>
 
