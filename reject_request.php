@@ -15,6 +15,6 @@ $conn->query("UPDATE friend_requests SET status = 'rejected' WHERE id = $request
 $conn->close();
 
 // Redirect back to the main page
-header("Location: index.html");
+header("Location: homepage_page.html");
 exit();
 ?>
