@@ -1,5 +1,5 @@
 <?php
-$client_id = '446002b2d4434bff9fec8de86cee969d';
+$client_id = '565023feab57447c808621efa57f1512';
 $redirect_uri = 'https://cantio.live/spotify/callback.php';
 $scope = 'user-top-read';
 
