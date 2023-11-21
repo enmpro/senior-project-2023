@@ -32,7 +32,7 @@ if ($row2 = $result2->fetch()) {
 }
 
 
-$query3 = "SELECT * FROM EventOrganizer WHERE UserID LIKE $userID";
+$query3 = "SELECT * FROM EventOrganizer WHERE UserID LIKE $user_id";
 $result3 = $pdo->query($query3);
 
 if ($row3 = $result3->fetch()) {
