@@ -153,7 +153,7 @@ $username = $_SESSION['user_name'];
                                 <td> <a href="edit_event.php?id=<?= $event_id  ?>">Edit</a> |
                                     <form action="delete_event.php" method="post">
                                         <input type="hidden" name="id" value="$event_id">
-                                        <button type="submit" onclick="return confirm('Are you sure you want to delete this user?')">Delete</button>
+                                        <button type="submit" onclick="return confirm('Are you sure you want to delete this event?')">Delete</button>
                                     </form>
                                 </td>
                             </tr>
