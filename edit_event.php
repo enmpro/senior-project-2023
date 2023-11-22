@@ -42,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if (!empty($oldPhoto)) {
             // Construct the path to the old photo file (adjust the path as needed)
-            $oldPhotoPath = __DIR__ . "/eventphoto/$oldPhoto";
+            $oldPhotoPath = "eventphoto/$oldPhoto";
 
             echo <<<_END
                     <script>
