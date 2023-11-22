@@ -33,9 +33,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $oldPhotoStmt->execute();
         $oldPhoto = $oldPhotoStmt->fetchColumn();
 
+        echo <<<_END
+                    <script>
+                        alert("$oldPhoto");
+                        
+                    </script>
+                    _END;
+
         if (!empty($oldPhoto)) {
             // Construct the path to the old photo file (adjust the path as needed)
             $oldPhotoPath = __DIR__ . "/eventphoto/$oldPhoto";
+
+            echo <<<_END
+                    <script>
+                        alert("$oldPhotoPath");
+                        
+                    </script>
+                    _END;
             
             // Check if the file exists before attempting to delete
             if (file_exists($oldPhotoPath)) {
