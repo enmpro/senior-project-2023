@@ -102,6 +102,10 @@ $username = $_SESSION['user_name'];
                                     <label for="eventPhoto">Event Photo</label>
                                     <input id="eventPhoto" name="eventPhoto" type="file" required />
                                 </div>
+                                <div class="m-3">
+                                    <label for="eventDate">Event Date and Time</label>
+                                    <input id="eventDate" name="eventDate" type="datetime-local" required />
+                                </div>
                                 <div class="text-center">
                                     <input class="my-3 btn btn-primary" name="submit" type="submit"
                                         value="Create Event">
@@ -125,6 +129,7 @@ $username = $_SESSION['user_name'];
                         <th scope="col">Event Name</th>
                         <th scope="col">Description</th>
                         <th scope="col">Photo</th>
+                        <th scope="col">Date and Time</th>
                         <th scope="col">People Attending</th>
                     </tr>
                 </thead>
@@ -146,6 +151,7 @@ $username = $_SESSION['user_name'];
                         $event_id = $row["EventID"];
                         $event_Name = $row["EventName"];
                         $event_Desc = $row["EventDesc"];
+                        $event_DateTime = $row["EventDateTime"];
                         $event_Photo = $row["EventPhoto"];
                         $userNumAttend = $row["UserNumAttend"];
                         echo <<<_END
@@ -155,6 +161,7 @@ $username = $_SESSION['user_name'];
                                 <td>$event_Name</td>
                                 <td>$event_Desc</td>
                                 <td> <img src="$event_Photo" style="width: 250px" alt="Profile Image" class="profile-image"></td>
+                                <td>$event_DateTime</td>
                                 <td>$userNumAttend</td>
                                 <td> 
                                     <div>
