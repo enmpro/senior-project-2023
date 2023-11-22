@@ -31,6 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $eventName = test_userinput($_POST["eventName"]);
     $eventDesc = test_userinput($_POST["eventDesc"]);
+    $eventDate = test_userinput($_POST["eventDate"]);
 
     $query = "SELECT * FROM EventOrganizer WHERE UserID LIKE $userID";
     $result = $pdo->query($query);
@@ -73,19 +74,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     }
 
-    add_event($pdo, $eventName, $eventDesc, $targetPhotoFile, 0, $organizerID);
+    add_event($pdo, $eventName, $eventDesc, $targetPhotoFile, $eventDate, 0, $organizerID);
     header('Location: event_coord.php');
 }
 
 
-function add_event($pdo, $eventName, $eventDesc, $eventPhoto, $numAttend, $organizerID)
+function add_event($pdo, $eventName, $eventDesc, $eventPhoto, $eventDate, $numAttend, $organizerID)
 {
-    $sql = "INSERT INTO Event (EventName, EventDesc, EventPhoto, UserNumAttend, OrganizerID) 
-            VALUES(:eventName, :eventDesc, :eventPhoto, :numAttend, :organizerID)";
+    $sql = "INSERT INTO Event (EventName, EventDesc, EventPhoto, EventDateTime, UserNumAttend, OrganizerID) 
+            VALUES(:eventName, :eventDesc, :eventPhoto, :eventDateTime, :numAttend, :organizerID)";
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(':eventName', $eventName, PDO::PARAM_STR, 255);
     $stmt->bindParam(':eventDesc', $eventDesc, PDO::PARAM_STR, 255);
     $stmt->bindParam(':eventPhoto', $eventPhoto, PDO::PARAM_STR, 255);
+    $stmt->bindParam(':eventDateTime', $eventDate, PDO::PARAM_STR, 255);
     $stmt->bindParam(':numAttend', $numAttend, PDO::PARAM_INT, 11);
     $stmt->bindParam(':organizerID', $organizerID, PDO::PARAM_INT, 11);
 
