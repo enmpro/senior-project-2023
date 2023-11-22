@@ -192,6 +192,10 @@ $username = $_SESSION['user_name'];
                                                             <label for="eventPhoto">Event Photo</label>
                                                             <input id="eventPhoto" name="eventPhoto" type="file" required />
                                                         </div>
+                                                        <div class="m-3">
+                                                            <label for="eventDate">Event Date and Time</label>
+                                                            <input id="eventDate" name="eventDate" type="datetime-local" required />
+                                                        </div>
                                                         <div class="text-center">
                                                             <input type="hidden" name="id" value="$event_id">
                                                             <button type="submit" name="submit">Save</button>
