@@ -22,8 +22,28 @@ function test_userinput($data)
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $eventName = test_userinput($_POST['eventName']);
     $eventDesc = test_userinput($_POST['eventDesc']);
-    
+
+   
+
     if (isset($_POST['submit'])) {
+
+        $oldPhotoQuery = "SELECT EventPhoto FROM Event WHERE EventID = :eventID";
+        $oldPhotoStmt = $pdo->prepare($oldPhotoQuery);
+        $oldPhotoStmt->bindParam(':eventID', $eventID, PDO::PARAM_INT);
+        $oldPhotoStmt->execute();
+        $oldPhoto = $oldPhotoStmt->fetchColumn();
+
+        if (!empty($oldPhoto)) {
+            // Construct the path to the old photo file (adjust the path as needed)
+            $oldPhotoPath = __DIR__ . "/eventphoto/$oldPhoto";
+            
+            // Check if the file exists before attempting to delete
+            if (file_exists($oldPhotoPath)) {
+                unlink($oldPhotoPath); // Delete the old photo file
+            }
+        }
+        
+
         $targetDirectory = "eventphoto/"; // Directory to store profile pictures
 
         $randomFileName = uniqid();
