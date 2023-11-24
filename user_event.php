@@ -82,7 +82,7 @@ $username = $_SESSION['user_name'];
 
     </header>
 
-    <div class="list-group">
+    <div class="list-group container-sm ">
 
         <?php
         $query = "SELECT * FROM Event";
@@ -99,13 +99,14 @@ $username = $_SESSION['user_name'];
             $userNumAttend = $row["UserNumAttend"];
 
             echo <<<_END
-                <a href="" class="list-group-item fs list-group-item-action" aria-current="true" data-bs-toggle="modal"
+                <a href="" class="list-group-item list-group-item-action" aria-current="true" data-bs-toggle="modal"
                     data-bs-target="#eventRsvp$count">
-                    <div class="d-flex w-100 justify-content-between mt-3">
+                    <div class="d-flex w-100 justify-content-around mt-3">
                         <h5 class="mb-1">$event_Name</h5>
+        
                         <small>$event_DateTime</small>
                     </div>
-                    <p class="mt-2 mb-3">$event_Artist</p>
+                    <p class="mt-2 mb-3 text-center">Artist</p>
                 </a>
                 <div class="modal fade" id="eventRsvp$count" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
                     aria-labelledby="eventHeading" aria-hidden="true">
@@ -120,10 +121,10 @@ $username = $_SESSION['user_name'];
                                     <img src="$event_Photo" width="250px" alt="event picture">
                                     <div>
                                         <h3>
-                                            $event_Artist
+                                            <span><i class='fas fa-music'></i></span> $event_Artist
                                         </h3>
-                                        <h4>
-                                            $event_DateTime
+                                        <h3>
+                                            <span><i class='far fa-calendar-alt'></i></span> $event_DateTime
                                         </h4>
                                         <p>
                                             $event_Desc
@@ -137,6 +138,7 @@ $username = $_SESSION['user_name'];
                         </div>
                     </div>
                 </div>
+            </div>
         _END;
 
         }
