@@ -94,6 +94,10 @@ $username = $_SESSION['user_name'];
                                     <input id="eventName" name="eventName" type="text" required />
                                 </div>
                                 <div class="m-3">
+                                    <label for="eventArtist">Event Artist</label>
+                                    <input id="eventArtist" name="eventArtist" type="text" required />
+                                </div>
+                                <div class="m-3">
                                     <label for="eventDesc">Event Description</label>
                                     <textarea id="eventDesc" name="eventDesc" placeholder="Insert Description Here..."
                                         required></textarea>
