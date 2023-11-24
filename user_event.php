@@ -97,48 +97,52 @@ $username = $_SESSION['user_name'];
             $event_Photo = $row["EventPhoto"];
             $userNumAttend = $row["UserNumAttend"];
 
+            echo <<<_END
+                <a href="" class="list-group-item fs list-group-item-action" aria-current="true" data-bs-toggle="modal"
+                    data-bs-target="#eventRsvp">
+                    <div class="d-flex w-100 justify-content-between mt-3">
+                        <h5 class="mb-1">$event_Name</h5>
+                        <small>$event_DateTime</small>
+                    </div>
+                    <p class="mt-2 mb-3">$event_Artist</p>
+                </a>
+                <div class="modal fade" id="eventRsvp" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                    aria-labelledby="eventHeading" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="eventHeading">RSVP to this Event</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="d-flex justify-content-evenly">
+                                    <img src="" width="250px" alt="event picture">
+                                    <div>
+                                        <h3>
+                                            $event_Artist
+                                        </h3>
+                                        <h4>
+                                            $event_DateTime
+                                        </h4>
+                                        <p>
+                                            $event_Desc
+                                        </p>
+                                    </div>
+                                </div>
+                                <form class="text-center mt-3" action="" method="post">
+                                    <button class="btn btn-primary" type="submit" name="RSVP" value="RSVP">RSVP</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        _END;
+
         }
 
         ?>
 
-        <a href="" class="list-group-item fs list-group-item-action" aria-current="true" data-bs-toggle="modal"
-            data-bs-target="#eventRsvp">
-            <div class="d-flex w-100 justify-content-between mt-3">
-                <h5 class="mb-1">Event Name</h5>
-                <small>date</small>
-            </div>
-            <p class="mt-2 mb-3">Artist</p>
-        </a>
-        <div class="modal fade" id="eventRsvp" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-            aria-labelledby="eventHeading" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="eventHeading">RSVP to this Event</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="d-flex justify-content-evenly">
-                            <img src="" width="250px" alt="event picture">
-                            <div>
-                                <h3>
-                                    Artist
-                                </h3>
-                                <h4>
-                                    Event Date
-                                </h4>
-                                <p>
-                                    Description for the event
-                                </p>
-                            </div>
-                        </div>
-                        <form class="text-center mt-3" action="" method="post">
-                            <button class="btn btn-primary" type="submit" name="RSVP" value="RSVP">RSVP</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
+
     </div>
 
 </body>
