@@ -131,6 +131,7 @@ $username = $_SESSION['user_name'];
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Event Name</th>
+                        <th scope="col">Event Artist</th>
                         <th scope="col">Description</th>
                         <th scope="col">Photo</th>
                         <th scope="col">Date and Time</th>
@@ -154,6 +155,7 @@ $username = $_SESSION['user_name'];
                         $count = $count + 1;
                         $event_id = $row["EventID"];
                         $event_Name = $row["EventName"];
+                        $event_Artist = $row["EventArtist"];
                         $event_Desc = $row["EventDesc"];
                         $event_DateTime = $row["EventDateTime"];
                         $event_Photo = $row["EventPhoto"];
@@ -163,6 +165,7 @@ $username = $_SESSION['user_name'];
                             <tr>
                                 <th scope="row">$count</th>
                                 <td>$event_Name</td>
+                                <td>$event_Artist</td>
                                 <td>$event_Desc</td>
                                 <td> <img src="$event_Photo" style="width: 250px" alt="Profile Image" class="profile-image"></td>
                                 <td>$event_DateTime</td>
@@ -186,6 +189,10 @@ $username = $_SESSION['user_name'];
                                                         <div class="m-3">
                                                             <label for="eventName">Event Name</label>
                                                             <input id="eventName" name="eventName" type="text" required />
+                                                        </div>
+                                                        <div class="m-3">
+                                                            <label for="eventArtist">Event Artist</label>
+                                                            <input id="eventArtist" name="eventArtist" type="text" required />
                                                         </div>
                                                         <div class="m-3">
                                                             <label for="eventDesc">Event Description</label>

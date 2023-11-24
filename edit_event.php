@@ -21,6 +21,7 @@ function test_userinput($data)
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $eventName = test_userinput($_POST['eventName']);
+    $eventArtist = test_userinput($_POST['eventArtist']);
     $eventDesc = test_userinput($_POST['eventDesc']);
     $eventDate = test_userinput($_POST['eventDate']);
    
@@ -80,12 +81,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $query = "UPDATE Event 
     SET EventName = :eventName,
+        EventArtist = :eventArtist,
          EventDesc = :eventDesc,
          EventPhoto = :eventPhoto,
          EventDateTime = :eventDateTime
     WHERE EventID = $eventID";
     $stmt = $pdo->prepare($query);
     $stmt->bindParam(':eventName', $eventName, PDO::PARAM_STR, 255);
+    $stmt->bindParam(':eventArtist', $eventDesc, PDO::PARAM_STR, 255);
     $stmt->bindParam(':eventDesc', $eventDesc, PDO::PARAM_STR, 255);
     $stmt->bindParam(':eventPhoto', $targetPhotoFile, PDO::PARAM_STR, 255);
     $stmt->bindParam(':eventDateTime', $eventDate, PDO::PARAM_STR, 255);
