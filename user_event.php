@@ -87,8 +87,9 @@ $username = $_SESSION['user_name'];
         <?php
         $query = "SELECT * FROM Event";
         $result = $pdo->query($query);
-
+        $count = 0;
         foreach ($result as $row) {
+            $count = $count + 1;
             $event_id = $row["EventID"];
             $event_Artist = $row["EventArtist"];
             $event_Name = $row["EventName"];
@@ -99,14 +100,14 @@ $username = $_SESSION['user_name'];
 
             echo <<<_END
                 <a href="" class="list-group-item fs list-group-item-action" aria-current="true" data-bs-toggle="modal"
-                    data-bs-target="#eventRsvp">
+                    data-bs-target="#eventRsvp$count">
                     <div class="d-flex w-100 justify-content-between mt-3">
                         <h5 class="mb-1">$event_Name</h5>
                         <small>$event_DateTime</small>
                     </div>
                     <p class="mt-2 mb-3">$event_Artist</p>
                 </a>
-                <div class="modal fade" id="eventRsvp" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                <div class="modal fade" id="eventRsvp$count" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
                     aria-labelledby="eventHeading" aria-hidden="true">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
