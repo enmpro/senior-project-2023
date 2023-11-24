@@ -116,7 +116,7 @@ $username = $_SESSION['user_name'];
                             </div>
                             <div class="modal-body">
                                 <div class="d-flex justify-content-evenly">
-                                    <img src="" width="250px" alt="event picture">
+                                    <img src="$event_Photo" width="250px" alt="event picture">
                                     <div>
                                         <h3>
                                             $event_Artist
