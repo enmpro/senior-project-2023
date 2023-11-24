@@ -138,7 +138,7 @@ $username = $_SESSION['user_name'];
                         </div>
                     </div>
                 </div>
-            </div>
+            
         _END;
 
         }
