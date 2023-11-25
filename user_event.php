@@ -102,24 +102,6 @@ $username = $_SESSION['user_name'];
                         </div>
                     </div>
                 </div>
-        
-                <!-- Add more music events as needed -->
-                _END;
-
-            }
-
-            echo <<<_END
-            </div>
-            </div>
-            _END;
-            $count = 0;
-            foreach ($result as $row) {
-
-                $count = $count + 1;
-                echo <<<_END
-        
-        
-            
                 <div class="modal fade" id="eventModal$count" tabindex="-1" aria-labelledby="eventModalLabel$count"
                 aria-hidden="true">
                     <div class="modal-dialog">
@@ -164,6 +146,25 @@ $username = $_SESSION['user_name'];
                         </div>
                     </div>
                 </div>
+        
+                <!-- Add more music events as needed -->
+                _END;
+
+            }
+
+            echo <<<_END
+            </div>
+            </div>
+            _END;
+            $count = 0;
+            foreach ($result as $row) {
+
+                $count = $count + 1;
+                echo <<<_END
+        
+        
+            
+                
             _END;
             }
 
