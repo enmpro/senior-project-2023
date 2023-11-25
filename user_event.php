@@ -108,71 +108,68 @@ $username = $_SESSION['user_name'];
 
             }
 
-            ?>
+            echo <<<_END
+            </div>
+            </div>
+            _END;
+            foreach ($result as $row) {
 
-        </div>
-    </div>
-    <?php
-    $query2 = "SELECT * FROM Event";
-    $result2 = $pdo->query($query2);
-    $modalCount = 0;
-    foreach ($result2 as $row) {
-
-        $modalCount = $modalCount + 1;
-        echo <<<_END
-
-
-    
-        <div class="modal fade" id="eventModal$modalCount" tabindex="-1" aria-labelledby="eventModalLabel$modalCount"
-        aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="eventModalLabel$count">$event_Name</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <img src="$event_Photo" class="modal-img" alt="Concert in the Park">
-                        <p class="card-text row g-2">
-                            <span class="col-auto" style="font-size: 16px;"><i class='fas fa-calendar-alt'></i></span>
-                            <span class="col">Date: $event_DateTime</span>
-                        </p>
-                        <p class="card-text row g-2">
-                            <span class="col-auto" style="font-size: 14px;"><i class='fas fa-location'></i></span>
-                            <span class="col">Location: Arena Stadium, Los Angeles (Placeholder text)</span>
-                        </p>
-                        <p class="card-text row g-2">
-                            <span class="col-auto" style="font-size: 14px;"><i class='fas fa-music'></i></span>
-                            <span class="col">Artist: $event_Artist</span>
-                        </p>
-                        <p class="card-text">
-                        <div class="d-flex ">
-                            <div class="pe-1">
-                                <p>
-                                    Description:
+                $modalCount = $modalCount + 1;
+                echo <<<_END
+        
+        
+            
+                <div class="modal fade" id="eventModal$modalCount" tabindex="-1" aria-labelledby="eventModalLabel$modalCount"
+                aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="eventModalLabel$count">$event_Name</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <img src="$event_Photo" class="modal-img" alt="Concert in the Park">
+                                <p class="card-text row g-2">
+                                    <span class="col-auto" style="font-size: 16px;"><i class='fas fa-calendar-alt'></i></span>
+                                    <span class="col">Date: $event_DateTime</span>
+                                </p>
+                                <p class="card-text row g-2">
+                                    <span class="col-auto" style="font-size: 14px;"><i class='fas fa-location'></i></span>
+                                    <span class="col">Location: Arena Stadium, Los Angeles (Placeholder text)</span>
+                                </p>
+                                <p class="card-text row g-2">
+                                    <span class="col-auto" style="font-size: 14px;"><i class='fas fa-music'></i></span>
+                                    <span class="col">Artist: $event_Artist</span>
+                                </p>
+                                <p class="card-text">
+                                <div class="d-flex ">
+                                    <div class="pe-1">
+                                        <p>
+                                            Description:
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <p>
+                                            $event_Desc
+                                        </p>
+                                    </div>
+                                </div>
                                 </p>
                             </div>
-                            <div>
-                                <p>
-                                    $event_Desc
-                                </p>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">RSVP</button>
                             </div>
                         </div>
-                        </p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">RSVP</button>
                     </div>
                 </div>
-            </div>
-        </div>
-    _END;
-    }
+            _END;
+            }
 
+            ?>
 
-    ?>
-
+     
+   
 
     <!-- Latest compiled JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
