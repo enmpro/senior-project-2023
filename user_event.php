@@ -32,7 +32,7 @@ $username = $_SESSION['user_name'];
     <script src="https://kit.fontawesome.com/fe58b05d68.js" crossorigin="anonymous"></script>
     <!-- Latest compiled and minified CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
-    
+
 </head>
 
 <body>
@@ -70,19 +70,10 @@ $username = $_SESSION['user_name'];
             </div>
         </div>
     </nav>
-    <header>
-        <div class="d-flex justify-content-around mt-4 mb-4">
-            <button class="btn btn-primary fs-4">
-                Current Events
-            </button>
-            <button class="btn btn-primary fs-4">
-                Past Events
-            </button>
-        </div>
 
-    </header>
+    <div class="container mt-5">
+        <h2 class="mb-4">Upcoming Music Events</h2>
 
-    <div class="list-group container-sm ">
 
         <?php
         $query = "SELECT * FROM Event";
@@ -99,45 +90,22 @@ $username = $_SESSION['user_name'];
             $userNumAttend = $row["UserNumAttend"];
 
             echo <<<_END
-                <a href="" class="list-group-item list-group-item-action" aria-current="true" data-bs-toggle="modal"
-                    data-bs-target="#eventRsvp$count">
-                    <div class="d-flex w-100 justify-content-around mt-3">
-                        <h5 class="mb-1">$event_Name</h5>
-        
-                        <small>$event_DateTime</small>
-                    </div>
-                    <p class="mt-2 mb-3 text-center">Artist</p>
-                </a>
-                <div class="modal fade" id="eventRsvp$count" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-                    aria-labelledby="eventHeading" aria-hidden="true">
-                    <div class="modal-dialog modal-lg">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="eventHeading">RSVP to this Event</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="d-flex justify-content-evenly">
-                                    <img src="$event_Photo" width="250px" alt="event picture">
-                                    <div>
-                                        <h3>
-                                            <span><i class='fas fa-music'></i></span> $event_Artist
-                                        </h3>
-                                        <h3>
-                                            <span><i class='far fa-calendar-alt'></i></span> $event_DateTime
-                                        </h4>
-                                        <p>
-                                            $event_Desc
-                                        </p>
-                                    </div>
-                                </div>
-                                <form class="text-center mt-3" action="" method="post">
-                                    <button class="btn btn-primary" type="submit" name="RSVP" value="RSVP">RSVP</button>
-                                </form>
-                            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="$event_Photo" class="card-img-top" alt="Event Picture">
+                        <div class="card-body">
+                            <h5 class="card-title">$event_Name</h5>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#eventModal1">
+                                Learn More
+                            </button>
                         </div>
                     </div>
                 </div>
+        
+                <!-- Add more music events as needed -->
+        
+            </div>
             
         _END;
 
@@ -147,9 +115,8 @@ $username = $_SESSION['user_name'];
 
 
     </div>
-
-<!-- Latest compiled JavaScript -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 
