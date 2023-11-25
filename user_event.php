@@ -113,10 +113,10 @@ $username = $_SESSION['user_name'];
         </div>
     </div>
     <?php
-
+    $count = 0;
     foreach ($result as $row) {
 
-
+        $count = $count + 1;
         echo <<<_END
 
 
