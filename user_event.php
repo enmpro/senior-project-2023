@@ -113,15 +113,15 @@ $username = $_SESSION['user_name'];
         </div>
     </div>
     <?php
-    $count = 0;
+    $modalCount = 0;
     foreach ($result as $row) {
 
-        $count = $count + 1;
+        $modalCount = $modalCount + 1;
         echo <<<_END
 
 
     
-        <div class="modal fade" id="eventModal$count" tabindex="-1" aria-labelledby="eventModalLabel$count"
+        <div class="modal fade" id="eventModal$modalCount" tabindex="-1" aria-labelledby="eventModalLabel$modalCount"
         aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
