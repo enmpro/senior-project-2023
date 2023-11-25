@@ -119,11 +119,15 @@ $username = $_SESSION['user_name'];
                                 <img src="$event_Photo" class="modal-img" alt="Concert in the Park">
                                 <p class="card-text row g-2">
                                     <span class="col-auto" style="font-size: 16px;"><i class='fas fa-calendar-alt'></i></span>
-                                    <span class="col">Date: November 5, 2023</span>
+                                    <span class="col">Date: $event_DateTime</span>
                                 </p>
                                 <p class="card-text row g-2">
                                     <span class="col-auto" style="font-size: 14px;"><i class='fas fa-location'></i></span>
-                                    <span class="col">Location: Arena Stadium, Los Angeles</span>
+                                    <span class="col">Location: Arena Stadium, Los Angeles (Placeholder text)</span>
+                                </p>
+                                <p class="card-text row g-2">
+                                    <span class="col-auto" style="font-size: 14px;"><i class='fas fa-music'></i></span>
+                                    <span class="col">Artist: $event_Artist</span>
                                 </p>
                                 <p class="card-text">
                                 <div class="d-flex ">
@@ -134,7 +138,7 @@ $username = $_SESSION['user_name'];
                                     </div>
                                     <div>
                                         <p>
-                                            A night of rocking performances from top bands.
+                                            $event_Desc
                                         </p>
                                     </div>
                                 </div>
@@ -152,7 +156,7 @@ $username = $_SESSION['user_name'];
 
             }
             ?>
-            
+
             <!-- Latest compiled JavaScript -->
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 
