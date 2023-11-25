@@ -16,8 +16,7 @@ if (isset($_SESSION['user_id'])) {
 
 $username = $_SESSION['user_name'];
 
-$stmt = $pdo->query('SELECT * FROM Event');
-$events = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 
 
 ?>
@@ -57,7 +56,7 @@ $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <a class="nav-link" href="community.php">Community</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="user_event.html">Event</a>
+                        <a class="nav-link" href="user_event.html">Events</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="event_coord.php">Event Coordinator</a>
@@ -75,52 +74,55 @@ $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <div class="container mt-5">
         <h2 class="mb-4">Upcoming Music Events</h2>
 
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
+        <div class="row">
             <?php
-            foreach ($events as $index => $event) {
-                $modalId = 'eventModal' . $index;
-                ?>
+            $query = "SELECT * FROM Event";
+            $result = $pdo->query($query);
+            $count = 0;
+            foreach ($result as $row) {
+                $count = $count + 1;
+                $event_id = $row["EventID"];
+                $event_Artist = $row["EventArtist"];
+                $event_Name = $row["EventName"];
+                $event_Desc = $row["EventDesc"];
+                $event_DateTime = $row["EventDateTime"];
+                $event_Photo = $row["EventPhoto"];
+                $userNumAttend = $row["UserNumAttend"];
 
-                <div class="col mb-4">
+                echo <<<_END
+            
+                <div class="col-md-4">
                     <div class="card">
-                        <img src="<?php echo $event_Photo; ?>" class="card-img-top" alt="Event Picture">
+                        <img src="$event_Photo" class="card-img-top" alt="Event Picture">
                         <div class="card-body">
-                            <h5 class="card-title"><?php echo $event['EventName']; ?></h5>
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#<?php echo $modalId; ?>">
+                            <h5 class="card-title">$event_Name</h5>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#eventModal$count">
                                 Learn More
                             </button>
                         </div>
                     </div>
                 </div>
-            <?php } ?>
-        </div>
-        <!-- Modals -->
-        <?php
-        foreach ($events as $index => $event) {
-            $modalId = 'eventModal' . $index;
-            ?>
-            <div class="modal fade" id="<?php echo $modalId; ?>" tabindex="-1"
-                aria-labelledby="<?php echo $modalId; ?>Label" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="<?php echo $modalId; ?>Label"><?php echo $event['name']; ?></h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <img src="<?php echo $event_Photo; ?>" class="modal-img" alt="Concert in the Park">
-                            <p class="card-text row g-2">
-                                <span class="col-auto" style="font-size: 16px;"><i class='fas fa-calendar-alt'></i></span>
-                                <span class="col">Date: <?php echo $event['EventDateTime']; ?></span>
-                            </p>
-                            <p class="card-text row g-2">
-                                <span class="col-auto" style="font-size: 14px;"><i class='fas fa-location'></i></span>
-                                <span class="col">Location: Arena Stadium, Los Angeles (Placeholder text)</span>
-                            </p>
-                            <p class="card-text row g-2">
+                <div class="modal fade" id="eventModal$count" tabindex="-1" aria-labelledby="eventModalLabel$count"
+                aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="eventModalLabel$count">$event_Name</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <img src="$event_Photo" class="modal-img" alt="Concert in the Park">
+                                <p class="card-text row g-2">
+                                    <span class="col-auto" style="font-size: 16px;"><i class='fas fa-calendar-alt'></i></span>
+                                    <span class="col">Date: $event_DateTime</span>
+                                </p>
+                                <p class="card-text row g-2">
+                                    <span class="col-auto" style="font-size: 14px;"><i class='fas fa-location'></i></span>
+                                    <span class="col">Location: Arena Stadium, Los Angeles (Placeholder text)</span>
+                                </p>
+                                <p class="card-text row g-2">
                                     <span class="col-auto" style="font-size: 14px;"><i class='fas fa-music'></i></span>
-                                    <span class="col">Artist: <?php echo $event['EventArtist']; ?></span>
+                                    <span class="col">Artist: $event_Artist</span>
                                 </p>
                                 <p class="card-text">
                                 <div class="d-flex ">
@@ -131,25 +133,45 @@ $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     </div>
                                     <div>
                                         <p>
-                                            <?php echo $event['EventDesc']; ?>
+                                            $event_Desc
                                         </p>
                                     </div>
                                 </div>
                                 </p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">RSVP</button>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">RSVP</button>
+                            </div>
                         </div>
                     </div>
                 </div>
+        
+                <!-- Add more music events as needed -->
+                _END;
+
+            }
+
+            echo <<<_END
             </div>
-        <?php } ?>
+            </div>
+            _END;
+            $count = 0;
+            foreach ($result as $row) {
 
-    </div>
+                $count = $count + 1;
+                echo <<<_END
+        
+        
+            
+                
+            _END;
+            }
 
+            ?>
 
-
+     
+   
 
     <!-- Latest compiled JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
