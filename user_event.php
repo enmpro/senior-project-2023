@@ -83,7 +83,7 @@ $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                 <div class="col mb-4">
                     <div class="card">
-                        <img src="<?php echo $event_Photo; ?>" class="card-img-top" alt="Event Picture">
+                        <img src="<?php echo $event['EventPhoto']; ?>" class="card-img-top" alt="Event Picture">
                         <div class="card-body">
                             <h5 class="card-title"><?php echo $event['EventName']; ?></h5>
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal"
@@ -105,11 +105,11 @@ $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="<?php echo $modalId; ?>Label"><?php echo $event['name']; ?></h5>
+                            <h5 class="modal-title" id="<?php echo $modalId; ?>Label"><?php echo $event['EventName']; ?></h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <img src="<?php echo $event_Photo; ?>" class="modal-img" alt="Concert in the Park">
+                            <img src="<?php echo $event['EventPhoto']; ?>" class="modal-img" alt="Concert in the Park">
                             <p class="card-text row g-2">
                                 <span class="col-auto" style="font-size: 16px;"><i class='fas fa-calendar-alt'></i></span>
                                 <span class="col">Date: <?php echo $event['EventDateTime']; ?></span>
