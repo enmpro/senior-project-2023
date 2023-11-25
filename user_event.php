@@ -113,8 +113,10 @@ $username = $_SESSION['user_name'];
         </div>
     </div>
     <?php
+    $query2 = "SELECT * FROM Event";
+    $result2 = $pdo->query($query2);
     $modalCount = 0;
-    foreach ($result as $row) {
+    foreach ($result2 as $row) {
 
         $modalCount = $modalCount + 1;
         echo <<<_END
