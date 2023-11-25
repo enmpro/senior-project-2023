@@ -69,9 +69,12 @@ function add_artist($pdo, $user_id, $artist_name){
 <body>
     <h1>Your Top Artists</h1>
     <ul>
+        <!-- Display the top SongID	UserID	SongName	-->
         <?php foreach($artists as $artist): ?>
             <li><?php echo $artist['name']; ?></li>
+            <?php $user_id = $_SESSION['user_id'];?>
             <?php add_artist($pdo, $user_id, $artist['name']); ?>
+
 
         <?php endforeach; ?>
     </ul>
