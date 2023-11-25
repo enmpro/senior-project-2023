@@ -30,8 +30,7 @@ if ($row = $result->fetch()) {
     <title>Homepage</title>
     <!-- Latest compiled and minified CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Latest compiled JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    
 </head>
 
 <body>
@@ -80,6 +79,9 @@ if ($row = $result->fetch()) {
     <div class="container">
         <a href="/spotify/index.php">Spotify Sign In </a>
     </div>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
