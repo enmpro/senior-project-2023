@@ -74,29 +74,29 @@ $username = $_SESSION['user_name'];
     <div class="container mt-5">
         <h2 class="mb-4">Upcoming Music Events</h2>
 
+        <div class="row">
+            <?php
+            $query = "SELECT * FROM Event";
+            $result = $pdo->query($query);
+            $count = 0;
+            foreach ($result as $row) {
+                $count = $count + 1;
+                $event_id = $row["EventID"];
+                $event_Artist = $row["EventArtist"];
+                $event_Name = $row["EventName"];
+                $event_Desc = $row["EventDesc"];
+                $event_DateTime = $row["EventDateTime"];
+                $event_Photo = $row["EventPhoto"];
+                $userNumAttend = $row["UserNumAttend"];
 
-        <?php
-        $query = "SELECT * FROM Event";
-        $result = $pdo->query($query);
-        $count = 0;
-        foreach ($result as $row) {
-            $count = $count + 1;
-            $event_id = $row["EventID"];
-            $event_Artist = $row["EventArtist"];
-            $event_Name = $row["EventName"];
-            $event_Desc = $row["EventDesc"];
-            $event_DateTime = $row["EventDateTime"];
-            $event_Photo = $row["EventPhoto"];
-            $userNumAttend = $row["UserNumAttend"];
-
-            echo <<<_END
-            <div class="row">
+                echo <<<_END
+            
                 <div class="col-md-4">
                     <div class="card">
                         <img src="$event_Photo" class="card-img-top" alt="Event Picture">
                         <div class="card-body">
                             <h5 class="card-title">$event_Name</h5>
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#eventModal1">
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#eventModal$count">
                                 Learn More
                             </button>
                         </div>
@@ -105,16 +105,59 @@ $username = $_SESSION['user_name'];
         
                 <!-- Add more music events as needed -->
         
-            </div>
             
-        _END;
+            
+                _END;
 
-        }
-
-        ?>
-
-
+            }
+            ?>
+        </div>
     </div>
+
+    <?php
+    echo <<<_END
+
+    <div class="modal fade" id="eventModal$count" tabindex="-1" aria-labelledby="eventModalLabel$count" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="eventModalLabel$count">$event_Name</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="$event_Photo" class="modal-img" alt="Concert in the Park">
+                    <p class="card-text row g-2">
+                        <span class="col-auto" style="font-size: 16px;"><i class='fas fa-calendar-alt'></i></span>
+                        <span class="col">Date: November 5, 2023</span>
+                    </p>
+                    <p class="card-text row g-2">
+                        <span class="col-auto" style="font-size: 14px;"><i class='fas fa-location'></i></span>
+                        <span class="col">Location: Arena Stadium, Los Angeles</span>
+                    </p>
+                    <p class="card-text">
+                    <div class="d-flex ">
+                        <div class="pe-1">
+                            <p>
+                                Description:
+                            </p>
+                        </div>
+                        <div>
+                            <p>
+                                A night of rocking performances from top bands.
+                            </p>
+                        </div>
+                    </div>
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">RSVP</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    _END;
+    ?>
     <!-- Latest compiled JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 
