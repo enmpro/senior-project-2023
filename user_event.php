@@ -19,6 +19,15 @@ $username = $_SESSION['user_name'];
 $stmt = $pdo->query('SELECT * FROM Event');
 $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+$eventCheck = "SELECT * FROM EventOrganizer WHERE UserID LIKE $userID";
+$resultCheck = $pdo->query($eventCheck);
+
+if ($rowCheck = $resultCheck->fetch()) {
+    $organizerBool = true;
+} else {
+    $organizerBool = false;
+}
+
 
 ?>
 
@@ -56,6 +65,15 @@ $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <li class="nav-item">
                         <a class="nav-link" href="community.php">Community</a>
                     </li>
+                    <?php
+                    if ($organizerBool) {
+                        echo <<<_END
+                    <li class="nav-item">
+                        <a class="nav-link" href="event_coord.php">Event Coordinator</a>
+                    </li>
+                    _END;
+                    }
+                    ?>
                     <li class="nav-item">
                         <a class="nav-link" href="user_event.php">Event</a>
                     </li>
