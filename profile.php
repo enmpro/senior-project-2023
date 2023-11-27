@@ -151,12 +151,16 @@ if ($row3 = $result3->fetch()) {
         <p><?php echo $birthday; ?></p>
       </div>
       <div>
-        <p><strong>Occupation</strong></p>
-        <p>Web Developer</p>
+        <p><strong>Favorite Genres</strong></p>
+        <p>FIX ME</p>
       </div>
       <div>
         <p><strong>Description</strong></p>
         <p><?php echo $description; ?></p>
+      </div>
+      <div>
+        <p><strong>Social Media</strong></p>
+        <p>FIX ME</p>
       </div>
     </div>
   </div>
