@@ -35,7 +35,7 @@ $username = $_SESSION['user_name'];
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">CANTIO</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
