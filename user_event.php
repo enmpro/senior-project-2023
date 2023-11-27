@@ -57,7 +57,7 @@ $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <a class="nav-link" href="community.php">Community</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="user_event.html">Event</a>
+                        <a class="nav-link" href="user_event.php">Events</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="event_coord.php">Event Coordinator</a>

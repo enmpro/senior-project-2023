@@ -33,7 +33,7 @@ if ($row = $result->fetch()) {
     <title>Community</title>
     <!-- Latest compiled and minified CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
-    
+
 </head>
 
 <body>
@@ -56,14 +56,17 @@ if ($row = $result->fetch()) {
                     <li class="nav-item">
                         <a class="nav-link" href="community.php">Community</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="user_event.php">Events</a>
+                    </li>
                     <?php
-                        if ($organizerBool) {   
-                            echo <<<_END
+                    if ($organizerBool) {
+                        echo <<<_END
                             <li class="nav-item">
                                 <a class="nav-link" href="event_coord.php">Event Coordinator</a>
                             </li>
                             _END;
-                        }
+                    }
                     ?>
                     <div>
                         <form method="post" action="user_logout.php">
