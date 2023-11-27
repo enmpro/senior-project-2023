@@ -33,7 +33,7 @@ $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <script src="https://kit.fontawesome.com/fe58b05d68.js" crossorigin="anonymous"></script>
     <!-- Latest compiled and minified CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="user_event.css">
 </head>
 
 <body>
