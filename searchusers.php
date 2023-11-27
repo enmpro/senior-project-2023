@@ -13,10 +13,10 @@
     session_start();
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $search_term = htmlspecialchars($_POST['search_term']);
+        $search_username = htmlspecialchars($_POST['search_username']);
 
         #sql query
-        $sql = "SELECT * FROM Users WHERE Username LIKE '%$search_term%'";
+        $sql = "SELECT * FROM Users WHERE Username LIKE '%$search_username%'";
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
