@@ -197,8 +197,8 @@ if ($row3 = $result3->fetch()) {
       </div>
     </div>
   </div>
-  
-  <div class="container text-center mt-5">
+
+  <div class="container text-center mt-5 mb-5">
     <a class="btn btn-primary submit-btn" href="profile_edit.html">Edit Profile</a>
   </div>
 
