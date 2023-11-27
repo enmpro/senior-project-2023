@@ -186,7 +186,7 @@ if ($row3 = $result3->fetch()) {
           </div>
           <div>
             <p><strong>Website</strong></p>
-            <p><a href=""><?php echo $organizerUrl; ?></a></p>
+            <p><a href="<?php echo $organizerUrl; ?>"><?php echo $organizerUrl; ?></a></p>
           </div>
         </div>
         <div class="modal-footer">
@@ -197,110 +197,7 @@ if ($row3 = $result3->fetch()) {
       </div>
     </div>
   </div>
-
-  <div class="card container-fluid w-75 mt-5">
-    <h1><?php echo $username; ?></h1>
-    <?php
-    $query3 = "SELECT * FROM EventOrganizer WHERE UserID LIKE $user_id";
-    $result3 = $pdo->query($query3);
-
-    if ($row3 = $result3->fetch()) {
-      echo <<<_END
-        <h1>Event Organizer</h1>
-        _END;
-
-      $organizerName = $row3['OrganizerName'];
-      $organizerType = $row3['OrganizerType'];
-      $organizerAddress = $row3['Address'];
-      $organizerPhone = $row3['Phone'];
-      $organizerEmail = $row3['ContactEmail'];
-      $organizerUrl = $row3['WebsiteURL'];
-
-      echo <<<_END
-        <div>
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                data-bs-target="#organizerBackdrop">Organizer Information</button>
-        </div>
-
-        <div class="modal fade" id="organizerBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-            aria-labelledby="organizerBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5>Organization</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                    <div>
-                        <p>$organizerName</p>
-                    </div>
-                    <div>
-                        <p>$organizerType</p>
-                    </div>
-                    <div>
-                        <p>$organizerAddress</p>
-                    </div>
-                    <div>
-                        <p>$organizerPhone</p>
-                    </div>
-                    <div>
-                        <p>$organizerEmail</p>
-                    </div>
-                    <div>
-                        <p>$organizerUrl</p>
-                    </div>
-                </div>
-                </div>
-                
-            </div>
-        </div>
-    
-      _END;
-
-    }
-    ?>
-    <section>
-      <img src="<?php echo $profilePic; ?>" style="width: 250px" alt="Profile Image" class="profile-image">
-      <h2><?php echo $fullname; ?></h2>
-      <p>Musician | Music Enthusiast</p>
-    </section>
-    <section>
-      <h2>About Me</h2>
-      <p>Description:
-        <?php echo $description; ?>
-      </p>
-      <p>Gender:
-        <?php echo $gender; ?>
-      </p>
-      <p>Birthday:
-        <?php echo $birthday; ?>
-      </p>
-    </section>
-    <section>
-      <h2>Top Music</h2>
-      <p>
-        FIXME
-      </p>
-    </section>
-    <section>
-      <h2>Social Media</h2>
-      <p>
-        <?php
-        $query3 = "SELECT * FROM SocialMediaHandles WHERE ProfileID LIKE 
-        (SELECT ProfileID FROM Profile WHERE UserID LIKE $user_id)";
-        $result = $pdo->query($query3);
-
-        while ($row = $result->fetch()) {
-          $handle_label = $row['Platform'];
-          $handle = $row['Handle'];
-          $url = $row['URL'];
-
-          echo ' ' . $handle_label . ' ' . $handle . ' ' . $url . '<br>';
-        }
-        ?>
-      </p>
-    </section>
-  </div>
+  
   <div class="container text-center mt-5">
     <a class="btn btn-primary submit-btn" href="profile_edit.html">Edit Profile</a>
   </div>
