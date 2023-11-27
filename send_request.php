@@ -16,11 +16,11 @@ $sender_user_id = 1;
 $result = $conn->query("SELECT Username FROM User WHERE Username = '$friend_username'");
 
 if ($result->num_rows > 0) {
-    // Friend found, get their user ID
+    #friend is found, get their user ID
     $row = $result->fetch_assoc();
-    $friend_user_id = $row['id'];
+    $friend_user_id = $row['Username'];
 
-    // Check if a friend request already exists
+    #checks if a friend request already exists
     $existingRequest = $conn->query("SELECT * FROM FriendRequest WHERE RequestSend = $sender_user_id AND RequestReceive = $friend_user_id");
 
     if ($existingRequest->num_rows === 0) {
