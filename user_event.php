@@ -37,7 +37,7 @@ $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">CANTIO</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -45,7 +45,7 @@ $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="homepage.php">Main</a>
@@ -57,18 +57,27 @@ $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <a class="nav-link" href="community.php">Community</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="user_event.php">Events</a>
+                        <a class="nav-link" href="user_event.php">Event</a>
                     </li>
+                    <?php
+                    if ($organizerBool) {
+                        echo <<<_END
                     <li class="nav-item">
                         <a class="nav-link" href="event_coord.php">Event Coordinator</a>
                     </li>
-                    <div>
-                        <form method="post" action="user_logout.php">
-                            <button type="submit" name="logout">Log Out</button>
-                        </form>
-                    </div>
+                    _END;
+                    }
+                    ?>
+
                 </ul>
+                <div>
+                    <form method="post" action="user_logout.php">
+                        <button class="btn btn-secondary" type="submit" name="logout">Log Out</button>
+
+                    </form>
+                </div>
             </div>
+
         </div>
     </nav>
 
@@ -105,7 +114,8 @@ $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="<?php echo $modalId; ?>Label"><?php echo $event['EventName']; ?></h5>
+                            <h5 class="modal-title" id="<?php echo $modalId; ?>Label"><?php echo $event['EventName']; ?>
+                            </h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -119,23 +129,23 @@ $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 <span class="col">Location: Arena Stadium, Los Angeles (Placeholder text)</span>
                             </p>
                             <p class="card-text row g-2">
-                                    <span class="col-auto" style="font-size: 14px;"><i class='fas fa-music'></i></span>
-                                    <span class="col">Artist: <?php echo $event['EventArtist']; ?></span>
-                                </p>
-                                <p class="card-text">
-                                <div class="d-flex ">
-                                    <div class="pe-1">
-                                        <p>
-                                            Description:
-                                        </p>
-                                    </div>
-                                    <div>
-                                        <p>
-                                            <?php echo $event['EventDesc']; ?>
-                                        </p>
-                                    </div>
+                                <span class="col-auto" style="font-size: 14px;"><i class='fas fa-music'></i></span>
+                                <span class="col">Artist: <?php echo $event['EventArtist']; ?></span>
+                            </p>
+                            <p class="card-text">
+                            <div class="d-flex ">
+                                <div class="pe-1">
+                                    <p>
+                                        Description:
+                                    </p>
                                 </div>
-                                </p>
+                                <div>
+                                    <p>
+                                        <?php echo $event['EventDesc']; ?>
+                                    </p>
+                                </div>
+                            </div>
+                            </p>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
