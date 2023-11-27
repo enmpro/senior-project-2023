@@ -17,6 +17,8 @@ $result = $pdo->query($query);
 
 if ($row = $result->fetch()) {
     $organizerBool = true;
+} else {
+    $organizerBool = false;
 }
 
 ?>
