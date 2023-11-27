@@ -17,7 +17,14 @@ if (isset($_SESSION['user_id'])) {
 $username = $_SESSION['user_name'];
 
 
+$eventCheck = "SELECT * FROM EventOrganizer WHERE UserID LIKE $userID";
+$resultCheck = $pdo->query($eventCheck);
 
+if ($rowCheck = $resultCheck->fetch()) {
+    $organizerBool = true;
+} else {
+    $organizerBool = false;
+}
 
 ?>
 
