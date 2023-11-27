@@ -65,15 +65,6 @@ if ($rowCheck = $resultCheck->fetch()) {
                     <li class="nav-item">
                         <a class="nav-link" href="community.php">Community</a>
                     </li>
-                    <?php
-                    if ($organizerBool) {
-                        echo <<<_END
-                    <li class="nav-item">
-                        <a class="nav-link" href="event_coord.php">Event Coordinator</a>
-                    </li>
-                    _END;
-                    }
-                    ?>
                     <li class="nav-item">
                         <a class="nav-link" href="user_event.php">Event</a>
                     </li>
