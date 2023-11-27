@@ -92,7 +92,7 @@ $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                 <div class="col mb-4">
                     <div class="card">
-                        <img src="<?php echo $event['EventPhoto']; ?>" class="card-img-top" alt="Event Picture">
+                        <img src="<?php echo $event['EventPhoto']; ?>" class="card-img-top card-img" alt="Event Picture">
                         <div class="card-body">
                             <h5 class="card-title"><?php echo $event['EventName']; ?></h5>
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal"
