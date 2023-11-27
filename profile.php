@@ -103,7 +103,7 @@ if ($row3 = $result3->fetch()) {
 
   <div class="container profile-container">
     <div class="text-center">
-      <img src="modern-blue-dots-circle-background-vector.jpg" alt="Profile Picture" class="profile-picture">
+      <img src="<?php echo $profilePic; ?>" alt="Profile Picture" class="profile-picture">
     </div>
     <div class="user-info">
       <h2><?php echo $fullname; ?> | <?php echo $username; ?></h2>
