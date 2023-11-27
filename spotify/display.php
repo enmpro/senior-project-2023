@@ -46,6 +46,20 @@ function add_song($pdo, $user_id, $song_name){
 
 }
 ?>
+<?php
+function checkDuplicateSong($pdo, $songName, $artistName) {
+    $sql = "SELECT COUNT(*) FROM Song WHERE SongName = :songname AND ArtistName = :artistname";
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':songname', $songName);
+    $stmt->bindParam(':artistname', $artistName);
+    $stmt->execute();
+
+    $count = $stmt->fetchColumn();
+
+    return $count > 0; // returns true if a duplicate exists
+}
+?>
 
 <?php
 function add_artist($pdo, $user_id, $artist_name){
