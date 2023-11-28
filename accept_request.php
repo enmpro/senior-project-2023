@@ -18,10 +18,10 @@ if (!isset($_SESSION['user_name'])) {
 $request_id = $_GET['UserID'];
 
 // Update the friend request status to 'accepted'
-$conn->query("UPDATE FriendRequest SET status = 'accepted' WHERE UserID = $request_id");
+$sql("UPDATE FriendRequest SET status = 'accepted' WHERE UserID = $request_id");
 
 // Fetch the sender and receiver IDs
-$request_info = $conn->query("SELECT RequestSend, RequestReceive FROM FriendRequest WHERE UserID = $request_id")->fetch_assoc();
+$request_info = $sql("SELECT RequestSend, RequestReceive FROM FriendRequest WHERE UserID = $request_id")->fetch_assoc();
 $sender_user_id = $request_info['RequestSend'];
 $receiver_user_id = $request_info['RequestReceive'];
 

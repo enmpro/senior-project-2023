@@ -37,11 +37,11 @@ if ($result->num_rows > 0) {
     $friend_user_id = $row['Username'];
 
     #checks if a friend request already exists
-    $existingRequest = sql("SELECT * FROM FriendRequest WHERE RequestSend = $sender_user_id AND RequestReceive = $friend_user_id");
+    $existingRequest = $sql("SELECT * FROM FriendRequest WHERE RequestSend = $sender_user_id AND RequestReceive = $friend_user_id");
 
     if ($existingRequest->num_rows === 0) {
         #if there is no existing request, send a new friend request
-        sql("INSERT INTO FriendRequest (RequestSend, RequestReceive, status) VALUES ($sender_user_id, $friend_user_id, 'pending')");
+        $sql("INSERT INTO FriendRequest (RequestSend, RequestReceive, status) VALUES ($sender_user_id, $friend_user_id, 'pending')");
 
         echo "Friend request sent successfully!";
     } else {
