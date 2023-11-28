@@ -15,18 +15,18 @@ if (!isset($_SESSION['user_name'])) {
 }
 
 // Get the ID of the friend request being accepted
-$request_id = $_GET['id'];
+$request_id = $_GET['UserID'];
 
 // Update the friend request status to 'accepted'
-$conn->query("UPDATE FriendRequest SET status = 'accepted' WHERE id = $request_id");
+$conn->query("UPDATE FriendRequest SET status = 'accepted' WHERE UserID = $request_id");
 
 // Fetch the sender and receiver IDs
-$request_info = $conn->query("SELECT sender_id, receiver_id FROM FriendRequest WHERE id = $request_id")->fetch_assoc();
-$sender_user_id = $request_info['sender_id'];
-$receiver_user_id = $request_info['receiver_id'];
+$request_info = $conn->query("SELECT RequestSend, RequestReceive FROM FriendRequest WHERE UserID = $request_id")->fetch_assoc();
+$sender_user_id = $request_info['RequestSend'];
+$receiver_user_id = $request_info['RequestReceive'];
 
 // Add the users to the friends table (you might need to adjust this based on your database structure)
-$conn->query("INSERT INTO friends (user1_id, user2_id) VALUES ($sender_user_id, $receiver_user_id)");
+//$conn->query("INSERT INTO friends (user1_id, user2_id) VALUES ($sender_user_id, $receiver_user_id)");
 
 
 // Redirect back to the main page
