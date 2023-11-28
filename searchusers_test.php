@@ -91,7 +91,7 @@ function test_userinput($data)
 
     <?php
     // Check if the form is submitted
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST['search'])) {
         // Retrieve the search query
         $search = test_userinput($_POST["search"]);
 
