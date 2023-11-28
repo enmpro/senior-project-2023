@@ -102,12 +102,16 @@ function test_userinput($data)
         foreach ($result as $row) {
             echo "Username: " . $row['Username'] . "<br>";
             ?>
-            <div>
+            <div>  
+                <form action="user_view.php" method="post">
+                <input type="hidden" name="id" value="<?php echo $row['UserID']; ?>">
+                    <button class="btn btn-secondary" type="submit">View Profile</button>
+                </form>
 
-                <!-- <button class="btn btn-secondary" type="submit" name="logout">Log Out</button> -->
-                <?php
-                echo "<li><a href='profile.php?userid={$row['UserID']}'>{$row['Username']}</a></li>";
-                ?>
+                
+                <!-- <?php
+                // echo "<li><a href='profile.php?userid={$row['UserID']}'>{$row['Username']}</a></li>";
+                ?> -->
 
 
             </div>
