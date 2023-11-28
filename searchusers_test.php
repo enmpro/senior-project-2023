@@ -92,13 +92,12 @@ function test_userinput($data)
     <?php
     // Check if the form is submitted
     if (isset($_GET['search'])) {
+
+        if ($search = '') {
+            echo "<p>No results found.</p>";
+
+        }
         $search = test_userinput($_GET["search"]);
-
-        // // Redirect to another page to display the results using GET
-        // header("Location: searchusers_test.php?search=" . urlencode($search));
-        // // Retrieve the search query
-    
-
 
         $sql = "SELECT * FROM User WHERE Username LIKE '%$search%'";
         $result = $pdo->query($sql);
@@ -112,21 +111,11 @@ function test_userinput($data)
                     <button class="btn btn-secondary" type="submit">View Profile</button>
                 </form>
 
-
-                <!-- <?php
-                // echo "<li><a href='profile.php?userid={$row['UserID']}'>{$row['Username']}</a></li>";
-                ?> -->
-
-
             </div>
-
-
             <?php
         }
     } else {
         echo "<p>No results found.</p>";
-
-
     }
 
 
