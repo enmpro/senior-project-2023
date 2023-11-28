@@ -23,7 +23,7 @@ function test_userinput($data)
 $result = $sql("SELECT * FROM FriendRequest WHERE RequestRecieve = $sender_user_id AND status = 'pending'");
 
 while ($row = $result->fetch_assoc()) {
-    echo "<li>{$row['RequestSend']} wants to be your friend! 
+    echo "<li>{$row['UserID']} wants to be your friend! 
           <a href='accept_request.php?id={$row['id']}'>Accept</a> 
           <a href='reject_request.php?id={$row['id']}'>Reject</a></li>";
 }
