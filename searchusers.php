@@ -9,10 +9,7 @@ if (!isset($_SESSION['user_name'])) {
     exit;
 }
 
-if (isset($_SESSION['user_id'])) {
-
-    $userID = $_SESSION['user_id'];
-}
+$userID = $_SESSION['user_id'];
 
 function test_userinput($data)
 {
