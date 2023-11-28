@@ -102,7 +102,7 @@ if ($row = $result->fetch()) {
 
             <!-- Content -->
             <div class="col-md-9">
-                <h1>Community Pageaaa</h1>
+                <h1>Community Page</h1>
                 <!-- Add your main content here -->
             </div>
         </div>
