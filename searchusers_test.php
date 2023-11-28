@@ -96,26 +96,27 @@ function test_userinput($data)
         if ($search == '') {
             echo "<p>No results found.</p>";
 
+        } else {
+            $search = test_userinput($_GET["search"]);
+
+            $sql = "SELECT * FROM User WHERE Username LIKE '%$search%'";
+            $result = $pdo->query($sql);
+
+            foreach ($result as $row) {
+                echo "Username: " . $row['Username'] . "<br>";
+                ?>
+                <div>
+                    <form action="user_view.php" method="get">
+                        <input type="hidden" name="id" value="<?php echo $row['UserID']; ?>">
+                        <button class="btn btn-secondary" type="submit">View Profile</button>
+                    </form>
+
+                </div>
+                <?php
+            }
+
         }
-        $search = test_userinput($_GET["search"]);
 
-        $sql = "SELECT * FROM User WHERE Username LIKE '%$search%'";
-        $result = $pdo->query($sql);
-
-        foreach ($result as $row) {
-            echo "Username: " . $row['Username'] . "<br>";
-            ?>
-            <div>
-                <form action="user_view.php" method="get">
-                    <input type="hidden" name="id" value="<?php echo $row['UserID']; ?>">
-                    <button class="btn btn-secondary" type="submit">View Profile</button>
-                </form>
-
-            </div>
-            <?php
-        }
-    } else {
-        echo "<p>No results found.</p>";
     }
 
 
