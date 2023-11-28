@@ -42,7 +42,7 @@ function test_userinput($data)
 
         #sql query
     
-        $sql = "SELECT * FROM User WHERE Username LIKE '%$userID%'";
+        $sql = "SELECT * FROM User WHERE Username LIKE '%$search_username%'";
         $result = $pdo->query($sql);
 
 
