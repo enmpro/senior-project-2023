@@ -13,6 +13,13 @@ if (!isset($_SESSION['user_name'])) {
     header('Location: landing.html');
     exit;
 }
+function test_userinput($data)
+{
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
 $result = $sql("SELECT * FROM FriendRequest WHERE RequestRecieve = $sender_user_id AND status = 'pending'");
 
 while ($row = $result->fetch_assoc()) {

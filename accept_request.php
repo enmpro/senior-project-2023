@@ -13,7 +13,13 @@ if (!isset($_SESSION['user_name'])) {
     header('Location: landing.html');
     exit;
 }
-
+function test_userinput($data)
+{
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
 // Get the ID of the friend request being accepted
 $request_id = $_GET['UserID'];
 
