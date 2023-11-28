@@ -14,12 +14,22 @@ if (!isset($_SESSION['user_name'])) {
     exit;
 }
 
+$userID = $_SESSION['user_id'];
+
+function test_userinput($data)
+{
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
+
 #takes the username from the form (friend_request.html)
 $friend_username = $_POST['friend_username'];
 
 $sender_user_id = 1;
 
-$result = $conn->query("SELECT Username FROM User WHERE Username = '$friend_username'");
+$result = $sql("SELECT Username FROM User WHERE Username = '$friend_username'");
 
 if ($result->num_rows > 0) {
     #friend is found, get their user ID
@@ -27,11 +37,11 @@ if ($result->num_rows > 0) {
     $friend_user_id = $row['Username'];
 
     #checks if a friend request already exists
-    $existingRequest = $conn->query("SELECT * FROM FriendRequest WHERE RequestSend = $sender_user_id AND RequestReceive = $friend_user_id");
+    $existingRequest = sql("SELECT * FROM FriendRequest WHERE RequestSend = $sender_user_id AND RequestReceive = $friend_user_id");
 
     if ($existingRequest->num_rows === 0) {
         #if there is no existing request, send a new friend request
-        $conn->query("INSERT INTO FriendRequest (RequestSend, RequestReceive, status) VALUES ($sender_user_id, $friend_user_id, 'pending')");
+        sql("INSERT INTO FriendRequest (RequestSend, RequestReceive, status) VALUES ($sender_user_id, $friend_user_id, 'pending')");
 
         echo "Friend request sent successfully!";
     } else {
