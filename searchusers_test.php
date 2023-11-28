@@ -85,7 +85,7 @@ function test_userinput($data)
     <!-- Search Form -->
     <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
         <label for="search">Search for a user:</label>
-        <input type="text" name="search" id="search" required>
+        <input type="text" name="search" id="search">
         <button type="submit">Search</button>
     </form>
 
