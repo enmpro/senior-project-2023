@@ -1,11 +1,17 @@
 <?php
+require_once 'logindb.php';
 
-#connect to database
-require_once 'logindb.php'; 
+try {
+    $pdo = new PDO($attr, $user, $pass, $opts);
+} catch (PDOException $e) {
+    throw new PDOException($e->getMessage(), (int) $e->getCode());
+}
+
 session_start();
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+if (!isset($_SESSION['user_name'])) {
+    // The user is not logged in, redirect them to the login page
+    header('Location: landing.html');
+    exit;
 }
 
 #takes the username from the form (friend_request.html)
@@ -35,6 +41,4 @@ if ($result->num_rows > 0) {
     #friend is not found
     echo "Friend not found in the database!";
 }
-#database connection closes
-$conn->close();
 ?>
