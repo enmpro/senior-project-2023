@@ -103,13 +103,13 @@ function test_userinput($data)
             echo "Username: " . $row['Username'] . "<br>";
             ?>
             <div>
-                <form method="post" action="user_logout.php">
-                    <!-- <button class="btn btn-secondary" type="submit" name="logout">Log Out</button> -->
-                    <?php
-                    echo "<li><a href='profile.php?userid={$row['UserID']}'>{$row['Username']}</a></li>";
-                    ?>
 
-                </form>
+                <!-- <button class="btn btn-secondary" type="submit" name="logout">Log Out</button> -->
+                <?php
+                echo "<li><a href='profile.php?userid={$row['UserID']}'>{$row['Username']}</a></li>";
+                ?>
+
+
             </div>
 
 
