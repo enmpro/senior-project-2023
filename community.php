@@ -87,8 +87,25 @@ if ($row = $result->fetch()) {
 
         </div>
     </nav>
-    <div>
-        <p>THIS IS WHERE THE COMMUNITY PAGE IS</p>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-3 bg-light">
+                <h2>Sidebar</h2>
+                <ul class="nav flex-column">
+                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Messages</a></li>
+                    <li class="nav-item"><a class="nav-link" href="search_users.php">Search Users</a></li>
+                    <!-- Add more links as needed -->
+                </ul>
+            </div>
+
+            <!-- Content -->
+            <div class="col-md-9">
+                <h1>Community Page</h1>
+                <!-- Add your main content here -->
+            </div>
+        </div>
     </div>
 
     <!-- Latest compiled JavaScript -->
