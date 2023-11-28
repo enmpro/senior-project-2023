@@ -126,6 +126,9 @@ function test_userinput($data)
     }
 
     
+    // Redirect to another page to display the results using GET
+    header("Location: searchusers_test.php?search=" . urlencode($search));
+    
 
 
     ?>
@@ -134,3 +137,7 @@ function test_userinput($data)
 </body>
 
 </html>
+
+<?php
+exit(); // Ensure that no further content is sent
+?>
