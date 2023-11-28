@@ -49,11 +49,6 @@ function test_userinput($data)
             echo "Username: " . $row['Username'] . "<br>";
         }
 
-
-        if ($row = $result->fetch()) {
-            echo "Username: " . $row['Username'] . "<br>";
-        }
-
         
     } else {
         header("Location: searchusers.html");
