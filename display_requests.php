@@ -1,6 +1,19 @@
 <?php
-// Fetch and display friend requests from the database
-$result = $conn->query("SELECT * FROM friend_requests WHERE receiver_id = $sender_user_id AND status = 'pending'");
+require_once 'logindb.php';
+
+try {
+    $pdo = new PDO($attr, $user, $pass, $opts);
+} catch (PDOException $e) {
+    throw new PDOException($e->getMessage(), (int) $e->getCode());
+}
+
+session_start();
+if (!isset($_SESSION['user_name'])) {
+    // The user is not logged in, redirect them to the login page
+    header('Location: landing.html');
+    exit;
+}
+$result = $conn->query("SELECT * FROM FriendRequest WHERE RequestRecieve = $sender_user_id AND status = 'pending'");
 
 while ($row = $result->fetch_assoc()) {
     echo "<li>{$row['sender_id']} wants to be your friend! 
