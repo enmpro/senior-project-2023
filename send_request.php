@@ -41,6 +41,4 @@ if ($result->num_rows > 0) {
     #friend is not found
     echo "Friend not found in the database!";
 }
-#database connection closes
-$conn->close();
 ?>
