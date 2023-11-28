@@ -118,7 +118,7 @@ function test_userinput($data)
     } else {
         echo "<p>No results found.</p>";
         header("Location: searchusers_test.php");
-        exit(); // Ensure that no further content is sent
+        
     
     }
 
