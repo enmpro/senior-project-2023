@@ -31,7 +31,7 @@ if ($result->num_rows > 0) {
 
     if ($existingRequest->num_rows === 0) {
         #if there is no existing request, send a new friend request
-        $conn->query("INSERT INTO FriendRequest (sender_id, receiver_id, status) VALUES ($sender_user_id, $friend_user_id, 'pending')");
+        $conn->query("INSERT INTO FriendRequest (RequestSend, RequestReceive, status) VALUES ($sender_user_id, $friend_user_id, 'pending')");
 
         echo "Friend request sent successfully!";
     } else {
