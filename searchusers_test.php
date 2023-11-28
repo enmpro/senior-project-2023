@@ -103,7 +103,7 @@ function test_userinput($data)
             echo "Username: " . $row['Username'] . "<br>";
             ?>
             <div>  
-                <form action="user_view.php" method="post">
+                <form action="user_view.php" method="get">
                 <input type="hidden" name="id" value="<?php echo $row['UserID']; ?>">
                     <button class="btn btn-secondary" type="submit">View Profile</button>
                 </form>

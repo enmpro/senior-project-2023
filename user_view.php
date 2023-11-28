@@ -16,7 +16,7 @@ if (!isset($_SESSION['user_name'])) {
 }
 
 
-$user_id = $_POST['id'];
+$user_id = $_GET['id'];
 
 $query = "SELECT * FROM User WHERE UserID LIKE $user_id";
 $result = $pdo->query($query);
