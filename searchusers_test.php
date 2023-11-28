@@ -83,7 +83,7 @@ function test_userinput($data)
     <h2>User Search</h2>
 
     <!-- Search Form -->
-    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+    <form method="post" action="searchusers_test.php">
         <label for="search">Search for a user:</label>
         <input type="text" name="search" id="search">
         <button type="submit">Search</button>
