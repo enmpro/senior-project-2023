@@ -10,9 +10,9 @@ try {
 
 session_start();
 if (!isset($_SESSION['user_name'])) {
-    // The user is not logged in, redirect them to the login page
-    header('Location: landing.html');
-    exit;
+  // The user is not logged in, redirect them to the login page
+  header('Location: landing.html');
+  exit;
 }
 
 
@@ -144,11 +144,21 @@ if ($row3 = $result3->fetch()) {
         <p><?php echo $zip; ?></p>
       </div>
     </div>
+    <?php
+    if ($organizerBool) {
 
-    <div class="text-center">
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#organizerModal">Organizer
-        Information</button>
-    </div>
+      ?>
+
+      <div class="text-center">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#organizerModal">Organizer
+          Information</button>
+      </div>
+
+      <?php
+    }
+
+    ?>
+
 
     <hr>
 
