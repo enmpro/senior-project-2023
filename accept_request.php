@@ -26,7 +26,7 @@ $sender_user_id = $request_info['RequestSend'];
 $receiver_user_id = $request_info['RequestReceive'];
 
 // Add the users to the friends table (you might need to adjust this based on your database structure)
-$conn->query("INSERT INTO friends (user1_id, user2_id) VALUES ($sender_user_id, $receiver_user_id)");
+//$conn->query("INSERT INTO friends (user1_id, user2_id) VALUES ($sender_user_id, $receiver_user_id)");
 
 
 // Redirect back to the main page
