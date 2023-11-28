@@ -47,26 +47,18 @@ function test_userinput($data)
     // Check if the form is submitted
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Retrieve the search query
-        $search = $_POST["search"];
+        $search = test_userinput($_POST["search"]);
 
-        // Include the file containing the function for user search
-        require_once "user_search.php";
+        
+        $sql = "SELECT * FROM User WHERE Username LIKE '%$search%'";
+        $result = $pdo->query($sql);
 
-        // Perform the search using the function from the included file
-        $results = performUserSearch($search);
-
-        // Display the results
-        if (!empty($results)) {
-            echo "<h3>Search Results:</h3>";
-            echo "<ul>";
-            foreach ($results as $result) {
-                echo "<li>" . $result . "</li>";
-            }
-            echo "</ul>";
-        } else {
-            echo "<p>No results found.</p>";
+        foreach ($result as $row) {
+            echo "Username: " . $row['Username'] . "<br>";
         }
     }
+
+    
     ?>
 
 </body>
