@@ -93,7 +93,7 @@ function test_userinput($data)
     // Check if the form is submitted
     if (isset($_GET['search'])) {
 
-        if ($search = '') {
+        if ($search == '') {
             echo "<p>No results found.</p>";
 
         }
