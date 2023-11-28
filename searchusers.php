@@ -2,6 +2,18 @@
 require_once 'login.php';
 
 
+session_start();
+if (!isset($_SESSION['user_name'])) {
+    // The user is not logged in, redirect them to the login page
+    header('Location: landing.html');
+    exit;
+}
+
+if (isset($_SESSION['user_id'])) {
+
+    $userID = $_SESSION['user_id'];
+}
+
 function test_userinput($data)
 {
     $data = trim($data);
