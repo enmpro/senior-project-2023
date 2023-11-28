@@ -13,7 +13,7 @@ if (!isset($_SESSION['user_name'])) {
     header('Location: landing.html');
     exit;
 }
-$result = $conn->query("SELECT * FROM FriendRequest WHERE RequestRecieve = $sender_user_id AND status = 'pending'");
+$result = $sql("SELECT * FROM FriendRequest WHERE RequestRecieve = $sender_user_id AND status = 'pending'");
 
 while ($row = $result->fetch_assoc()) {
     echo "<li>{$row['RequestSend']} wants to be your friend! 

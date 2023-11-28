@@ -18,7 +18,7 @@ if (!isset($_SESSION['user_name'])) {
 $request_id = $_GET['id'];
 
 #status is changed to "rejected"
-$conn->query("UPDATE FriendRequest SET status = 'rejected' WHERE id = $request_id");
+$sql("UPDATE FriendRequest SET status = 'rejected' WHERE id = $request_id");
 
 #redirects to homepage
 header("Location: homepage_page.html");
