@@ -83,7 +83,7 @@ function test_userinput($data)
     <h2>User Search</h2>
 
     <!-- Search Form -->
-    <form method="post" action="searchusers_test.php">
+    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
         <label for="search">Search for a user:</label>
         <input type="text" name="search" id="search">
         <button type="submit">Search</button>
@@ -91,7 +91,7 @@ function test_userinput($data)
 
     <?php
     // Check if the form is submitted
-    if (isset($_POST['search'])) {
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Retrieve the search query
         $search = test_userinput($_POST["search"]);
 
@@ -124,6 +124,8 @@ function test_userinput($data)
         
     
     }
+
+    
 
 
     ?>
