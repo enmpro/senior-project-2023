@@ -1,38 +1,48 @@
+<?php
+require_once 'login.php';
+
+
+function test_userinput($data)
+{
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
+?>
+
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Search Results</title>
 </head>
+
 <body>
 
-<h1>Search Results</h1>
+    <h1>Search Results</h1>
 
-<?php
-    #connect to database
-    require_once 'logindb.php'; 
-    session_start();
-
+    <?php
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $search_username = htmlspecialchars($_POST['search_username']);
+        $search_username = test_userinput($_POST['search_username']);
 
         #sql query
-        $sql = "SELECT * FROM Users WHERE Username LIKE '%$search_username%'";
-        $result = $conn->query($sql);
+    
+        $sql = "SELECT * FROM User WHERE Username LIKE '%$userID%'";
+        $result = $pdo->query($sql);
 
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                echo "Username: " . $row['Username'] . "<br>";
-            }
-        } else {
-            echo "No matching users found.";
+
+        if ($row = $result->fetch()) {
+            echo "Username: " . $row['Username'] . "<br>";
         }
+
+        
     } else {
         header("Location: searchusers.html");
         exit(); #ensures that the user exits after redirect
     }
-
-    $conn->close();
-?>
+    ?>
 
 </body>
+
 </html>
