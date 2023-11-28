@@ -45,6 +45,10 @@ function test_userinput($data)
         $sql = "SELECT * FROM User WHERE Username LIKE '%$search_username%'";
         $result = $pdo->query($sql);
 
+        foreach ($result as $row) {
+            echo "Username: " . $row['Username'] . "<br>";
+        }
+
 
         if ($row = $result->fetch()) {
             echo "Username: " . $row['Username'] . "<br>";
