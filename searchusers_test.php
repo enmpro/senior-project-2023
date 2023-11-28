@@ -27,55 +27,58 @@ function test_userinput($data)
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>User Search</title>
 </head>
+
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">CANTIO</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="homepage.php">Main</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="profile.php">Profile</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="community.php">Community</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="user_event.php">Event</a>
-          </li>
-          <?php
-          if ($organizerBool) {
-            echo <<<_END
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">CANTIO</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="homepage.php">Main</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="profile.php">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="community.php">Community</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="user_event.php">Event</a>
+                    </li>
+                    <?php
+                    if ($organizerBool) {
+                        echo <<<_END
                     <li class="nav-item">
                         <a class="nav-link" href="event_coord.php">Event Coordinator</a>
                     </li>
                     _END;
-          }
-          ?>
+                    }
+                    ?>
 
-        </ul>
-        <div>
-          <form method="post" action="user_logout.php">
-            <button class="btn btn-secondary" type="submit" name="logout">Log Out</button>
+                </ul>
+                <div>
+                    <form method="post" action="user_logout.php">
+                        <button class="btn btn-secondary" type="submit" name="logout">Log Out</button>
 
-          </form>
+                    </form>
+                </div>
+            </div>
+
         </div>
-      </div>
-
-    </div>
-  </nav>
+    </nav>
 
     <h2>User Search</h2>
 
@@ -92,18 +95,34 @@ function test_userinput($data)
         // Retrieve the search query
         $search = test_userinput($_POST["search"]);
 
-        
+
         $sql = "SELECT * FROM User WHERE Username LIKE '%$search%'";
         $result = $pdo->query($sql);
 
         foreach ($result as $row) {
             echo "Username: " . $row['Username'] . "<br>";
+            ?>
+            <div>
+                <form method="post" action="user_logout.php">
+                    <!-- <button class="btn btn-secondary" type="submit" name="logout">Log Out</button> -->
+                    <?php
+                    echo "<li><a href='profile.php?userid={$row['UserID']}'>{$row['Username']}</a></li>";
+                    ?>
+
+                </form>
+            </div>
+
+
+            <?php
         }
+    } else {
+        echo "<p>No results found.</p>";
     }
 
-    
+
     ?>
-  <!-- Latest compiled JavaScript -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
