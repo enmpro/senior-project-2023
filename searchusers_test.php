@@ -92,11 +92,12 @@ function test_userinput($data)
     <?php
     // Check if the form is submitted
     if (isset($_POST['search'])) {
-         
-    // Redirect to another page to display the results using GET
-    header("Location: searchusers_test.php?search=" . urlencode($search));
-        // Retrieve the search query
         $search = test_userinput($_POST["search"]);
+
+        // Redirect to another page to display the results using GET
+        header("Location: searchusers_test.php?search=" . urlencode($search));
+        // Retrieve the search query
+    
 
 
         $sql = "SELECT * FROM User WHERE Username LIKE '%$search%'";
@@ -105,13 +106,13 @@ function test_userinput($data)
         foreach ($result as $row) {
             echo "Username: " . $row['Username'] . "<br>";
             ?>
-            <div>  
+            <div>
                 <form action="user_view.php" method="get">
-                <input type="hidden" name="id" value="<?php echo $row['UserID']; ?>">
+                    <input type="hidden" name="id" value="<?php echo $row['UserID']; ?>">
                     <button class="btn btn-secondary" type="submit">View Profile</button>
                 </form>
 
-                
+
                 <!-- <?php
                 // echo "<li><a href='profile.php?userid={$row['UserID']}'>{$row['Username']}</a></li>";
                 ?> -->
@@ -124,9 +125,9 @@ function test_userinput($data)
         }
     } else {
         echo "<p>No results found.</p>";
-        
-    
-    } 
+
+
+    }
 
 
     ?>
