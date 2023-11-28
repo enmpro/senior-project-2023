@@ -92,6 +92,9 @@ function test_userinput($data)
     <?php
     // Check if the form is submitted
     if (isset($_POST['search'])) {
+         
+    // Redirect to another page to display the results using GET
+    header("Location: searchusers_test.php?search=" . urlencode($search));
         // Retrieve the search query
         $search = test_userinput($_POST["search"]);
 
@@ -123,12 +126,7 @@ function test_userinput($data)
         echo "<p>No results found.</p>";
         
     
-    }
-
-    
-    // Redirect to another page to display the results using GET
-    header("Location: searchusers_test.php?search=" . urlencode($search));
-    
+    } 
 
 
     ?>
