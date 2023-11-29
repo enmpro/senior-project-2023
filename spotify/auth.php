@@ -19,7 +19,7 @@ $options = [
 ];
 
 header('Location: ' . $session->getAuthorizeUrl($options));
-session_destroy();
+
 die();
 
 
