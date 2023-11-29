@@ -31,6 +31,7 @@ $_SESSION['refreshToken'] = $refreshToken;
 
 // Send the user along and fetch some data!
 header('Location: app.php');
+session_destroy();
 die();
 
 ?>
