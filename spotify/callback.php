@@ -3,7 +3,7 @@ session_start();
 
 $client_id = '565023feab57447c808621efa57f1512';
 $client_secret = 'df726856a4f1434b8fd64adef18649e9';
-$redirect_uri = 'https://cantio.live/spotify/callback.php';
+$redirect_uri = 'https://cantio.live/spotify/callbk.php';
 
 $code = $_GET['code'];
 
