@@ -9,7 +9,7 @@ try {
 
 session_start();
 if (!isset($_SESSION['user_name'])) {
-    // The user is not logged in, redirect them to the login page
+    #The user is not logged in, redirect them to the login page
     header('Location: landing.html');
     exit;
 }
