@@ -93,7 +93,7 @@ if ($row = $result->fetch()) {
         <p>THIS IS THE HOMEPAGE</p>
     </div>
     <div class="container">
-        <a href="auth.php">Spotify Sign In </a>
+        <a href="spotify/auth.php">Spotify Sign In </a>
     </div>
 
     <!-- Latest compiled JavaScript -->
