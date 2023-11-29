@@ -11,6 +11,7 @@ $session = new SpotifyWebAPI\Session(
 $state = $_GET['state'];
 
 // Fetch the stored state value from somewhere. A session for example
+$storedState = $_SESSION['state'];
 
 if ($state !== $storedState) {
     // The state returned isn't the same as the one we've stored, we shouldn't continue
