@@ -20,5 +20,5 @@ $access_token = $token_data['access_token'];
 
 $_SESSION['access_token'] = $access_token;
 
-header('Location: display.php');
+//header('Location: display.php');
 ?>
