@@ -4,7 +4,7 @@ require '../vendor/autoload.php';
 
 $api = new SpotifyWebAPI\SpotifyWebAPI();
 
-$accesstoken = $_SESSION['accessToken'];
+$accessToken = $_SESSION['accessToken'];
 
 // Fetch the saved access token from somewhere. A session for example.
 $api->setAccessToken($accessToken);
