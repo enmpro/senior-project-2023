@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require '../vendor/autoload.php';
 
 $session = new SpotifyWebAPI\Session(
@@ -9,6 +9,7 @@ $session = new SpotifyWebAPI\Session(
 );
 
 $state = $session->generateState();
+$_SESSION['state'] = $state;
 $options = [
     'scope' => [
         'playlist-read-private',
