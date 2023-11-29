@@ -19,5 +19,12 @@ print_r(
     $api->getTrack('7EjyzZcbLxW7PaaLua9Ksb')
 );
 
+$releases = $api->getNewReleases([
+    'country' => 'se',
+]);
+
+foreach ($releases->albums->items as $album) {
+    echo '<a href="' . $album->external_urls->spotify . '">' . $album->name . '</a> <br>';
+}
 
 ?>
