@@ -16,7 +16,9 @@ $releases = $api->getNewReleases([
 
 foreach ($releases->albums->items as $album) {
     echo '<a href="' . $album->external_urls->spotify . '">' . $album->name . '</a> <br>';
-    echo $album->images;
+    echo $album->id;
+    echo $album->release_date;
+    echo $album->images->url;
 }
 
 ?>
