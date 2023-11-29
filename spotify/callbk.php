@@ -24,6 +24,9 @@ $session->requestAccessToken($_GET['code']);
 $accessToken = $session->getAccessToken();
 $refreshToken = $session->getRefreshToken();
 
+$_SESSION['accessToken'] = $accessToken;
+$_SESSION['refreshToken'] = $refreshToken;
+
 // Store the access and refresh tokens somewhere. In a session for example
 
 // Send the user along and fetch some data!
