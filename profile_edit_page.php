@@ -38,6 +38,16 @@ if ($row2 = $result2->fetch()) {
     $profilePic = $row2['ProfilePic'];
 }
 
+$query3 = "SELECT * FROM EventOrganizer WHERE UserID LIKE $user_id";
+$result3 = $pdo->query($query3);
+
+if ($row3 = $result3->fetch()) {
+  $organizerBool = true;
+} else {
+  $organizerBool = false;
+}
+
+
 $oldFaceQuery = "SELECT URL FROM SocialMediaHandles 
         WHERE Platform = 'Facebook' AND
         ProfileID = (SELECT ProfileID FROM Profile WHERE UserID LIKE :userid)";
@@ -80,7 +90,7 @@ $instagram = "$oldInsta";
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">CANTIO</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -88,7 +98,7 @@ $instagram = "$oldInsta";
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="homepage.php">Main</a>
@@ -100,15 +110,27 @@ $instagram = "$oldInsta";
                         <a class="nav-link" href="community.php">Community</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="user_event.php">Events</a>
+                        <a class="nav-link" href="user_event.php">Event</a>
                     </li>
-                    <div>
-                        <form method="post" action="user_logout.php">
-                            <button type="submit" name="logout">Log Out</button>
-                        </form>
-                    </div>
+                    <?php
+                    if ($organizerBool) {
+                        echo <<<_END
+                    <li class="nav-item">
+                        <a class="nav-link" href="event_coord.php">Event Coordinator</a>
+                    </li>
+                    _END;
+                    }
+                    ?>
+
                 </ul>
+                <div>
+                    <form method="post" action="user_logout.php">
+                        <button class="btn btn-secondary" type="submit" name="logout">Log Out</button>
+
+                    </form>
+                </div>
             </div>
+
         </div>
     </nav>
     <div class="container py-5 h-100">

@@ -23,6 +23,16 @@ function test_userinput($data)
     $data = htmlspecialchars($data);
     return $data;
 }
+
+$query3 = "SELECT * FROM EventOrganizer WHERE UserID LIKE $user_id";
+$result3 = $pdo->query($query3);
+
+if ($row3 = $result3->fetch()) {
+  $organizerBool = true;
+} else {
+  $organizerBool = false;
+}
+
 ?>
 
 <!DOCTYPE html>
