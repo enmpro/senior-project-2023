@@ -101,19 +101,20 @@ if ($row3 = $result3->fetch()) {
     </nav>
 
     <h2>User Search</h2>
-
-    <!-- Search Form -->
-    <form method="get" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-        <label for="search">Search for a user:</label>
-        <input type="text" name="search" id="search" <?php
-        if (isset($_GET['search'])) {
-            $search = test_userinput($_GET["search"]);
-            echo "value=" . "'" . $search . "'";
-        }
-        ?>>
-
-        <button type="submit">Search</button>
-    </form>
+    <div class="mt-5 mb-5">
+        <form method="get" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+            <div class="container input-group input-group-lg">
+                <span class="input-group-text" id="inputGroup-sizing-lg">User Search</span>
+                <input type="text" class="form-control" name="search" id="search" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-lg" <?php
+                    if (isset($_GET['search'])) {
+                        $search = test_userinput($_GET["search"]);
+                        echo "value=" . "'" . $search . "'";
+                    }
+                    ?>>
+            </div>
+        </form>
+    </div>
     <div class="container">
         <div class="row">
 
