@@ -136,12 +136,12 @@ if ($rowCheck = $resultCheck->fetch()) {
       $query4 = "SELECT * FROM EventOrganizer WHERE UserID LIKE $user_id";
       $result4 = $pdo->query($query4);
       if ($row4 = $result4->fetch()) {
-        $organizerName = $row3['OrganizerName'];
-        $organizerType = $row3['OrganizerType'];
-        $organizerAddress = $row3['Address'];
-        $organizerPhone = $row3['Phone'];
-        $organizerEmail = $row3['ContactEmail'];
-        $organizerUrl = $row3['WebsiteURL'];
+        $organizerName = $row4['OrganizerName'];
+        $organizerType = $row4['OrganizerType'];
+        $organizerAddress = $row4['Address'];
+        $organizerPhone = $row4['Phone'];
+        $organizerEmail = $row4['ContactEmail'];
+        $organizerUrl = $row4['WebsiteURL'];
         echo <<<_END
             <h4><i>Event Organizer</i></h4>
           _END;
