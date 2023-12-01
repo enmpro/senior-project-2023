@@ -24,7 +24,7 @@ function test_userinput($data)
     return $data;
 }
 
-$query3 = "SELECT * FROM EventOrganizer WHERE UserID LIKE $user_id";
+$query3 = "SELECT * FROM EventOrganizer WHERE UserID LIKE $userID";
 $result3 = $pdo->query($query3);
 
 if ($row3 = $result3->fetch()) {
