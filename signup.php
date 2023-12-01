@@ -224,21 +224,29 @@ while (isset($_POST['FirstName'])) {
         $genderChk = 'yes';
 
         // social medias
-        if (isset($_POST['facebook'])) {
-            $facebook = $_POST['facebook'];
-        } else {
-            $facebook = '';
-        }
-        if (isset($_POST['twitter'])) {
-            $twitter = $_POST['twitter'];
-        } else {
-            $twitter = '';
-        }
-        if (isset($_POST['instagram'])) {
-            $instagram = $_POST['instagram'];
-        } else {
-            $instagram = '';
-        }
+        // if (isset($_POST['facebook'])) {
+        //     $facebook = $_POST['facebook'];
+        // } else {
+        //     $facebook = '';
+        // }
+
+        $facebook = '';
+
+        // if (isset($_POST['twitter'])) {
+        //     $twitter = $_POST['twitter'];
+        // } else {
+        //     $twitter = '';
+        // }
+
+        $twitter = '';
+
+        // if (isset($_POST['instagram'])) {
+        //     $instagram = $_POST['instagram'];
+        // } else {
+        //     $instagram = '';
+        // }
+
+        $instagram = '';
 
         if (isset($_POST['orgName'])) {
             $orgName = $_POST['orgName'];
@@ -293,9 +301,9 @@ while (isset($_POST['FirstName'])) {
         $newProfileID = $pdo->lastInsertId();
 
         $handles = [
-            ['Platform' => 'Facebook', 'Handle' => 'user123', 'URL' => $facebook],
-            ['Platform' => 'Twitter', 'Handle' => 'user456', 'URL' => $twitter],
-            ['Platform' => 'Instagram', 'Handle' => 'user789', 'URL' => $instagram],
+            ['Platform' => 'Facebook', 'URL' => $facebook],
+            ['Platform' => 'X', 'URL' => $twitter],
+            ['Platform' => 'Instagram', 'URL' => $instagram],
         ];
 
         foreach ($handles as $handleData) {

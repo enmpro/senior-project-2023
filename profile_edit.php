@@ -26,9 +26,6 @@ function test_userinput($data)
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-
-    
-
     if ($_POST['description'] == '') {
         $oldDescQuery = "SELECT Description FROM Profile WHERE UserID = :userID";
         $oldDescStmt = $pdo->prepare($oldDescQuery);
@@ -38,6 +35,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $description = "$oldDesc";
     } else {
         $description = test_userinput($_POST['description']);
+    }
+
+    if ($_POST['Email']) {
+        $oldEmailQuery = "SELECT Email FROM User WHERE UserID = :userID";
+        $oldEmailStmt = $pdo->prepare($oldEmailQuery);
+        $oldEmailStmt->bindParam(':userID', $userID, PDO::PARAM_INT);
+        $oldEmailStmt->execute();
+        $oldEmail = $oldEmailStmt->fetchColumn();
+        $email = "$oldEmail";
+    } else {
+        $email = test_userinput($_POST['Email']);
     }
 
     $facebook = test_userinput($_POST['facebook']);
