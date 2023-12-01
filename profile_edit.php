@@ -143,19 +143,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
     $editUser = "UPDATE User
-                   SET Email = :newEmail,
-                   ShowGender = :genderChk,
-                   ShowLocation = :locationChk,
-                   ShowBirthday = :birthChk
+                   SET Email = :newEmail
                    WHERE UserID = :userid";
     $stmtUser = $pdo->prepare($editUser);
-
     $stmtUser->bindParam(':newEmail', $email, PDO::PARAM_STR);
     $stmtUser->bindParam(':userid', $userid, PDO::PARAM_STR, 11);
-    $stmtUser->bindParam(':genderChk', $genderOnOff, PDO::PARAM_STR, 11);
-    $stmtUser->bindParam(':locationChk', $locationOnOff, PDO::PARAM_STR, 11);
-    $stmtUser->bindParam(':birthChk', $birthdayOnOff, PDO::PARAM_STR, 11);
     $stmtUser->execute();
+
+    $editProfile = "UPDATE User
+    SET ShowGender = :genderChk,
+        ShowLocation = :locationChk,
+        ShowBirthday = :birthChk
+        WHERE UserID = :userid";
+    $stmtProfile = $pdo->prepare($editProfile);
+    $stmtProfile->bindParam(':userid', $userid, PDO::PARAM_STR, 11);
+    $stmtProfile->bindParam(':genderChk', $genderOnOff, PDO::PARAM_STR, 11);
+    $stmtProfile->bindParam(':locationChk', $locationOnOff, PDO::PARAM_STR, 11);
+    $stmtProfile->bindParam(':birthChk', $birthdayOnOff, PDO::PARAM_STR, 11);
+    $stmtProfile->execute();
 
     alter_social($pdo, $facebook, 'Facebook', $userID);
     alter_social($pdo, $twitter, 'Twitter', $userID);
