@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -39,7 +40,7 @@
         </div>
     </nav>    
     <h2>Send A Friend Request!</h2>
-    <form action="friend_request.php" method="post">
+    <form action="send_request.php" method="post">
         <label for="friend_username">Friend's Username:</label>
         <input type="text" name="friend_username" required>
         <button type="submit">Send Request</button>
@@ -47,7 +48,7 @@
 
     <h2>Friend Requests</h2>
     <ul>
-        <!-- <?php include 'display_requests.php'; ?> -->
+        <?php include 'display_requests.php'?>
     </ul>
 </body>
 </html>
