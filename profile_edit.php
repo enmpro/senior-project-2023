@@ -40,46 +40,51 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $oldPhotoStmt->execute();
         $oldPhoto = $oldPhotoStmt->fetchColumn();
 
-
-        if (!empty($oldPhoto)) {
-            // Construct the path to the old photo file (adjust the path as needed)
-            $oldPhotoPath = "$oldPhoto";
-
-            // Check if the file exists before attempting to delete
-            if (file_exists($oldPhotoPath)) {
-                unlink($oldPhotoPath); // Delete the old photo file
-            }
-        }
-        
-
-        $targetDirectory = "userphoto/"; // Directory to store profile pictures
-
-        $randomFileName = uniqid();
-        $targetPhotoFile = $targetDirectory . $randomFileName . '_' . basename($_FILES['userphoto']['name']);
-        echo <<<_END
-                    <script>
-                    alert("$targetPhotoFile");                   
-                    </script>
-                    _END;
-
-        if (move_uploaded_file($_FILES['userphoto']['tmp_name'], $targetPhotoFile)) {
-            echo <<<_END
-                    <script>
-                        alert("Photo added");
-                        
-                    </script>
-                    _END;
+        if ($_FILES['userphoto']['error'] == 4) {
+            $targetPhotoFile = "$oldPhoto";
         } else {
+            if (!empty($oldPhoto)) {
+                // Construct the path to the old photo file (adjust the path as needed)
+                $oldPhotoPath = "$oldPhoto";
+    
+                // Check if the file exists before attempting to delete
+                if (file_exists($oldPhotoPath)) {
+                    unlink($oldPhotoPath); // Delete the old photo file
+                }
+            }
+            
+    
+            $targetDirectory = "userphoto/"; // Directory to store profile pictures
+    
+            $randomFileName = uniqid();
+            $targetPhotoFile = $targetDirectory . $randomFileName . '_' . basename($_FILES['userphoto']['name']);
             echo <<<_END
-                    <script>
-                        alert("Photo not added");
-                        
-                    </script>
-                    _END;
-
-            $targetPhotoFile = '';
+                        <script>
+                        alert("$targetPhotoFile");                   
+                        </script>
+                        _END;
+    
+            if (move_uploaded_file($_FILES['userphoto']['tmp_name'], $targetPhotoFile)) {
+                echo <<<_END
+                        <script>
+                            alert("Photo added");
+                            
+                        </script>
+                        _END;
+            } else {
+                echo <<<_END
+                        <script>
+                            alert("Photo not added");
+                            
+                        </script>
+                        _END;
+    
+                $targetPhotoFile = '';
+            }
+    
         }
 
+       
 
     }
 
