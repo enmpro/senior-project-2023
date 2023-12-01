@@ -117,7 +117,7 @@ function alter_profile($pdo, $description, $userPhoto, $userid) {
     $stmtProfile = $pdo->prepare($editProfile);
 
     $stmtProfile->bindParam(':newDesc', $description, PDO::PARAM_STR);
-    $stmtProfile->bindParam(':newDesc', $userPhoto, PDO::PARAM_STR);
+    $stmtProfile->bindParam(':newPic', $userPhoto, PDO::PARAM_STR);
     $stmtProfile->bindParam(':userid', $userid, PDO::PARAM_STR, 11);
     
     $stmtProfile->execute();
