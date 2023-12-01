@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (isset($_POST['submit'])) {
 
-        $oldPhotoQuery = "SELECT Profile FROM Event WHERE UserID = :userID";
+        $oldPhotoQuery = "SELECT ProfilePic FROM Profile WHERE UserID = :userID";
         $oldPhotoStmt = $pdo->prepare($oldPhotoQuery);
         $oldPhotoStmt->bindParam(':userID', $userID, PDO::PARAM_INT);
         $oldPhotoStmt->execute();
