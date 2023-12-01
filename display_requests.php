@@ -33,8 +33,8 @@ try {
 
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         echo "<li>{$row['RequestSend']} wants to be your friend! 
-              <a href='accept_request.php?id={$row['id']}'>Accept</a> 
-              <a href='reject_request.php?id={$row['id']}'>Reject</a></li>";
+              <a href='accept_request.php?id={$row['UserID']}'>Accept</a> 
+              <a href='reject_request.php?id={$row['UserID']}'>Reject</a></li>";
     }
 } catch (PDOException $e) {
     echo "Error: " . $e->getMessage();
