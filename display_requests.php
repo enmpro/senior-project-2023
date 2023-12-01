@@ -1,6 +1,8 @@
 <?php
 require_once 'logindb.php';
 
+$SenderUserID = $AuthUserID;
+
 try {
     $pdo = new PDO($attr, $user, $pass, $opts);
 } catch (PDOException $e) {
@@ -13,6 +15,8 @@ if (!isset($_SESSION['user_name'])) {
     header('Location: landing.html');
     exit;
 }
+
+
 function test_userinput($data)
 {
     $data = trim($data);
@@ -22,11 +26,21 @@ function test_userinput($data)
 }
 
 
-// $result = $sql("SELECT * FROM FriendRequest WHERE RequestRecieve = $sender_user_id AND status = 'pending'");
+try {
+    $stmt = $conn->prepare("SELECT * FROM FriendRequest WHERE RequestReceive = :RequestReceive AND Status = 'pending'");
+    $stmt->bindParam(':RequestReceive', $SenderUserID);
+    $stmt->execute();
 
-// while ($row = $result->fetch_assoc()) {
-//     echo "<li>{$row['UserID']} wants to be your friend! 
-//           <a href='accept_request.php?id={$row['id']}'>Accept</a> 
-//           <a href='reject_request.php?id={$row['id']}'>Reject</a></li>";
-// }
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        echo "<li>{$row['RequestSend']} wants to be your friend! 
+              <a href='accept_request.php?id={$row['id']}'>Accept</a> 
+              <a href='reject_request.php?id={$row['id']}'>Reject</a></li>";
+    }
+} catch (PDOException $e) {
+    echo "Error: " . $e->getMessage();
+}
+
+$conn = null;
+
+
 ?>
