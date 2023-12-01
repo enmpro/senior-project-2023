@@ -150,7 +150,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmtUser->bindParam(':userid', $userid, PDO::PARAM_STR, 11);
     $stmtUser->execute();
 
-    $editProfile = "UPDATE User
+    $editProfile = "UPDATE Profile
     SET ShowGender = :genderChk,
         ShowLocation = :locationChk,
         ShowBirthday = :birthChk
