@@ -38,7 +38,7 @@ if ($row2 = $result2->fetch()) {
     $profilePic = $row2['ProfilePic'];
 }
 
-$query3 = "SELECT * FROM EventOrganizer WHERE UserID LIKE $user_id";
+$query3 = "SELECT * FROM EventOrganizer WHERE UserID LIKE $userID";
 $result3 = $pdo->query($query3);
 
 if ($row3 = $result3->fetch()) {
