@@ -15,6 +15,7 @@ if (!isset($_SESSION['user_name'])) {
   exit;
 }
 
+$userOwnID = $_SESSION['user_id'];
 
 $user_id = $_GET['id'];
 
@@ -41,7 +42,7 @@ if ($row2 = $result2->fetch()) {
 }
 
 
-$query3 = "SELECT * FROM EventOrganizer WHERE UserID LIKE $user_id";
+$query3 = "SELECT * FROM EventOrganizer WHERE UserID LIKE $userOwnID";
 $result3 = $pdo->query($query3);
 
 if ($row3 = $result3->fetch()) {
