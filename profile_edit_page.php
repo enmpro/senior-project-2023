@@ -34,6 +34,7 @@ if ($row2 = $result2->fetch()) {
     $description = $row2['Description'];
     $showgender = $row2['ShowGender'];
     $showlocation = $row2['ShowLocation'];
+    $showbirthday = $row2['ShowBirthday'];
     $profilePic = $row2['ProfilePic'];
 }
 
@@ -133,8 +134,9 @@ $instagram = "$oldInsta";
                         <label class="input-group-text" for="userphoto">
                             Profile Picture
                         </label>
-                        <input class="form-control" type="file" name="userphoto" id="userphoto" placeholder="#">
-                        <?php echo $profilePic; ?></textarea>
+                        <input class="form-control" type="file" name="userphoto" id="userphoto"
+                            placeholder="#"><?php echo $profilePic; ?></input>
+
                     </div>
                     <h3 class="text-center">Social Media</h3>
                     <div class="mb-4 pb-2 form-floating">
@@ -143,25 +145,39 @@ $instagram = "$oldInsta";
                         <label class="form-label" for="facebook">Facebook</label>
                     </div>
                     <div class="mb-4 pb-2 form-floating">
-                        <input class="form-control" type="url" id="twitter" name="twitter" placeholder="#"><?php echo $twitter; ?></input>
+                        <input class="form-control" type="url" id="twitter" name="twitter"
+                            placeholder="#"><?php echo $twitter; ?></input>
                         <label class="form-label" for="twitter">Twitter</label>
                     </div>
                     <div class="mb-4 pb-2 form-floating">
-                        <input class="form-control" type="url" id="instagram" name="instagram" placeholder="#"><?php echo $instagram; ?></input>
+                        <input class="form-control" type="url" id="instagram" name="instagram"
+                            placeholder="#"><?php echo $instagram; ?></input>
                         <label class="form-label" for="instagram">Instagram</label>
                     </div>
             </div>
             <div class="m-auto">
                 <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="gender-chk" name="gender-chk" value="yes">
+                    <input class="form-check-input" type="checkbox" id="gender-chk" name="gender-chk" value="yes"
+                    <?php if($showgender == 'yes') {
+                        echo 'checked';
+                    } 
+                    ?>>
                     <label class="form-check-label" for="gender-chk">Show gender</label>
                 </div>
                 <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="location-chk" name="location-chk" value="yes">
+                    <input class="form-check-input" type="checkbox" id="location-chk" name="location-chk" value="yes"
+                    <?php if($showlocation == 'yes') {
+                        echo 'checked';
+                    } 
+                    ?>>
                     <label class="form-check-label" for="location-chk">Show location</label>
                 </div>
                 <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="age-chk" name="age-chk" value="yes">
+                    <input class="form-check-input" type="checkbox" id="age-chk" name="age-chk" value="yes"
+                    <?php if($showbirthday == 'yes') {
+                        echo 'checked';
+                    } 
+                    ?>>
                     <label class="form-check-label" for="age-chk">Show Age</label>
                 </div>
             </div>
