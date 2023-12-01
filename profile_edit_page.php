@@ -168,7 +168,7 @@ $instagram = "$oldInsta";
                     <div class="mb-4 pb-2 form-floating">
                         <input class="form-control" type="url" id="twitter" name="twitter"
                             placeholder="#"  <?php echo "value=" . "'". $twitter . "'"; ?>>
-                        <label class="form-label" for="twitter">Twitter</label>
+                        <label class="form-label" for="twitter">X</label>
                     </div>
                     <div class="mb-4 pb-2 form-floating">
                         <input class="form-control" type="url" id="instagram" name="instagram"

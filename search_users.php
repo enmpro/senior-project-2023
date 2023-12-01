@@ -28,9 +28,9 @@ $query3 = "SELECT * FROM EventOrganizer WHERE UserID LIKE $user_id";
 $result3 = $pdo->query($query3);
 
 if ($row3 = $result3->fetch()) {
-  $organizerBool = true;
+    $organizerBool = true;
 } else {
-  $organizerBool = false;
+    $organizerBool = false;
 }
 
 ?>
@@ -96,48 +96,63 @@ if ($row3 = $result3->fetch()) {
     <form method="get" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
         <label for="search">Search for a user:</label>
         <input type="text" name="search" id="search" <?php
-    if (isset($_GET['search'])) {
-        $search = test_userinput($_GET["search"]);
-        echo "value=". "'". $search . "'";
-    }
-    ?>>
-    
+        if (isset($_GET['search'])) {
+            $search = test_userinput($_GET["search"]);
+            echo "value=" . "'" . $search . "'";
+        }
+        ?>>
+
         <button type="submit">Search</button>
     </form>
+    <div class="container">
+        <div class="row">
 
-    <?php
-    // Check if the form is submitted
-    if (isset($_GET['search'])) {
-        $search = test_userinput($_GET["search"]);
+            <?php
+            // Check if the form is submitted
+            if (isset($_GET['search'])) {
+                $search = test_userinput($_GET["search"]);
 
-        if ($search == '') {
-            echo "<p>No results found.</p>";
+                if ($search == '') {
+                    echo "<p>No results found.</p>";
 
-        } else {
-            $search = test_userinput($_GET["search"]);
+                } else {
+                    $search = test_userinput($_GET["search"]);
 
-            $sql = "SELECT * FROM User WHERE Username LIKE '%$search%'";
-            $result = $pdo->query($sql);
+                    $sql = "SELECT * FROM User WHERE Username LIKE '%$search%'";
+                    $result = $pdo->query($sql);
 
-            foreach ($result as $row) {
-                echo "Username: " . $row['Username'] . "<br>";
-                ?>
-                <div>
-                    <form action="user_view.php" method="get">
-                        <input type="hidden" name="id" value="<?php echo $row['UserID']; ?>">
-                        <button class="btn btn-secondary" type="submit">View Profile</button>
-                    </form>
+                    foreach ($result as $row) {
 
-                </div>
-                <?php
+
+                        ?>
+                        <div class="col-md-4">
+                            <div class="card text-center">
+                                <div class="card-body">
+                                    <img class="rounded" src="https://via.placeholder.com/150" alt="profile">
+                                    <h3><?php echo $row['Username']; ?></h3>
+                                    <h6><?php echo $row['Firstname'] . " " . $row['LastName']; ?></h6>
+                                    <h6><i>Event Coordinator</i></h6>
+                                    <button class="btn btn-success">Add Friend</button>
+                                </div>
+                            </div>
+                        </div>
+                        <?php
+                        echo "Username: " . $row['Username'] . "<br>";
+                        ?>
+                        <div>
+                            <form action="user_view.php" method="get">
+                                <input type="hidden" name="id" value="<?php echo $row['UserID']; ?>">
+                                <button class="btn btn-secondary" type="submit">View Profile</button>
+                            </form>
+
+                        </div>
+                        <?php
+                    }
+                }
             }
-
-        }
-
-    }
-
-
-    ?>
+            ?>
+        </div>
+    </div>
     <!-- Latest compiled JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
