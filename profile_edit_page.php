@@ -124,8 +124,8 @@ $instagram = "$oldInsta";
                         </label>
                     </div>
                     <div class="mb-4 pb-2 form-floating">
-                        <textarea class="form-control" name="Email" id="Email"
-                            placeholder="#"> <?php echo $userEmail; ?></textarea>
+                        <input class="form-control" type="email" name="Email" id="Email"
+                            placeholder="#" <?php echo "value=". "'". $userEmail . "'"; ?>> 
                         <label class="form-label" for="Email">
                             Email
                         </label>
@@ -140,17 +140,17 @@ $instagram = "$oldInsta";
                     <h3 class="text-center">Social Media</h3>
                     <div class="mb-4 pb-2 form-floating">
                         <input class="form-control" type="url" id="facebook" name="facebook"
-                            placeholder="#"><?php echo $facebook; ?></input>
+                            placeholder="#" <?php echo "value=" . "'". $facebook . "'"; ?>>
                         <label class="form-label" for="facebook">Facebook</label>
                     </div>
                     <div class="mb-4 pb-2 form-floating">
                         <input class="form-control" type="url" id="twitter" name="twitter"
-                            placeholder="#"><?php echo $twitter; ?></input>
+                            placeholder="#"  <?php echo "value=" . "'". $twitter . "'"; ?>>
                         <label class="form-label" for="twitter">Twitter</label>
                     </div>
                     <div class="mb-4 pb-2 form-floating">
                         <input class="form-control" type="url" id="instagram" name="instagram"
-                            placeholder="#"><?php echo $instagram; ?></input>
+                            placeholder="#" <?php echo "value=" . "'". $instagram . "'"; ?>>
                         <label class="form-label" for="instagram">Instagram</label>
                     </div>
             </div>
