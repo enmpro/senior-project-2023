@@ -178,7 +178,7 @@ $instagram = "$oldInsta";
                         echo 'checked';
                     } 
                     ?>>
-                    <label class="form-check-label" for="age-chk">Show Age</label>
+                    <label class="form-check-label" for="age-chk">Show fsdfdsf</label>
                 </div>
             </div>
 
