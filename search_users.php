@@ -100,7 +100,6 @@ if ($row3 = $result3->fetch()) {
         </div>
     </nav>
 
-    <h2>User Search</h2>
     <div class="mt-5 mb-5">
         <form method="get" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
             <div class="container input-group input-group-lg">
