@@ -44,6 +44,16 @@ if ($row3 = $result3->fetch()) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>User Search</title>
 </head>
+<style>
+    .profile-picture {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        overflow: hidden;
+        margin-bottom: 20px;
+    }
+</style>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -132,7 +142,7 @@ if ($row3 = $result3->fetch()) {
                         <div class="col-md-4">
                             <div class="card text-center">
                                 <div class="card-body">
-                                    <img class="rounded" src="<?php echo $photo ?>" alt="profile">
+                                    <img class="profile-picture rounded" src="<?php echo $photo ?>" alt="profile">
                                     <h3><?php echo $row['Username']; ?></h3>
                                     <h6><?php echo $row['Firstname'] . " " . $row['LastName']; ?></h6>
                                     <h6><i>Event Coordinator</i></h6>
