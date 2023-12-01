@@ -42,13 +42,24 @@ if ($row2 = $result2->fetch()) {
 }
 
 
+
+
 $query3 = "SELECT * FROM EventOrganizer WHERE UserID LIKE $userOwnID";
 $result3 = $pdo->query($query3);
 
 if ($row3 = $result3->fetch()) {
-  $organizerBool = true;
+  $organizerBoolNav = true;
 } else {
-  $organizerBool = false;
+  $organizerBoolNav = false;
+}
+
+$queryCheck = "SELECT * FROM EventOrganizer WHERE UserID LIKE $user_id";
+$resultCheck = $pdo->query($queryCheck);
+
+if ($rowCheck = $resultCheck->fetch()) {
+  $organizerProfBool = true;
+} else {
+  $organizerProfBool = false;
 }
 
 
@@ -93,7 +104,7 @@ if ($row3 = $result3->fetch()) {
             <a class="nav-link" href="user_event.php">Event</a>
           </li>
           <?php
-          if ($organizerBool) {
+          if ($organizerBoolNav) {
             echo <<<_END
                     <li class="nav-item">
                         <a class="nav-link" href="event_coord.php">Event Coordinator</a>
