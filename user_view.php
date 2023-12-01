@@ -157,7 +157,7 @@ if ($rowCheck = $resultCheck->fetch()) {
       </div>
     </div>
     <?php
-    if ($organizerBool) {
+    if ($organizerProfBool) {
       ?>
       <div class="text-center">
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#organizerModal">Organizer
