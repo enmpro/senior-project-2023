@@ -14,7 +14,7 @@ if (!isset($_SESSION['user_name'])) {
     exit;
 }
 
-$userID = $_SESSION['user_id'];
+$AuthUserID = $_SESSION['UserID'];
 
 function test_userinput($data)
 {
@@ -24,31 +24,42 @@ function test_userinput($data)
     return $data;
 }
 
-#takes the username from the form (friend_request.html)
-$friend_username = $_POST['friend_username'];
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $friend_username = $_POST['friend_username'];
+    $SenderUserID = $AuthUserID;
 
-$sender_user_id = 1;
+    try {
+        $stmt = $conn->prepare("SELECT UserID FROM User WHERE Username= :Username");
+        $stmt->bindParam(':Username', $friend_username);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-$result = $sql("SELECT Username FROM User WHERE Username = '$friend_username'");
+        if ($result) {
+            $FriendUserID = $result['UserID'];
 
-if ($result->num_rows > 0) {
-    #friend is found, get their user ID
-    $row = $result->fetch_assoc();
-    $friend_user_id = $row['Username'];
+            $existingRequest = $conn->prepare("SELECT * FROM FriendRequest WHERE RequestSend = :RequestSend AND RequestReceive = :RequestReceive");
+            $existingRequest->bindParam(':RequestSend', $SenderUserID);
+            $existingRequest->bindParam(':RequestReceive', $FriendUserID);
+            $existingRequest->execute();
 
-    #checks if a friend request already exists
-    $existingRequest = $sql("SELECT * FROM FriendRequest WHERE RequestSend = $sender_user_id AND RequestReceive = $friend_user_id");
+            if ($existingRequest->rowCount() === 0) {
+                $insertRequest = $conn->prepare("INSERT INTO FriendRequests (RequestSend, RequestReceive, Status) VALUES (:RequestSend, :RequestReceive, 'pending')");
+                $insertRequest->bindParam(':RequestSend', $SenderUserID);
+                $insertRequest->bindParam(':RequestReceive', $FriendUserID);
+                $insertRequest->execute();
 
-    if ($existingRequest->num_rows === 0) {
-        #if there is no existing request, send a new friend request
-        $sql("INSERT INTO FriendRequest (RequestSend, RequestReceive, status) VALUES ($sender_user_id, $friend_user_id, 'pending')");
-
-        echo "Friend request sent successfully!";
-    } else {
-        echo "Friend request already sent!"; #lets user know that a request has already been sent
+                echo "Friend request sent successfully!";
+            } else {
+                echo "Friend request already sent!";
+            }
+        } else {
+            echo "Sorry, this user was not found in your system.";
+        }
+    } catch (PDOException $e) {
+        echo "Error: " . $e->getMessage();
     }
-} else {
-    #friend is not found
-    echo "Friend not found in the database!";
 }
+
+$conn = null;
+
 ?>
