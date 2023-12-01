@@ -144,8 +144,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmtUser = $pdo->prepare($editUser);
 
     $stmtUser->bindParam(':newEmail', $email, PDO::PARAM_STR);
-    $stmtProfile->bindParam(':userid', $userid, PDO::PARAM_STR, 11);
-    $stmtProfile->execute();
+    $stmtUser->bindParam(':userid', $userid, PDO::PARAM_STR, 11);
+    $stmtUser->execute();
 
     alter_social($pdo, $facebook, 'Facebook', $userID);
     alter_social($pdo, $twitter, 'Twitter', $userID);
