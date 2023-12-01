@@ -120,35 +120,29 @@ if ($row3 = $result3->fetch()) {
 
                     $sql = "SELECT * FROM User WHERE Username LIKE '%$search%'";
                     $result = $pdo->query($sql);
-                    
+
 
                     foreach ($result as $row) {
                         $userIDPhoto = $row['UserID'];
                         $photoQuery = "SELECT ProfilePic FROM Profile WHERE UserID LIKE '%$userIDPhoto%'";
                         $photoResult = $pdo->query($photoQuery);
                         $photo = $photoResult->fetchColumn();
-                        echo $photo;
+
                         ?>
                         <div class="col-md-4">
                             <div class="card text-center">
                                 <div class="card-body">
-                                    <img class="rounded" src="<?php echo $row['Username']; ?>" alt="profile">
+                                    <img class="rounded" src="<?php echo $photo ?>" alt="profile">
                                     <h3><?php echo $row['Username']; ?></h3>
                                     <h6><?php echo $row['Firstname'] . " " . $row['LastName']; ?></h6>
                                     <h6><i>Event Coordinator</i></h6>
                                     <button class="btn btn-success">Add Friend</button>
+                                    <form action="user_view.php" method="get">
+                                        <input type="hidden" name="id" value="<?php echo $row['UserID']; ?>">
+                                        <button class="btn btn-secondary" type="submit">View Profile</button>
+                                    </form>
                                 </div>
                             </div>
-                        </div>
-                        <?php
-                        echo "Username: " . $row['Username'];
-                        ?>
-                        <div>
-                            <form action="user_view.php" method="get">
-                                <input type="hidden" name="id" value="<?php echo $row['UserID']; ?>">
-                                <button class="btn btn-secondary" type="submit">View Profile</button>
-                            </form>
-
                         </div>
                         <?php
                     }
