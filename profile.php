@@ -133,6 +133,13 @@ if ($row3 = $result3->fetch()) {
         echo <<<_END
             <h4><i>Event Organizer</i></h4>
           _END;
+      } else {
+        $organizerName = '';
+        $organizerType = '';
+        $organizerAddress = '';
+        $organizerPhone = '';
+        $organizerEmail = '';
+        $organizerUrl = '';
       }
       ?>
       <div class="mt-3">
