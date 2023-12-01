@@ -80,7 +80,7 @@
                                             </div>
                                             <div class="mb-4 pb-2">
                                                 <div class="form-outline form-floating">
-                                                    <input type="text" id="Email" name="Email"
+                                                    <input type="email" id="Email" name="Email"
                                                         class="form-control form-control-lg" placeholder="#" required />
                                                     <label class="form-label" for="Email">Your Email</label>
                                                 </div>
@@ -198,7 +198,7 @@
                                                     <label class="form-label" for="orgAddress">Address</label>
                                                 </div>
                                                 <div class="form-floating mb-4 pb-2">
-                                                    <input class="form-control" type="tel" id="orgPhone" name="orgPhone" placeholder="#">
+                                                    <input class="form-control" type="tel" id="orgPhone" name="orgPhone" minlength="12" maxlength="12" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="#">
                                                     <label class="form-label" for="orgPhone">Phone Number</label>
                                                 </div>
                                                 <div class="form-floating mb-4 pb-2">
@@ -213,7 +213,7 @@
                                             <div class="mb-4 pb-2">
                                                 <div class="form-outline form-floating">
                                                     <input type="text" id="Zip" name="Zip"
-                                                        class="form-control form-control-lg" placeholder="#" required />
+                                                        class="form-control form-control-lg" minlength="5" maxlength="5" placeholder="#" required />
                                                     <label class="form-label" for="Zip">ZIP</label>
                                                 </div>
                                             </div>
