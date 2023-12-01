@@ -126,7 +126,8 @@ if ($row3 = $result3->fetch()) {
                         $userIDPhoto = $row['UserID'];
                         $photoQuery = "SELECT ProfilePic FROM Profile WHERE UserID LIKE '%$userIDPhoto%'";
                         $photoResult = $pdo->query($photoQuery);
-                        echo $photoResult;
+                        $photo = $photoResult->fetchColumn();
+                        echo $photo;
                         ?>
                         <div class="col-md-4">
                             <div class="card text-center">
