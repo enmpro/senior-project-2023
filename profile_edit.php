@@ -26,9 +26,23 @@ function test_userinput($data)
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    $locationOnOff = $_POST['location-chk'];
-    $genderOnOff = $_POST['location-chk'];
-    $birthdayOnOff = $_POST['location-chk'];
+    if ($_POST['location-chk'] != 'yes') {
+        $locationOnOff = 'no';
+    } else {
+        $locationOnOff = $_POST['location-chk'];
+    }
+
+    if ($_POST['gender-chk'] != 'yes') {
+        $genderOnOff = 'no';
+    } else {
+        $genderOnOff = $_POST['gender-chk'];
+    }
+
+    if ($_POST['age-chk'] != 'yes') {
+        $birthdayOnOff = 'no';
+    } else {
+        $birthdayOnOff = $_POST['age-chk'];
+    }
 
     if ($_POST['description'] == '') {
         $oldDescQuery = "SELECT Description FROM Profile WHERE UserID = :userID";
