@@ -172,12 +172,12 @@ $instagram = "$oldInsta";
                     <label class="form-check-label" for="location-chk">Show location</label>
                 </div>
                 <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="age-chk" name="age-chk" value="yes"
+                    <input class="form-check-input" type="checkbox" id="age-chk" name="age-chk" value="yes">
+                    <label class="form-check-label" for="age-chk">Show age</label>
                     <?php if($showbirthday == 'yes') {
                         echo ' checked';
                     } 
-                    ?>>
-                    <label class="form-check-label" for="age-chk">Show fsdfdsf</label>
+                    ?>
                 </div>
             </div>
 
