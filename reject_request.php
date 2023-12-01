@@ -22,12 +22,12 @@ function test_userinput($data)
 }
 
 #rejected requested's id
-$request_id = $_GET['id'];
+// $request_id = $_GET['id'];
 
-#status is changed to "rejected"
-$sql("UPDATE FriendRequest SET status = 'rejected' WHERE RequestSend = $request_id");
+// #status is changed to "rejected"
+// $sql("UPDATE FriendRequest SET status = 'rejected' WHERE RequestSend = $request_id");
 
-#redirects to homepage
-header("Location: homepage_page.html");
-exit();
+// #redirects to homepage
+// header("Location: homepage_page.html");
+// exit();
 ?>
