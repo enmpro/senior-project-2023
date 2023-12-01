@@ -53,6 +53,10 @@ if ($row3 = $result3->fetch()) {
         overflow: hidden;
         margin-bottom: 20px;
     }
+
+    body {
+        background-color: #f8f9fa;
+    }
 </style>
 
 <body>
