@@ -54,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         WHERE Platform = 'Facebook' AND
         ProfileID = (SELECT ProfileID FROM Profile WHERE UserID LIKE :userid)";
         $oldFaceStmt = $pdo->prepare($oldFaceQuery);
-        $oldFaceStmt->bindParam(':userID', $userID, PDO::PARAM_INT);
+        $oldFaceStmt->bindParam(':userid', $userID, PDO::PARAM_INT);
         $oldFaceStmt->execute();
         $oldFace = $oldFaceStmt->fetchColumn();
         $facebook = "$oldFace";
@@ -67,7 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         WHERE Platform = 'Twitter' AND
         ProfileID = (SELECT ProfileID FROM Profile WHERE UserID LIKE :userid)";
         $oldTwitStmt = $pdo->prepare($oldTwitQuery);
-        $oldTwitStmt->bindParam(':userID', $userID, PDO::PARAM_INT);
+        $oldTwitStmt->bindParam(':userid', $userID, PDO::PARAM_INT);
         $oldTwitStmt->execute();
         $oldTwit = $oldTwitStmt->fetchColumn();
         $twitter = "$oldTwit";
@@ -80,7 +80,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         WHERE Platform = 'Instagram' AND
         ProfileID = (SELECT ProfileID FROM Profile WHERE UserID LIKE :userid)";
         $oldInstaStmt = $pdo->prepare($oldInstaQuery);
-        $oldInstaStmt->bindParam(':userID', $userID, PDO::PARAM_INT);
+        $oldInstaStmt->bindParam(':userid', $userID, PDO::PARAM_INT);
         $oldInstaStmt->execute();
         $oldInsta = $oldInstaStmt->fetchColumn();
         $instagram = "$oldInsta";
