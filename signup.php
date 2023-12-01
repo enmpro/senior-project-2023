@@ -155,65 +155,73 @@ while (isset($_POST['FirstName'])) {
 
         $birthday = $_POST['birthday'];
 
-        if (isset($_POST['description'])) {
-            $description = $_POST['description'];
-        } else {
-            $description = '';
-        }
+        // if (isset($_POST['description'])) {
+        //     $description = $_POST['description'];
+        // } else {
+        //     $description = '';
+        // }
 
+        $description = '';
 
-        if (isset($_POST['submit'])) {
-            $targetDirectory = "userphoto/"; // Directory to store profile pictures
+        // if (isset($_POST['submit'])) {
+        //     $targetDirectory = "userphoto/"; // Directory to store profile pictures
 
-            $randomFileName = uniqid();
-            $targetPhotoFile = $targetDirectory . $randomFileName . '_' . basename($_FILES['userphoto']['name']);
-            echo <<<_END
-                    <script>
-                    alert("$targetPhotoFile");
+        //     $randomFileName = uniqid();
+        //     $targetPhotoFile = $targetDirectory . $randomFileName . '_' . basename($_FILES['userphoto']['name']);
+        //     echo <<<_END
+        //             <script>
+        //             alert("$targetPhotoFile");
                         
-                    </script>
-                    _END;
+        //             </script>
+        //             _END;
 
-            if (move_uploaded_file($_FILES['userphoto']['tmp_name'], $targetPhotoFile)) {
-                echo <<<_END
-                    <script>
-                        alert("Photo added");
+        //     if (move_uploaded_file($_FILES['userphoto']['tmp_name'], $targetPhotoFile)) {
+        //         echo <<<_END
+        //             <script>
+        //                 alert("Photo added");
                         
-                    </script>
-                    _END;
-            } else {
-                echo <<<_END
-                    <script>
-                        alert("Photo not added");
+        //             </script>
+        //             _END;
+        //     } else {
+        //         echo <<<_END
+        //             <script>
+        //                 alert("Photo not added");
                         
-                    </script>
-                    _END;
-            }
-        } else {
-            $targetPhotoFile = '';
+        //             </script>
+        //             _END;
+        //     }
+        // } else {
+        //     $targetPhotoFile = '';
 
-        }
+        // }
+
+        $targetPhotoFile = 'https://via.placeholder.com/150';
 
 
 
+        // if (isset($_POST['location-chk'])) {
+        //     $locationChk = $_POST['location-chk'];
+        // } else {
+        //     $locationChk = '';
+        // }
 
-        if (isset($_POST['location-chk'])) {
-            $locationChk = $_POST['location-chk'];
-        } else {
-            $locationChk = '';
-        }
+        $locationChk = 'yes';
 
-        if (isset($_POST['age-chk'])) {
-            $ageChk = $_POST['age-chk'];
-        } else {
-            $ageChk = '';
-        }
+        // if (isset($_POST['age-chk'])) {
+        //     $ageChk = $_POST['age-chk'];
+        // } else {
+        //     $ageChk = '';
+        // }
 
-        if (isset($_POST['gender-chk'])) {
-            $genderChk = $_POST['gender-chk'];
-        } else {
-            $genderChk = '';
-        }
+        $ageChk = 'yes';
+
+        // if (isset($_POST['gender-chk'])) {
+        //     $genderChk = $_POST['gender-chk'];
+        // } else {
+        //     $genderChk = '';
+        // }
+        
+        $genderChk = 'yes';
 
         // social medias
         if (isset($_POST['facebook'])) {
