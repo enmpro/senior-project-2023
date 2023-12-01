@@ -26,6 +26,10 @@ function test_userinput($data)
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
+    $locationOnOff = $_POST['location-chk'];
+    $genderOnOff = $_POST['location-chk'];
+    $birthdayOnOff = $_POST['location-chk'];
+
     if ($_POST['description'] == '') {
         $oldDescQuery = "SELECT Description FROM Profile WHERE UserID = :userID";
         $oldDescStmt = $pdo->prepare($oldDescQuery);
@@ -139,12 +143,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
     $editUser = "UPDATE User
-                   SET Email = :newEmail
+                   SET Email = :newEmail,
+                   ShowGender = :genderChk,
+                   ShowLocation = :locationChk,
+                   ShowBirthday = :birthChk
                    WHERE UserID = :userid";
     $stmtUser = $pdo->prepare($editUser);
 
     $stmtUser->bindParam(':newEmail', $email, PDO::PARAM_STR);
     $stmtUser->bindParam(':userid', $userid, PDO::PARAM_STR, 11);
+    $stmtUser->bindParam(':genderChk', $genderOnOff, PDO::PARAM_STR, 11);
+    $stmtUser->bindParam(':locationChk', $locationOnOff, PDO::PARAM_STR, 11);
+    $stmtUser->bindParam(':birthChk', $birthdayOnOff, PDO::PARAM_STR, 11);
     $stmtUser->execute();
 
     alter_social($pdo, $facebook, 'Facebook', $userID);
