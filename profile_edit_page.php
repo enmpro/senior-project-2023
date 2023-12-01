@@ -135,8 +135,7 @@ $instagram = "$oldInsta";
                             Profile Picture
                         </label>
                         <input class="form-control" type="file" name="userphoto" id="userphoto"
-                            placeholder="#"><?php echo $profilePic; ?></input>
-
+                            placeholder="#">
                     </div>
                     <h3 class="text-center">Social Media</h3>
                     <div class="mb-4 pb-2 form-floating">
@@ -159,7 +158,7 @@ $instagram = "$oldInsta";
                 <div class="form-check form-switch">
                     <input class="form-check-input" type="checkbox" id="gender-chk" name="gender-chk" value="yes"
                     <?php if($showgender == 'yes') {
-                        echo 'checked';
+                        echo ' checked';
                     } 
                     ?>>
                     <label class="form-check-label" for="gender-chk">Show gender</label>
@@ -167,7 +166,7 @@ $instagram = "$oldInsta";
                 <div class="form-check form-switch">
                     <input class="form-check-input" type="checkbox" id="location-chk" name="location-chk" value="yes"
                     <?php if($showlocation == 'yes') {
-                        echo 'checked';
+                        echo ' checked';
                     } 
                     ?>>
                     <label class="form-check-label" for="location-chk">Show location</label>
@@ -175,7 +174,7 @@ $instagram = "$oldInsta";
                 <div class="form-check form-switch">
                     <input class="form-check-input" type="checkbox" id="age-chk" name="age-chk" value="yes"
                     <?php if($showbirthday == 'yes') {
-                        echo 'checked';
+                        echo ' checked';
                     } 
                     ?>>
                     <label class="form-check-label" for="age-chk">Show fsdfdsf</label>
