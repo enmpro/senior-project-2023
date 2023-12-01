@@ -142,7 +142,7 @@ if ($row3 = $result3->fetch()) {
                         <div class="col-md-4">
                             <div class="card text-center">
                                 <div class="card-body">
-                                    <img class="profile-picture rounded" src="<?php echo $photo ?>" alt="profile">
+                                    <img class="profile-picture" src="<?php echo $photo ?>" alt="profile">
                                     <h3><?php echo $row['Username']; ?></h3>
                                     <h6><?php echo $row['Firstname'] . " " . $row['LastName']; ?></h6>
                                     <h6><i>Event Coordinator</i></h6>
