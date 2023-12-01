@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $description = test_userinput($_POST['description']);
     }
 
-    if ($_POST['Email']) {
+    if ($_POST['Email'] == '') {
         $oldEmailQuery = "SELECT Email FROM User WHERE UserID = :userID";
         $oldEmailStmt = $pdo->prepare($oldEmailQuery);
         $oldEmailStmt->bindParam(':userID', $userID, PDO::PARAM_INT);
@@ -48,9 +48,45 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $email = test_userinput($_POST['Email']);
     }
 
-    $facebook = test_userinput($_POST['facebook']);
-    $twitter = test_userinput($_POST['twitter']);
-    $instagram = test_userinput($_POST['instagram']);
+
+    if ($_POST['facebook'] == '') {
+        $oldFaceQuery = "SELECT URL FROM SocialMediaHandles 
+        WHERE Platform = 'Facebook' AND
+        ProfileID = (SELECT ProfileID FROM Profile WHERE UserID LIKE :userid)";
+        $oldFaceStmt = $pdo->prepare($oldFaceQuery);
+        $oldFaceStmt->bindParam(':userID', $userID, PDO::PARAM_INT);
+        $oldFaceStmt->execute();
+        $oldFace = $oldFaceStmt->fetchColumn();
+        $facebook = "$oldFace";
+    } else {
+        $facebook = test_userinput($_POST['facebook']);
+    }
+
+    if ($_POST['twitter'] == '') {
+        $oldTwitQuery = "SELECT URL FROM SocialMediaHandles 
+        WHERE Platform = 'Twitter' AND
+        ProfileID = (SELECT ProfileID FROM Profile WHERE UserID LIKE :userid)";
+        $oldTwitStmt = $pdo->prepare($oldTwitQuery);
+        $oldTwitStmt->bindParam(':userID', $userID, PDO::PARAM_INT);
+        $oldTwitStmt->execute();
+        $oldTwit = $oldTwitStmt->fetchColumn();
+        $twitter = "$oldTwit";
+    } else {
+        $twitter = test_userinput($_POST['twitter']);
+    }
+
+    if ($_POST['instagram'] == '') {
+        $oldInstaQuery = "SELECT URL FROM SocialMediaHandles 
+        WHERE Platform = 'Instagram' AND
+        ProfileID = (SELECT ProfileID FROM Profile WHERE UserID LIKE :userid)";
+        $oldInstaStmt = $pdo->prepare($oldInstaQuery);
+        $oldInstaStmt->bindParam(':userID', $userID, PDO::PARAM_INT);
+        $oldInstaStmt->execute();
+        $oldInsta = $oldInstaStmt->fetchColumn();
+        $instagram = "$oldInsta";
+    } else {
+        $instagram = test_userinput($_POST['instagram']);
+    }
 
     if (isset($_POST['submit'])) {
 
@@ -66,16 +102,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (!empty($oldPhoto)) {
                 // Construct the path to the old photo file (adjust the path as needed)
                 $oldPhotoPath = "$oldPhoto";
-    
+
                 // Check if the file exists before attempting to delete
                 if (file_exists($oldPhotoPath)) {
                     unlink($oldPhotoPath); // Delete the old photo file
                 }
             }
-            
-    
             $targetDirectory = "userphoto/"; // Directory to store profile pictures
-    
             $randomFileName = uniqid();
             $targetPhotoFile = $targetDirectory . $randomFileName . '_' . basename($_FILES['userphoto']['name']);
             echo <<<_END
@@ -83,7 +116,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         alert("$targetPhotoFile");                   
                         </script>
                         _END;
-    
+
             if (move_uploaded_file($_FILES['userphoto']['tmp_name'], $targetPhotoFile)) {
                 echo <<<_END
                         <script>
@@ -98,15 +131,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             
                         </script>
                         _END;
-    
+
                 $targetPhotoFile = '';
             }
-    
         }
-
-       
-
     }
+
+
+    $editUser = "UPDATE User
+                   SET Email = :newEmail
+                   WHERE UserID = :userid";
+    $stmtUser = $pdo->prepare($editUser);
+
+    $stmtUser->bindParam(':newEmail', $email, PDO::PARAM_STR);
+    $stmtProfile->bindParam(':userid', $userid, PDO::PARAM_STR, 11);
+    $stmtProfile->execute();
 
     alter_social($pdo, $facebook, 'Facebook', $userID);
     alter_social($pdo, $twitter, 'Twitter', $userID);
@@ -118,8 +157,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 
-function alter_social($pdo, $newUrl, $platform, $userid) {
-    
+function alter_social($pdo, $newUrl, $platform, $userid)
+{
+
     $editProfile = "UPDATE SocialMediaHandles
                    SET Url = :newUrl
                    WHERE Platform LIKE :platform AND ProfileID LIKE 
@@ -129,12 +169,13 @@ function alter_social($pdo, $newUrl, $platform, $userid) {
     $stmtProfile->bindParam(':newUrl', $newUrl, PDO::PARAM_STR, 255);
     $stmtProfile->bindParam(':platform', $platform, PDO::PARAM_STR, 50);
     $stmtProfile->bindParam(':userid', $userid, PDO::PARAM_STR, 11);
-    
+
     $stmtProfile->execute();
 }
 
-function alter_profile($pdo, $description, $userPhoto, $userid) {
-    
+function alter_profile($pdo, $description, $userPhoto, $userid)
+{
+
     $editProfile = "UPDATE Profile
                    SET Description = :newDesc,
                    ProfilePic = :newPic
@@ -144,6 +185,6 @@ function alter_profile($pdo, $description, $userPhoto, $userid) {
     $stmtProfile->bindParam(':newDesc', $description, PDO::PARAM_STR);
     $stmtProfile->bindParam(':newPic', $userPhoto, PDO::PARAM_STR);
     $stmtProfile->bindParam(':userid', $userid, PDO::PARAM_STR, 11);
-    
+
     $stmtProfile->execute();
 }
