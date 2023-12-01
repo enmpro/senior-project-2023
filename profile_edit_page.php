@@ -1,3 +1,71 @@
+<?php
+require_once 'logindb.php';
+
+try {
+    $pdo = new PDO($attr, $user, $pass, $opts);
+} catch (PDOException $e) {
+    throw new PDOException($e->getMessage(), (int) $e->getCode());
+}
+
+
+session_start();
+
+if (isset($_SESSION['user_id'])) {
+
+    $userID = $_SESSION['user_id'];
+}
+
+
+$query = "SELECT * FROM User WHERE UserID LIKE $userID";
+$result = $pdo->query($query);
+
+if ($row = $result->fetch()) {
+    $fullname = $row['FirstName'] . ' ' . $row['LastName'];
+    $gender = $row['Gender'];
+    $zip = $row['Zip'];
+    $birthday = $row['Birthday'];
+    $userEmail = $row['Email'];
+}
+
+$query2 = "SELECT * FROM Profile WHERE UserID LIKE $userID";
+$result2 = $pdo->query($query2);
+
+if ($row2 = $result2->fetch()) {
+    $description = $row2['Description'];
+    $showgender = $row2['ShowGender'];
+    $showlocation = $row2['ShowLocation'];
+    $profilePic = $row2['ProfilePic'];
+}
+
+$oldFaceQuery = "SELECT URL FROM SocialMediaHandles 
+        WHERE Platform = 'Facebook' AND
+        ProfileID = (SELECT ProfileID FROM Profile WHERE UserID LIKE :userid)";
+$oldFaceStmt = $pdo->prepare($oldFaceQuery);
+$oldFaceStmt->bindParam(':userid', $userID, PDO::PARAM_INT);
+$oldFaceStmt->execute();
+$oldFace = $oldFaceStmt->fetchColumn();
+$facebook = "$oldFace";
+
+$oldTwitQuery = "SELECT URL FROM SocialMediaHandles 
+        WHERE Platform = 'Twitter' AND
+        ProfileID = (SELECT ProfileID FROM Profile WHERE UserID LIKE :userid)";
+
+$oldTwitStmt = $pdo->prepare($oldTwitQuery);
+$oldTwitStmt->bindParam(':userid', $userID, PDO::PARAM_INT);
+$oldTwitStmt->execute();
+$oldTwit = $oldTwitStmt->fetchColumn();
+$twitter = "$oldTwit";
+$oldInstaQuery = "SELECT URL FROM SocialMediaHandles 
+        WHERE Platform = 'Instagram' AND
+        ProfileID = (SELECT ProfileID FROM Profile WHERE UserID LIKE :userid)";
+
+$oldInstaStmt = $pdo->prepare($oldInstaQuery);
+$oldInstaStmt->bindParam(':userid', $userID, PDO::PARAM_INT);
+$oldInstaStmt->execute();
+$oldInsta = $oldInstaStmt->fetchColumn();
+$instagram = "$oldInsta";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -48,13 +116,15 @@
                 <h2 class="text-center mb-4">Edit Profile Details</h2>
                 <form action="profile_edit.php" method="post" enctype="multipart/form-data">
                     <div class="mb-4 pb-2 form-floating">
-                        <textarea class="form-control" name="description" id="description" placeholder="#"></textarea>
+                        <textarea class="form-control" name="description" id="description"
+                            placeholder="#"><?php echo $description; ?></textarea>
                         <label class="form-label" for="description">
                             Description
                         </label>
                     </div>
                     <div class="mb-4 pb-2 form-floating">
-                        <textarea class="form-control" name="Email" id="Email" placeholder="#"></textarea>
+                        <textarea class="form-control" name="Email" id="Email"
+                            placeholder="#"> <?php echo $userEmail; ?></textarea>
                         <label class="form-label" for="Email">
                             Email
                         </label>
@@ -63,19 +133,21 @@
                         <label class="input-group-text" for="userphoto">
                             Profile Picture
                         </label>
-                        <input class="form-control" type="file" name="userphoto" id="userphoto" placeholder="#"></textarea>
+                        <input class="form-control" type="file" name="userphoto" id="userphoto" placeholder="#">
+                        <?php echo $profilePic; ?></textarea>
                     </div>
                     <h3 class="text-center">Social Media</h3>
                     <div class="mb-4 pb-2 form-floating">
-                        <input class="form-control" type="url" id="facebook" name="facebook" placeholder="#">
+                        <input class="form-control" type="url" id="facebook" name="facebook"
+                            placeholder="#"><?php echo $facebook; ?></input>
                         <label class="form-label" for="facebook">Facebook</label>
                     </div>
                     <div class="mb-4 pb-2 form-floating">
-                        <input class="form-control" type="url" id="twitter" name="twitter" placeholder="#">
+                        <input class="form-control" type="url" id="twitter" name="twitter" placeholder="#"><?php echo $twitter; ?></input>
                         <label class="form-label" for="twitter">Twitter</label>
                     </div>
                     <div class="mb-4 pb-2 form-floating">
-                        <input class="form-control" type="url" id="instagram" name="instagram" placeholder="#">
+                        <input class="form-control" type="url" id="instagram" name="instagram" placeholder="#"><?php echo $instagram; ?></input>
                         <label class="form-label" for="instagram">Instagram</label>
                     </div>
             </div>
