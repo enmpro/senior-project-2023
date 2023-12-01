@@ -85,13 +85,13 @@ function test_userinput($data)
     <!-- Search Form -->
     <form method="get" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
         <label for="search">Search for a user:</label>
-        <input type="text" name="search" id="search">
-    <?php
+        <input type="text" name="search" id="search" <?php
     if (isset($_GET['search'])) {
         $search = test_userinput($_GET["search"]);
-        echo $search;
+        echo "value=". "'". $search . "'";
     }
-    ?></input>
+    ?>>
+    
         <button type="submit">Search</button>
     </form>
 
