@@ -10,9 +10,9 @@ try {
 
 session_start();
 if (!isset($_SESSION['user_name'])) {
-    // The user is not logged in, redirect them to the login page
-    header('Location: landing.html');
-    exit;
+  // The user is not logged in, redirect them to the login page
+  header('Location: landing.html');
+  exit;
 }
 
 
@@ -39,6 +39,9 @@ if ($row2 = $result2->fetch()) {
   $showlocation = $row2['ShowLocation'];
   $profilePic = $row2['ProfilePic'];
 }
+
+
+
 
 
 $query3 = "SELECT * FROM EventOrganizer WHERE UserID LIKE $user_id";
@@ -226,6 +229,20 @@ if ($row3 = $result3->fetch()) {
         </div>
       </div>
     </div>
+  </div>
+
+  <div>
+    <?php
+    $rsvpQuery = "SELECT * FROM UserRSVP WHERE UserID LIKE $user_id";
+    $rsvpResult = $pdo->query($rsvpQuery);
+
+    foreach ($rsvpResult as $row) {
+      $rsvp_eventID = $row2['EventID'];
+      $rsvpStatus = $row2['RSVPStatus'];
+
+      echo $rsvp_eventID . ' ' . $rsvpStatus;
+    }
+    ?>
   </div>
 
   <div class="container text-center mt-5 mb-5">
