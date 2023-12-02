@@ -21,13 +21,12 @@ function test_userinput($data)
     return $data;
 }
 
-#rejected requested's id
-// $request_id = $_GET['id'];
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $RequestID = $_POST['RequestID'];
 
-// #status is changed to "rejected"
-// $sql("UPDATE FriendRequest SET status = 'rejected' WHERE RequestSend = $request_id");
+    $conn->query("UPDATE FriendRequest SET Status = 'rejected' WHERE UserID = $RequestID");
+}
 
-// #redirects to homepage
-// header("Location: homepage_page.html");
-// exit();
+header("Location: homepage_page.html");
+exit();
 ?>

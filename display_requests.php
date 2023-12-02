@@ -1,7 +1,8 @@
 <?php
 require_once 'logindb.php';
 
-$SenderUserID = $AuthUserID;
+$ReceiverUserID = $AuthUserID;
+$CurrentUserID = $AuthUserID;
 
 try {
     $pdo = new PDO($attr, $user, $pass, $opts);
@@ -25,22 +26,17 @@ function test_userinput($data)
     return $data;
 }
 
+$result = $conn->prepare("SELECT * FROM FriendRequest WHERE RequestReceive = :RequestReceive AND Status = 'pending'");
+$result->bindParam(':RequestReceive', $CurrentUserID);
+$result->execute();
 
-try {
-    $stmt = $conn->prepare("SELECT * FROM FriendRequest WHERE RequestReceive = :RequestReceive AND Status = 'pending'");
-    $stmt->bindParam(':RequestReceive', $SenderUserID);
-    $stmt->execute();
+while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+    $SenderUserID = $row['RequestSend'];
+    echo "<li>{$SenderUserID} wants to be your friend! 
+          <a href='accept_request.php?id={$row['id']}'>Accept</a> 
+          <a href='reject_request.php?id={$row['id']}'>Reject</a></li>";
 
-    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        echo "<li>{$row['RequestSend']} wants to be your friend! 
-              <a href='accept_request.php?id={$row['UserID']}'>Accept</a> 
-              <a href='reject_request.php?id={$row['UserID']}'>Reject</a></li>";
-    }
-} catch (PDOException $e) {
-    echo "Error: " . $e->getMessage();
-}
-
-$conn = null;
+//$conn = null;
 
 
 ?>
