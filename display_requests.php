@@ -1,7 +1,7 @@
 <?php
 require_once 'logindb.php';
 
-$SenderUserID = $AuthUserID;
+$ReceiverUserID = $AuthUserID;
 
 try {
     $pdo = new PDO($attr, $user, $pass, $opts);
@@ -32,13 +32,18 @@ try {
     $stmt->execute();
 
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        echo "<li>{$row['RequestSend']} wants to be your friend! 
-              <a href='accept_request.php?id={$row['UserID']}'>Accept</a> 
-              <a href='reject_request.php?id={$row['UserID']}'>Reject</a></li>";
-    }
-} catch (PDOException $e) {
-    echo "Error: " . $e->getMessage();
-}
+        $SenderUserID = $row['RequestSend']
+        echo "User $SenderUserID wants to be your friend!
+             <form action = 'accept_request.php' method = 'post'>
+                <input type = 'hidden' name = 'RequestID' value = '{$row['UserID']}'>
+                <button type = 'submit'>Accept</button>
+             </form>
+             <form action = 'reject_request.php' method = 'post'>
+                <input type = 'hidden' name = 'RequestID' value = '{$row['UserID']}'>
+                <button type = 'submit'>Reject</button>
+             </form><br>";
+              
+} 
 
 $conn = null;
 
