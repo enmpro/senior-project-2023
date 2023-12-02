@@ -237,8 +237,8 @@ if ($row3 = $result3->fetch()) {
     $rsvpResult = $pdo->query($rsvpQuery);
 
     foreach ($rsvpResult as $row) {
-      $rsvp_eventID = $row2['EventID'];
-      $rsvpStatus = $row2['RSVPStatus'];
+      $rsvp_eventID = $row['EventID'];
+      $rsvpStatus = $row['RSVPStatus'];
 
       echo $rsvp_eventID . ' ' . $rsvpStatus;
     }
