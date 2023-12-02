@@ -240,7 +240,17 @@ if ($row3 = $result3->fetch()) {
       $rsvp_eventID = $row['EventID'];
       $rsvpStatus = $row['RSVPStatus'];
 
-      echo $rsvp_eventID . ' ' . $rsvpStatus;
+      $eventRsvp = "SELECT * FROM Event WHERE EventID LIKE $rsvp_eventID";
+      $eventRsvpResult = $pdo->query($eventRsvp);
+
+      if ($eventResult = $eventRsvpResult->fetch()) {
+        $eventName = $eventResult['EventName'];
+        $eventArtist = $eventResult['EventArtist'];
+        $eventDesc = $eventResult['EventDesc'];
+      }
+      
+
+      echo $rsvp_eventID . ' ' . $rsvpStatus . ' ' . $eventName;
     }
     ?>
   </div>
