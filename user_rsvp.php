@@ -26,12 +26,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Insert or update the RSVP status in the UserRSVP table
     $sql = "INSERT INTO UserRSVP (UserID, EventID, RSVPStatus)
             VALUES (:userID, :eventID, :rsvpStatus)
-            ON DUPLICATE KEY UPDATE RSVPStatus = :rsvpStatus";
+            ON DUPLICATE KEY UPDATE RSVPStatus = :rsvpStatusUpdate";
 
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(':userID', $userID, PDO::PARAM_INT, 11);
     $stmt->bindParam(':eventID', $eventID, PDO::PARAM_INT, 11);
     $stmt->bindParam(':rsvpStatus', $rsvpStatus, PDO::PARAM_STR, 255);
+    $stmt->bindParam(':rsvpStatusUpdate', $rsvpStatus, PDO::PARAM_STR, 255);
 
     if ($stmt->execute()) {
         echo "RSVP successful!";
