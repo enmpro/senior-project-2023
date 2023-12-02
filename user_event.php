@@ -173,7 +173,7 @@ if ($rowCheck = $resultCheck->fetch()) {
                                     <option value="Not Attending">Not Attending</option>
                                     <option value="Maybe">Maybe</option>
                                 </select>
-                                <button type="button" class="btn btn-primary">RSVP</button>
+                                <button type="submit" class="btn btn-primary">RSVP</button>
                             </form>
                         </div>
                     </div>
