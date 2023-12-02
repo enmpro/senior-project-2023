@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(':userID', $userID, PDO::PARAM_INT, 11);
     $stmt->bindParam(':eventID', $eventID, PDO::PARAM_INT, 11);
-    $stmt->bindParam(':rsvpStatus', $rsvpStatus, PDO::PARAM_STR);
+    $stmt->bindParam(':rsvpStatus', $rsvpStatus, PDO::PARAM_STR, 255);
 
     if ($stmt->execute()) {
         echo "RSVP successful!";
