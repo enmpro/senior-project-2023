@@ -17,8 +17,8 @@ if (!isset($_SESSION['user_name'])) {
 $userID = $_SESSION['user_id'];
 
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $eventID = $_SESSION['event_id']; // Replace with the actual event ID
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $eventID = $_POST['event_id']; // Replace with the actual event ID
 
     // Get the RSVP status from the form
     $rsvpStatus = $_POST['rsvp_status'];
