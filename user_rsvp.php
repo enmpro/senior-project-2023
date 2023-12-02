@@ -23,21 +23,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Get the RSVP status from the form
     $rsvpStatus = $_POST['rsvp_status'];
 
-    // Insert or update the RSVP status in the UserRSVP table
-    $sql = "INSERT INTO UserRSVP (UserID, EventID, RSVPStatus)
-            VALUES (:userID, :eventID, :rsvpStatus)
-            ON DUPLICATE KEY UPDATE RSVPStatus = :rsvpStatusUpdate";
 
-    $stmt = $pdo->prepare($sql);
-    $stmt->bindParam(':userID', $userID, PDO::PARAM_INT, 11);
-    $stmt->bindParam(':eventID', $eventID, PDO::PARAM_INT, 11);
-    $stmt->bindParam(':rsvpStatus', $rsvpStatus, PDO::PARAM_STR, 255);
-    $stmt->bindParam(':rsvpStatusUpdate', $rsvpStatus, PDO::PARAM_STR, 255);
+    // Delete the previous record for the same user and event if it exists
+    $deleteSql = "DELETE FROM UserRSVP WHERE UserID = :userID AND EventID = :eventID";
+    $deleteStmt = $pdo->prepare($deleteSql);
+    $deleteStmt->bindParam(':userID', $userID, PDO::PARAM_INT);
+    $deleteStmt->bindParam(':eventID', $eventID, PDO::PARAM_INT);
 
-    if ($stmt->execute()) {
-        echo "RSVP successful!";
+    // Execute the delete query only if the record exists
+    if ($deleteStmt->execute()) {
+        // Insert the new RSVP record
+        $insertSql = "INSERT INTO UserRSVP (UserID, EventID, RSVPStatus)
+                      VALUES (:userID, :eventID, :rsvpStatus)";
+
+        $insertStmt = $pdo->prepare($insertSql);
+        $insertStmt->bindParam(':userID', $userID, PDO::PARAM_INT);
+        $insertStmt->bindParam(':eventID', $eventID, PDO::PARAM_INT);
+        $insertStmt->bindParam(':rsvpStatus', $rsvpStatus, PDO::PARAM_STR);
+
+        if ($insertStmt->execute()) {
+            echo "RSVP successful!";
+        } else {
+            echo "Error processing RSVP.";
+        }
     } else {
-        echo "Error processing RSVP.";
+        echo "Error deleting previous RSVP record or record does not exist.";
     }
 }
 
