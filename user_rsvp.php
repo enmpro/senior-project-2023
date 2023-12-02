@@ -29,8 +29,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             ON DUPLICATE KEY UPDATE RSVPStatus = :rsvpStatus";
 
     $stmt = $pdo->prepare($sql);
-    $stmt->bindParam(':userID', $userID, PDO::PARAM_INT);
-    $stmt->bindParam(':eventID', $eventID, PDO::PARAM_INT);
+    $stmt->bindParam(':userID', $userID, PDO::PARAM_INT, 11);
+    $stmt->bindParam(':eventID', $eventID, PDO::PARAM_INT, 11);
     $stmt->bindParam(':rsvpStatus', $rsvpStatus, PDO::PARAM_STR);
 
     if ($stmt->execute()) {
