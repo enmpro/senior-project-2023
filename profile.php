@@ -213,10 +213,6 @@ if ($row3 = $result3->fetch()) {
               <p><?php echo $birthday; ?></p>
             </div>
             <div>
-              <p><strong>Favorite Genres</strong></p>
-              <p>FIX ME</p>
-            </div>
-            <div>
               <p><strong>Description</strong></p>
               <p><?php echo $description; ?></p>
             </div>
@@ -226,7 +222,7 @@ if ($row3 = $result3->fetch()) {
             </div>
           </div>
         </div>
-        <div class="card shadow-sm" style="height: 600px;">
+        <div class="card shadow-sm" style="max-height: 600px;">
           <div class="card-header text-center">
             <p class="fs-2">Friends List</p>
           </div>
@@ -241,46 +237,53 @@ if ($row3 = $result3->fetch()) {
       </div>
 
 
-      <div class="col-md-4" style="margin: 50px auto;">
+      <div class="col-md-8">
         <div style="margin: 50px auto;">
           <div class="card shadow-sm">
             <div class="card-header text-center">
               <p class="fs-2">Events</p>
             </div>
-            <ul class="scrollspy-event list-group list-group-flush" data-bs-spy="scroll">
-              <?php
-              $rsvpQuery = "SELECT * FROM UserRSVP WHERE UserID LIKE $user_id";
-              $rsvpResult = $pdo->query($rsvpQuery);
-
-              foreach ($rsvpResult as $row) {
-                $rsvp_eventID = $row['EventID'];
-                $rsvpStatus = $row['RSVPStatus'];
-
-                $eventRsvp = "SELECT * FROM Event WHERE EventID LIKE $rsvp_eventID";
-                $eventRsvpResult = $pdo->query($eventRsvp);
-
-                if ($eventResult = $eventRsvpResult->fetch()) {
-                  $eventName = $eventResult['EventName'];
-                  $eventArtist = $eventResult['EventArtist'];
-                  $eventDesc = $eventResult['EventDesc'];
-                  $eventPhoto = $eventResult['EventPhoto'];
-                  $eventNum = $eventResult['UserNumAttend'];
-                }
-
-                ?>
-                <li class="list-group-item event-item">
-                  <img class="event-image" src="<?php echo $eventPhoto; ?>" alt="Event Image">
-                  <div class="event-details">
-                    <h3><?php echo $eventName; ?></h3>
-                    <p><?php echo $eventDesc; ?></p>
-                    <p class="attendees"><?php echo $eventNum; ?> people attending</p>
-                  </div>
-                </li>
+            <div class="list-group">
+              <div class=" scrollspy-event list-group" data-bs-spy="scroll">
                 <?php
-              }
-              ?>
+                $rsvpQuery = "SELECT * FROM UserRSVP WHERE UserID LIKE $user_id";
+                $rsvpResult = $pdo->query($rsvpQuery);
 
-            </ul>
+                foreach ($rsvpResult as $row) {
+                  $rsvp_eventID = $row['EventID'];
+                  $rsvpStatus = $row['RSVPStatus'];
+
+                  $eventRsvp = "SELECT * FROM Event WHERE EventID LIKE $rsvp_eventID";
+                  $eventRsvpResult = $pdo->query($eventRsvp);
+
+                  if ($eventResult = $eventRsvpResult->fetch()) {
+                    $eventName = $eventResult['EventName'];
+                    $eventArtist = $eventResult['EventArtist'];
+                    $eventDesc = $eventResult['EventDesc'];
+                    $eventPhoto = $eventResult['EventPhoto'];
+                    $eventNum = $eventResult['UserNumAttend'];
+                    $eventDate = $eventResult['EventDateTime'];
+                  }
+
+                  ?>
+
+                  <a href="#" class="list-group-item list-group-item-action">
+                    <div class="d-flex w-100 justify-content-between">
+                      <h4 class="mb-3"><?php echo $eventName; ?></h4>
+                      <small><?php echo $eventDate; ?></small>
+                    </div>
+                    <img class="event-image mb-3" src="<?php echo $eventPhoto; ?>" alt="Event Image">
+                    <p class="fs-4"><?php echo $eventArtist; ?></p>
+                    <p class="mb-1"><?php echo $eventDesc; ?></p>
+                    <p class="attendees"><?php echo $eventNum; ?> people attending</p>
+                  </a>
+
+
+                  <?php
+                }
+                ?>
+              </div>
+            </div>
           </div>
         </div>
 
