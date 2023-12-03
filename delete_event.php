@@ -23,7 +23,7 @@ if (isset($_SESSION['user_id'])) {
 
 $eventID = $_POST['id'];
 
-$deleteSql = "DELETE FROM UserRSVP WHERE EventID = $eventID AND UserID = $userID";
+$deleteSql = "DELETE FROM UserRSVP WHERE EventID = $eventID";
 $deleteRsvp = $pdo->query($deleteSql);
 
 $query = "DELETE FROM Event WHERE EventID = $eventID";
