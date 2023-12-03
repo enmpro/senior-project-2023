@@ -7,7 +7,6 @@
     <title>Send a Friend Request</title>
     <!-- Latest compiled and minified CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
-
 </head>
 
 <body>
@@ -36,9 +35,9 @@
                     <?php
                     if ($organizerBool) {
                         echo <<<_END
-                    <li class="nav-item">
-                        <a class="nav-link" href="event_coord.php">Event Coordinator</a>
-                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="event_coord.php">Event Coordinator</a>
+                        </li>
                     _END;
                     }
                     ?>
