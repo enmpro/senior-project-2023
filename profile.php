@@ -150,6 +150,9 @@ if ($row3 = $result3->fetch()) {
 
 
   <div class="container profile-container">
+    <div class="container mb-5">
+      <a class="btn btn-primary submit-btn" href="profile_edit_page.php">Edit Profile</a>
+    </div>
     <div class="text-center">
       <img src="<?php echo $profilePic; ?>" alt="Profile Picture" class="profile-picture">
     </div>
@@ -290,24 +293,19 @@ if ($row3 = $result3->fetch()) {
 
           ?>
           <li class="list-group-item event-item">
-          <img class="event-image" src="<?php echo $eventPhoto; ?>" alt="Event Image">
-          <div class="event-details">
-            <h3><?php echo $eventName; ?></h3>
-            <p><?php echo $eventDesc; ?></p>
-            <p class="attendees"><?php echo $eventNum; ?> people attending</p>
-          </div>
-        </li>
-        <?php
+            <img class="event-image" src="<?php echo $eventPhoto; ?>" alt="Event Image">
+            <div class="event-details">
+              <h3><?php echo $eventName; ?></h3>
+              <p><?php echo $eventDesc; ?></p>
+              <p class="attendees"><?php echo $eventNum; ?> people attending</p>
+            </div>
+          </li>
+          <?php
         }
         ?>
-        
+
       </ul>
     </div>
-  </div>
-
-
-  <div class="container text-center mt-5 mb-5">
-    <a class="btn btn-primary submit-btn" href="profile_edit_page.php">Edit Profile</a>
   </div>
 
   <!-- Latest compiled JavaScript -->
