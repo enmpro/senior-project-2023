@@ -25,7 +25,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $RequestID = $_POST['RequestID'];
 
     try {
-        $updateRequest = $pdo->prepare("UPDATE FriendRequest SET Status = 'rejected' WHERE UserID = :RequestID");
+        $updateRequest = $pdo->prepare("UPDATE FriendRequest SET Status = 'rejected' 
+                                        WHERE UserID = :RequestID");
         $updateRequest->bindParam(':RequestID', $RequestID);
         $updateRequest->execute();
     } 
