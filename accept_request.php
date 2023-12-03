@@ -21,10 +21,10 @@ function test_userinput($data)
     return $data;
 }
 if (isset($_GET['UserID'])) {
-    $RequestID = $_GET['ID'];
+    $RequestID = $_GET['UserID'];
 
     try {
-        $conn->beginTransaction();
+        //$conn->beginTransaction();
 
         $updateRequest = $conn->prepare("UPDATE FriendRequest SET Status = 'accepted' WHERE UserID = :UserID");
         $updateRequest->bindParam(':UserID', $RequestID);
@@ -35,5 +35,9 @@ if (isset($_GET['UserID'])) {
         $getRequestInfo->execute();
         $request_info = $getRequestInfo->fetch(PDO::FETCH_ASSOC);
     }
+    catch (PDOException $e) {
+        echo "Error: " . $e->getMessage();
 }
+
+$pdo = null;
 ?>
