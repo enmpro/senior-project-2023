@@ -150,7 +150,7 @@ if ($row3 = $result3->fetch()) {
 
 
   <div class="container">
-    <div class="row row-cols-2">
+    <div class="row row-cols-3">
       <div class="container profile-container">
         <div class="container mb-5">
           <a class="btn btn-primary submit-btn" href="profile_edit_page.php">Edit Profile</a>
@@ -239,6 +239,47 @@ if ($row3 = $result3->fetch()) {
           </div>
         </div>
       </div>
+      <div class="container col" style="max-width: 38em;">
+        <div class="card shadow-sm">
+          <div class="card-header text-center">
+            <p class="fs-2">Events</p>
+          </div>
+          <ul class="scrollspy-event list-group list-group-flush" data-bs-spy="scroll">
+            <?php
+            $rsvpQuery = "SELECT * FROM UserRSVP WHERE UserID LIKE $user_id";
+            $rsvpResult = $pdo->query($rsvpQuery);
+
+            foreach ($rsvpResult as $row) {
+              $rsvp_eventID = $row['EventID'];
+              $rsvpStatus = $row['RSVPStatus'];
+
+              $eventRsvp = "SELECT * FROM Event WHERE EventID LIKE $rsvp_eventID";
+              $eventRsvpResult = $pdo->query($eventRsvp);
+
+              if ($eventResult = $eventRsvpResult->fetch()) {
+                $eventName = $eventResult['EventName'];
+                $eventArtist = $eventResult['EventArtist'];
+                $eventDesc = $eventResult['EventDesc'];
+                $eventPhoto = $eventResult['EventPhoto'];
+                $eventNum = $eventResult['UserNumAttend'];
+              }
+
+              ?>
+              <li class="list-group-item event-item">
+                <img class="event-image" src="<?php echo $eventPhoto; ?>" alt="Event Image">
+                <div class="event-details">
+                  <h3><?php echo $eventName; ?></h3>
+                  <p><?php echo $eventDesc; ?></p>
+                  <p class="attendees"><?php echo $eventNum; ?> people attending</p>
+                </div>
+              </li>
+              <?php
+            }
+            ?>
+
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -287,47 +328,7 @@ if ($row3 = $result3->fetch()) {
     </div>
   </div>
 
-  <div class="container" style="max-width: 38em;">
-    <div class="card shadow-sm">
-      <div class="card-header text-center">
-        <p class="fs-2">Events</p>
-      </div>
-      <ul class="scrollspy-event list-group list-group-flush" data-bs-spy="scroll">
-        <?php
-        $rsvpQuery = "SELECT * FROM UserRSVP WHERE UserID LIKE $user_id";
-        $rsvpResult = $pdo->query($rsvpQuery);
 
-        foreach ($rsvpResult as $row) {
-          $rsvp_eventID = $row['EventID'];
-          $rsvpStatus = $row['RSVPStatus'];
-
-          $eventRsvp = "SELECT * FROM Event WHERE EventID LIKE $rsvp_eventID";
-          $eventRsvpResult = $pdo->query($eventRsvp);
-
-          if ($eventResult = $eventRsvpResult->fetch()) {
-            $eventName = $eventResult['EventName'];
-            $eventArtist = $eventResult['EventArtist'];
-            $eventDesc = $eventResult['EventDesc'];
-            $eventPhoto = $eventResult['EventPhoto'];
-            $eventNum = $eventResult['UserNumAttend'];
-          }
-
-          ?>
-          <li class="list-group-item event-item">
-            <img class="event-image" src="<?php echo $eventPhoto; ?>" alt="Event Image">
-            <div class="event-details">
-              <h3><?php echo $eventName; ?></h3>
-              <p><?php echo $eventDesc; ?></p>
-              <p class="attendees"><?php echo $eventNum; ?> people attending</p>
-            </div>
-          </li>
-          <?php
-        }
-        ?>
-
-      </ul>
-    </div>
-  </div>
 
   <!-- Latest compiled JavaScript -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
