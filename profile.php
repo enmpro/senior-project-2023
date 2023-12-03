@@ -148,7 +148,7 @@ if ($row3 = $result3->fetch()) {
   </nav>
 
 
-  <div class="container">
+  <div class="container mb-5">
     <div class="row">
       <div class="col-md-4">
         <div class="profile-container">
