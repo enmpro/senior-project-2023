@@ -23,11 +23,13 @@ if (isset($_SESSION['user_id'])) {
 
 $eventID = $_POST['id'];
 
+$deleteSql = "DELETE FROM UserRSVP WHERE EventID = $eventID AND UserID = $userID";
+$deleteRsvp = $pdo->query($deleteSql);
+
 $query = "DELETE FROM Event WHERE EventID = $eventID";
 $result = $pdo->query($query);
 
-$deleteSql = "DELETE FROM UserRSVP WHERE EventID = $eventID AND UserID = $userID";
-$deleteRsvp = $pdo->prepare($deleteSql);
+
 
 header('Location: event_coord.php');
 
