@@ -243,47 +243,58 @@ if ($row3 = $result3->fetch()) {
             <div class="card-header text-center">
               <p class="fs-2">Events</p>
             </div>
-            <div class="list-group">
-              <div class=" scrollspy-event list-group" data-bs-spy="scroll">
-                <?php
-                $rsvpQuery = "SELECT * FROM UserRSVP WHERE UserID LIKE $user_id";
-                $rsvpResult = $pdo->query($rsvpQuery);
-
-                foreach ($rsvpResult as $row) {
-                  $rsvp_eventID = $row['EventID'];
-                  $rsvpStatus = $row['RSVPStatus'];
-
-                  $eventRsvp = "SELECT * FROM Event WHERE EventID LIKE $rsvp_eventID";
-                  $eventRsvpResult = $pdo->query($eventRsvp);
-
-                  if ($eventResult = $eventRsvpResult->fetch()) {
-                    $eventName = $eventResult['EventName'];
-                    $eventArtist = $eventResult['EventArtist'];
-                    $eventDesc = $eventResult['EventDesc'];
-                    $eventPhoto = $eventResult['EventPhoto'];
-                    $eventNum = $eventResult['UserNumAttend'];
-                    $eventDate = $eventResult['EventDateTime'];
-                  }
-
-                  ?>
-
-                  <a href="#" class="list-group-item list-group-item-action">
-                    <div class="d-flex w-100 justify-content-between">
-                      <h4 class="mb-3"><?php echo $eventName; ?></h4>
-                      <small><?php echo $eventDate; ?></small>
-                    </div>
-                    <img class="event-image mb-3" src="<?php echo $eventPhoto; ?>" alt="Event Image">
-                    <p class="fs-4"><?php echo $eventArtist; ?></p>
-                    <p class="mb-1"><?php echo $eventDesc; ?></p>
-                    <p class="attendees"><?php echo $eventNum; ?> people attending</p>
-                  </a>
-
-
+            <div class="card-body">
+              <div class="list-group">
+                <div class=" scrollspy-event list-group" data-bs-spy="scroll">
                   <?php
-                }
-                ?>
+                  $rsvpQuery = "SELECT * FROM UserRSVP WHERE UserID LIKE $user_id";
+                  $rsvpResult = $pdo->query($rsvpQuery);
+
+                  foreach ($rsvpResult as $row) {
+                    $rsvp_eventID = $row['EventID'];
+                    $rsvpStatus = $row['RSVPStatus'];
+
+                    $eventRsvp = "SELECT * FROM Event WHERE EventID LIKE $rsvp_eventID";
+                    $eventRsvpResult = $pdo->query($eventRsvp);
+
+                    if ($eventResult = $eventRsvpResult->fetch()) {
+                      $eventName = $eventResult['EventName'];
+                      $eventArtist = $eventResult['EventArtist'];
+                      $eventDesc = $eventResult['EventDesc'];
+                      $eventPhoto = $eventResult['EventPhoto'];
+                      $eventNum = $eventResult['UserNumAttend'];
+                      $eventDate = $eventResult['EventDateTime'];
+                    }
+
+                    ?>
+
+                    <a href="#" class="list-group-item list-group-item-action">
+                      <div class="d-flex w-100 justify-content-between">
+                        <h4 class="mb-3"><?php echo $eventName; ?></h4>
+                        <small><?php echo $eventDate; ?></small>
+                      </div>
+                      <img class="event-image mb-3" src="<?php echo $eventPhoto; ?>" alt="Event Image">
+                      <p class="fs-4"><?php echo $eventArtist; ?></p>
+                      <p class="mb-1"><?php echo $eventDesc; ?></p>
+                      <p class="attendees"><?php echo $eventNum; ?> people attending</p>
+                    </a>
+
+
+                    <?php
+                  }
+                  ?>
+                </div>
               </div>
             </div>
+
+          </div>
+        </div>
+
+        <div class="card mt-3">
+          <div class="card-body">
+            <h5 class="card-title">Favorite Music</h5>
+            <p class="card-text"><strong>Favorite Genre</strong> Rock</p>
+            <p class="card-text"><strong>Favorite Artists</strong> Artist 1, Artist 2, Artist 3</p>
           </div>
         </div>
 
