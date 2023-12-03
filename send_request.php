@@ -43,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $existingRequest->execute();
 
             if ($existingRequest->rowCount() === 0) {
-                $insertRequest = $pdo->prepare("INSERT INTO FriendRequests (RequestSend, RequestReceive, Status) VALUES (:RequestSend, :RequestReceive, 'pending')");
+                $insertRequest = $pdo->prepare("INSERT INTO FriendRequest (RequestSend, RequestReceive, Status) VALUES (:RequestSend, :RequestReceive, 'pending')");
                 $insertRequest->bindParam(':RequestSend', $SenderUserID);
                 $insertRequest->bindParam(':RequestReceive', $FriendUserID);
                 $insertRequest->execute();
