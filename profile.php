@@ -71,6 +71,38 @@ if ($row3 = $result3->fetch()) {
   <link rel="stylesheet" href="profile.css">
 </head>
 
+
+<style>
+  .scrollspy-event {
+    position: relative;
+    height: 300px;
+    overflow: auto;
+  }
+
+  .event-item {
+    background-color: #e0e0e0;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 10px;
+  }
+
+  .event-image {
+    max-width: 100%;
+    height: 120px;
+    border-radius: 5px;
+    overflow: hidden;
+    object-fit: cover;
+  }
+
+  .event-details {
+    margin-top: 10px;
+  }
+
+  .attendees {
+    color: #666;
+  }
+</style>
+
 <body>
 
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -231,29 +263,48 @@ if ($row3 = $result3->fetch()) {
     </div>
   </div>
 
-  <div>
-    <?php
-    $rsvpQuery = "SELECT * FROM UserRSVP WHERE UserID LIKE $user_id";
-    $rsvpResult = $pdo->query($rsvpQuery);
+  <div class="container">
+    <div class="card shadow-sm">
+      <div class="card-header text-center">
+        <p class="fs-2">Events</p>
+      </div>
+      <ul class="scrollspy-event list-group list-group-flush" data-bs-spy="scroll">
+        <?php
+        $rsvpQuery = "SELECT * FROM UserRSVP WHERE UserID LIKE $user_id";
+        $rsvpResult = $pdo->query($rsvpQuery);
 
-    foreach ($rsvpResult as $row) {
-      $rsvp_eventID = $row['EventID'];
-      $rsvpStatus = $row['RSVPStatus'];
+        foreach ($rsvpResult as $row) {
+          $rsvp_eventID = $row['EventID'];
+          $rsvpStatus = $row['RSVPStatus'];
 
-      $eventRsvp = "SELECT * FROM Event WHERE EventID LIKE $rsvp_eventID";
-      $eventRsvpResult = $pdo->query($eventRsvp);
+          $eventRsvp = "SELECT * FROM Event WHERE EventID LIKE $rsvp_eventID";
+          $eventRsvpResult = $pdo->query($eventRsvp);
 
-      if ($eventResult = $eventRsvpResult->fetch()) {
-        $eventName = $eventResult['EventName'];
-        $eventArtist = $eventResult['EventArtist'];
-        $eventDesc = $eventResult['EventDesc'];
-      }
-      
+          if ($eventResult = $eventRsvpResult->fetch()) {
+            $eventName = $eventResult['EventName'];
+            $eventArtist = $eventResult['EventArtist'];
+            $eventDesc = $eventResult['EventDesc'];
+            $eventPhoto = $eventResult['EventPhoto'];
+            $eventNum = $eventResult['UserNumAttend'];
+          }
 
-      echo $rsvp_eventID . ' ' . $rsvpStatus . ' ' . $eventName;
-    }
-    ?>
+          ?>
+          <li class="list-group-item event-item">
+          <img class="event-image" src="<?php echo $eventPhoto; ?>" alt="Event Image">
+          <div class="event-details">
+            <h3><?php echo $eventName; ?></h3>
+            <p><?php echo $eventDesc; ?></p>
+            <p class="attendees"><?php echo $eventNum; ?> people attending</p>
+          </div>
+        </li>
+        <?php
+        }
+        ?>
+        
+      </ul>
+    </div>
   </div>
+
 
   <div class="container text-center mt-5 mb-5">
     <a class="btn btn-primary submit-btn" href="profile_edit_page.php">Edit Profile</a>
