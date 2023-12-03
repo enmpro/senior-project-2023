@@ -227,7 +227,7 @@ if ($row3 = $result3->fetch()) {
           </div>
         </div>
 
-        <div class="col-md-4" style="margin: 50px auto;">
+        <div style="margin: 50px auto;">
           <div class="card shadow-sm">
             <div class="card-header text-center">
               <p class="fs-2">Events</p>
@@ -271,7 +271,7 @@ if ($row3 = $result3->fetch()) {
       </div>
 
 
-      <div class="col" style="margin: 50px auto;">
+      <div class="col-md-4" style="margin: 50px auto;">
         <div class="card shadow-sm" style="height: 600px;">
           <div class="card-header text-center">
             <p class="fs-2">Friends List</p>
