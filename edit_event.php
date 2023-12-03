@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $oldPhotoStmt->bindParam(':eventID', $eventID, PDO::PARAM_INT);
         $oldPhotoStmt->execute();
         $oldPhoto = $oldPhotoStmt->fetchColumn();
-        if ($_FILES['userphoto']['error'] == 4) {
+        if ($_FILES['eventPhoto']['error'] == 4) {
             $targetPhotoFile = "$oldPhoto";
         } else {
             if (!empty($oldPhoto)) {
