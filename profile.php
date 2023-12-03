@@ -71,6 +71,36 @@ if ($row3 = $result3->fetch()) {
   <link rel="stylesheet" href="profile.css">
 </head>
 
+<style>
+.scrollspy-event {
+    position: relative;
+    height: 300px;
+    overflow: auto;
+  }
+
+  .event-item {
+    background-color: #e0e0e0;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 10px;
+  }
+
+  .event-image {
+    max-width: 100%;
+    height: 120px;
+    border-radius: 5px;
+    overflow: hidden;
+    object-fit: cover;
+  }
+
+  .event-details {
+    margin-top: 10px;
+  }
+
+  .attendees {
+    color: #666;
+  }
+</style>
 <body>
 
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
