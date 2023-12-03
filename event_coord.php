@@ -216,9 +216,9 @@ if ($rowCheck = $resultCheck->fetch()) {
                                 <td> 
                                     <div>
                                         <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#eventEdit">Edit</button>
+                                            data-bs-target="#eventEdit$count">Edit</button>
                                     </div>
-                                    <div class="modal fade" id="eventEdit" data-bs-backdrop="static" data-bs-keyboard="false"
+                                    <div class="modal fade" id="eventEdit$count" data-bs-backdrop="static" data-bs-keyboard="false"
                                         tabindex="-1" aria-labelledby="eventEdit" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
