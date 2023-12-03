@@ -276,7 +276,10 @@ if ($row3 = $result3->fetch()) {
                       <img class="event-image mb-3" src="<?php echo $eventPhoto; ?>" alt="Event Image">
                       <p class="fs-4"><?php echo $eventArtist; ?></p>
                       <p class="mb-1"><?php echo $eventDesc; ?></p>
-                      <p class="attendees"><?php echo $eventNum; ?> people attending</p>
+                      <p class="attendees"><?php echo $eventNum; ?> <?php 
+                      if ($eventNum < 2) {
+                        echo "person";
+                      } ?> attending</p>
                     </a>
 
 
