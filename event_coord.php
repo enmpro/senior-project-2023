@@ -147,8 +147,8 @@ if ($rowCheck = $resultCheck->fetch()) {
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="eventDescription" class="form-label">Event Description</label>
-                                    <textarea class="form-control" name="eventDescription" id="eventDescription"
+                                    <label for="eventDesc" class="form-label">Event Description</label>
+                                    <textarea class="form-control" name="eventDesc" id="eventDesc"
                                         rows="4" placeholder="Enter event description" required></textarea>
                                 </div>
 
@@ -229,29 +229,29 @@ if ($rowCheck = $resultCheck->fetch()) {
                                                 </div>
                                                 <div class="modal-body">
                                                     <form action="edit_event.php" method="post" enctype="multipart/form-data">
-                                                        <div class="m-3">
-                                                            <label for="eventName">Event Name</label>
-                                                            <input id="eventName" name="eventName" type="text" required />
+                                                        <div class="mb-3">
+                                                            <label class="form-label" for="eventName">Event Name</label>
+                                                            <input class="form-control"  id="eventName" name="eventName" type="text" value="$event_Name" />
                                                         </div>
-                                                        <div class="m-3">
-                                                            <label for="eventArtist">Event Artist</label>
-                                                            <input id="eventArtist" name="eventArtist" type="text" required />
+                                                        <div class="mb-3">
+                                                            <label class="form-label"  for="eventArtist">Event Artist</label>
+                                                            <input class="form-control" id="eventArtist" name="eventArtist" type="text" value="$event_Artist" />
                                                         </div>
-                                                        <div class="m-3">
-                                                            <label for="eventDesc">Event Description</label>
-                                                            <textarea id="eventDesc" name="eventDesc" placeholder="Insert Description Here..."
-                                                                required></textarea>
+                                                        <div class="mb-3">
+                                                            <label class="form-label"  for="eventDesc">Event Description</label>
+                                                            <textarea  class="form-control" id="eventDesc" name="eventDesc" placeholder="Insert Description Here..."
+                                                                > value="$event_Desc" </textarea>
                                                         </div>
-                                                        <div class="m-3">
-                                                            <label for="eventPhoto">Event Photo</label>
-                                                            <input id="eventPhoto" name="eventPhoto" type="file" required />
+                                                        <div class="mb-3">
+                                                            <label class="form-label"  for="eventPhoto">Event Photo</label>
+                                                            <input class="form-control" id="eventPhoto" name="eventPhoto" type="file" />
                                                         </div>
-                                                        <div class="m-3">
-                                                            <label for="eventDate">Event Date and Time</label>
-                                                            <input id="eventDate" name="eventDate" type="datetime-local" required />
+                                                        <div class="mb-3">
+                                                            <label class="form-label"  for="eventDate">Event Date and Time</label>
+                                                            <input class="form-control" id="eventDate" name="eventDate" type="datetime-local" value="$event_DateTime" />
                                                         </div>
                                                         <div class="text-center">
-                                                            <input type="hidden" name="id" value="$event_id">
+                                                            <input class="form-label"  type="hidden" name="id" value="$event_id">
                                                             <button type="submit" name="submit">Save</button>
                                                         </div>
                                                     </form>
