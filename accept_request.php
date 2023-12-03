@@ -24,8 +24,7 @@ if (isset($_GET['UserID'])) {
     $RequestID = $_GET['UserID'];
 
     try {
-        //$conn->beginTransaction();
-
+       
         $updateRequest = $conn->prepare("UPDATE FriendRequest SET Status = 'accepted' WHERE UserID = :UserID");
         $updateRequest->bindParam(':UserID', $RequestID);
         $updateRequest->execute();
