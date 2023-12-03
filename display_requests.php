@@ -1,9 +1,6 @@
 <?php
 require_once 'logindb.php';
 
-$ReceiverUserID = $AuthUserID;
-$CurrentUserID = $AuthUserID;
-
 try {
     $pdo = new PDO($attr, $user, $pass, $opts);
 } catch (PDOException $e) {
@@ -17,6 +14,7 @@ if (!isset($_SESSION['user_name'])) {
     exit;
 }
 
+$CurrentUserID = $_SESSION['UserID'];
 
 function test_userinput($data)
 {
