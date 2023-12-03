@@ -136,8 +136,8 @@ if ($rowCheck = $resultCheck->fetch()) {
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="eventPhoto">Event Photo</label>
-                                    <input id="eventPhoto" name="eventPhoto" type="file" required />
+                                    <label class="form-label" for="eventPhoto">Event Photo</label>
+                                    <input class="form-control" id="eventPhoto" name="eventPhoto" type="file" required />
                                 </div>
 
                                 <div class="mb-3">
