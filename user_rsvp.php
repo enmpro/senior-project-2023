@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
         if ($rsvpStatus == 'Attending') {
-            $sqlUpdateAttendees = "UPDATE Event SET UserNumAttend = UserNumAttend + 1 WHERE event_id = :event_id";
+            $sqlUpdateAttendees = "UPDATE Event SET UserNumAttend = UserNumAttend + 1 WHERE EventID = :event_id";
             $stmtUpdateAttendees = $pdo->prepare($sqlUpdateAttendees);
             $stmtUpdateAttendees->bindParam(':event_id', $eventID, PDO::PARAM_INT);
             $stmtUpdateAttendees->execute();
