@@ -137,7 +137,8 @@ if ($rowCheck = $resultCheck->fetch()) {
 
                                 <div class="mb-3">
                                     <label class="form-label" for="eventPhoto">Event Photo</label>
-                                    <input class="form-control" id="eventPhoto" name="eventPhoto" type="file" required />
+                                    <input class="form-control" id="eventPhoto" name="eventPhoto" type="file"
+                                        required />
                                 </div>
 
                                 <div class="mb-3">
@@ -148,11 +149,11 @@ if ($rowCheck = $resultCheck->fetch()) {
 
                                 <div class="mb-3">
                                     <label for="eventDesc" class="form-label">Event Description</label>
-                                    <textarea class="form-control" name="eventDesc" id="eventDesc"
-                                        rows="4" placeholder="Enter event description" required></textarea>
+                                    <textarea class="form-control" name="eventDesc" id="eventDesc" rows="4"
+                                        placeholder="Enter event description" required></textarea>
                                 </div>
 
-                                
+
                                 <div class="text-center">
                                     <input class="my-3 btn btn-primary" name="submit" type="submit"
                                         value="Create Event">
@@ -214,10 +215,19 @@ if ($rowCheck = $resultCheck->fetch()) {
                                 <td>$event_DateTime</td>
                                 <td>$userNumAttend</td>
                                 <td> 
-                                    <div>
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#eventEdit$count">Edit</button>
+                                <div class="row row-cols-2">
+                                    <div class="col">
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                        data-bs-target="#eventEdit$count">Edit</button>
                                     </div>
+                                    <div class="col">
+                                    <form action="delete_event.php" method="post">
+                                        <input type="hidden" name="id" value="$event_id">
+                                        <button type="submit" onclick="return confirm('Are you sure you want to delete this event?')">Delete</button>
+                                    </form>
+                                    </div>
+                                </div>
+                                   
                                     <div class="modal fade" id="eventEdit$count" data-bs-backdrop="static" data-bs-keyboard="false"
                                         tabindex="-1" aria-labelledby="eventEdit$count" aria-hidden="true">
                                         <div class="modal-dialog">
@@ -259,11 +269,7 @@ if ($rowCheck = $resultCheck->fetch()) {
                                             </div>
                                         </div>
                                     </div>    
-                                    |
-                                    <form action="delete_event.php" method="post">
-                                        <input type="hidden" name="id" value="$event_id">
-                                        <button type="submit" onclick="return confirm('Are you sure you want to delete this event?')">Delete</button>
-                                    </form>
+                                   
                                 </td>
                             </tr>
                         _END;
