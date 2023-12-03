@@ -266,24 +266,44 @@ if ($row3 = $result3->fetch()) {
                       $eventDate = $eventResult['EventDateTime'];
                     }
 
-                    ?>
-
-                    <a href="#" class="list-group-item list-group-item-action">
-                      <div class="d-flex w-100 justify-content-between">
-                        <h4 class="mb-3"><?php echo $eventName; ?></h4>
-                        <small><?php echo $eventDate; ?></small>
-                      </div>
-                      <img class="event-image mb-3" src="<?php echo $eventPhoto; ?>" alt="Event Image">
-                      <p class="fs-4"><?php echo $eventArtist; ?></p>
-                      <p class="mb-1"><?php echo $eventDesc; ?></p>
-                      <p class="attendees"><?php echo $eventNum; ?> <?php 
-                      if ($eventNum < 2) {
-                        echo "person";
-                      } ?> attending</p>
-                    </a>
+                    if ($rsvpStatus == 'Attending') {
+                      ?>
 
 
-                    <?php
+                      <a href="#" class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                          <h4 class="mb-3"><?php echo $eventName; ?></h4>
+                          <small><?php echo $eventDate; ?></small>
+                        </div>
+                        <img class="event-image mb-3" src="<?php echo $eventPhoto; ?>" alt="Event Image">
+                        <p class="fs-4"><?php echo $eventArtist; ?></p>
+                        <p class="mb-1"><?php echo $eventDesc; ?></p>
+                        <p class="attendees"><?php echo $eventNum; ?>     <?php
+                                if ($eventNum < 2) {
+                                  echo "person";
+                                } else {
+                                  echo "people";
+                                } ?> attending</p>
+                      </a>
+
+                      <?php
+                    }
+
+                    if ($rsvpStatus == 'Maybe') {
+                      ?>
+
+                      <a href="#" class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                          <h4 class="mb-3"><?php echo $eventName; ?></h4>
+                          <small><?php echo $eventDate; ?></small>
+                        </div>
+                        <img class="event-image mb-3" src="<?php echo $eventPhoto; ?>" alt="Event Image">
+                        <p class="fs-4"><?php echo $eventArtist; ?></p>
+                        <p class="mb-1"><?php echo $eventDesc; ?></p>
+                        <p class="attendees">Possibly interested</p>
+                      </a>
+                      <?php
+                    }
                   }
                   ?>
                 </div>
