@@ -26,17 +26,26 @@ function test_userinput($data)
     return $data;
 }
 
-$result = $conn->prepare("SELECT * FROM FriendRequest WHERE RequestReceive = :RequestReceive AND Status = 'pending'");
-$result->bindParam(':RequestReceive', $CurrentUserID);
-$result->execute();
+try {
+    $pdo = new PDO($attr, $user, $pass, $opts);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-    $SenderUserID = $row['RequestSend'];
-    echo "<li>{$SenderUserID} wants to be your friend! 
+    $result = $pdo->prepare("SELECT * FROM FriendRequest WHERE RequestReceive = :RequestReceive AND Status = 'pending'");
+    $result->bindParam(':RequestReceive', $CurrentUserID);
+    $result->execute();
+
+    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+        $SenderUserID = $row['RequestSend'];
+        echo "<li>{$SenderUserID} wants to be your friend! 
           <a href='accept_request.php?id={$row['id']}'>Accept</a> 
           <a href='reject_request.php?id={$row['id']}'>Reject</a></li>";
+    }
+}
+catch (PDOExceotion $e){
+    echo "Error: ". $e->getMessage();
+}
 
-//$conn = null;
+$pdo = null;
 
 
 ?>
