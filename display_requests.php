@@ -22,7 +22,9 @@ try {
     $pdo = new PDO($attr, $user, $pass, $opts);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $result = $pdo->prepare("SELECT * FROM FriendRequest WHERE RequestReceive = :RequestReceive AND Status = 'pending'");
+    $result = $pdo->prepare("SELECT * FROM FriendRequest 
+                            WHERE RequestReceive = :RequestReceive
+                             AND Status = 'pending'");
     $result->bindParam(':RequestReceive', $CurrentUserID);
     $result->execute();
 
