@@ -48,6 +48,16 @@ if ($rowCheck = $resultCheck->fetch()) {
 
 </head>
 
+<style>
+    .event-photo {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        overflow: hidden;
+    }
+</style>
+
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
@@ -192,7 +202,7 @@ if ($rowCheck = $resultCheck->fetch()) {
                                 <td>$event_Name</td>
                                 <td>$event_Artist</td>
                                 <td>$event_Desc</td>
-                                <td> <img src="$event_Photo" style="width: 250px" alt="Profile Image" class="profile-image"></td>
+                                <td> <img class="event-photo" src="$event_Photo" style="width: 250px" alt="Profile Image" class="profile-image"></td>
                                 <td>$event_DateTime</td>
                                 <td>$userNumAttend</td>
                                 <td> 
