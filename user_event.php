@@ -170,8 +170,7 @@ if ($rowCheck = $resultCheck->fetch()) {
                                 <label class="form-label" for="rsvp_status">RSVP Status</label>
                                 <select class="form-select" name="rsvp_status" id="rsvp_status" required>
                                     <option value="Attending">Attending</option>
-                                    <option value="Not Attending">Not Attending</option>
-                                    <option value="Maybe">Maybe</option>
+                                    <option value="Maybe">Interested</option>
                                 </select>
                                 <button type="submit" class="btn btn-primary">RSVP</button>
                             </form>

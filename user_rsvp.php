@@ -41,6 +41,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $insertStmt->bindParam(':eventID', $eventID, PDO::PARAM_INT);
         $insertStmt->bindParam(':rsvpStatus', $rsvpStatus, PDO::PARAM_STR);
 
+
+        if ($rsvpStatus == 'Attending') {
+            $sqlUpdateAttendees = "UPDATE Event SET UserNumAttend = UserNumAttend + 1 WHERE event_id = :event_id";
+            $stmtUpdateAttendees = $pdo->prepare($sqlUpdateAttendees);
+            $stmtUpdateAttendees->bindParam(':event_id', $eventID, PDO::PARAM_INT);
+            $stmtUpdateAttendees->execute();
+        }
+
         if ($insertStmt->execute()) {
             echo "RSVP successful!";
         } else {
