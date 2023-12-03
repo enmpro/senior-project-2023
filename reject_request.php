@@ -24,8 +24,16 @@ function test_userinput($data)
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $RequestID = $_POST['RequestID'];
 
-    $conn->query("UPDATE FriendRequest SET Status = 'rejected' WHERE UserID = $RequestID");
+    try {
+        $updateRequest = $pdo->prepare("UPDATE FriendRequest SET Status = 'rejected' WHERE UserID = :RequestID");
+        $updateRequest->bindParam(':RequestID', $RequestID);
+        $updateRequest->execute();
+    } 
+    catch (PDOException $e) {
+        echo "Error: " . $e->getMessage();
+    }
 }
+
 
 header("Location: homepage_page.html");
 exit();
