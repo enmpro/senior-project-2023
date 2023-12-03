@@ -149,80 +149,101 @@ if ($row3 = $result3->fetch()) {
   </nav>
 
 
-  <div class="container profile-container">
-    <div class="container mb-5">
-      <a class="btn btn-primary submit-btn" href="profile_edit_page.php">Edit Profile</a>
-    </div>
-    <div class="text-center">
-      <img src="<?php echo $profilePic; ?>" alt="Profile Picture" class="profile-picture">
-    </div>
-    <div class="user-info">
-      <h2><?php echo $fullname; ?> | <?php echo $username; ?></h2>
-      <?php
-      $query4 = "SELECT * FROM EventOrganizer WHERE UserID LIKE $user_id";
-      $result4 = $pdo->query($query4);
-      if ($row4 = $result4->fetch()) {
-        $organizerName = $row3['OrganizerName'];
-        $organizerType = $row3['OrganizerType'];
-        $organizerAddress = $row3['Address'];
-        $organizerPhone = $row3['Phone'];
-        $organizerEmail = $row3['ContactEmail'];
-        $organizerUrl = $row3['WebsiteURL'];
-        echo <<<_END
+  <div class="container">
+    <div class="row row-cols-2">
+      <div class="container profile-container">
+        <div class="container mb-5">
+          <a class="btn btn-primary submit-btn" href="profile_edit_page.php">Edit Profile</a>
+        </div>
+        <div class="text-center">
+          <img src="<?php echo $profilePic; ?>" alt="Profile Picture" class="profile-picture">
+        </div>
+        <div class="user-info">
+          <h2><?php echo $fullname; ?> | <?php echo $username; ?></h2>
+          <?php
+          $query4 = "SELECT * FROM EventOrganizer WHERE UserID LIKE $user_id";
+          $result4 = $pdo->query($query4);
+          if ($row4 = $result4->fetch()) {
+            $organizerName = $row3['OrganizerName'];
+            $organizerType = $row3['OrganizerType'];
+            $organizerAddress = $row3['Address'];
+            $organizerPhone = $row3['Phone'];
+            $organizerEmail = $row3['ContactEmail'];
+            $organizerUrl = $row3['WebsiteURL'];
+            echo <<<_END
             <h4><i>Event Organizer</i></h4>
           _END;
-      } else {
-        $organizerName = '';
-        $organizerType = '';
-        $organizerAddress = '';
-        $organizerPhone = '';
-        $organizerEmail = '';
-        $organizerUrl = '';
-      }
-      ?>
-      <div class="mt-3">
-        <p>Email</p>
-        <p><?php echo $userEmail; ?></p>
-      </div>
-      <div>
-        <p>Location</p>
-        <p><?php echo $zip; ?></p>
-      </div>
-    </div>
+          } else {
+            $organizerName = '';
+            $organizerType = '';
+            $organizerAddress = '';
+            $organizerPhone = '';
+            $organizerEmail = '';
+            $organizerUrl = '';
+          }
+          ?>
+          <div class="mt-3">
+            <p>Email</p>
+            <p><?php echo $userEmail; ?></p>
+          </div>
+          <div>
+            <p>Location</p>
+            <p><?php echo $zip; ?></p>
+          </div>
+        </div>
 
-    <?php
-    if ($organizerBool) {
-      ?>
-      <div class="text-center">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#organizerModal">Organizer
-          Information</button>
-      </div>
-      <?php
-    }
-    ?>
+        <?php
+        if ($organizerBool) {
+          ?>
+          <div class="text-center">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+              data-bs-target="#organizerModal">Organizer
+              Information</button>
+          </div>
+          <?php
+        }
+        ?>
 
-    <hr>
+        <hr>
 
-    <div class="additional-details text-center">
-      <h3>Additional Details</h3>
-      <div class="mt-3">
-        <p><strong>Age</strong></p>
-        <p><?php echo $birthday; ?></p>
+        <div class="additional-details text-center">
+          <h3>Additional Details</h3>
+          <div class="mt-3">
+            <p><strong>Age</strong></p>
+            <p><?php echo $birthday; ?></p>
+          </div>
+          <div>
+            <p><strong>Favorite Genres</strong></p>
+            <p>FIX ME</p>
+          </div>
+          <div>
+            <p><strong>Description</strong></p>
+            <p><?php echo $description; ?></p>
+          </div>
+          <div>
+            <p><strong>Social Media</strong></p>
+            <p>FIX ME</p>
+          </div>
+        </div>
       </div>
-      <div>
-        <p><strong>Favorite Genres</strong></p>
-        <p>FIX ME</p>
-      </div>
-      <div>
-        <p><strong>Description</strong></p>
-        <p><?php echo $description; ?></p>
-      </div>
-      <div>
-        <p><strong>Social Media</strong></p>
-        <p>FIX ME</p>
+      <div class="col" style="margin: 50px auto;">
+        <div class="card shadow-sm" style="height: 600px;">
+          <div class="card-header text-center">
+            <p class="fs-2">Friends List</p>
+          </div>
+          <div class="card-body">
+
+            <div class="card-text">
+              <p>No Friends</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
+
+
+
 
   <div class="modal fade" id="organizerModal" tabindex="-1" aria-labelledby="organizerModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -266,7 +287,7 @@ if ($row3 = $result3->fetch()) {
     </div>
   </div>
 
-  <div class="container">
+  <div class="container" style="max-width: 38em;">
     <div class="card shadow-sm">
       <div class="card-header text-center">
         <p class="fs-2">Events</p>
