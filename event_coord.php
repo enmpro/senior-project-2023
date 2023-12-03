@@ -240,7 +240,7 @@ if ($rowCheck = $resultCheck->fetch()) {
                                                         <div class="mb-3">
                                                             <label class="form-label"  for="eventDesc">Event Description</label>
                                                             <textarea  class="form-control" id="eventDesc" name="eventDesc" placeholder="Insert Description Here..."
-                                                                > value="$event_Desc" </textarea>
+                                                            >$event_Desc</textarea>
                                                         </div>
                                                         <div class="mb-3">
                                                             <label class="form-label"  for="eventPhoto">Event Photo</label>

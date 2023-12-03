@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $eventArtist = test_userinput($_POST['eventArtist']);
     $eventDesc = test_userinput($_POST['eventDesc']);
     $eventDate = test_userinput($_POST['eventDate']);
-   
+
 
     if (isset($_POST['submit'])) {
 
@@ -33,49 +33,49 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $oldPhotoStmt->bindParam(':eventID', $eventID, PDO::PARAM_INT);
         $oldPhotoStmt->execute();
         $oldPhoto = $oldPhotoStmt->fetchColumn();
+        if ($_FILES['userphoto']['error'] == 4) {
+            $targetPhotoFile = "$oldPhoto";
+        } else {
+            if (!empty($oldPhoto)) {
+                // Construct the path to the old photo file (adjust the path as needed)
+                $oldPhotoPath = "$oldPhoto";
 
+                // Check if the file exists before attempting to delete
+                if (file_exists($oldPhotoPath)) {
+                    unlink($oldPhotoPath); // Delete the old photo file
+                }
+            }
 
-        if (!empty($oldPhoto)) {
-            // Construct the path to the old photo file (adjust the path as needed)
-            $oldPhotoPath = "$oldPhoto";
+            $targetDirectory = "eventphoto/"; // Directory to store profile pictures
 
-            // Check if the file exists before attempting to delete
-            if (file_exists($oldPhotoPath)) {
-                unlink($oldPhotoPath); // Delete the old photo file
+            $randomFileName = uniqid();
+            $targetPhotoFile = $targetDirectory . $randomFileName . '_' . basename($_FILES['eventPhoto']['name']);
+            echo <<<_END
+                        <script>
+                        alert("$targetPhotoFile");
+                        alert("$eventName");     
+                        alert("$eventDesc");                       
+                        </script>
+                        _END;
+
+            if (move_uploaded_file($_FILES['eventPhoto']['tmp_name'], $targetPhotoFile)) {
+                echo <<<_END
+                        <script>
+                            alert("Photo added");
+                            
+                        </script>
+                        _END;
+            } else {
+                echo <<<_END
+                        <script>
+                            alert("Photo not added");
+                            
+                        </script>
+                        _END;
+
+                $targetPhotoFile = '';
             }
         }
-        
-
-        $targetDirectory = "eventphoto/"; // Directory to store profile pictures
-
-        $randomFileName = uniqid();
-        $targetPhotoFile = $targetDirectory . $randomFileName . '_' . basename($_FILES['eventPhoto']['name']);
-        echo <<<_END
-                    <script>
-                    alert("$targetPhotoFile");
-                    alert("$eventName");     
-                    alert("$eventDesc");                       
-                    </script>
-                    _END;
-
-        if (move_uploaded_file($_FILES['eventPhoto']['tmp_name'], $targetPhotoFile)) {
-            echo <<<_END
-                    <script>
-                        alert("Photo added");
-                        
-                    </script>
-                    _END;
-        } else {
-            echo <<<_END
-                    <script>
-                        alert("Photo not added");
-                        
-                    </script>
-                    _END;
-
-            $targetPhotoFile = '';
-        }
-
 
     }
 
