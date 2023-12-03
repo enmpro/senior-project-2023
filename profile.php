@@ -72,9 +72,9 @@ if ($row3 = $result3->fetch()) {
 </head>
 
 <style>
-.scrollspy-event {
+  .scrollspy-event {
     position: relative;
-    height: 300px;
+    height: 600px;
     overflow: auto;
   }
 
@@ -101,6 +101,7 @@ if ($row3 = $result3->fetch()) {
     color: #666;
   }
 </style>
+
 <body>
 
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -148,82 +149,128 @@ if ($row3 = $result3->fetch()) {
 
 
   <div class="container">
-    <div class="row row-cols-3">
-      <div class="container profile-container">
-        <div class="container mb-5">
-          <a class="btn btn-primary submit-btn" href="profile_edit_page.php">Edit Profile</a>
-        </div>
-        <div class="text-center">
-          <img src="<?php echo $profilePic; ?>" alt="Profile Picture" class="profile-picture">
-        </div>
-        <div class="user-info">
-          <h2><?php echo $fullname; ?> | <?php echo $username; ?></h2>
-          <?php
-          $query4 = "SELECT * FROM EventOrganizer WHERE UserID LIKE $user_id";
-          $result4 = $pdo->query($query4);
-          if ($row4 = $result4->fetch()) {
-            $organizerName = $row3['OrganizerName'];
-            $organizerType = $row3['OrganizerType'];
-            $organizerAddress = $row3['Address'];
-            $organizerPhone = $row3['Phone'];
-            $organizerEmail = $row3['ContactEmail'];
-            $organizerUrl = $row3['WebsiteURL'];
-            echo <<<_END
+    <div class="row">
+      <div class="col-md-4">
+        <div class="profile-container">
+          <div class="container mb-5">
+            <a class="btn btn-primary submit-btn" href="profile_edit_page.php">Edit Profile</a>
+          </div>
+          <div class="text-center">
+            <img src="<?php echo $profilePic; ?>" alt="Profile Picture" class="profile-picture">
+          </div>
+          <div class="user-info">
+            <h2><?php echo $fullname; ?> | <?php echo $username; ?></h2>
+            <?php
+            $query4 = "SELECT * FROM EventOrganizer WHERE UserID LIKE $user_id";
+            $result4 = $pdo->query($query4);
+            if ($row4 = $result4->fetch()) {
+              $organizerName = $row3['OrganizerName'];
+              $organizerType = $row3['OrganizerType'];
+              $organizerAddress = $row3['Address'];
+              $organizerPhone = $row3['Phone'];
+              $organizerEmail = $row3['ContactEmail'];
+              $organizerUrl = $row3['WebsiteURL'];
+              echo <<<_END
             <h4><i>Event Organizer</i></h4>
           _END;
-          } else {
-            $organizerName = '';
-            $organizerType = '';
-            $organizerAddress = '';
-            $organizerPhone = '';
-            $organizerEmail = '';
-            $organizerUrl = '';
+            } else {
+              $organizerName = '';
+              $organizerType = '';
+              $organizerAddress = '';
+              $organizerPhone = '';
+              $organizerEmail = '';
+              $organizerUrl = '';
+            }
+            ?>
+            <div class="mt-3">
+              <p>Email</p>
+              <p><?php echo $userEmail; ?></p>
+            </div>
+            <div>
+              <p>Location</p>
+              <p><?php echo $zip; ?></p>
+            </div>
+          </div>
+
+          <?php
+          if ($organizerBool) {
+            ?>
+            <div class="text-center">
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                data-bs-target="#organizerModal">Organizer
+                Information</button>
+            </div>
+            <?php
           }
           ?>
-          <div class="mt-3">
-            <p>Email</p>
-            <p><?php echo $userEmail; ?></p>
-          </div>
-          <div>
-            <p>Location</p>
-            <p><?php echo $zip; ?></p>
+
+          <hr>
+
+          <div class="additional-details text-center">
+            <h3>Additional Details</h3>
+            <div class="mt-3">
+              <p><strong>Age</strong></p>
+              <p><?php echo $birthday; ?></p>
+            </div>
+            <div>
+              <p><strong>Favorite Genres</strong></p>
+              <p>FIX ME</p>
+            </div>
+            <div>
+              <p><strong>Description</strong></p>
+              <p><?php echo $description; ?></p>
+            </div>
+            <div>
+              <p><strong>Social Media</strong></p>
+              <p>FIX ME</p>
+            </div>
           </div>
         </div>
 
-        <?php
-        if ($organizerBool) {
-          ?>
-          <div class="text-center">
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-              data-bs-target="#organizerModal">Organizer
-              Information</button>
-          </div>
-          <?php
-        }
-        ?>
+        <div class="col-md-4" style="margin: 50px auto;">
+          <div class="card shadow-sm">
+            <div class="card-header text-center">
+              <p class="fs-2">Events</p>
+            </div>
+            <ul class="scrollspy-event list-group list-group-flush" data-bs-spy="scroll">
+              <?php
+              $rsvpQuery = "SELECT * FROM UserRSVP WHERE UserID LIKE $user_id";
+              $rsvpResult = $pdo->query($rsvpQuery);
 
-        <hr>
+              foreach ($rsvpResult as $row) {
+                $rsvp_eventID = $row['EventID'];
+                $rsvpStatus = $row['RSVPStatus'];
 
-        <div class="additional-details text-center">
-          <h3>Additional Details</h3>
-          <div class="mt-3">
-            <p><strong>Age</strong></p>
-            <p><?php echo $birthday; ?></p>
-          </div>
-          <div>
-            <p><strong>Favorite Genres</strong></p>
-            <p>FIX ME</p>
-          </div>
-          <div>
-            <p><strong>Description</strong></p>
-            <p><?php echo $description; ?></p>
-          </div>
-          <div>
-            <p><strong>Social Media</strong></p>
-            <p>FIX ME</p>
+                $eventRsvp = "SELECT * FROM Event WHERE EventID LIKE $rsvp_eventID";
+                $eventRsvpResult = $pdo->query($eventRsvp);
+
+                if ($eventResult = $eventRsvpResult->fetch()) {
+                  $eventName = $eventResult['EventName'];
+                  $eventArtist = $eventResult['EventArtist'];
+                  $eventDesc = $eventResult['EventDesc'];
+                  $eventPhoto = $eventResult['EventPhoto'];
+                  $eventNum = $eventResult['UserNumAttend'];
+                }
+
+                ?>
+                <li class="list-group-item event-item">
+                  <img class="event-image" src="<?php echo $eventPhoto; ?>" alt="Event Image">
+                  <div class="event-details">
+                    <h3><?php echo $eventName; ?></h3>
+                    <p><?php echo $eventDesc; ?></p>
+                    <p class="attendees"><?php echo $eventNum; ?> people attending</p>
+                  </div>
+                </li>
+                <?php
+              }
+              ?>
+
+            </ul>
           </div>
         </div>
       </div>
+
+
       <div class="col" style="margin: 50px auto;">
         <div class="card shadow-sm" style="height: 600px;">
           <div class="card-header text-center">
@@ -237,47 +284,7 @@ if ($row3 = $result3->fetch()) {
           </div>
         </div>
       </div>
-      <div class="container col" style="margin: 50px auto;">
-        <div class="card shadow-sm">
-          <div class="card-header text-center">
-            <p class="fs-2">Events</p>
-          </div>
-          <ul class="scrollspy-event list-group list-group-flush" data-bs-spy="scroll">
-            <?php
-            $rsvpQuery = "SELECT * FROM UserRSVP WHERE UserID LIKE $user_id";
-            $rsvpResult = $pdo->query($rsvpQuery);
 
-            foreach ($rsvpResult as $row) {
-              $rsvp_eventID = $row['EventID'];
-              $rsvpStatus = $row['RSVPStatus'];
-
-              $eventRsvp = "SELECT * FROM Event WHERE EventID LIKE $rsvp_eventID";
-              $eventRsvpResult = $pdo->query($eventRsvp);
-
-              if ($eventResult = $eventRsvpResult->fetch()) {
-                $eventName = $eventResult['EventName'];
-                $eventArtist = $eventResult['EventArtist'];
-                $eventDesc = $eventResult['EventDesc'];
-                $eventPhoto = $eventResult['EventPhoto'];
-                $eventNum = $eventResult['UserNumAttend'];
-              }
-
-              ?>
-              <li class="list-group-item event-item">
-                <img class="event-image" src="<?php echo $eventPhoto; ?>" alt="Event Image">
-                <div class="event-details">
-                  <h3><?php echo $eventName; ?></h3>
-                  <p><?php echo $eventDesc; ?></p>
-                  <p class="attendees"><?php echo $eventNum; ?> people attending</p>
-                </div>
-              </li>
-              <?php
-            }
-            ?>
-
-          </ul>
-        </div>
-      </div>
     </div>
   </div>
 
