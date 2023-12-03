@@ -219,7 +219,7 @@ if ($rowCheck = $resultCheck->fetch()) {
                                             data-bs-target="#eventEdit$count">Edit</button>
                                     </div>
                                     <div class="modal fade" id="eventEdit$count" data-bs-backdrop="static" data-bs-keyboard="false"
-                                        tabindex="-1" aria-labelledby="eventEdit" aria-hidden="true">
+                                        tabindex="-1" aria-labelledby="eventEdit$count" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
