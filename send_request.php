@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $SenderUserID = $AuthUserID;
 
     try {
-        $stmt = $conn->prepare("SELECT UserID FROM User WHERE Username= :Username");
+        $stmt = $pdo->prepare("SELECT UserID FROM User WHERE Username= :Username");
         $stmt->bindParam(':Username', $friend_username);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -37,13 +37,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($result) {
             $FriendUserID = $result['UserID'];
 
-            $existingRequest = $conn->prepare("SELECT * FROM FriendRequest WHERE RequestSend = :RequestSend AND RequestReceive = :RequestReceive");
+            $existingRequest = $pdo->prepare("SELECT * FROM FriendRequest WHERE RequestSend = :RequestSend AND RequestReceive = :RequestReceive");
             $existingRequest->bindParam(':RequestSend', $SenderUserID);
             $existingRequest->bindParam(':RequestReceive', $FriendUserID);
             $existingRequest->execute();
 
             if ($existingRequest->rowCount() === 0) {
-                $insertRequest = $conn->prepare("INSERT INTO FriendRequests (RequestSend, RequestReceive, Status) VALUES (:RequestSend, :RequestReceive, 'pending')");
+                $insertRequest = $pdo->prepare("INSERT INTO FriendRequests (RequestSend, RequestReceive, Status) VALUES (:RequestSend, :RequestReceive, 'pending')");
                 $insertRequest->bindParam(':RequestSend', $SenderUserID);
                 $insertRequest->bindParam(':RequestReceive', $FriendUserID);
                 $insertRequest->execute();
