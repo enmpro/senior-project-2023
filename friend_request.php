@@ -61,9 +61,5 @@
         <button type="submit">Send Request</button>
     </form>
 
-    <h2>Friend Requests</h2>
-    <ul>
-        <?php include 'display_requests.php'?>
-    </ul>
 </body>
 </html>
