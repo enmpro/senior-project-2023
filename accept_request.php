@@ -13,6 +13,7 @@ if (!isset($_SESSION['user_name'])) {
     header('Location: landing.html');
     exit;
 }
+
 function test_userinput($data)
 {
     $data = trim($data);
@@ -20,11 +21,11 @@ function test_userinput($data)
     $data = htmlspecialchars($data);
     return $data;
 }
+
 if (isset($_GET['UserID'])) {
     $RequestID = $_GET['UserID'];
 
     try {
-       
         $updateRequest = $pdo->prepare("UPDATE FriendRequest SET Status = 'accepted' 
                                         WHERE UserID = :UserID");
         $updateRequest->bindParam(':UserID', $RequestID);
@@ -38,6 +39,7 @@ if (isset($_GET['UserID'])) {
     }
     catch (PDOException $e) {
         echo "Error: " . $e->getMessage();
+    }
 }
 
 $pdo = null;
