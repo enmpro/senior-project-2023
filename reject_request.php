@@ -29,13 +29,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                         WHERE UserID = :RequestID");
         $updateRequest->bindParam(':RequestID', $RequestID);
         $updateRequest->execute();
+
+        header('Location: display_request.php');
+        exit;
     } 
     catch (PDOException $e) {
         echo "Error: " . $e->getMessage();
     }
 }
 
-
-header("Location: homepage_page.html");
-exit();
 ?>
