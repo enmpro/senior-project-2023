@@ -38,7 +38,7 @@ if (isset($_GET['UserID'])) {
         $request_info = $getRequestInfo->fetch(PDO::FETCH_ASSOC);
 
         //redirects user back to display_requests.php
-        header('Location: display_request.php');
+        header('Location: display_requests.php');
         exit;
     }
     catch (PDOException $e) {
