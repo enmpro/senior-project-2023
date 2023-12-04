@@ -19,7 +19,7 @@ $userOwnID = $_SESSION['user_id'];
 
 $user_id = $_GET['id'];
 
-$query = "SELECT * FROM User WHERE UserID LIKE $user_id";
+$query = "SELECT *, FLOOR(TIMESTAMPDIFF(YEAR, Birthday, CURDATE())) as Age FROM User WHERE UserID LIKE $user_id";
 $result = $pdo->query($query);
 
 if ($row = $result->fetch()) {
@@ -27,7 +27,7 @@ if ($row = $result->fetch()) {
   $fullname = $row['FirstName'] . ' ' . $row['LastName'];
   $gender = $row['Gender'];
   $zip = $row['Zip'];
-  $birthday = $row['Birthday'];
+  $birthday = $row['Age'];
   $userEmail = $row['Email'];
 }
 
@@ -80,6 +80,37 @@ if ($rowCheck = $resultCheck->fetch()) {
   <link rel="stylesheet" href="profile.css">
 </head>
 
+<style>
+  .scrollspy-event {
+    position: relative;
+    max-height: 600px;
+    overflow: auto;
+  }
+
+  .event-item {
+    background-color: #e0e0e0;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 10px;
+  }
+
+  .event-image {
+    max-width: 100%;
+    height: 120px;
+    border-radius: 5px;
+    overflow: hidden;
+    object-fit: cover;
+  }
+
+  .event-details {
+    margin-top: 10px;
+  }
+
+  .attendees {
+    color: #666;
+  }
+</style>
+
 <body>
 
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -126,70 +157,87 @@ if ($rowCheck = $resultCheck->fetch()) {
   </nav>
 
 
-  <div class="container profile-container">
-    <div class="text-center">
-      <img src="<?php echo $profilePic; ?>" alt="Profile Picture" class="profile-picture">
-    </div>
-    <div class="user-info">
-      <h2><?php echo $fullname; ?> | <?php echo $username; ?></h2>
-      <?php
-      $query4 = "SELECT * FROM EventOrganizer WHERE UserID LIKE $user_id";
-      $result4 = $pdo->query($query4);
-      if ($row4 = $result4->fetch()) {
-        $organizerName = $row4['OrganizerName'];
-        $organizerType = $row4['OrganizerType'];
-        $organizerAddress = $row4['Address'];
-        $organizerPhone = $row4['Phone'];
-        $organizerEmail = $row4['ContactEmail'];
-        $organizerUrl = $row4['WebsiteURL'];
-        echo <<<_END
+  <div class="container mb-5">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="profile-container">
+          <div class="text-center">
+            <img src="<?php echo $profilePic; ?>" alt="Profile Picture" class="profile-picture">
+          </div>
+          <div class="user-info">
+            <h2><?php echo $fullname; ?> | <?php echo $username; ?></h2>
+            <?php
+            $query4 = "SELECT * FROM EventOrganizer WHERE UserID LIKE $user_id";
+            $result4 = $pdo->query($query4);
+            if ($row4 = $result4->fetch()) {
+              $organizerName = $row4['OrganizerName'];
+              $organizerType = $row4['OrganizerType'];
+              $organizerAddress = $row4['Address'];
+              $organizerPhone = $row4['Phone'];
+              $organizerEmail = $row4['ContactEmail'];
+              $organizerUrl = $row4['WebsiteURL'];
+              echo <<<_END
             <h4><i>Event Organizer</i></h4>
           _END;
-      }
-      ?>
-      <div class="mt-3">
-        <p>Email</p>
-        <p><?php echo $userEmail; ?></p>
-      </div>
-      <div>
-        <p>Location</p>
-        <p><?php echo $zip; ?></p>
-      </div>
-    </div>
-    <?php
-    if ($organizerProfBool) {
-      ?>
-      <div class="text-center">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#organizerModal">Organizer
-          Information</button>
-      </div>
-      <?php
-    }
-    ?>
+            }
+            ?>
+            <div class="mt-3">
+              <p>Email</p>
+              <p><?php echo $userEmail; ?></p>
+            </div>
+            <div>
+              <p>Location</p>
+              <p><?php echo $zip; ?></p>
+            </div>
+          </div>
+          <?php
+          if ($organizerProfBool) {
+            ?>
+            <div class="text-center">
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                data-bs-target="#organizerModal">Organizer
+                Information</button>
+            </div>
+            <?php
+          }
+          ?>
 
 
-    <hr>
+          <hr>
 
-    <div class="additional-details text-center">
-      <h3>Additional Details</h3>
-      <div class="mt-3">
-        <p><strong>Age</strong></p>
-        <p><?php echo $birthday; ?></p>
+          <div class="additional-details text-center">
+            <h3>Additional Details</h3>
+            <div class="mt-3">
+              <p><strong>Age</strong></p>
+              <p><?php echo $birthday; ?></p>
+            </div>
+            <div>
+              <p><strong>Description</strong></p>
+              <p><?php echo $description; ?></p>
+            </div>
+            <div>
+              <p><strong>Social Media</strong></p>
+              <p>FIX ME</p>
+            </div>
+          </div>
+        </div>
+        <div class="card shadow-sm" style="max-height: 600px;">
+          <div class="card-header text-center">
+            <p class="fs-2">Friends List</p>
+          </div>
+          <div class="card-body">
+
+            <div class="card-text">
+              <p>No Friends</p>
+            </div>
+          </div>
+        </div>
       </div>
-      <div>
-        <p><strong>Favorite Genres</strong></p>
-        <p>FIX ME</p>
-      </div>
-      <div>
-        <p><strong>Description</strong></p>
-        <p><?php echo $description; ?></p>
-      </div>
-      <div>
-        <p><strong>Social Media</strong></p>
-        <p>FIX ME</p>
-      </div>
+      
     </div>
   </div>
+
+
 
   <div class="modal fade" id="organizerModal" tabindex="-1" aria-labelledby="organizerModalLabel" aria-hidden="true">
     <div class="modal-dialog">

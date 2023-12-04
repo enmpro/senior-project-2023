@@ -74,7 +74,7 @@ if ($row3 = $result3->fetch()) {
 <style>
   .scrollspy-event {
     position: relative;
-    height: 600px;
+    max-height: 600px;
     overflow: auto;
   }
 
