@@ -16,6 +16,14 @@ if (!isset($_SESSION['user_name'])) {
 
 $AuthUserID = $_SESSION['UserID'];
 
+function test_userinput($data)
+{
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $friend_username = $_POST['friend_username'];
     $SenderUserID = $AuthUserID;
