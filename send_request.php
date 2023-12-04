@@ -16,9 +16,9 @@ if (!isset($_SESSION['user_name'])) {
 
 $AuthUserID = $_SESSION['UserID'];
 
-if ($isset($_POST['add_friend'])) {
-    $RequestSend = $_SESSION['UserID'];
-    $RequestReceive = $_POST['RequestReceive'];
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $friend_username = $_POST['friend_username'];
+    $SenderUserID = $AuthUserID;
 }
 
     try {
