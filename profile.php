@@ -249,11 +249,12 @@ if ($row3 = $result3->fetch()) {
                   <?php
                   $rsvpQuery = "SELECT * FROM UserRSVP WHERE UserID LIKE $user_id";
                   $rsvpResult = $pdo->query($rsvpQuery);
-
+                  $count = 0;
                   foreach ($rsvpResult as $row) {
                     $rsvp_eventID = $row['EventID'];
                     $rsvpStatus = $row['RSVPStatus'];
 
+                    $count = $count + 1;
                     $eventRsvp = "SELECT * FROM Event WHERE EventID LIKE $rsvp_eventID";
                     $eventRsvpResult = $pdo->query($eventRsvp);
 
@@ -304,6 +305,17 @@ if ($row3 = $result3->fetch()) {
                       </a>
                       <?php
                     }
+                  }
+
+                  if ($count == 0) {
+
+                  ?>
+
+                  <div class="text-center">
+                    <h1>No Events Hsere...</h1>
+                  </div>
+
+                  <?php
                   }
                   ?>
                 </div>
