@@ -31,8 +31,15 @@ try {
     while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
         $SenderUserID = $row['RequestSend'];
         echo "<li>{$SenderUserID} wants to be your friend! 
-          <a href='accept_request.php?id={$row['id']}'>Accept</a> 
-          <a href='reject_request.php?id={$row['id']}'>Reject</a></li>";
+        <form action='accept_request.php' method='get' style='display:inline;'>
+          <input type='hidden' name='id' value='{$row['id']}'>
+          <button type='submit'>Accept</button>
+        </form>
+        <form action='reject_request.php' method='get' style='display:inline;'>
+          <input type='hidden' name='id' value='{$row['id']}'>
+          <button type='submit'>Reject</button>
+        </form>
+        </li>";
     }
 }
 catch (PDOException $e){

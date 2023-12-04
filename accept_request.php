@@ -36,6 +36,10 @@ if (isset($_GET['UserID'])) {
         $getRequestInfo->bindParam(':UserID', $RequestID);
         $getRequestInfo->execute();
         $request_info = $getRequestInfo->fetch(PDO::FETCH_ASSOC);
+
+        //redirects user back to display_requests.php
+        header('Location: display_request.php');
+        exit;
     }
     catch (PDOException $e) {
         echo "Error: " . $e->getMessage();
