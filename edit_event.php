@@ -88,7 +88,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     WHERE EventID = $eventID";
     $stmt = $pdo->prepare($query);
     $stmt->bindParam(':eventName', $eventName, PDO::PARAM_STR, 255);
-    $stmt->bindParam(':eventArtist', $eventDesc, PDO::PARAM_STR, 255);
+    $stmt->bindParam(':eventArtist', $eventArtist, PDO::PARAM_STR, 255);
     $stmt->bindParam(':eventDesc', $eventDesc, PDO::PARAM_STR, 255);
     $stmt->bindParam(':eventPhoto', $targetPhotoFile, PDO::PARAM_STR, 255);
     $stmt->bindParam(':eventDateTime', $eventDate, PDO::PARAM_STR, 255);
