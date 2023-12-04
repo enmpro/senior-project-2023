@@ -311,8 +311,8 @@ if ($row3 = $result3->fetch()) {
 
                   ?>
 
-                  <div class="text-center">
-                    <h1>No Events Hsere...</h1>
+                  <div class="text-center m-auto">
+                    <h1>No Events Here...</h1>
                   </div>
 
                   <?php
