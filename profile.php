@@ -19,14 +19,14 @@ if (!isset($_SESSION['user_name'])) {
 $username = $_SESSION['user_name'];
 $user_id = $_SESSION['user_id'];
 
-$query = "SELECT * FROM User WHERE UserID LIKE $user_id";
+$query = "SELECT *, FLOOR(TIMESTAMPDIFF(YEAR, Birthday, CURDATE())) as Age FROM User WHERE UserID LIKE $user_id";
 $result = $pdo->query($query);
 
 if ($row = $result->fetch()) {
   $fullname = $row['FirstName'] . ' ' . $row['LastName'];
   $gender = $row['Gender'];
   $zip = $row['Zip'];
-  $birthday = $row['Birthday'];
+  $birthday = $row['Age'];
   $userEmail = $row['Email'];
 }
 
