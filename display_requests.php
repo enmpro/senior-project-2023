@@ -32,11 +32,11 @@ try {
         $SenderUserID = $row['RequestSend'];
         echo "<li>{$SenderUserID} wants to be your friend! 
         <form action='accept_request.php' method='get' style='display:inline;'>
-          <input type='hidden' name='id' value='{$row['id']}'>
+          <input type='hidden' name='UserID' value='{$row['UserID']}'>
           <button type='submit'>Accept</button>
         </form>
         <form action='reject_request.php' method='get' style='display:inline;'>
-          <input type='hidden' name='id' value='{$row['id']}'>
+          <input type='hidden' name='UserID' value='{$row['UserID']}'>
           <button type='submit'>Reject</button>
         </form>
         </li>";
