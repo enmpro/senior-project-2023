@@ -233,7 +233,103 @@ if ($rowCheck = $resultCheck->fetch()) {
           </div>
         </div>
       </div>
-      
+      <div class="col-md-8">
+        <div style="margin: 50px auto;">
+          <div class="card shadow-sm">
+            <div class="card-header text-center">
+              <p class="fs-2">Events</p>
+            </div>
+            <div class="card-body">
+              <div class="list-group">
+                <div class=" scrollspy-event list-group" data-bs-spy="scroll">
+                  <?php
+                  $rsvpQuery = "SELECT * FROM UserRSVP WHERE UserID LIKE $user_id";
+                  $rsvpResult = $pdo->query($rsvpQuery);
+                  $count = 0;
+                  foreach ($rsvpResult as $row) {
+                    $rsvp_eventID = $row['EventID'];
+                    $rsvpStatus = $row['RSVPStatus'];
+
+                    $count = $count + 1;
+                    $eventRsvp = "SELECT * FROM Event WHERE EventID LIKE $rsvp_eventID";
+                    $eventRsvpResult = $pdo->query($eventRsvp);
+
+                    if ($eventResult = $eventRsvpResult->fetch()) {
+                      $eventName = $eventResult['EventName'];
+                      $eventArtist = $eventResult['EventArtist'];
+                      $eventDesc = $eventResult['EventDesc'];
+                      $eventPhoto = $eventResult['EventPhoto'];
+                      $eventNum = $eventResult['UserNumAttend'];
+                      $eventDate = $eventResult['EventDateTime'];
+                    }
+
+                    if ($rsvpStatus == 'Attending') {
+                      ?>
+
+
+                      <a href="#" class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                          <h4 class="mb-3"><?php echo $eventName; ?></h4>
+                          <small><?php echo $eventDate; ?></small>
+                        </div>
+                        <img class="event-image mb-3" src="<?php echo $eventPhoto; ?>" alt="Event Image">
+                        <p class="fs-4"><?php echo $eventArtist; ?></p>
+                        <p class="mb-1"><?php echo $eventDesc; ?></p>
+                        <p class="attendees"><?php echo $eventNum; ?>     <?php
+                                if ($eventNum < 2) {
+                                  echo "person";
+                                } else {
+                                  echo "people";
+                                } ?> attending</p>
+                      </a>
+
+                      <?php
+                    }
+
+                    if ($rsvpStatus == 'Maybe') {
+                      ?>
+
+                      <a href="#" class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                          <h4 class="mb-3"><?php echo $eventName; ?></h4>
+                          <small><?php echo $eventDate; ?></small>
+                        </div>
+                        <img class="event-image mb-3" src="<?php echo $eventPhoto; ?>" alt="Event Image">
+                        <p class="fs-4"><?php echo $eventArtist; ?></p>
+                        <p class="mb-1"><?php echo $eventDesc; ?></p>
+                        <p class="attendees">Possibly interested</p>
+                      </a>
+                      <?php
+                    }
+                  }
+
+                  if ($count == 0) {
+
+                    ?>
+
+                    <div class="text-center m-auto">
+                      <h1>No Events Here...</h1>
+                    </div>
+
+                    <?php
+                  }
+                  ?>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="card mt-3">
+          <div class="card-body">
+            <h5 class="card-title">Favorite Music</h5>
+            <p class="card-text"><strong>Favorite Genre</strong> Rock</p>
+            <p class="card-text"><strong>Favorite Artists</strong> Artist 1, Artist 2, Artist 3</p>
+          </div>
+        </div>
+
+      </div>
     </div>
   </div>
 
