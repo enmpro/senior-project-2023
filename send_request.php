@@ -16,12 +16,14 @@ if (!isset($_SESSION['user_name'])) {
 
 $AuthUserID = $_SESSION['UserID'];
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $friend_username = $_POST['friend_username'];
-    $SenderUserID = $AuthUserID;
+if ($isset($_POST['add_friend'])) {
+    $RequestSend = $_SESSION['UserID'];
+    $RequestReceive = $_POST['RequestReceive'];
+}
 
     try {
-        $stmt = $pdo->prepare("SELECT UserID FROM User WHERE Username= :Username");
+        $stmt = $pdo->prepare("SELECT UserID FROM User
+                                WHERE Username= :Username");
         $stmt->bindParam(':Username', $friend_username);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -29,13 +31,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($result) {
             $FriendUserID = $result['UserID'];
 
-            $existingRequest = $pdo->prepare("SELECT * FROM FriendRequest WHERE RequestSend = :RequestSend AND RequestReceive = :RequestReceive");
+            $existingRequest = $pdo->prepare("SELECT * FROM FriendRequest 
+                                            WHERE RequestSend = :RequestSend 
+                                            AND RequestReceive = :RequestReceive");
             $existingRequest->bindParam(':RequestSend', $SenderUserID);
             $existingRequest->bindParam(':RequestReceive', $FriendUserID);
             $existingRequest->execute();
 
             if ($existingRequest->rowCount() === 0) {
-                $insertRequest = $pdo->prepare("INSERT INTO FriendRequest (RequestSend, RequestReceive, Status) VALUES (:RequestSend, :RequestReceive, 'pending')");
+                $insertRequest = $pdo->prepare("INSERT INTO FriendRequest (RequestSend, RequestReceive, Status) 
+                                                VALUES (:RequestSend, :RequestReceive, 'pending')");
                 $insertRequest->bindParam(':RequestSend', $SenderUserID);
                 $insertRequest->bindParam(':RequestReceive', $FriendUserID);
                 $insertRequest->execute();
