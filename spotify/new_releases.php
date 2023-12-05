@@ -119,36 +119,36 @@ function test_userinput($data)
 
     ?>
     <div class="container mt-3">
-    <div class="row row-cols-3">
-        <?php
-        // foreach ($releases->albums->items as $album) {
+        <div class="row row-cols-3">
+            <?php
+            // foreach ($releases->albums->items as $album) {
 //     echo '<a href="' . $album->external_urls->spotify . '">' . $album->name . '</a> <br>';
 //     echo $album->images[0]->url;
 // }
-        foreach ($releases->albums->items as $album) {
+            foreach ($releases->albums->items as $album) {
+
+                ?>
+
+
+                <div class="col card mb-3" style="width: 300px;">
+                    <img src="<?php echo $album->images[0]->url ?>" alt="" srcset="" style="height: 150px; width: 150px;">
+                    <p> Name: <?php echo $album->name ?></p>
+                    <p> Number of Tracks: <?php echo $album->total_tracks ?></p>
+                    <p> Release Date: <?php echo $album->release_date ?></p>
+                    <p> Artist(s): <?php echo $album->artists[0]->name ?></p>
+                </div>
+
+
+
+                <?php
+            }
 
             ?>
-
-
-            <div class="col card mb-3" style="width: 300px;">
-                <img src="<?php echo $album->images[0]->url ?>" alt="" srcset="" style="height: 150px; width: 150px;">
-                <p> Name: <?php echo $album->name ?></p>
-                <p> Number of Tracks: <?php echo $album->total_tracks ?></p>
-                <p> Release Date: <?php echo $album->release_date ?></p>
-                <p> Artist(s): <?php echo $album->artists[0]->name ?></p>
-            </div>
-
-
-
-            <?php
-        }
-
-        ?>
         </div>
-        </div>
+    </div>
 
-            <!-- Latest compiled JavaScript -->
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 
