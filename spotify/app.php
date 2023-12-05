@@ -63,7 +63,49 @@ function test_userinput($data)
 </head>
 
 <body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">CANTIO</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="homepage.php">Main</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="profile.php">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="community.php">Community</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="user_event.php">Event</a>
+                    </li>
+                    <?php
+                    if ($organizerBool) {
+                        echo <<<_END
+                    <li class="nav-item">
+                        <a class="nav-link" href="event_coord.php">Event Coordinator</a>
+                    </li>
+                    _END;
+                    }
+                    ?>
 
+                </ul>
+                <div>
+                    <form method="post" action="user_logout.php">
+                        <button class="btn btn-secondary" type="submit" name="logout">Log Out</button>
+
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </nav>
 
     <div class="container">
         <form method="get" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
