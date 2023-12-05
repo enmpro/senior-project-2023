@@ -25,8 +25,8 @@ function test_userinput($data)
 }
 
 if ($isset($_POST['add_friend'])) {
-    $RequestSend = $_SESSION['UserID'];
-    $RequestReceive = $_POST['RequestReceive'];
+    $RequestSend = $AuthUserID;
+    $friend_username = $_POST['RequestReceive']
 
 
     try {
