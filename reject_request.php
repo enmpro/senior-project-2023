@@ -33,9 +33,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['RequestID'])) {
 
         header('Location: display_requests.php');
         exit;
-    } catch (PDOException $e) {
+    } 
+    catch (PDOException $e) {
         echo "Error: " . $e->getMessage();
-    } finally {
+    } 
+    
+    finally {
         // Close the database connection in the finally block
         $pdo = null;
     }
