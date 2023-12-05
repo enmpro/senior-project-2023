@@ -140,11 +140,11 @@ function test_userinput($data)
                 ?>
 
                 <div class="container">
-                    <div class="card">
+                    <div class="card" style="width: 300px;">
                         <img src="<?php echo $artist->images[0]->url ?>" alt="" srcset="" style="height: 150px; width: 150px;">
                         <p> <?php echo $artist->name ?></p>
                     </div>
-                    <div>
+                <div>
 
                 <?php
             }
