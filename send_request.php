@@ -27,7 +27,7 @@ function test_userinput($data)
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $friend_username = $_POST['friend_username'];
     $SenderUserID = $AuthUserID;
-}
+
 
     try {
         $stmt = $pdo->prepare("SELECT UserID FROM User
