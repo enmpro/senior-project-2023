@@ -29,20 +29,25 @@ try {
 
     while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
         $SenderUserID = $row['RequestSend'];
-        echo "<li>{$SenderUserID} wants to be your friend! 
-        <form action='accept_request.php' method='post' style='display:inline;'>
-          <input type='hidden' name='UserID' value='{$SenderUserID}'>
-          <button type='submit'>Accept</button>
-        </form>
-        <form action='reject_request.php' method='post' style='display:inline;'>
-          <input type='hidden' name='UserID' value='{$SenderUserID}'>
-          <button type='submit'>Reject</button>
-        </form>
-        </li>";
+?>
+        <li>
+            <?php echo "{$SenderUserID} wants to be your friend!"; ?>
+            <form action='accept_request.php' method='post' style='display:inline;'>
+                <input type='hidden' name='UserID' value='{$SenderUserID}'>
+                <button type='submit'>Accept</button>
+            </form>
+            <form action='reject_request.php' method='post' style='display:inline;'>
+                <input type='hidden' name='UserID' value='{$SenderUserID}'>
+                <button type='submit'>Reject</button>
+            </form>
+        </li>
+        <?php
     }
-} catch (PDOException $e) {
+} 
+catch (PDOException $e) {
     echo "Error: " . $e->getMessage();
-} finally {
+} 
+finally {
     $pdo = null;
 }
 ?>
