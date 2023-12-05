@@ -1,45 +1,3 @@
-<?php
-session_start();
-require '../vendor/autoload.php';
-
-require_once 'logindb.php';
-
-try {
-    $pdo = new PDO($attr, $user, $pass, $opts);
-} catch (PDOException $e) {
-    throw new PDOException($e->getMessage(), (int) $e->getCode());
-}
-
-if (!isset($_SESSION['user_name'])) {
-    // The user is not logged in, redirect them to the login page
-    header('Location: landing.html');
-    exit;
-}
-
-$userID = $_SESSION['user_id'];
-
-$api = new SpotifyWebAPI\SpotifyWebAPI();
-
-$accessToken = $_SESSION['accessToken'];
-
-// Fetch the saved access token from somewhere. A session for example.
-$api->setAccessToken($accessToken);
-
-
-// $releases = $api->getNewReleases([
-//     'country' => 'us',
-// ]);
-
-// foreach ($releases->albums->items as $album) {
-//     echo '<a href="' . $album->external_urls->spotify . '">' . $album->name . '</a> <br>';
-//     echo $album->images[0]->url;
-// }
-
-// $searcher = $api->search('Taylor', 'artist');
-
-// foreach ($searcher->artists->items as $artist) {
-//     echo $artist->name;
-// }
 
 
 function test_userinput($data)
@@ -50,7 +8,6 @@ function test_userinput($data)
     return $data;
 }
 
-?>
 <!DOCTYPE html>
 <html lang="en">
 
