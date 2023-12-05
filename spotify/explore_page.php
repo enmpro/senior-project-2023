@@ -107,31 +107,36 @@ if ($row = $result->fetch()) {
 
         <?php
 
-    }
+    } else {
 
-    ?>
+        ?>
 
-    <div class="container mt-3">
-        <h1 class="text-center">Explore the music!</h1>
+        <div class="container mt-3">
+            <h1 class="text-center">Explore the music!</h1>
 
-        <div class="text-center mt-5 mb-5">
-            <a class="btn btn-primary fs-1" href="search_artist.php">Search for an artist</a>
-        </div>
-        <div class="container text-center">
-            <div class="row row-cols-3">
-                <div class="col">
-                    <a class="btn btn-primary fs-2" href="new_releases.php">New Releases</a>
-                </div>
-                <div class="col">
-                    <a class="btn btn-primary fs-2" href="app.php">Top US Songs</a>
-                </div>
-                <div class="col">
-                    <a class="btn btn-primary fs-2" href="app.php">Spotify Profile</a>
+            <div class="text-center mt-5 mb-5">
+                <a class="btn btn-primary fs-1" href="search_artist.php">Search for an artist</a>
+            </div>
+            <div class="container text-center">
+                <div class="row row-cols-3">
+                    <div class="col">
+                        <a class="btn btn-primary fs-2" href="new_releases.php">New Releases</a>
+                    </div>
+                    <div class="col">
+                        <a class="btn btn-primary fs-2" href="app.php">Top US Songs</a>
+                    </div>
+                    <div class="col">
+                        <a class="btn btn-primary fs-2" href="app.php">Spotify Profile</a>
+                    </div>
                 </div>
             </div>
+
         </div>
 
-    </div>
+        <?php
+
+    }
+    ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 
