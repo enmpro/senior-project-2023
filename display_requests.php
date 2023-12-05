@@ -7,6 +7,12 @@ try {
     throw new PDOException($e->getMessage(), (int) $e->getCode());
 }
 
+session_start();
+if (!isset($_SESSION['user_name'])) {
+    header('Location: landing.html');
+    exit;
+}
+
 function getPendingFriendRequests($pdo, $currentUserID) {
     $query = "SELECT UserID, RequestSend FROM FriendRequest 
               WHERE RequestReceive = :RequestReceive AND Status = 'pending'";
@@ -14,12 +20,6 @@ function getPendingFriendRequests($pdo, $currentUserID) {
     $stmt->bindParam(':RequestReceive', $currentUserID);
     $stmt->execute();
     return $stmt;
-}
-
-session_start();
-if (!isset($_SESSION['user_name'])) {
-    header('Location: landing.html');
-    exit;
 }
 
 $CurrentUserID = $_SESSION['UserID'];
