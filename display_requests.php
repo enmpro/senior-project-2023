@@ -1,14 +1,10 @@
 <?php
 require_once 'logindb.php';
 
-function connectToDatabase($attr, $user, $pass, $opts) {
-    try {
-        $pdo = new PDO($attr, $user, $pass, $opts);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        return $pdo;
-    } catch (PDOException $e) {
-        throw new PDOException($e->getMessage(), (int) $e->getCode());
-    }
+try {
+    $pdo = new PDO($attr, $user, $pass, $opts);
+} catch (PDOException $e) {
+    throw new PDOException($e->getMessage(), (int) $e->getCode());
 }
 
 function getPendingFriendRequests($pdo, $currentUserID) {
@@ -27,6 +23,14 @@ if (!isset($_SESSION['user_name'])) {
 }
 
 $CurrentUserID = $_SESSION['UserID'];
+
+function test_userinput($data)
+{
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
 
 try {
     $pdo = connectToDatabase($attr, $user, $pass, $opts);
