@@ -8,7 +8,7 @@ try {
 }
 
 session_start();
-if (!isset($_SESSION['user_name'])) {
+if (!isset($_SESSION['Username'])) {
     #The user is not logged in, redirect them to the login page
     header('Location: landing.html');
     exit;
@@ -27,7 +27,6 @@ function test_userinput($data)
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $friend_username = $_POST['friend_username'];
     $SenderUserID = $AuthUserID;
-
 
     try {
         $stmt = $pdo->prepare("SELECT UserID FROM User
@@ -54,13 +53,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $insertRequest->execute();
 
                 echo "Friend request sent successfully!";
-            } else {
+            } 
+            else {
                 echo "Friend request already sent!";
             }
-        } else {
+        } 
+        else {
             echo "Sorry, this user was not found in your system.";
         }
-    } catch (PDOException $e) {
+    } 
+    catch (PDOException $e) {
         echo "Error: " . $e->getMessage();
     }
 }
