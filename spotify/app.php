@@ -94,7 +94,14 @@ function test_userinput($data)
                     $searcher = $api->search($search, 'artist');
 
                     foreach ($searcher->artists->items as $artist) {
-                        echo $artist->name . '<br>';
+
+                        ?>
+
+                        <div class="card">
+                            <img src="<?php echo $artist->images[0]->url ?>" alt="" srcset="" style="height: 150px;">
+                            <p> <?php $artist->name ?></p>
+                        </div>
+                        <?php
                     }
 
                 }
