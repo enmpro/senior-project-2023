@@ -163,7 +163,7 @@ if ($rowCheck = $resultCheck->fetch()) {
                             </div>
                             </p>
                         </div>
-                        <div class="modal-footer text-center">
+                        <div class="modal-footer">
                             <form class="text-center" action="user_rsvp.php" method="post">
                                 <input type="hidden" name="event_id" value="<?php echo $event['EventID']; ?>">
                                 <label class="form-label" for="rsvp_status">RSVP Status</label>
