@@ -150,8 +150,9 @@ if ($row3 = $result3->fetch()) {
                                     <h3><?php echo $row['Username']; ?></h3>
                                     <h6><?php echo $row['Firstname'] . " " . $row['LastName']; ?></h6>
                                     <h6><i>Event Coordinator</i></h6>
-                                    <form action="send_request.php" method="get">
-                                        <button type="submit" name="add_friend">Add Friend</button>
+                                    <form action="send_request.php" method="get">   
+                                        <input type="hidden" name="id" value="<?php echo $row['UserID']; ?>">
+                                        <button class="btn btn-success" type="submit">Add Friend</button>
                                     </form>
                                     <form action="user_view.php" method="get">
                                         <input type="hidden" name="id" value="<?php echo $row['UserID']; ?>">
