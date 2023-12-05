@@ -148,7 +148,7 @@ function test_userinput($data)
 
                     <div class="card mb-3" style="width: 300px;">
                         <img src="<?php echo $artist->images[0]->url ?>" alt="" srcset="" style="height: 150px; width: 150px;">
-                        <p> Name: <?php echo $artist->artists[0]->name ?></p>
+                        <p> Name: <?php echo $artist->artists->name ?></p>
                         <p> Popularity: <?php echo $artist->popularity ?></p>
                     </div>
 
