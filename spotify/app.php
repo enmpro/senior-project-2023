@@ -98,7 +98,7 @@ function test_userinput($data)
                         ?>
 
                         <div class="card">
-                            <img src="<?php echo $artist->images[0]->url ?>" alt="" srcset="" style="height: 150px;">
+                            <img src="<?php echo $artist->images[0]->url ?>" alt="" srcset="" style="height: 150px; width: 150px;">
                             <p> <?php $artist->name ?></p>
                         </div>
                         <?php
