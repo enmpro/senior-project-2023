@@ -136,20 +136,21 @@ function test_userinput($data)
         } else {
             $search = test_userinput($_GET["search"]);
 
-            $searcher = $api->search($search, 'artist');
+            $searcher = $api->search($search, 'album');
 
             ?>
             <div class="container">
                 <?php
-                foreach ($searcher->artists->items as $artist) {
+                foreach ($searcher->albums->items as $album) {
 
                     ?>
 
 
                     <div class="card mb-3" style="width: 300px;">
-                        <img src="<?php echo $artist->images[0]->url ?>" alt="" srcset="" style="height: 150px; width: 150px;">
-                        <p> Name: <?php echo $artist->artists->name ?></p>
-                        <p> Popularity: <?php echo $artist->popularity ?></p>
+                        <img src="<?php echo $album->images[0]->url ?>" alt="" srcset="" style="height: 150px; width: 150px;">
+                        <p> Album Name: <?php echo $album->name ?></p>
+                        <p> Artist(s): <?php echo $album->artists[0]->name ?></p>
+                        <p> Release Date: <?php echo $album->release_date ?></p>
                     </div>
 
 
