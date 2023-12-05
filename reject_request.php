@@ -13,6 +13,7 @@ if (!isset($_SESSION['user_name'])) {
     header('Location: landing.html');
     exit;
 }
+
 function test_userinput($data)
 {
     $data = trim($data);
@@ -22,7 +23,7 @@ function test_userinput($data)
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['RequestID'])) {
-    $RequestID = $_POST['RequestID'];
+    $RequestID = test_userinput($_POST['RequestID']);
 
     try {
         $updateRequest = $pdo->prepare("UPDATE FriendRequest SET Status = 'rejected' 
@@ -32,11 +33,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['RequestID'])) {
 
         header('Location: display_requests.php');
         exit;
-    } 
-    catch (PDOException $e) {
+    } catch (PDOException $e) {
         echo "Error: " . $e->getMessage();
+    } finally {
+        // Close the database connection in the finally block
+        $pdo = null;
     }
 }
-$pdo = null;
-
 ?>
