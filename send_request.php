@@ -8,7 +8,7 @@ try {
 }
 
 session_start();
-if (!isset($_SESSION['user_name'])) {
+if (isset($_SESSION['user_name'])) {
     // The user is not logged in, redirect them to the login page
     header('Location: landing.html');
     exit;
@@ -24,7 +24,7 @@ function test_userinput($data)
     return $data;
 }
 
-if ($isset($_POST['add_friend'])) {
+if (isset($_POST['add_friend'])) {
     $RequestSend = $AuthUserID;
     $friend_username = test_userinput($_POST['RequestReceive']);
 
