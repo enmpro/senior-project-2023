@@ -1,3 +1,37 @@
+<?php
+require_once 'logindb.php';
+
+try {
+    $pdo = new PDO($attr, $user, $pass, $opts);
+} catch (PDOException $e) {
+    throw new PDOException($e->getMessage(), (int) $e->getCode());
+}
+
+
+session_start();
+if (!isset($_SESSION['user_name'])) {
+    // The user is not logged in, redirect them to the login page
+    header('Location: landing.html');
+    exit;
+}
+
+$username = $_SESSION['user_name'];
+$userID = $_SESSION['user_id'];
+
+
+$query = "SELECT * FROM EventOrganizer WHERE UserID LIKE $userID";
+$result = $pdo->query($query);
+
+if ($row = $result->fetch()) {
+    $organizerBool = true;
+} else {
+    $organizerBool = false;
+}
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -58,6 +92,25 @@
         </div>
     </nav>
 
+    <?php
+
+    if (!isset($_SESSION['accessToken'])) {
+
+        ?>
+
+        <div class="container mt-3">
+            <h1 class="text-center">Sign into Spotify!</h1>
+            <div class="text-center mt-5 mb-5">
+                <a class="btn btn-primary fs-1" href="auth.php">Spotify Sign In</a>
+            </div>
+        </div>
+
+        <?php
+
+    }
+
+    ?>
+
     <div class="container mt-3">
         <h1 class="text-center">Explore the music!</h1>
 
@@ -77,7 +130,7 @@
                 </div>
             </div>
         </div>
-        
+
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>

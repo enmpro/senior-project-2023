@@ -95,9 +95,9 @@ if ($row = $result->fetch()) {
     <div>
         <p>THIS IS THE HOMEPAGE</p>
     </div>
-    <div class="container">
+    <!-- <div class="container">
         <a href="spotify/auth.php">Spotify Sign In </a>
-    </div>
+    </div> -->
 
     <!-- Latest compiled JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>

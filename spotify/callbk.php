@@ -30,7 +30,7 @@ $_SESSION['refreshToken'] = $refreshToken;
 // Store the access and refresh tokens somewhere. In a session for example
 
 // Send the user along and fetch some data!
-header('Location: app.php');
+header('Location: explore_page.php');
 
 die();
 
