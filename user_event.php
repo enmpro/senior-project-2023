@@ -164,11 +164,10 @@ if ($rowCheck = $resultCheck->fetch()) {
                             </p>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <form action="user_rsvp.php" method="post">
+                            <form class="text-center" action="user_rsvp.php" method="post">
                                 <input type="hidden" name="event_id" value="<?php echo $event['EventID']; ?>">
                                 <label class="form-label" for="rsvp_status">RSVP Status</label>
-                                <select class="form-select" name="rsvp_status" id="rsvp_status" required>
+                                <select class="form-select mb-3" name="rsvp_status" id="rsvp_status" required>
                                     <option value="Attending">Attending</option>
                                     <option value="Maybe">Interested</option>
                                 </select>
