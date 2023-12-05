@@ -19,4 +19,12 @@ foreach ($releases->albums->items as $album) {
     echo $album->images[0]->url;
 }
 
+$searcher = $api->search('Taylor', 'artist')([
+    'market' => 'us',
+]);
+
+foreach ($searcher->artists->items as $artist) {
+    echo $artist->name;
+}
+
 ?>
