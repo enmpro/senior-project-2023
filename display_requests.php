@@ -24,35 +24,25 @@ if (!isset($_SESSION['user_name'])) {
 
 $CurrentUserID = $_SESSION['UserID'];
 
-function test_userinput($data)
-{
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
-}
-
 try {
     $result = getPendingFriendRequests($pdo, $CurrentUserID);
 
     while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
         $SenderUserID = $row['RequestSend'];
         echo "<li>{$SenderUserID} wants to be your friend! 
-        <form action='accept_request.php' method='get' style='display:inline;'>
+        <form action='accept_request.php' method='post' style='display:inline;'>
           <input type='hidden' name='UserID' value='{$SenderUserID}'>
           <button type='submit'>Accept</button>
         </form>
-        <form action='reject_request.php' method='get' style='display:inline;'>
+        <form action='reject_request.php' method='post' style='display:inline;'>
           <input type='hidden' name='UserID' value='{$SenderUserID}'>
           <button type='submit'>Reject</button>
         </form>
         </li>";
     }
-} 
-catch (PDOException $e) {
+} catch (PDOException $e) {
     echo "Error: " . $e->getMessage();
-} 
-finally {
+} finally {
     $pdo = null;
 }
 ?>

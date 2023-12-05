@@ -3,13 +3,14 @@ require_once 'logindb.php';
 
 try {
     $pdo = new PDO($attr, $user, $pass, $opts);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
     throw new PDOException($e->getMessage(), (int) $e->getCode());
 }
 
 session_start();
 if (!isset($_SESSION['user_name'])) {
-    #The user is not logged in, redirect them to the login page
+    // The user is not logged in, redirect them to the login page
     header('Location: landing.html');
     exit;
 }
@@ -24,13 +25,12 @@ function test_userinput($data)
     return $data;
 }
 
-if ($isset($_POST['add_friend'])) {
+if (isset($_POST['add_friend'])) {
     $RequestSend = $AuthUserID;
-    $friend_username = $_POST['RequestReceive']
-
+    $friend_username = test_userinput($_POST['RequestReceive']);
 
     try {
-        $stmt = $pdo->prepare("SELECT UserID FROM User WHERE Username= :Username");
+        $stmt = $pdo->prepare("SELECT UserID FROM User WHERE Username = :Username");
         $stmt->bindParam(':Username', $friend_username);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -39,13 +39,13 @@ if ($isset($_POST['add_friend'])) {
             $FriendUserID = $result['UserID'];
 
             $existingRequest = $pdo->prepare("SELECT * FROM FriendRequest WHERE RequestSend = :RequestSend AND RequestReceive = :RequestReceive");
-            $existingRequest->bindParam(':RequestSend', $SenderUserID);
+            $existingRequest->bindParam(':RequestSend', $RequestSend); // Correct variable name
             $existingRequest->bindParam(':RequestReceive', $FriendUserID);
             $existingRequest->execute();
 
             if ($existingRequest->rowCount() === 0) {
                 $insertRequest = $pdo->prepare("INSERT INTO FriendRequest (RequestSend, RequestReceive, Status) VALUES (:RequestSend, :RequestReceive, 'pending')");
-                $insertRequest->bindParam(':RequestSend', $SenderUserID);
+                $insertRequest->bindParam(':RequestSend', $RequestSend);
                 $insertRequest->bindParam(':RequestReceive', $FriendUserID);
                 $insertRequest->execute();
 
@@ -106,3 +106,6 @@ $pdo = null;
             </div>
         </div>
     </nav>
+</body>
+
+</html>
