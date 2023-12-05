@@ -135,7 +135,7 @@ function test_userinput($data)
                 <p> Name: <?php echo $album->name ?></p>
                 <p> Number of Tracks: <?php echo $album->total_tracks ?></p>
                 <p> Release Date: <?php echo $album->release_date ?></p>
-                <p> Artist(s): <?php echo $album->artists->name ?></p>
+                <p> Artist(s): <?php echo $album->artists[0]->name ?></p>
             </div>
 
 
