@@ -107,7 +107,7 @@ function test_userinput($data)
         </div>
     </nav>
 
-    <div class="container">
+    <div class="container mt-3 mb-3">
         <form method="get" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
             <div class="container input-group input-group-lg">
                 <span class="input-group-text" id="inputGroup-sizing-lg">Artist Search</span>
@@ -143,7 +143,7 @@ function test_userinput($data)
                 ?>
 
                 
-                    <div class="card" style="width: 300px;">
+                    <div class="card mb-3" style="width: 300px;">
                         <img src="<?php echo $artist->images[0]->url ?>" alt="" srcset="" style="height: 150px; width: 150px;">
                         <p> Name: <?php echo $artist->name ?></p>
                         <p> Popularity: <?php echo $artist->popularity ?></p>
