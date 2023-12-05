@@ -117,6 +117,9 @@ if ($row = $result->fetch()) {
             <div class="text-center mt-5 mb-5">
                 <a class="btn btn-primary fs-1" href="search_artist.php">Search for an artist</a>
             </div>
+            <div class="text-center mt-5 mb-5">
+                <a class="btn btn-primary fs-1" href="search_album.php">Search for an album</a>
+            </div>
             <div class="container text-center">
                 <div class="row row-cols-3">
                     <div class="col">
