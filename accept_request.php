@@ -3,6 +3,7 @@ require_once 'logindb.php';
 
 try {
     $pdo = new PDO($attr, $user, $pass, $opts);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
     throw new PDOException($e->getMessage(), (int) $e->getCode());
 }
@@ -23,25 +24,33 @@ function test_userinput($data)
 }
 
 if (isset($_GET['UserID'])) {
-    $RequestID = $_GET['UserID'];
+    $RequestID = test_userinput($_GET['UserID']);
 
     try {
         $updateRequest = $pdo->prepare("UPDATE FriendRequest SET Status = 'accepted' 
-                                        WHERE UserID = :UserID");
+                                        WHERE UserID = :UserID AND Status = 'pending'");
         $updateRequest->bindParam(':UserID', $RequestID);
         $updateRequest->execute();
 
-        $getRequestInfo = $pdo->prepare("SELECT RequestSend, RequestReceive FROM FriendRequest
-                                         WHERE UserID = :UserID");
-        $getRequestInfo->bindParam(':UserID', $RequestID);
-        $getRequestInfo->execute();
-        $request_info = $getRequestInfo->fetch(PDO::FETCH_ASSOC);
+        $rowsAffected = $updateRequest->rowCount();
 
-        //redirects user back to display_requests.php
-        header('Location: display_requests.php');
-        exit;
-    }
-    catch (PDOException $e) {
+        if ($rowsAffected > 0) {
+            $getRequestInfo = $pdo->prepare("SELECT RequestSend, RequestReceive FROM FriendRequest
+                                             WHERE UserID = :UserID");
+            $getRequestInfo->bindParam(':UserID', $RequestID);
+            $getRequestInfo->execute();
+            $request_info = $getRequestInfo->fetch(PDO::FETCH_ASSOC);
+
+            // Redirect the user back to display_requests.php with a success message
+            header('Location: display_requests.php?success=1');
+            exit;
+        } else {
+            // No rows were updated, meaning the request might not be pending
+            header('Location: display_requests.php?error=1');
+            exit;
+        }
+    } catch (PDOException $e) {
+        // Handle database errors
         echo "Error: " . $e->getMessage();
     }
 }

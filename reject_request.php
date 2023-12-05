@@ -3,6 +3,7 @@ require_once 'logindb.php';
 
 try {
     $pdo = new PDO($attr, $user, $pass, $opts);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
     throw new PDOException($e->getMessage(), (int) $e->getCode());
 }
@@ -27,18 +28,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['RequestID'])) {
 
     try {
         $updateRequest = $pdo->prepare("UPDATE FriendRequest SET Status = 'rejected' 
-                                        WHERE UserID = :RequestID");
+                                        WHERE UserID = :RequestID AND Status = 'pending'");
         $updateRequest->bindParam(':RequestID', $RequestID);
         $updateRequest->execute();
 
-        header('Location: display_requests.php');
-        exit;
-    } 
-    catch (PDOException $e) {
+        $rowsAffected = $updateRequest->rowCount();
+
+        if ($rowsAffected > 0) {
+            // Redirect the user back to display_requests.php with a success message
+            header('Location: display_requests.php?success=1');
+            exit;
+        } else {
+            // No rows were updated, meaning the request might not be pending
+            header('Location: display_requests.php?error=1');
+            exit;
+        }
+    } catch (PDOException $e) {
+        // Handle database errors
         echo "Error: " . $e->getMessage();
-    } 
-    
-    finally {
+    } finally {
         // Close the database connection in the finally block
         $pdo = null;
     }
