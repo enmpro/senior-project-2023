@@ -3,7 +3,6 @@ require_once 'logindb.php';
 
 try {
     $pdo = new PDO($attr, $user, $pass, $opts);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
     throw new PDOException($e->getMessage(), (int) $e->getCode());
 }
