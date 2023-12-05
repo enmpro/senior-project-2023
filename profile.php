@@ -120,7 +120,7 @@ if ($row3 = $result3->fetch()) {
             <a class="nav-link" href="profile.php">Profile</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/spotify/app.php">Explore Music</a>
+            <a class="nav-link" href="/spotify/explore_page.html">Explore Music</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="community.php">Community</a>
