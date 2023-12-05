@@ -33,7 +33,6 @@ function test_userinput($data)
 }
 
 try {
-    $pdo = connectToDatabase($attr, $user, $pass, $opts);
     $result = getPendingFriendRequests($pdo, $CurrentUserID);
 
     while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
