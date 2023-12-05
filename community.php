@@ -96,7 +96,7 @@ if ($row = $result->fetch()) {
                     <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Messages</a></li>
                     <li class="nav-item"><a class="nav-link" href="search_users.php">Search Users</a></li>
-                    <!-- Add more links as needed -->
+                    <li class="nav-item"><a class="nav-link" href="display_requests.php">Friend Requests</a></li>
                 </ul>
             </div>
 
