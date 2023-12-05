@@ -58,16 +58,16 @@ if ($row = $result->fetch()) {
                         <a class="nav-link active" aria-current="page" href="homepage.php">Main</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../profile.php">Profile</a>
+                        <a class="nav-link" href="profile.php">Profile</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/spotify/app.php">Explore Music</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../community.php">Community</a>
+                        <a class="nav-link" href="community.php">Community</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../user_event.php">Event</a>
+                        <a class="nav-link" href="user_event.php">Event</a>
                     </li>
                     <?php
                     if ($organizerBool) {
