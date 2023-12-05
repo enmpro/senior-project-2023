@@ -107,7 +107,7 @@ $instagram = "$oldInsta";
                         <a class="nav-link" href="profile.php">Profile</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/spotify/explore_page.html">Explore Music</a>
+                        <a class="nav-link" href="/spotify/explore_page.php">Explore Music</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="community.php">Community</a>
