@@ -1,4 +1,7 @@
 <?php
+session_start();
+require '../vendor/autoload.php';
+
 require_once '../logindb.php';
 
 try {
@@ -7,31 +10,47 @@ try {
     throw new PDOException($e->getMessage(), (int) $e->getCode());
 }
 
-
-session_start();
 if (!isset($_SESSION['user_name'])) {
     // The user is not logged in, redirect them to the login page
     header('Location: landing.html');
     exit;
 }
 
-$username = $_SESSION['user_name'];
 $userID = $_SESSION['user_id'];
 
+$api = new SpotifyWebAPI\SpotifyWebAPI();
 
-$query = "SELECT * FROM EventOrganizer WHERE UserID LIKE $userID";
-$result = $pdo->query($query);
+$accessToken = $_SESSION['accessToken'];
 
-if ($row = $result->fetch()) {
-    $organizerBool = true;
-} else {
-    $organizerBool = false;
+// Fetch the saved access token from somewhere. A session for example.
+$api->setAccessToken($accessToken);
+
+
+// $releases = $api->getNewReleases([
+//     'country' => 'us',
+// ]);
+
+// foreach ($releases->albums->items as $album) {
+//     echo '<a href="' . $album->external_urls->spotify . '">' . $album->name . '</a> <br>';
+//     echo $album->images[0]->url;
+// }
+
+// $searcher = $api->search('Taylor', 'artist');
+
+// foreach ($searcher->artists->items as $artist) {
+//     echo $artist->name;
+// }
+
+
+function test_userinput($data)
+{
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
 }
 
-
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -44,7 +63,6 @@ if ($row = $result->fetch()) {
 </head>
 
 <body>
-
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">CANTIO</a>
@@ -92,55 +110,44 @@ if ($row = $result->fetch()) {
         </div>
     </nav>
 
+
     <?php
+    // Check if the form is submitted
+    $releases = $api->getNewReleases([
+        'country' => 'us',
+    ]);
 
-    if (!isset($_SESSION['accessToken'])) {
-
-        ?>
-
-        <div class="container mt-3">
-            <h1 class="text-center">Sign into Spotify!</h1>
-            <div class="text-center mt-5 mb-5">
-                <a class="btn btn-primary fs-1" href="auth.php">Spotify Sign In</a>
-            </div>
-        </div>
-
-        <?php
-
-    } else {
-
-        ?>
-
-        <div class="container mt-3">
-            <h1 class="text-center">Explore the music!</h1>
-
-            <div class="text-center mt-5 mb-5">
-                <a class="btn btn-primary fs-1" href="search_artist.php">Search for an artist</a>
-            </div>
-            <div class="text-center mt-5 mb-5">
-                <a class="btn btn-primary fs-1" href="search_album.php">Search for an album</a>
-            </div>
-            <div class="container text-center">
-                <div class="row row-cols-3">
-                    <div class="col">
-                        <a class="btn btn-primary fs-2" href="new_releases.php">New Releases</a>
-                    </div>
-                    <div class="col">
-                        <a class="btn btn-primary fs-2" href="top_us_songs.php">Top US Songs</a>
-                    </div>
-                    <div class="col">
-                        <a class="btn btn-primary fs-2" href="app.php">Spotify Profile</a>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-        <?php
-
-    }
     ?>
+    <div class="container mt-3">
+        <div class="row row-cols-3">
+            <?php
+            // foreach ($releases->albums->items as $album) {
+//     echo '<a href="' . $album->external_urls->spotify . '">' . $album->name . '</a> <br>';
+//     echo $album->images[0]->url;
+// }
+            foreach ($releases->albums->items as $album) {
 
+                ?>
+
+
+                <div class="col card mb-3" style="width: 300px;">
+                    <img src="<?php echo $album->images[0]->url ?>" alt="" srcset="" style="height: 150px; width: 150px;">
+                    <p> Album Name: <?php echo $album->name ?></p>
+                    <p> Number of Tracks: <?php echo $album->total_tracks ?></p>
+                    <p> Release Date: <?php echo $album->release_date ?></p>
+                    <p> Artist(s): <?php echo $album->artists[0]->name ?></p>
+                </div>
+
+
+
+                <?php
+            }
+
+            ?>
+        </div>
+    </div>
+
+    <!-- Latest compiled JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
