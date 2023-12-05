@@ -63,7 +63,7 @@ function test_userinput($data)
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">CANTIO</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -127,43 +127,37 @@ function test_userinput($data)
 
     <?php
     // Check if the form is submitted
-    if (isset($_GET['search'])) {
-        $search = test_userinput($_GET["search"]);
+    $releases = $api->getNewReleases([
+        'country' => 'us',
+    ]);
 
-        if ($search == '') {
-            echo "<p>No results found.</p>";
-
-        } else {
-            $search = test_userinput($_GET["search"]);
-
-            $searcher = $api->search($search, 'artist');
-
-            ?>
-            <div class="container">
-            <?php
-            foreach ($searcher->artists->items as $artist) {
-
-                ?>
-
-                
-                    <div class="card mb-3" style="width: 300px;">
-                        <img src="<?php echo $artist->images[0]->url ?>" alt="" srcset="" style="height: 150px; width: 150px;">
-                        <p> Name: <?php echo $artist->name ?></p>
-                        <p> Popularity: <?php echo $artist->popularity ?></p>
-                    </div>
-               
-
-                    
-                <?php
-            }
+    ?>
+    <div class="container">
+        <?php
+        // foreach ($releases->albums->items as $album) {
+//     echo '<a href="' . $album->external_urls->spotify . '">' . $album->name . '</a> <br>';
+//     echo $album->images[0]->url;
+// }
+        foreach ($releases->albums->items as $album) {
 
             ?>
-            <div>
+
+
+            <div class="card mb-3" style="width: 300px;">
+                <img src="<?php echo $album->images[0]->url ?>" alt="" srcset="" style="height: 150px; width: 150px;">
+                <p> Name: <?php echo $album->name ?></p>
+                <p> Number of Tracks: <?php echo $album->total_tracks ?></p>
+                <p> Release Date: <?php echo $album->release_date ?></p>
+                <p> Artist(s): <?php echo $album->artists->name ?></p>
+            </div>
+
+
 
             <?php
         }
-    }
-    ?>
+
+        ?>
+        <div>
 
             <!-- Latest compiled JavaScript -->
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
