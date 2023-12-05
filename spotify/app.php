@@ -2,7 +2,7 @@
 session_start();
 require '../vendor/autoload.php';
 
-require_once 'logindb.php';
+require_once '../logindb.php';
 
 try {
     $pdo = new PDO($attr, $user, $pass, $opts);
