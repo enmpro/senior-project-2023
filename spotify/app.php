@@ -71,45 +71,48 @@ function test_userinput($data)
                 <span class="input-group-text" id="inputGroup-sizing-lg">Artist Search</span>
                 <input type="text" class="form-control" name="search" id="search" aria-label="Sizing example input"
                     aria-describedby="inputGroup-sizing-lg" <?php
-                if (isset($_GET['search'])) {
-                    $search = test_userinput($_GET["search"]);
-                    echo "value=" . "'" . $search . "'";
-                }
-                ?>>
+                    if (isset($_GET['search'])) {
+                        $search = test_userinput($_GET["search"]);
+                        echo "value=" . "'" . $search . "'";
+                    }
+                    ?>>
             </div>
         </form>
     </div>
 
     <?php
-            // Check if the form is submitted
-            if (isset($_GET['search'])) {
-                $search = test_userinput($_GET["search"]);
+    // Check if the form is submitted
+    if (isset($_GET['search'])) {
+        $search = test_userinput($_GET["search"]);
 
-                if ($search == '') {
-                    echo "<p>No results found.</p>";
+        if ($search == '') {
+            echo "<p>No results found.</p>";
 
-                } else {
-                    $search = test_userinput($_GET["search"]);
+        } else {
+            $search = test_userinput($_GET["search"]);
 
-                    $searcher = $api->search($search, 'artist');
+            $searcher = $api->search($search, 'artist');
 
-                    foreach ($searcher->artists->items as $artist) {
+            foreach ($searcher->artists->items as $artist) {
 
-                        ?>
+                ?>
 
-                        <div class="card">
-                            <img src="<?php echo $artist->images[0]->url ?>" alt="" srcset="" style="height: 150px; width: 150px;">
-                            <p> <?php echo $artist->name ?></p>
-                        </div>
-                        <?php
-                    }
+                <div class="container">
+                    <div class="card">
+                        <img src="<?php echo $artist->images[0]->url ?>" alt="" srcset="" style="height: 150px; width: 150px;">
+                        <p> <?php echo $artist->name ?></p>
+                    </div>
+                    <div>
 
-                }
+                <?php
             }
-            ?>
 
-    <!-- Latest compiled JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+        }
+    }
+    ?>
+
+            <!-- Latest compiled JavaScript -->
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 
