@@ -110,20 +110,6 @@ function test_userinput($data)
         </div>
     </nav>
 
-    <div class="container mt-3 mb-3">
-        <form method="get" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-            <div class="container input-group input-group-lg">
-                <span class="input-group-text" id="inputGroup-sizing-lg">Artist Search</span>
-                <input type="text" class="form-control" name="search" id="search" aria-label="Sizing example input"
-                    aria-describedby="inputGroup-sizing-lg" <?php
-                    if (isset($_GET['search'])) {
-                        $search = test_userinput($_GET["search"]);
-                        echo "value=" . "'" . $search . "'";
-                    }
-                    ?>>
-            </div>
-        </form>
-    </div>
 
     <?php
     // Check if the form is submitted
@@ -132,7 +118,7 @@ function test_userinput($data)
     ]);
 
     ?>
-    <div class="container">
+    <div class="container mt-3">
     <div class="row row-cols-3">
         <?php
         // foreach ($releases->albums->items as $album) {
