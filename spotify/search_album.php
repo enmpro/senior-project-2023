@@ -80,7 +80,7 @@ function test_userinput($data)
                         <a class="nav-link" href="../profile.php">Profile</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="exmplore_page.php">Explore Music</a>
+                        <a class="nav-link" href="explore_page.php">Explore Music</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="../community.php">Community</a>
@@ -127,39 +127,43 @@ function test_userinput($data)
 
     <?php
     // Check if the form is submitted
-    $releases = $api->getNewReleases([
-        'country' => 'us',
-    ]);
+    if (isset($_GET['search'])) {
+        $search = test_userinput($_GET["search"]);
 
-    ?>
-    <div class="container">
-    <div class="row row-cols-3">
-        <?php
-        // foreach ($releases->albums->items as $album) {
-//     echo '<a href="' . $album->external_urls->spotify . '">' . $album->name . '</a> <br>';
-//     echo $album->images[0]->url;
-// }
-        foreach ($releases->albums->items as $album) {
+        if ($search == '') {
+            echo "<p>No results found.</p>";
+
+        } else {
+            $search = test_userinput($_GET["search"]);
+
+            $searcher = $api->search($search, 'artist');
 
             ?>
+            <div class="container">
+                <?php
+                foreach ($searcher->artists->items as $artist) {
+
+                    ?>
 
 
-            <div class="col card mb-3" style="width: 300px;">
-                <img src="<?php echo $album->images[0]->url ?>" alt="" srcset="" style="height: 150px; width: 150px;">
-                <p> Name: <?php echo $album->name ?></p>
-                <p> Number of Tracks: <?php echo $album->total_tracks ?></p>
-                <p> Release Date: <?php echo $album->release_date ?></p>
-                <p> Artist(s): <?php echo $album->artists->name ?></p>
-            </div>
+                    <div class="card mb-3" style="width: 300px;">
+                        <img src="<?php echo $artist->images[0]->url ?>" alt="" srcset="" style="height: 150px; width: 150px;">
+                        <p> Name: <?php echo $artist->name ?></p>
+                        <p> Popularity: <?php echo $artist->popularity ?></p>
+                    </div>
 
 
 
-            <?php
+                    <?php
+                }
+
+                ?>
+                <div>
+
+                    <?php
         }
-
-        ?>
-        </div>
-        </div>
+    }
+    ?>
 
             <!-- Latest compiled JavaScript -->
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>

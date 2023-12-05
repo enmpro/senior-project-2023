@@ -140,33 +140,35 @@ function test_userinput($data)
 
             ?>
             <div class="container">
-                <?php
-                foreach ($searcher->artists->items as $artist) {
+                <div class="row row-cols-3">
+                    <?php
+                    foreach ($searcher->artists->items as $artist) {
+
+                        ?>
+
+
+                        <div class="col card mb-3 text-center" style="width: 300px;">
+                            <img src="<?php echo $artist->images[0]->url ?>" alt="" srcset="" style="height: 150px; width: 150px;">
+                            <p> Name: <?php echo $artist->name ?></p>
+                            <p> Popularity: <?php echo $artist->popularity ?></p>
+                        </div>
+
+
+
+                        <?php
+                    }
 
                     ?>
+                </div>
+            </div>
 
-
-                    <div class="card mb-3" style="width: 300px;">
-                        <img src="<?php echo $artist->images[0]->url ?>" alt="" srcset="" style="height: 150px; width: 150px;">
-                        <p> Name: <?php echo $artist->name ?></p>
-                        <p> Popularity: <?php echo $artist->popularity ?></p>
-                    </div>
-
-
-
-                    <?php
-                }
-
-                ?>
-                <div>
-
-                    <?php
+            <?php
         }
     }
     ?>
 
-            <!-- Latest compiled JavaScript -->
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 
