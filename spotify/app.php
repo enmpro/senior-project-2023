@@ -80,6 +80,9 @@ function test_userinput($data)
                         <a class="nav-link" href="profile.php">Profile</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="app.php">Explore Music</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="community.php">Community</a>
                     </li>
                     <li class="nav-item">
