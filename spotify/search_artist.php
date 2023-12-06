@@ -100,7 +100,7 @@ function test_userinput($data)
 
                 </ul>
                 <div>
-                    <form method="post" action="user_logout.php">
+                    <form method="post" action="../user_logout.php">
                         <button class="btn btn-secondary" type="submit" name="logout">Log Out</button>
 
                     </form>
