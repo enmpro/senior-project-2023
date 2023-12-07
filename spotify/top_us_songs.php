@@ -125,11 +125,13 @@ function test_userinput($data)
 // }
             foreach ($us_playlist->tracks->items as $pl_track) {
 
+                print_r($pl_track);
+
                 ?>
 
 
                 <div class="col card mb-3" style="width: 300px;">
-                    <img src="<?php echo $pl_track->TrackObject->album->images[0]->url ?>" alt="" srcset="" style="height: 150px; width: 150px;">
+                    <img src="<?php echo $pl_track->track->TrackObject->album->images[0]->url ?>" alt="" srcset="" style="height: 150px; width: 150px;">
                     <p> Album Name: <?php echo $pl_track->track->TrackObject->name ?></p>
                     <p> Release Date: <?php echo $pl_track->track->TrackObject->album->release_date ?></p>
                     <p> Popularity: <?php echo $pl_track->track->TrackObject->popularity ?></p>
