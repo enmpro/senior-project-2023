@@ -124,9 +124,6 @@ function test_userinput($data)
 //     echo $album->images[0]->url;
 // }
             foreach ($us_playlist->tracks->items as $pl_track) {
-
-                print_r($pl_track);
-
                 ?>
 
 
