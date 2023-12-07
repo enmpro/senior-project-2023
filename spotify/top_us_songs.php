@@ -113,9 +113,7 @@ function test_userinput($data)
 
     <?php
     // Check if the form is submitted
-    $us_playlist = $api->getPlaylist('37i9dQZEVXbLRQDuF5jeBp', [
-        'country' => 'us',
-    ]);
+    $us_playlist = $api->getPlaylist('37i9dQZEVXbLRQDuF5jeBp');
 
     ?>
     <div class="container mt-3">
