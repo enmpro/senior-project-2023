@@ -113,7 +113,7 @@ function test_userinput($data)
 
     <?php
     // Check if the form is submitted
-    $releases = $api->getPlaylist('37i9dQZEVXbLRQDuF5jeBp', [
+    $us_playlist = $api->getPlaylist('37i9dQZEVXbLRQDuF5jeBp', [
         'country' => 'us',
     ]);
 
@@ -125,17 +125,17 @@ function test_userinput($data)
 //     echo '<a href="' . $album->external_urls->spotify . '">' . $album->name . '</a> <br>';
 //     echo $album->images[0]->url;
 // }
-            foreach ($releases->tracks as $track) {
+            foreach ($us_playlist->tracks->items as $pl_track) {
 
                 ?>
 
 
                 <div class="col card mb-3" style="width: 300px;">
-                    <img src="<?php echo $track->images[0]->url ?>" alt="" srcset="" style="height: 150px; width: 150px;">
-                    <p> Album Name: <?php echo $album->name ?></p>
-                    <p> Number of Tracks: <?php echo $album->total_tracks ?></p>
-                    <p> Release Date: <?php echo $album->release_date ?></p>
-                    <p> Artist(s): <?php echo $album->artists[0]->name ?></p>
+                    <img src="<?php echo $pl_track->track->TrackObject->album->images[0]->url ?>" alt="" srcset="" style="height: 150px; width: 150px;">
+                    <p> Album Name: <?php echo $pl_track->track->TrackObject->name ?></p>
+                    <p> Release Date: <?php echo $pl_track->track->TrackObject->album->release_date ?></p>
+                    <p> Popularity: <?php echo $pl_track->track->TrackObject->popularity ?></p>
+                    <p> Artist(s): <?php echo $pl_track->track->TrackObject->artists[0]->name ?></p>
                 </div>
 
 
