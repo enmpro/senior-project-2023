@@ -133,6 +133,7 @@ function test_userinput($data)
                     <p> Release Date: <?php echo $pl_track->track->album->release_date ?></p>
                     <p> Popularity: <?php echo $pl_track->track->popularity ?></p>
                     <p> Artist(s): <?php echo $pl_track->track->artists[0]->name ?></p>
+                    <p> Track Number: <?php echo $pl_track->track->track_number ?></p>
                 </div>
 
 
