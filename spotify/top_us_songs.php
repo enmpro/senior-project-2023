@@ -131,11 +131,11 @@ function test_userinput($data)
 
 
                 <div class="col card mb-3" style="width: 300px;">
-                    <img src="<?php echo $pl_track->track->TrackObject->album->images[0]->url ?>" alt="" srcset="" style="height: 150px; width: 150px;">
-                    <p> Album Name: <?php echo $pl_track->track->TrackObject->name ?></p>
-                    <p> Release Date: <?php echo $pl_track->track->TrackObject->album->release_date ?></p>
-                    <p> Popularity: <?php echo $pl_track->track->TrackObject->popularity ?></p>
-                    <p> Artist(s): <?php echo $pl_track->track->TrackObject->artists[0]->name ?></p>
+                    <img src="<?php echo $pl_track->track->album->images[0]->url ?>" alt="" srcset="" style="height: 150px; width: 150px;">
+                    <p> Album Name: <?php echo $pl_track->track->name ?></p>
+                    <p> Release Date: <?php echo $pl_track->track->album->release_date ?></p>
+                    <p> Popularity: <?php echo $pl_track->track->popularity ?></p>
+                    <p> Artist(s): <?php echo $pl_track->track->artists[0]->name ?></p>
                 </div>
 
 
