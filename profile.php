@@ -220,7 +220,13 @@ if ($row3 = $result3->fetch()) {
             <div>
               <p><strong>Social Media</strong></p>
               <?php
-              
+              $socialQuery = "SELECT * FROM SocialMediaHandles WHERE UserID LIKE $user_id";
+              $socialResult = $pdo->query($socialQuery);
+              $socialCount = 0;
+              foreach($socialResult as $row) {
+                $facebook = $row['Platform'];
+                echo $facebook;
+              }
               ?>
             </div>
           </div>
