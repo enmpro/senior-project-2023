@@ -131,7 +131,7 @@ function test_userinput($data)
 
 
                 <div class="col card mb-3 me-3 text-center" style="width: 300px;">
-                    <img class="card-img-top card-img" src="<?php echo $album->images[0]->url ?>" alt="" srcset=""
+                    <img class="card-img-top card-img m-auto" src="<?php echo $album->images[0]->url ?>" alt="" srcset=""
                         style="height: 150px; width: 150px;">
                     <div class="card-body">
                         <p> Album Name:
