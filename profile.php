@@ -225,7 +225,7 @@ if ($row3 = $result3->fetch()) {
               $socialCount = 0;
               foreach($socialResult as $row) {
                 $facebook = $row['Platform'];
-                echo $facebook;
+                echo $facebook . "<br>";
               }
               ?>
             </div>
