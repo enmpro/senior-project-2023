@@ -210,7 +210,6 @@ if ($row3 = $result3->fetch()) {
           <hr>
 
           <div class="additional-details text-center">
-            <h3>Additional Details</h3>
             <div class="mt-3">
               <p><i class="fa-solid fa-cake-candles"></i> <?php echo $birthday; ?></p>
             </div>
@@ -220,7 +219,9 @@ if ($row3 = $result3->fetch()) {
             </div>
             <div>
               <p><strong>Social Media</strong></p>
-              <p>FIX ME</p>
+              <?php
+              
+              ?>
             </div>
           </div>
         </div>
