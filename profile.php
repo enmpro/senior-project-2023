@@ -163,7 +163,8 @@ if ($row3 = $result3->fetch()) {
             <img src="<?php echo $profilePic; ?>" alt="Profile Picture" class="profile-picture">
           </div>
           <div class="user-info">
-            <h2><?php echo $fullname; ?> | <?php echo $username; ?></h2>
+            <h2><?php echo $fullname; ?></h2>
+            <h3><?php echo $username; ?></h3>
             <?php
             $query4 = "SELECT * FROM EventOrganizer WHERE UserID LIKE $user_id";
             $result4 = $pdo->query($query4);
