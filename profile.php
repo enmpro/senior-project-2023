@@ -66,6 +66,7 @@ if ($row3 = $result3->fetch()) {
   <meta charset="utf-8">
   <title>Profile</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://kit.fontawesome.com/fe58b05d68.js" crossorigin="anonymous"></script>
   <!-- Latest compiled and minified CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="profile.css">
@@ -186,12 +187,10 @@ if ($row3 = $result3->fetch()) {
             }
             ?>
             <div class="mt-3">
-              <p>Email</p>
-              <p><?php echo $userEmail; ?></p>
+              <p><i class="fa-regular fa-envelope"></i> <?php echo $userEmail; ?></p>
             </div>
             <div>
-              <p>Location</p>
-              <p><?php echo $zip; ?></p>
+              <p><i class="fa-solid fa-globe"></i> <?php echo $zip; ?></p>
             </div>
           </div>
 
@@ -212,8 +211,7 @@ if ($row3 = $result3->fetch()) {
           <div class="additional-details text-center">
             <h3>Additional Details</h3>
             <div class="mt-3">
-              <p><strong>Age</strong></p>
-              <p><?php echo $birthday; ?></p>
+              <p><i class="fa-solid fa-cake-candles"></i> <?php echo $birthday; ?></p>
             </div>
             <div>
               <p><strong>Description</strong></p>
