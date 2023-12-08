@@ -119,7 +119,7 @@ function test_userinput($data)
 
     ?>
     <div class="container mt-3">
-        <div class="row row-cols-3">
+        <div class="row row-cols-3 row-cols-md-3">
             <?php
             // foreach ($releases->albums->items as $album) {
 //     echo '<a href="' . $album->external_urls->spotify . '">' . $album->name . '</a> <br>';
