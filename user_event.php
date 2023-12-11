@@ -175,21 +175,41 @@ if ($rowCheck = $resultCheck->fetch()) {
                         $resultUserRSVP->execute();
 
                         if ($resultUserRSVP->rowCount() > 0) {
-                            echo "Records exist";
+
+
+                            ?>
+                            <div class="modal-footer">
+                                <form class="text-center" action="user_rsvp.php" method="post">
+                                    <button type="submit" class="btn btn-primary" disabled>Already RSVP'd / Interested</button>
+                                </form>
+                            </div>
+
+                            <?php
+
+
+                        } else {
+
+
+                            ?>
+
+                            <div class="modal-footer">
+                                <form class="text-center" action="user_rsvp.php" method="post">
+                                    <input type="hidden" name="event_id" value="<?php echo $event['EventID']; ?>">
+                                    <label class="form-label" for="rsvp_status">RSVP Status</label>
+                                    <select class="form-select mb-3" name="rsvp_status" id="rsvp_status" required>
+                                        <option value="Attending">Attending</option>
+                                        <option value="Maybe">Interested</option>
+                                    </select>
+                                    <button type="submit" class="btn btn-primary">RSVP</button>
+                                </form>
+                            </div>
+
+                            <?php
+
                         }
                         ?>
 
-                        <div class="modal-footer">
-                            <form class="text-center" action="user_rsvp.php" method="post">
-                                <input type="hidden" name="event_id" value="<?php echo $event['EventID']; ?>">
-                                <label class="form-label" for="rsvp_status">RSVP Status</label>
-                                <select class="form-select mb-3" name="rsvp_status" id="rsvp_status" required>
-                                    <option value="Attending">Attending</option>
-                                    <option value="Maybe">Interested</option>
-                                </select>
-                                <button type="submit" class="btn btn-primary">RSVP</button>
-                            </form>
-                        </div>
+
                     </div>
                 </div>
             </div>
