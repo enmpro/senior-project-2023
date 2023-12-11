@@ -298,12 +298,8 @@ if ($row3 = $result3->fetch()) {
 
                         <form action="user_changeEvent.php" method="post">
                           <input type="hidden" name="event_id" value="<?php echo $eventID; ?>">
-                          <label class="form-label" for="rsvp_status">Change Event Status</label>
-                          <select class="form-select mb-3" name="rsvp_status" id="rsvp_status" required>
-                            <option value="Attending">Attending</option>
-                            <option value="Maybe">Interested</option>
-                          </select>
-                          <button type="submit" class="btn btn-primary">Save Changes</button>
+                          <label class="form-label" for="rsvp_status">Change Event Status to...</label>
+                          <button type="submit" class="btn btn-secondary">Interested</button>
                         </form>
                         <form action="user_changeEvent.php" method="post">
                           <input type="hidden" name="id" value="<?php echo $eventID; ?>">
@@ -329,12 +325,8 @@ if ($row3 = $result3->fetch()) {
                         <p class="attendees">Possibly interested</p>
                         <form action="user_changeEvent.php" method="post">
                           <input type="hidden" name="event_id" value="<?php echo $eventID; ?>">
-                          <label class="form-label" for="rsvp_status">Change Event Status</label>
-                          <select class="form-select mb-3" name="rsvp_status" id="rsvp_status" required>
-                            <option value="Attending">Attending</option>
-                            <option value="Maybe">Interested</option>
-                          </select>
-                          <button type="submit" class="btn btn-primary">Save Changes</button>
+                          <label class="form-label" for="rsvp_status">Change Event Status...</label>
+                          <button type="submit" class="btn btn-success">Attending</button>
                         </form>
                         <form action="user_changeEvent.php" method="post">
                           <input type="hidden" name="id" value="<?php echo $eventID; ?>">
