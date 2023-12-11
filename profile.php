@@ -296,9 +296,9 @@ if ($row3 = $result3->fetch()) {
                                   echo "people";
                                 } ?> attending</p>
 
-                        <form action="user_changeEvent.php" method="post">
+                        <form class="mb-3" action="user_changeEvent.php" method="post">
                           <input type="hidden" name="event_id" value="<?php echo $eventID; ?>">
-                          <label class="form-label" for="rsvp_status">Change Event Status to...</label>
+                          <p class="fs-4">Change Event Status to...</p>
                           <button type="submit" class="btn btn-secondary">Interested</button>
                         </form>
                         <form action="user_changeEvent.php" method="post">
@@ -323,9 +323,9 @@ if ($row3 = $result3->fetch()) {
                         <p class="fs-4"><?php echo $eventArtist; ?></p>
                         <p class="mb-1"><?php echo $eventDesc; ?></p>
                         <p class="attendees">Possibly interested</p>
-                        <form action="user_changeEvent.php" method="post">
+                        <form class="mb-3" action="user_changeEvent.php" method="post">
                           <input type="hidden" name="event_id" value="<?php echo $eventID; ?>">
-                          <label class="form-label" for="rsvp_status">Change Event Status...</label>
+                          <p class="fs-4">Change Event Status to...</p>
                           <button type="submit" class="btn btn-success">Attending</button>
                         </form>
                         <form action="user_changeEvent.php" method="post">
