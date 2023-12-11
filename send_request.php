@@ -43,12 +43,7 @@ if (isset($_POST['add_friend'])) {
       $existingRequest->execute();
 
       if ($existingRequest->rowCount() > 0) {
-        echo <<<EOL
-          <script>
-            alert("Friend request was already sent!");
-            window.location.href = "community_page.html";
-          </script>
-        EOL;
+        $message = "Friend request has already been sent!";
       } else {
         // Insert a new friend request into the database
         $insertRequest = $pdo->prepare("INSERT INTO FriendRequest (RequestSend, RequestReceive, Status) VALUES (:RequestSend, :RequestReceive, 'pending')");
@@ -56,20 +51,10 @@ if (isset($_POST['add_friend'])) {
         $insertRequest->bindParam(':RequestReceive', $FriendUserID);
         $insertRequest->execute();
 
-        echo <<<EOL
-          <script>
-            alert("Friend request sent successfully!");
-            window.location.href = "community_page.html";
-          </script>
-        EOL;
+        $message = "Friend request has successfully been sent!";
       }
     } else {
-      echo <<<EOL
-        <script>
-          alert("Sorry, we could not send a friend request at this time. Please try again later.");
-          window.location.href = "community_page.html";
-        </script>
-      EOL;
+      $message = "Sorry, we could not send a friend request at this time. Please try again later.";
     }
   } catch (PDOException $e) {
     echo "Error: " . $e->getMessage();
@@ -95,14 +80,14 @@ $pdo = null;
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
+      <div class="container-fluid">
             <a class="navbar-brand" href="#">CANTIO</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="homepage.php">Main</a>
@@ -111,15 +96,33 @@ $pdo = null;
                         <a class="nav-link" href="profile.php">Profile</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="/spotify/explore_page.php">Explore Music</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="community.php">Community</a>
                     </li>
-                    <div>
-                        <form method="post" action="user_logout.php">
-                            <button type="submit" name="logout">Log Out</button>
-                        </form>
-                    </div>
+                    <li class="nav-item">
+                        <a class="nav-link" href="user_event.php">Event</a>
+                    </li>
+                    <?php
+                    if ($organizerBool) {
+                        echo <<<_END
+                    <li class="nav-item">
+                        <a class="nav-link" href="event_coord.php">Event Coordinator</a>
+                    </li>
+                    _END;
+                    }
+                    ?>
+
                 </ul>
+                <div>
+                    <form method="post" action="user_logout.php">
+                        <button class="btn btn-secondary" type="submit" name="logout">Log Out</button>
+
+                    </form>
+                </div>
             </div>
+
         </div>
     </nav>
 </body>
