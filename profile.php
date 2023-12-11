@@ -280,7 +280,7 @@ if ($row3 = $result3->fetch()) {
                       ?>
 
 
-                      <a href="#" class="list-group-item list-group-item-action">
+                      <button class="list-group-item list-group-item-action">
                         <div class="d-flex w-100 justify-content-between">
                           <h4 class="mb-3"><?php echo $eventName; ?></h4>
                           <small><?php echo $eventDate; ?></small>
@@ -294,7 +294,7 @@ if ($row3 = $result3->fetch()) {
                                 } else {
                                   echo "people";
                                 } ?> attending</p>
-                      </a>
+                      </button>
 
                       <?php
                     }
