@@ -1,12 +1,6 @@
 <?php
 require_once 'logindb.php';
 
-try {
-    $pdo = new PDO($attr, $user, $pass, $opts);
-} catch (PDOException $e) {
-    throw new PDOException($e->getMessage(), (int) $e->getCode());
-}
-
 session_start();
 if (!isset($_SESSION['user_name'])) {
     header('Location: landing.html');
@@ -25,29 +19,11 @@ function getPendingFriendRequests($pdo, $currentUserID) {
 $CurrentUserID = $_SESSION['UserID'];
 
 try {
+    $pdo = new PDO($attr, $user, $pass, $opts);
     $result = getPendingFriendRequests($pdo, $CurrentUserID);
-
-    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-        $SenderUserID = $row['RequestSend'];
-        ?>
-        <li>
-            <?php echo "{$SenderUserID} wants to be your friend!"; ?>
-            <form action='accept_request.php' method='post' style='display:inline;'>
-                <input type='hidden' name='UserID' value='<?php echo $SenderUserID; ?>'>
-                <button type='submit'>Accept</button>
-            </form>
-            <form action='reject_request.php' method='post' style='display:inline;'>
-                <input type='hidden' name='UserID' value='<?php echo $SenderUserID; ?>'>
-                <button type='submit'>Reject</button>
-            </form>
-        </li>
-        <?php
-    }
-} 
-catch (PDOException $e) {
+} catch (PDOException $e) {
     echo "Error: " . $e->getMessage();
-} 
-finally {
+} finally {
     $pdo = null;
 }
 ?>
@@ -58,11 +34,9 @@ finally {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Friend Requests</title>
+    <title>Pending Friend Requests</title>
     <!-- Latest compiled and minified CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Latest compiled JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
 <body>
@@ -74,7 +48,7 @@ finally {
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="homepage.php">Main</a>
@@ -83,14 +57,57 @@ finally {
                         <a class="nav-link" href="profile.php">Profile</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="/spotify/explore_page.php">Explore Music</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="community.php">Community</a>
                     </li>
-                    <div>
-                        <form method="post" action="user_logout.php">
-                            <button type="submit" name="logout">Log Out</button>
-                        </form>
-                    </div>
+                    <li class="nav-item">
+                        <a class="nav-link" href="user_event.php">Event</a>
+                    </li>
+                    <?php
+                    if ($organizerBool) {
+                        echo <<<_END
+                    <li class="nav-item">
+                        <a class="nav-link" href="event_coord.php">Event Coordinator</a>
+                    </li>
+                    _END;
+                    }
+                    ?>
+
                 </ul>
+                <div>
+                    <form method="post" action="user_logout.php">
+                        <button class="btn btn-secondary" type="submit" name="logout">Log Out</button>
+
+                    </form>
+                </div>
             </div>
+
         </div>
     </nav>
+
+    <div class="container mt-5">
+        <h2>Pending Friend Requests</h2>
+        <ul>
+            <?php while ($row = $result->fetch(PDO::FETCH_ASSOC)) : ?>
+                <li>
+                    <?php echo "{$row['RequestSend']} wants to be your friend!"; ?>
+                    <form action='accept_request.php' method='post' style='display:inline;'>
+                        <input type='hidden' name='UserID' value='<?php echo $row['RequestSend']; ?>'>
+                        <button type='submit'>Accept</button>
+                    </form>
+                    <form action='reject_request.php' method='post' style='display:inline;'>
+                        <input type='hidden' name='UserID' value='<?php echo $row['RequestSend']; ?>'>
+                        <button type='submit'>Reject</button>
+                    </form>
+                </li>
+            <?php endwhile; ?>
+        </ul>
+    </div>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
