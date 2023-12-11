@@ -298,11 +298,13 @@ if ($row3 = $result3->fetch()) {
 
                         <form class="mb-3" action="user_changeEvent.php" method="post">
                           <input type="hidden" name="event_id" value="<?php echo $eventID; ?>">
+                          <input type="hidden" name="eventStatus" value="Interested">
                           <p class="fs-4">Change Event Status to...</p>
                           <button type="submit" class="btn btn-secondary">Interested</button>
                         </form>
                         <form action="user_changeEvent.php" method="post">
-                          <input type="hidden" name="id" value="<?php echo $eventID; ?>">
+                          <input type="hidden" name="event_id" value="<?php echo $eventID; ?>">
+                          <input type="hidden" name="eventStatus" value="Delete">
                           <button class="btn btn-danger" type="submit"
                             onclick="return confirm('Are you sure you want to delete this event?')">Delete</button>
                         </form>
@@ -325,11 +327,13 @@ if ($row3 = $result3->fetch()) {
                         <p class="attendees">Possibly interested</p>
                         <form class="mb-3" action="user_changeEvent.php" method="post">
                           <input type="hidden" name="event_id" value="<?php echo $eventID; ?>">
+                          <input type="hidden" name="eventStatus" value="Attending">
                           <p class="fs-4">Change Event Status to...</p>
                           <button type="submit" class="btn btn-success">Attending</button>
                         </form>
                         <form action="user_changeEvent.php" method="post">
-                          <input type="hidden" name="id" value="<?php echo $eventID; ?>">
+                          <input type="hidden" name="event_id" value="<?php echo $eventID; ?>">
+                          <input type="hidden" name="eventStatus" value="Delete">
                           <button class="btn btn-danger" type="submit"
                             onclick="return confirm('Are you sure you want to delete this event?')">Delete</button>
                         </form>
