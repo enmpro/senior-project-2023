@@ -298,15 +298,18 @@ if ($row3 = $result3->fetch()) {
 
                         <form action="user_changeEvent.php" method="post">
                           <input type="hidden" name="event_id" value="<?php echo $eventID; ?>">
-                          <label class="form-label" for="rsvp_status">RSVP Status</label>
+                          <label class="form-label" for="rsvp_status">Change Event Status</label>
                           <select class="form-select mb-3" name="rsvp_status" id="rsvp_status" required>
                             <option value="Attending">Attending</option>
                             <option value="Maybe">Interested</option>
-                            <option value="Delete">Delete Event</option>
                           </select>
                           <button type="submit" class="btn btn-primary">Save Changes</button>
                         </form>
-
+                        <form action="user_changeEvent.php" method="post">
+                          <input type="hidden" name="id" value="<?php echo $eventID; ?>">
+                          <button class="btn btn-danger" type="submit"
+                            onclick="return confirm('Are you sure you want to delete this event?')">Delete</button>
+                        </form>
                       </div>
 
                       <?php
@@ -324,6 +327,20 @@ if ($row3 = $result3->fetch()) {
                         <p class="fs-4"><?php echo $eventArtist; ?></p>
                         <p class="mb-1"><?php echo $eventDesc; ?></p>
                         <p class="attendees">Possibly interested</p>
+                        <form action="user_changeEvent.php" method="post">
+                          <input type="hidden" name="event_id" value="<?php echo $eventID; ?>">
+                          <label class="form-label" for="rsvp_status">Change Event Status</label>
+                          <select class="form-select mb-3" name="rsvp_status" id="rsvp_status" required>
+                            <option value="Attending">Attending</option>
+                            <option value="Maybe">Interested</option>
+                          </select>
+                          <button type="submit" class="btn btn-primary">Save Changes</button>
+                        </form>
+                        <form action="user_changeEvent.php" method="post">
+                          <input type="hidden" name="id" value="<?php echo $eventID; ?>">
+                          <button class="btn btn-danger" type="submit"
+                            onclick="return confirm('Are you sure you want to delete this event?')">Delete</button>
+                        </form>
                       </div>
                       <?php
                     }

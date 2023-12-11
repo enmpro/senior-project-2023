@@ -226,7 +226,7 @@ if ($rowCheck = $resultCheck->fetch()) {
                                     <div class="col">
                                     <form action="delete_event.php" method="post">
                                         <input type="hidden" name="id" value="$event_id">
-                                        <button type="submit" onclick="return confirm('Are you sure you want to delete this event?')">Delete</button>
+                                        <button class="btn btn-danger" type="submit" onclick="return confirm('Are you sure you want to delete this event?')">Delete</button>
                                     </form>
                                     </div>
                                 </div>
