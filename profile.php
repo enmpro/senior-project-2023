@@ -223,7 +223,7 @@ if ($row3 = $result3->fetch()) {
               $socialQuery = "SELECT * FROM SocialMediaHandles WHERE ProfileID = (Select ProfileID from Profile WHERE UserID = $user_id)";
               $socialResult = $pdo->query($socialQuery);
               $socialCount = 0;
-              foreach($socialResult as $row) {
+              foreach ($socialResult as $row) {
                 $facebook = $row['Platform'];
                 echo $facebook . "<br>";
               }
@@ -268,6 +268,7 @@ if ($row3 = $result3->fetch()) {
                     $eventRsvpResult = $pdo->query($eventRsvp);
 
                     if ($eventResult = $eventRsvpResult->fetch()) {
+                      $eventID = $eventResult['EventID'];
                       $eventName = $eventResult['EventName'];
                       $eventArtist = $eventResult['EventArtist'];
                       $eventDesc = $eventResult['EventDesc'];
@@ -280,7 +281,7 @@ if ($row3 = $result3->fetch()) {
                       ?>
 
 
-                      <button class="list-group-item list-group-item-action">
+                      <div class="list-group-item list-group-item-action">
                         <div class="d-flex w-100 justify-content-between">
                           <h4 class="mb-3"><?php echo $eventName; ?></h4>
                           <small><?php echo $eventDate; ?></small>
@@ -293,8 +294,20 @@ if ($row3 = $result3->fetch()) {
                                   echo "person";
                                 } else {
                                   echo "people";
-                                } ?> attensdfding</p>
-                      </button>
+                                } ?> attending</p>
+
+                        <form action="user_changeEvent.php" method="post">
+                          <input type="hidden" name="event_id" value="<?php echo $eventID; ?>">
+                          <label class="form-label" for="rsvp_status">RSVP Status</label>
+                          <select class="form-select mb-3" name="rsvp_status" id="rsvp_status" required>
+                            <option value="Attending">Attending</option>
+                            <option value="Maybe">Interested</option>
+                            <option value="Delete">Delete Event</option>
+                          </select>
+                          <button type="submit" class="btn btn-primary">Save Changes</button>
+                        </form>
+
+                      </div>
 
                       <?php
                     }
@@ -302,7 +315,7 @@ if ($row3 = $result3->fetch()) {
                     if ($rsvpStatus == 'Maybe') {
                       ?>
 
-                      <a href="#" class="list-group-item list-group-item-action">
+                      <div class="list-group-item list-group-item-action">
                         <div class="d-flex w-100 justify-content-between">
                           <h4 class="mb-3"><?php echo $eventName; ?></h4>
                           <small><?php echo $eventDate; ?></small>
@@ -311,7 +324,7 @@ if ($row3 = $result3->fetch()) {
                         <p class="fs-4"><?php echo $eventArtist; ?></p>
                         <p class="mb-1"><?php echo $eventDesc; ?></p>
                         <p class="attendees">Possibly interested</p>
-                      </a>
+                      </div>
                       <?php
                     }
                   }
