@@ -166,6 +166,19 @@ if ($rowCheck = $resultCheck->fetch()) {
                             </div>
                             </p>
                         </div>
+
+                        <?php
+                        $checkUserRSVP = "SELECT * From UserRSVP WHERE UserID = :userID AND EventID = :eventID";
+                        $resultUserRSVP = $pdo->prepare($checkUserRSVP);
+                        $resultUserRSVP->bindParam(':userID', $userID, PDO::PARAM_INT);
+                        $resultUserRSVP->bindParam(':eventID', $event['EventID'], PDO::PARAM_INT);
+                        $resultUserRSVP->execute();
+
+                        if ($resultUserRSVP->rowCount() > 0) {
+                            echo "Records exist";
+                        }
+                        ?>
+
                         <div class="modal-footer">
                             <form class="text-center" action="user_rsvp.php" method="post">
                                 <input type="hidden" name="event_id" value="<?php echo $event['EventID']; ?>">
