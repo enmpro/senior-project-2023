@@ -7,7 +7,6 @@ try {
   throw new PDOException($e->getMessage(), (int) $e->getCode());
 }
 
-
 session_start();
 if (!isset($_SESSION['user_name'])) {
   // The user is not logged in, redirect them to the login page
@@ -44,12 +43,12 @@ if (isset($_POST['add_friend'])) {
       $existingRequest->execute();
 
       if ($existingRequest->rowCount() > 0) {
-        echo <<<_END
-                    <script>
-                        alert("Friend request was already sent!");
-                        window.location.href = "community_page.html";
-                    </script>
-                _END;
+        echo <<<EOL
+          <script>
+            alert("Friend request was already sent!");
+            window.location.href = "community_page.html";
+          </script>
+        EOL;
       } else {
         // Insert a new friend request into the database
         $insertRequest = $pdo->prepare("INSERT INTO FriendRequest (RequestSend, RequestReceive, Status) VALUES (:RequestSend, :RequestReceive, 'pending')");
@@ -57,20 +56,20 @@ if (isset($_POST['add_friend'])) {
         $insertRequest->bindParam(':RequestReceive', $FriendUserID);
         $insertRequest->execute();
 
-        echo <<<_END
-                    <script>
-                        alert("Friend request sent successfully!");
-                        window.location.href = "community_page.html";
-                    </script>
-                _END;
+        echo <<<EOL
+          <script>
+            alert("Friend request sent successfully!");
+            window.location.href = "community_page.html";
+          </script>
+        EOL;
       }
     } else {
-      echo <<<_END
-                  <script>
-                      alert("sorry, we could not send a friend request at this time. Please try again later.");
-                      window.location.href = "community_page.html";
-                  </script>
-              _END;
+      echo <<<EOL
+        <script>
+          alert("Sorry, we could not send a friend request at this time. Please try again later.");
+          window.location.href = "community_page.html";
+        </script>
+      EOL;
     }
   } catch (PDOException $e) {
     echo "Error: " . $e->getMessage();
@@ -79,6 +78,7 @@ if (isset($_POST['add_friend'])) {
 
 $pdo = null;
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
