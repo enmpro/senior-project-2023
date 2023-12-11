@@ -29,15 +29,15 @@ try {
 
     while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
         $SenderUserID = $row['RequestSend'];
-?>
+        ?>
         <li>
             <?php echo "{$SenderUserID} wants to be your friend!"; ?>
             <form action='accept_request.php' method='post' style='display:inline;'>
-                <input type='hidden' name='UserID' value='{$SenderUserID}'>
+                <input type='hidden' name='UserID' value='<?php echo $SenderUserID; ?>'>
                 <button type='submit'>Accept</button>
             </form>
             <form action='reject_request.php' method='post' style='display:inline;'>
-                <input type='hidden' name='UserID' value='{$SenderUserID}'>
+                <input type='hidden' name='UserID' value='<?php echo $SenderUserID; ?>'>
                 <button type='submit'>Reject</button>
             </form>
         </li>
