@@ -44,7 +44,12 @@ if (isset($_POST['add_friend'])) {
       $existingRequest->execute();
 
       if ($existingRequest->rowCount() > 0) {
-        echo "Friend request already sent!";
+        echo <<<_END
+                    <script>
+                        alert("Friend request was already sent!");
+                        window.location.href = "community_page.html";
+                    </script>
+                _END;
       } else {
         // Insert a new friend request into the database
         $insertRequest = $pdo->prepare("INSERT INTO FriendRequest (RequestSend, RequestReceive, Status) VALUES (:RequestSend, :RequestReceive, 'pending')");
@@ -52,10 +57,20 @@ if (isset($_POST['add_friend'])) {
         $insertRequest->bindParam(':RequestReceive', $FriendUserID);
         $insertRequest->execute();
 
-        echo "Friend request sent successfully!";
+        echo <<<_END
+                    <script>
+                        alert("Friend request sent successfully!");
+                        window.location.href = "community_page.html";
+                    </script>
+                _END;
       }
     } else {
-      echo "Sorry, this user was not found in your system.";
+      echo <<<_END
+                  <script>
+                      alert("sorry, we could not send a friend request at this time. Please try again later.");
+                      window.location.href = "community_page.html";
+                  </script>
+              _END;
     }
   } catch (PDOException $e) {
     echo "Error: " . $e->getMessage();
