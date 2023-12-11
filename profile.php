@@ -293,7 +293,7 @@ if ($row3 = $result3->fetch()) {
                                   echo "person";
                                 } else {
                                   echo "people";
-                                } ?> attending</p>
+                                } ?> attensdfding</p>
                       </button>
 
                       <?php
