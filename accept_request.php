@@ -40,17 +40,13 @@ if (isset($_GET['UserID'])) {
             $getRequestInfo->bindParam(':RequestID', $RequestID);
             $getRequestInfo->execute();
             $request_info = $getRequestInfo->fetch(PDO::FETCH_ASSOC);
-
-            // Redirect the user back to display_requests.php with a success message
             header('Location: display_requests.php?success=1');
             exit;
         } else {
-            // No rows were updated, meaning the request might not be pending
             header('Location: display_requests.php?error=1');
             exit;
         }
     } catch (PDOException $e) {
-        // Handle database errors
         echo "Error: " . $e->getMessage();
     }
 }
