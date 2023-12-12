@@ -243,7 +243,7 @@ if ($row3 = $result3->fetch()) {
                   echo "<p><i class='fa-brands fa-x-twitter'></i> " . $socialUrl. "</p>";
                 }
                 if ($socialMedia == "Instagram") {
-                  echo "<p><i class='fa-brands fa-instgram'></i> " . $socialUrl. "</p>";
+                  echo "<p><i class='fa-brands fa-instagram'></i> " . $socialUrl. "</p>";
                 }
               }
               ?>
