@@ -9,7 +9,7 @@ if (!isset($_SESSION['user_name'])) {
 }
 
 function getPendingFriendRequests($pdo, $currentUserID) {
-    $query = "SELECT UserID, RequestSend FROM FriendRequest 
+    $query = "SELECT RequestID, RequestSend FROM FriendRequest 
               WHERE RequestReceive = :RequestReceive AND Status = 'pending'";
     $stmt = $pdo->prepare($query);
     $stmt->bindParam(':RequestReceive', $currentUserID);
