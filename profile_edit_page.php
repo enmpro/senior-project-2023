@@ -58,7 +58,7 @@ $oldFace = $oldFaceStmt->fetchColumn();
 $facebook = "$oldFace";
 
 $oldTwitQuery = "SELECT URL FROM SocialMediaHandles 
-        WHERE Platform = 'Twitter' AND
+        WHERE Platform = 'X' AND
         ProfileID = (SELECT ProfileID FROM Profile WHERE UserID LIKE :userid)";
 
 $oldTwitStmt = $pdo->prepare($oldTwitQuery);

@@ -82,7 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($_POST['twitter'] == '') {
         $oldTwitQuery = "SELECT URL FROM SocialMediaHandles 
-        WHERE Platform = 'Twitter' AND
+        WHERE Platform = 'X' AND
         ProfileID = (SELECT ProfileID FROM Profile WHERE UserID LIKE :userid)";
         $oldTwitStmt = $pdo->prepare($oldTwitQuery);
         $oldTwitStmt->bindParam(':userid', $userID, PDO::PARAM_INT);
@@ -177,7 +177,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmtProfile->execute();
 
     alter_social($pdo, $facebook, 'Facebook', $userID);
-    alter_social($pdo, $twitter, 'Twitter', $userID);
+    alter_social($pdo, $twitter, 'X', $userID);
     alter_social($pdo, $instagram, 'Instagram', $userID);
     alter_profile($pdo, $description, $targetPhotoFile, $userID);
 
