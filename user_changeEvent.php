@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         if (isset($_POST['eventStatus']) == "Interested") {
 
-            $interestedStat = "UPDATE UserRSVP SET RSVPStatus = 'Interested' WHERE UserID = :userID AND EventID = :eventID";
+            $interestedStat = "UPDATE UserRSVP SET RSVPStatus = 'Maybe' WHERE UserID = :userID AND EventID = :eventID";
             $interestedStmt = $pdo->prepare($interestedStat);
             $interestedStmt->bindParam(':userID', $userID, PDO::PARAM_INT);
             $interestedStmt->bindParam(':eventID', $eventID, PDO::PARAM_INT);
