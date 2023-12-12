@@ -40,9 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $interestValueStmt = $pdo->prepare($interestValueSQL);
             $interestValueStmt->bindParam(':eventID', $eventID, PDO::PARAM_INT);
             $interestValueStmt->execute();
-        }
-
-        if (isset($_POST['eventStatus']) == "Attending") {
+        } else if (isset($_POST['eventStatus']) == "Attending") {
 
             $attendStat = "UPDATE UserRSVP SET RSVPStatus = 'Attending' WHERE UserID = :userID AND EventID = :eventID";
             $attendStmt = $pdo->prepare($attendStat);
