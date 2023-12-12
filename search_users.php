@@ -127,7 +127,7 @@ if ($row3 = $result3->fetch()) {
         </form>
     </div>
     <div class="container">
-        <div class="row">
+        <div class="row g-5">
 
             <?php
             // Check if the form is submitted

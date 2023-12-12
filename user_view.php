@@ -221,7 +221,7 @@ if ($rowCheck = $resultCheck->fetch()) {
           <div class="additional-details text-center">
             <h3>Additional Details</h3>
             <div class="mt-3">
-              <p>p><i class="fa-solid fa-cake-candles"></i> <?php echo $birthday; ?></p>
+              <p><i class="fa-solid fa-cake-candles"></i> <?php echo $birthday; ?></p>
             </div>
             <div>
               <p><strong>Description</strong></p>
