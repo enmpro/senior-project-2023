@@ -21,7 +21,7 @@ $eventID = $_POST['event_id'];
 $deleteSql = "DELETE FROM UserRSVP WHERE EventID = $eventID and UserID = $userID";
 $deleteRsvp = $pdo->query($deleteSql);
 
-header('Location: event_coord.php');
+header('Location: profile.php');
 
 
 ?>
