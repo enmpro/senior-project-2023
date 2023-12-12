@@ -35,19 +35,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['RequestID'])) {
         $rowsAffected = $updateRequest->rowCount();
 
         if ($rowsAffected > 0) {
-            // Redirect the user back to display_requests.php with a success message
             header('Location: display_requests.php?success=1');
             exit;
         } else {
-            // No rows were updated, meaning the request might not be pending
             header('Location: display_requests.php?error=1');
             exit;
         }
     } catch (PDOException $e) {
-        // Handle database errors
         echo "Error: " . $e->getMessage();
     } finally {
-        // Close the database connection in the finally block
         $pdo = null;
     }
 }

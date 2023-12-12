@@ -8,7 +8,6 @@ if (!isset($_SESSION['user_name'])) {
     exit;
 }
 
-// Function to retrieve pending friend requests
 function getPendingFriendRequests($pdo, $currentUserID) {
     $query = "SELECT UserID, RequestSend FROM FriendRequest 
               WHERE RequestReceive = :RequestReceive AND Status = 'pending'";
@@ -21,16 +20,12 @@ function getPendingFriendRequests($pdo, $currentUserID) {
 $currentUserID = $_SESSION['UserID'];
 
 try {
-    // Initialize PDO connection
     $pdo = new PDO($attr, $user, $pass, $opts);
-    
-    // Retrieve pending friend requests
     $result = getPendingFriendRequests($pdo, $currentUserID);
 } catch (PDOException $e) {
-    // Handle database error
     echo "Error: " . $e->getMessage();
 } finally {
-    $pdo = null; // Close the PDO connection
+    $pdo = null;
 }
 ?>
 

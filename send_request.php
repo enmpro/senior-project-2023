@@ -1,7 +1,6 @@
 <?php
 require_once 'logindb.php';
 
-// Initialize PDO connection
 try {
     $pdo = new PDO($attr, $user, $pass, $opts);
 } catch (PDOException $e) {
@@ -18,7 +17,6 @@ if (!isset($_SESSION['user_name'])) {
 
 $authUserID = $_SESSION['UserID'];
 
-// Function to sanitize user input
 function test_user_input($data) {
     $data = trim($data);
     $data = stripslashes($data);
@@ -26,14 +24,12 @@ function test_user_input($data) {
     return $data;
 }
 
-$message = ''; // Initialize message variable
-
+$message = ''; 
 if (isset($_POST['add_friend'])) {
     $requestSend = $authUserID;
     $friendUsername = test_user_input($_POST['RequestReceive']);
 
     try {
-        // Retrieve UserID for the provided friend username
         $stmt = $pdo->prepare("SELECT UserID FROM User WHERE Username = :Username");
         $stmt->bindParam(':Username', $friendUsername);
         $stmt->execute();
@@ -42,7 +38,6 @@ if (isset($_POST['add_friend'])) {
         if ($result) {
             $friendUserID = $result['UserID'];
 
-            // Check if a friend request has already been sent to this user
             $existingRequest = $pdo->prepare("SELECT * FROM FriendRequest WHERE RequestSend = :RequestSend AND RequestReceive = :RequestReceive");
             $existingRequest->bindParam(':RequestSend', $requestSend);
             $existingRequest->bindParam(':RequestReceive', $friendUserID);
@@ -51,7 +46,6 @@ if (isset($_POST['add_friend'])) {
             if ($existingRequest->rowCount() > 0) {
                 $message = "Friend request has already been sent!";
             } else {
-                // Insert a new friend request into the database
                 $insertRequest = $pdo->prepare("INSERT INTO FriendRequest (RequestSend, RequestReceive, Status) VALUES (:RequestSend, :RequestReceive, 'pending')");
                 $insertRequest->bindParam(':RequestSend', $requestSend);
                 $insertRequest->bindParam(':RequestReceive', $friendUserID);
@@ -63,15 +57,11 @@ if (isset($_POST['add_friend'])) {
             $message = "Sorry, we could not send a friend request at this time. Please try again later.";
         }
     } catch (PDOException $e) {
-        // Handle database error
         $message = "Error: " . $e->getMessage();
     }
 }
-
-$pdo = null; // Close the PDO connection
+$pdo = null;
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
