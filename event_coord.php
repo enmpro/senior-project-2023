@@ -295,7 +295,9 @@ if ($rowCheck = $resultCheck->fetch()) {
         </div>
     </div>
     </div>
-
+    <footer class="bg-light text-center py-4">
+        <p>&copy; 2023 Cantio. All rights reserved.</p>
+    </footer>
     <!-- Latest compiled JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 </body>

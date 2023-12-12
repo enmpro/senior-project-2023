@@ -440,7 +440,7 @@ if ($row3 = $result3->fetch()) {
   </div>
 
 
-  <footer class="bg-light text-center py-4 fixed-bottom">
+  <footer class="bg-light text-center py-4">
         <p>&copy; 2023 Cantio. All rights reserved.</p>
     </footer>
   <!-- Latest compiled JavaScript -->
