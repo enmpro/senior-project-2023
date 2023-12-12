@@ -81,7 +81,7 @@ if ($rowCheck = $resultCheck->fetch()) {
                         <a class="nav-link" aria-current="page" href="homepage.php">Main</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="profile.php">Profile</a>
+                        <a class="nav-link " href="profile.php">Profile</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/spotify/explore_page.php">Explore Music</a>
@@ -96,7 +96,7 @@ if ($rowCheck = $resultCheck->fetch()) {
                     if ($organizerBool) {
                         echo <<<_END
                     <li class="nav-item">
-                        <a class="nav-link" href="event_coord.php">Event Coordinator</a>
+                        <a class="nav-link active" href="event_coord.php">Event Coordinator</a>
                     </li>
                     _END;
                     }
