@@ -28,16 +28,16 @@ if (isset($_GET['UserID'])) {
 
     try {
         $updateRequest = $pdo->prepare("UPDATE FriendRequest SET Status = 'accepted' 
-                                        WHERE UserID = :UserID AND Status = 'pending'");
-        $updateRequest->bindParam(':UserID', $RequestID);
+                                        WHERE RequestID = :RequestID AND Status = 'pending'");
+        $updateRequest->bindParam(':RequestID', $RequestID);
         $updateRequest->execute();
 
         $rowsAffected = $updateRequest->rowCount();
 
         if ($rowsAffected > 0) {
             $getRequestInfo = $pdo->prepare("SELECT RequestSend, RequestReceive FROM FriendRequest
-                                             WHERE UserID = :UserID");
-            $getRequestInfo->bindParam(':UserID', $RequestID);
+                                             WHERE RequestID = :RequestID");
+            $getRequestInfo->bindParam(':RequestID', $RequestID);
             $getRequestInfo->execute();
             $request_info = $getRequestInfo->fetch(PDO::FETCH_ASSOC);
 
