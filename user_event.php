@@ -84,7 +84,7 @@ if ($rowCheck = $resultCheck->fetch()) {
                         <a class="nav-link" href="/spotify/explore_page.php">Explore Music</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="community.php">Community</a>
+                        <a class="nav-link" href="search_users.php">Search Users</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" href="user_event.php">Event</a>

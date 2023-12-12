@@ -135,7 +135,7 @@ if ($rowCheck = $resultCheck->fetch()) {
             <div class="collapse navbar-collapse text-center justify-content-end" id="navbarSupportedContent">
                 <ul class="navbar-nav ">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="homepage.php">Main</a>
+                        <a class="nav-link " aria-current="page" href="homepage.php">Main</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="profile.php">Profile</a>
@@ -144,7 +144,7 @@ if ($rowCheck = $resultCheck->fetch()) {
                         <a class="nav-link" href="/spotify/explore_page.php">Explore Music</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="community.php">Community</a>
+                        <a class="nav-link active" href="search_users.php">Search Users</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="user_event.php">Event</a>

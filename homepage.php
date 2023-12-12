@@ -97,11 +97,11 @@ if ($row = $result->fetch()) {
             <div class="col">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Community Area</h5>
+                        <h5 class="card-title">Search Users</h5>
                         <p class="card-text">Connect with other music lovers in our community.
 
                         </p>
-                        <a href="community.php" class="btn btn-primary">Go to Community</a>
+                        <a href="search_users.php" class="btn btn-primary">Go Search Users</a>
                     </div>
                 </div>
 
