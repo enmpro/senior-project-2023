@@ -56,22 +56,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $attendValueStmt->execute();
         }
 
-        if (isset($_POST['eventStatus']) == "Delete") {
-
-            $deleteStat = "DELETE FROM UserRSVP WHERE UserID = :userID and EventID = :eventID";
-            $deleteStmt = $pdo->prepare($deleteStat);
-            $deleteStmt->bindParam(':userID', $userID, PDO::PARAM_INT);
-            $deleteStmt->bindParam(':eventID', $eventID, PDO::PARAM_INT);
-            $deleteStmt->execute();
-        }
-
     }
 
-    
-
 }
-
-
 
 header('Location: profile.php');
 

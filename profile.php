@@ -298,13 +298,15 @@ if ($row3 = $result3->fetch()) {
 
                         <form class="mb-3" action="user_changeEvent.php" method="post">
                           <input type="hidden" name="event_id" value="<?php echo $eventID; ?>">
-                          <input type="hidden" name="eventStatus" value="Interested">
-                          <p class="fs-4">Change Event Status to...</p>
-                          <button type="submit" class="btn btn-secondary">Interested</button>
+                          <label class="form-label fs-4 d-block" for="eventStatus">Change Event Status to...</label>
+                          <select class="form-select mb-3" name="eventStatus" id="eventStatus" required>
+                            <option value="Attending">Attending</option>
+                            <option value="Interested">Interested</option>
+                          </select>
+                          <button type="submit" class="btn btn-secondary">Save Changes</button>
                         </form>
-                        <form action="user_changeEvent.php" method="post">
+                        <form action="user_deleteEvent.php" method="post">
                           <input type="hidden" name="event_id" value="<?php echo $eventID; ?>">
-                          <input type="hidden" name="eventStatus" value="Delete">
                           <button class="btn btn-danger" type="submit"
                             onclick="return confirm('Are you sure you want to delete this event?')">Delete</button>
                         </form>
@@ -327,13 +329,15 @@ if ($row3 = $result3->fetch()) {
                         <p class="attendees">Possibly interested</p>
                         <form class="mb-3" action="user_changeEvent.php" method="post">
                           <input type="hidden" name="event_id" value="<?php echo $eventID; ?>">
-                          <input type="hidden" name="eventStatus" value="Attending">
-                          <p class="fs-4">Change Event Status to...</p>
-                          <button type="submit" class="btn btn-success">Attending</button>
+                          <label class="form-label fs-4 d-block" for="eventStatus">Change Event Status to...</label>
+                          <select class="form-select mb-3" name="eventStatus" id="eventStatus" required>
+                            <option value="Attending">Attending</option>
+                            <option value="Interested">Interested</option>
+                          </select>
+                          <button type="submit" class="btn btn-success">Save Changes</button>
                         </form>
-                        <form action="user_changeEvent.php" method="post">
+                        <form action="user_deleteEvent.php" method="post">
                           <input type="hidden" name="event_id" value="<?php echo $eventID; ?>">
-                          <input type="hidden" name="eventStatus" value="Delete">
                           <button class="btn btn-danger" type="submit"
                             onclick="return confirm('Are you sure you want to delete this event?')">Delete</button>
                         </form>
