@@ -345,6 +345,11 @@ if ($row3 = $result3->fetch()) {
                         <p class="fs-4"><?php echo $eventArtist; ?></p>
                         <p class="mb-1"><?php echo $eventDesc; ?></p>
                         <p class="attendees">Possibly interested</p>
+                        <div>
+                          <button class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#userInterested<?php echo $count; ?>">Check People
+                            Interested</button>
+                        </div>
                         <form class="mb-3" action="user_changeEvent.php" method="post">
                           <input type="hidden" name="event_id" value="<?php echo $eventID; ?>">
                           <label class="form-label fs-4 d-block" for="eventStatus">Change Event Status to...</label>
@@ -378,7 +383,33 @@ if ($row3 = $result3->fetch()) {
                             <?php
                             $userAttendSQL = "SELECT Username, CONCAT(FirstName, ' ', LastName) As FullName FROM User 
                                JOIN UserRSVP ON User.UserID = UserRSVP.UserID
-                               WHERE UserRSVP.EventID = $eventID AND UserRSVP.RSVPStatus = '$rsvpStatus'";
+                               WHERE UserRSVP.EventID = $eventID AND UserRSVP.RSVPStatus = 'Attending'";
+                            $userAttendResult = $pdo->query($userAttendSQL);
+                            foreach ($userAttendResult as $row) {
+                              echo $row['FullName'] . "<br>";
+                            }
+                            ?>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="modal fade" id="userInterested<?php echo $count; ?>" tabindex="-1"
+                      aria-labelledby="userInterestedLabel<?php echo $count; ?>" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="userInterestedLabel<?php echo $count; ?>">People Interested</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                            <?php
+                            $userAttendSQL = "SELECT Username, CONCAT(FirstName, ' ', LastName) As FullName FROM User 
+                               JOIN UserRSVP ON User.UserID = UserRSVP.UserID
+                               WHERE UserRSVP.EventID = $eventID AND UserRSVP.RSVPStatus = 'Interested'";
                             $userAttendResult = $pdo->query($userAttendSQL);
                             foreach ($userAttendResult as $row) {
                               echo $row['FullName'] . "<br>";
