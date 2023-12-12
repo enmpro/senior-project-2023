@@ -310,12 +310,12 @@ if ($row3 = $result3->fetch()) {
                             Attending</button>
                         </div>
 
-                        <div class="modal fade" id="userAttend<?php echo $count; ?>" tabindex="-133" aria-labelledby="userAttendLabel"
+                        <div class="modal fade" id="userAttend<?php echo $count; ?>" tabindex="-133" aria-labelledby="userAttendLabel<?php echo $count; ?>"
                           aria-hidden="true">
                           <div class="modal-dialog">
                             <div class="modal-content">
                               <div class="modal-header">
-                                <h5 class="modal-title" id="userAttendLabel">Modal title</h5>
+                                <h5 class="modal-title" id="userAttendLabel<?php echo $count; ?>">Modal title</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                               </div>
                               <div class="modal-body">
