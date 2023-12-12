@@ -375,8 +375,6 @@ if ($row3 = $result3->fetch()) {
           <div class="card-body">
             <h5 class="card-title">Liked Music</h5>
             <h5 class="card-title">Liked Artists</h5>
-            <h5 class="card-title">Top Music</h5>
-            <h5 class="card-title">Top Artists</h5>
           </div>
         </div>
 

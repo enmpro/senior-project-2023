@@ -75,6 +75,7 @@ if ($rowCheck = $resultCheck->fetch()) {
   <meta charset="utf-8">
   <title>Profile</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://kit.fontawesome.com/fe58b05d68.js" crossorigin="anonymous"></script>
   <!-- Latest compiled and minified CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="profile.css">
@@ -185,12 +186,10 @@ if ($rowCheck = $resultCheck->fetch()) {
             }
             ?>
             <div class="mt-3">
-              <p>Email</p>
-              <p><?php echo $userEmail; ?></p>
+              <p><i class="fa-regular fa-envelope"></i> <?php echo $userEmail; ?></p>
             </div>
             <div>
-              <p>Location</p>
-              <p><?php echo $zip; ?></p>
+              <p><i class="fa-solid fa-globe"></i> <?php echo $zip; ?></p>
             </div>
           </div>
           <?php
@@ -211,8 +210,7 @@ if ($rowCheck = $resultCheck->fetch()) {
           <div class="additional-details text-center">
             <h3>Additional Details</h3>
             <div class="mt-3">
-              <p><strong>Age</strong></p>
-              <p><?php echo $birthday; ?></p>
+              <p>p><i class="fa-solid fa-cake-candles"></i> <?php echo $birthday; ?></p>
             </div>
             <div>
               <p><strong>Description</strong></p>
@@ -220,7 +218,15 @@ if ($rowCheck = $resultCheck->fetch()) {
             </div>
             <div>
               <p><strong>Social Media</strong></p>
-              <p>FIX ME</p>
+              <?php
+              $socialQuery = "SELECT * FROM SocialMediaHandles WHERE ProfileID = (Select ProfileID from Profile WHERE UserID = $user_id)";
+              $socialResult = $pdo->query($socialQuery);
+              $socialCount = 0;
+              foreach ($socialResult as $row) {
+                $facebook = $row['Platform'];
+                echo $facebook . "<br>";
+              }
+              ?>
             </div>
           </div>
         </div>
@@ -325,10 +331,12 @@ if ($rowCheck = $resultCheck->fetch()) {
         </div>
 
         <div class="card mt-3">
+          <div class="card-header text-center">
+            <p class="fs-2">Music</p>
+          </div>
           <div class="card-body">
-            <h5 class="card-title">Favorite Music</h5>
-            <p class="card-text"><strong>Favorite Genre</strong> Rock</p>
-            <p class="card-text"><strong>Favorite Artists</strong> Artist 1, Artist 2, Artist 3</p>
+            <h5 class="card-title">Liked Music</h5>
+            <h5 class="card-title">Liked Artists</h5>
           </div>
         </div>
 
