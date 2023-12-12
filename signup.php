@@ -370,7 +370,7 @@ function update_social($pdo, $profileID, $platform, $url)
 {
 
     $sqlProfile = "INSERT INTO SocialMediaHandles (ProfileID, Platform, URL) 
-                   VALUES (:profileID, :platform, :handle, :url)";
+                   VALUES (:profileID, :platform, :url)";
     $stmtProfile = $pdo->prepare($sqlProfile);
 
     $stmtProfile->bindParam(':profileID', $profileID, PDO::PARAM_STR, 11);
