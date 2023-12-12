@@ -46,7 +46,7 @@ if ($row = $result->fetch()) {
 <style>
         /* Add custom styles here, if needed */
         body {
-            padding-top: 70px; /* Adjust for fixed navbar height */
+            padding-top: 100px; /* Adjust for fixed navbar height */
         }
         .homepage-section {
             padding: 60px 0;
