@@ -89,22 +89,36 @@ $instagram = "$oldInsta";
 
 </head>
 
+
+<style>
+    /* Add custom styles here, if needed */
+    body {
+        padding-top: 100px;
+        /* Adjust for fixed navbar height */
+    }
+
+    .homepage-section {
+        padding: 60px 0;
+    }
+</style>
+
+
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
             <a class="navbar-brand" href="#">CANTIO</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <div class="collapse navbar-collapse text-center justify-content-end" id="navbarSupportedContent">
+                <ul class="navbar-nav ">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="homepage.php">Main</a>
+                        <a class="nav-link" aria-current="page" href="homepage.php">Main</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="profile.php">Profile</a>
+                        <a class="nav-link active" href="profile.php">Profile</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/spotify/explore_page.php">Explore Music</a>
@@ -126,7 +140,7 @@ $instagram = "$oldInsta";
                     ?>
 
                 </ul>
-                <div>
+                <div class="my-3 mx-4">
                     <form method="post" action="user_logout.php">
                         <button class="btn btn-secondary" type="submit" name="logout">Log Out</button>
 

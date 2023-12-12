@@ -44,14 +44,16 @@ if ($row = $result->fetch()) {
 </head>
 
 <style>
-        /* Add custom styles here, if needed */
-        body {
-            padding-top: 100px; /* Adjust for fixed navbar height */
-        }
-        .homepage-section {
-            padding: 60px 0;
-        }
-    </style>
+    /* Add custom styles here, if needed */
+    body {
+        padding-top: 100px;
+        /* Adjust for fixed navbar height */
+    }
+
+    .homepage-section {
+        padding: 60px 0;
+    }
+</style>
 
 <body>
 
