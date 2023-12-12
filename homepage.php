@@ -55,7 +55,7 @@ if ($row = $result->fetch()) {
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse text-center justify-content-end" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <ul class="navbar-nav ">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="homepage.php">Main</a>
                     </li>
@@ -82,7 +82,7 @@ if ($row = $result->fetch()) {
                     ?>
 
                 </ul>
-                <div>
+                <div class="mt-3 mx-4">
                     <form method="post" action="user_logout.php">
                         <button class="btn btn-secondary" type="submit" name="logout">Log Out</button>
 
