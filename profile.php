@@ -300,6 +300,8 @@ if ($row3 = $result3->fetch()) {
                           <input type="hidden" name="event_id" value="<?php echo $eventID; ?>">
                           <label class="form-label fs-4 d-block" for="eventStatus">Change Event Status to...</label>
                           <select class="form-select mb-3" name="eventStatus" id="eventStatus" required>
+                            <option value="" selected hidden disabled>Select an option
+                            </option>
                             <option value="Attending">Attending</option>
                             <option value="Interested">Interested</option>
                           </select>
@@ -331,6 +333,8 @@ if ($row3 = $result3->fetch()) {
                           <input type="hidden" name="event_id" value="<?php echo $eventID; ?>">
                           <label class="form-label fs-4 d-block" for="eventStatus">Change Event Status to...</label>
                           <select class="form-select mb-3" name="eventStatus" id="eventStatus" required>
+                            <option value="" selected hidden disabled>Select an option
+                            </option>
                             <option value="Attending">Attending</option>
                             <option value="Interested">Interested</option>
                           </select>
