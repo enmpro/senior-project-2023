@@ -104,63 +104,62 @@ if ($row3 = $result3->fetch()) {
 
   /* Add custom styles here, if needed */
   body {
-        padding-top: 100px;
-        /* Adjust for fixed navbar height */
-    }
+    padding-top: 100px;
+    /* Adjust for fixed navbar height */
+  }
 
-    .homepage-section {
-        padding: 60px 0;
-    }
+  .homepage-section {
+    padding: 60px 0;
+  }
 </style>
 
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="#">CANTIO</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse text-center justify-content-end" id="navbarSupportedContent">
-                <ul class="navbar-nav ">
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="homepage.php">Main</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="profile.php">Profile</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/spotify/explore_page.php">Explore Music</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="search_users.php">Search Users</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="user_event.php">Event</a>
-                    </li>
-                    <?php
-                    if ($organizerBool) {
-                        echo <<<_END
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">CANTIO</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse text-center justify-content-end" id="navbarSupportedContent">
+        <ul class="navbar-nav ">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="homepage.php">Main</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="profile.php">Profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/spotify/explore_page.php">Explore Music</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="search_users.php">Search Users</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="user_event.php">Event</a>
+          </li>
+          <?php
+          if ($organizerBool) {
+            echo <<<_END
                     <li class="nav-item">
                         <a class="nav-link" href="event_coord.php">Event Coordinator</a>
                     </li>
                     _END;
-                    }
-                    ?>
+          }
+          ?>
 
-                </ul>
-                <div class="my-3 mx-4">
-                    <form method="post" action="user_logout.php">
-                        <button class="btn btn-secondary" type="submit" name="logout">Log Out</button>
+        </ul>
+        <div class="my-3 mx-4">
+          <form method="post" action="user_logout.php">
+            <button class="btn btn-secondary" type="submit" name="logout">Log Out</button>
 
-                    </form>
-                </div>
-            </div>
-
+          </form>
         </div>
-    </nav>
+      </div>
+
+    </div>
+  </nav>
 
 
   <div class="container mb-5">
@@ -306,7 +305,37 @@ if ($row3 = $result3->fetch()) {
                                 } else {
                                   echo "people";
                                 } ?> attending</p>
+                        <div>
+                          <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#userAttend">Check People
+                            Attending</button>
+                        </div>
 
+                        <div class="modal fade" id="userAttend" tabindex="-1" aria-labelledby="userAttendLabel"
+                          aria-hidden="true">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="userAttendLabel">Modal title</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                              </div>
+                              <div class="modal-body">
+                               <?php
+                               $userAttendSQL = "SELECT Username, CONCAT(FirstName, ' ', LastName) As FullName FROM User 
+                               JOIN UserRSVP ON User.UserID = UserRSVP.UserID
+                               WHERE UserRSVP.EventID = $eventID ";
+                               $userAttendResult = $pdo->query($userAttendSQL);
+                               foreach ($userAttendResult as $row) {
+                                echo $row['FullName'];
+                               }
+                               ?>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                         <form class="mb-3" action="user_changeEvent.php" method="post">
                           <input type="hidden" name="event_id" value="<?php echo $eventID; ?>">
                           <label class="form-label fs-4 d-block" for="eventStatus">Change Event Status to...</label>
@@ -441,8 +470,8 @@ if ($row3 = $result3->fetch()) {
 
 
   <footer class="bg-light text-center py-4">
-        <p>&copy; 2023 Cantio. All rights reserved.</p>
-    </footer>
+    <p>&copy; 2023 Cantio. All rights reserved.</p>
+  </footer>
   <!-- Latest compiled JavaScript -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 
