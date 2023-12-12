@@ -21,6 +21,11 @@ $eventID = $_POST['event_id'];
 $deleteSql = "DELETE FROM UserRSVP WHERE EventID = $eventID and UserID = $userID";
 $deleteRsvp = $pdo->query($deleteSql);
 
+$deleteValueSQL = "UPDATE Event SET UserNumAttend = UserNumAttend - 1 WHERE EventID = :eventID";
+$deleteValueStmt = $pdo->prepare($deleteValueSQL);
+$deleteValueStmt->bindParam(':eventID', $eventID, PDO::PARAM_INT);
+$deleteValueStmt->execute();
+
 header('Location: profile.php');
 
 
