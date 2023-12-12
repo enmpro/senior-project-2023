@@ -61,6 +61,16 @@ function test_userinput($data)
     <!-- Latest compiled and minified CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
+<style>
+    body {
+        padding-top: 100px;
+        /* Adjust for fixed navbar height */
+    }
+
+    .homepage-section {
+        padding: 60px 0;
+    }
+</style>
 
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
