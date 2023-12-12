@@ -111,65 +111,64 @@ if ($rowCheck = $resultCheck->fetch()) {
     color: #666;
   }
 
-   /* Add custom styles here, if needed */
-   body {
-        padding-top: 100px;
-        /* Adjust for fixed navbar height */
-    }
+  /* Add custom styles here, if needed */
+  body {
+    padding-top: 100px;
+    /* Adjust for fixed navbar height */
+  }
 
-    .homepage-section {
-        padding: 60px 0;
-    }
+  .homepage-section {
+    padding: 60px 0;
+  }
 </style>
 
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="#">CANTIO</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse text-center justify-content-end" id="navbarSupportedContent">
-                <ul class="navbar-nav ">
-                    <li class="nav-item">
-                        <a class="nav-link " aria-current="page" href="homepage.php">Main</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="profile.php">Profile</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/spotify/explore_page.php">Explore Music</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="search_users.php">Search Users</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="user_event.php">Event</a>
-                    </li>
-                    <?php
-                    if ($organizerBool) {
-                        echo <<<_END
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">CANTIO</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse text-center justify-content-end" id="navbarSupportedContent">
+        <ul class="navbar-nav ">
+          <li class="nav-item">
+            <a class="nav-link " aria-current="page" href="homepage.php">Main</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="profile.php">Profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/spotify/explore_page.php">Explore Music</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="search_users.php">Search Users</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="user_event.php">Event</a>
+          </li>
+          <?php
+          if ($organizerBool) {
+            echo <<<_END
                     <li class="nav-item">
                         <a class="nav-link" href="event_coord.php">Event Coordinator</a>
                     </li>
                     _END;
-                    }
-                    ?>
+          }
+          ?>
 
-                </ul>
-                <div class="my-3 mx-4">
-                    <form method="post" action="user_logout.php">
-                        <button class="btn btn-secondary" type="submit" name="logout">Log Out</button>
+        </ul>
+        <div class="my-3 mx-4">
+          <form method="post" action="user_logout.php">
+            <button class="btn btn-secondary" type="submit" name="logout">Log Out</button>
 
-                    </form>
-                </div>
-            </div>
-
+          </form>
         </div>
-    </nav>
+      </div>
+
+    </div>
+  </nav>
 
 
   <div class="container mb-5">
@@ -346,8 +345,8 @@ if ($rowCheck = $resultCheck->fetch()) {
             <p class="fs-2">Music</p>
           </div>
           <div class="card-body">
-            <h5 class="card-title">Liked Music</h5>
             <h5 class="card-title">Liked Artists</h5>
+            <h5 class="card-title">Liked Albums</h5>
           </div>
         </div>
 
