@@ -46,7 +46,7 @@ if ($row = $result->fetch()) {
 <body>
 
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-dark fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">CANTIO</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -54,7 +54,7 @@ if ($row = $result->fetch()) {
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
+            <div class="collapse navbar-collapse text-center justify-content-end" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="homepage.php">Main</a>
