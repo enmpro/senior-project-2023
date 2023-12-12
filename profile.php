@@ -306,11 +306,11 @@ if ($row3 = $result3->fetch()) {
                                   echo "people";
                                 } ?> attending</p>
                         <div>
-                          <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#userAttend">Check People
+                          <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#userAttend<?php echo $count; ?>">Check People
                             Attending</button>
                         </div>
 
-                        <div class="modal fade" id="userAttend" tabindex="-1" aria-labelledby="userAttendLabel"
+                        <div class="modal fade" id="userAttend<?php echo $count; ?>" tabindex="-1" aria-labelledby="userAttendLabel"
                           aria-hidden="true">
                           <div class="modal-dialog">
                             <div class="modal-content">
@@ -322,7 +322,7 @@ if ($row3 = $result3->fetch()) {
                                <?php
                                $userAttendSQL = "SELECT Username, CONCAT(FirstName, ' ', LastName) As FullName FROM User 
                                JOIN UserRSVP ON User.UserID = UserRSVP.UserID
-                               WHERE UserRSVP.EventID = $eventID ";
+                               WHERE UserRSVP.EventID = $eventID AND UserRSVP.RSVPStatus = $rsvpStatus";
                                $userAttendResult = $pdo->query($userAttendSQL);
                                foreach ($userAttendResult as $row) {
                                 echo $row['FullName'];
