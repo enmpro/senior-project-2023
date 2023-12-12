@@ -57,28 +57,49 @@ if ($row = $result->fetch()) {
 
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="#">Your Music App</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">CANTIO</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                <ul class="navbar-nav">
+            <div class="collapse navbar-collapse text-center justify-content-end" id="navbarSupportedContent">
+                <ul class="navbar-nav ">
                     <li class="nav-item">
-                        <a class="nav-link" href="#profile">Profile</a>
+                        <a class="nav-link active" aria-current="page" href="homepage.php">Main</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#community">Community</a>
+                        <a class="nav-link" href="profile.php">Profile</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#spotify">Spotify</a>
+                        <a class="nav-link" href="/spotify/explore_page.php">Explore Music</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#events">Events</a>
+                        <a class="nav-link" href="community.php">Community</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="user_event.php">Event</a>
+                    </li>
+                    <?php
+                    if ($organizerBool) {
+                        echo <<<_END
+                    <li class="nav-item">
+                        <a class="nav-link" href="event_coord.php">Event Coordinator</a>
+                    </li>
+                    _END;
+                    }
+                    ?>
+
                 </ul>
+                <div class="my-3 mx-4">
+                    <form method="post" action="user_logout.php">
+                        <button class="btn btn-secondary" type="submit" name="logout">Log Out</button>
+
+                    </form>
+                </div>
             </div>
+
         </div>
     </nav>
     <div class="container mt-3">
@@ -149,7 +170,7 @@ if ($row = $result->fetch()) {
     </div>
 
     <footer class="bg-light text-center py-4 fixed-bottom">
-        <p>&copy; 2023 Your Music App. All rights reserved.</p>
+        <p>&copy; 2023 Cantio. All rights reserved.</p>
     </footer>
     <!-- Latest compiled JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
