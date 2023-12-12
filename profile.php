@@ -369,10 +369,14 @@ if ($row3 = $result3->fetch()) {
         </div>
 
         <div class="card mt-3">
+          <div class="card-header text-center">
+            <p class="fs-2">Music</p>
+          </div>
           <div class="card-body">
-            <h5 class="card-title">Favorite Music</h5>
-            <p class="card-text"><strong>Favorite Genre</strong> Rock</p>
-            <p class="card-text"><strong>Favorite Artists</strong> Artist 1, Artist 2, Artist 3</p>
+            <h5 class="card-title">Liked Music</h5>
+            <h5 class="card-title">Liked Artists</h5>
+            <h5 class="card-title">Top Music</h5>
+            <h5 class="card-title">Top Artists</h5>
           </div>
         </div>
 
