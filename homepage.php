@@ -71,6 +71,7 @@ if ($row = $result->fetch()) {
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="homepage.php">Main</a>
                     </li>
+                </ul>
                 <div class="my-3 mx-4">
                     <form method="post" action="user_logout.php">
                         <button class="btn btn-secondary" type="submit" name="logout">Log Out</button>
