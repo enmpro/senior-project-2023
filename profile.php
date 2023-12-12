@@ -308,9 +308,7 @@ if ($row3 = $result3->fetch()) {
                         <div>
                           <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#userAttend<?php echo $count; ?>">Check People
                             Attending</button>
-                        </div>
-
-                        <div class="modal fade" id="userAttend<?php echo $count; ?>" tabindex="-133" aria-labelledby="userAttendLabel<?php echo $count; ?>"
+                            <div class="modal fade" id="userAttend<?php echo $count; ?>" tabindex="-1" aria-labelledby="userAttendLabel<?php echo $count; ?>"
                           aria-hidden="true">
                           <div class="modal-dialog">
                             <div class="modal-content">
@@ -325,7 +323,7 @@ if ($row3 = $result3->fetch()) {
                                WHERE UserRSVP.EventID = $eventID AND UserRSVP.RSVPStatus = '$rsvpStatus'";
                                $userAttendResult = $pdo->query($userAttendSQL);
                                foreach ($userAttendResult as $row) {
-                                echo $row['FullName'];
+                                echo $row['FullName'] . "<br>";
                                }
                                ?>
                               </div>
@@ -335,6 +333,9 @@ if ($row3 = $result3->fetch()) {
                             </div>
                           </div>
                         </div>
+                        </div>
+
+                        
                         <form class="mb-3" action="user_changeEvent.php" method="post">
                           <input type="hidden" name="event_id" value="<?php echo $eventID; ?>">
                           <label class="form-label fs-4 d-block" for="eventStatus">Change Event Status to...</label>
