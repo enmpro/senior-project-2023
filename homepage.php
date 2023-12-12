@@ -92,13 +92,76 @@ if ($row = $result->fetch()) {
 
         </div>
     </nav>
-    <div>
-        <p>THIS IS THE HOMEPAGE</p>
-    </div>
-    <!-- <div class="container">
-        <a href="spotify/auth.php">Spotify Sign In </a>
-    </div> -->
+    <div class="container mt-3">
+        <div class="row g-5 row-cols-1 row-cols-md-2 ">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">User Profile</h5>
+                        <p class="card-text">View and manage your user profile information.</p>
+                        <a href="profile.php" class="btn btn-primary">Go to Profile</a>
+                    </div>
+                </div>
 
+            </div>
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Community Area</h5>
+                        <p class="card-text">Connect with other music lovers in our community.
+
+                        </p>
+                        <a href="community.php" class="btn btn-primary">Go to Community</a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Music Area</h5>
+                        <p class="card-text">Connect your Spotify account for a personalized experience.</p>
+                        <a href="/spotify/explore_page.php" class="btn btn-primary">Go to Explore Music</a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Events Area</h5>
+                        <p class="card-text">Explore and join upcoming music events in your area.</p>
+                        <a href="user_event.php" class="btn btn-primary">Go to Events</a>
+                    </div>
+                </div>
+
+            </div>
+            <?php
+            if ($organizerBool) {
+
+                ?>
+
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Events Coordinator Area</h5>
+                            <p class="card-text">Create new events for users to attend and meet new people.</p>
+                            <a href="user_event.php" class="btn btn-primary">Go to Event Coordinator</a>
+                        </div>
+                    </div>
+
+                </div>
+                <?php
+
+            }
+            ?>
+
+        </div>
+    </div>
+
+    <footer class="bg-light text-center py-4 fixed-bottom">
+        <p>&copy; 2023 Your Music App. All rights reserved.</p>
+    </footer>
     <!-- Latest compiled JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
