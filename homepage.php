@@ -136,7 +136,7 @@ if ($row = $result->fetch()) {
                         <div class="card-body">
                             <h5 class="card-title">Events Coordinator Area</h5>
                             <p class="card-text">Create new events for users to attend and meet new people.</p>
-                            <a href="user_event.php" class="btn btn-primary">Go to Event Coordinator</a>
+                            <a href="event_coord.php" class="btn btn-primary">Go to Event Coordinator</a>
                         </div>
                     </div>
 
