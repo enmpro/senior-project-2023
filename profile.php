@@ -409,7 +409,7 @@ if ($row3 = $result3->fetch()) {
                             <?php
                             $userInterestSQL = "SELECT Username, CONCAT(FirstName, ' ', LastName) As FullName FROM User 
                                JOIN UserRSVP ON User.UserID = UserRSVP.UserID
-                               WHERE UserRSVP.EventID = $eventID AND UserRSVP.RSVPStatus = 'Interested'";
+                               WHERE UserRSVP.EventID = $eventID AND UserRSVP.RSVPStatus = 'Maybe'";
                             $userInterestResult = $pdo->query($userInterestSQL);
                             foreach ($userInterestResult as $row) {
                               echo $row['FullName'] . "<br>";
