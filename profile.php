@@ -237,13 +237,13 @@ if ($row3 = $result3->fetch()) {
                 $socialMedia = $row['Platform'];
                 $socialUrl = $row['URL'];
                 if ($socialMedia == "Facebook") {
-                  echo "<p><i class='fa-brands fa-facebook'></i> " . $socialUrl. "</p>";
+                  echo "<a href='$socialUrl'><i class='fa-brands fa-facebook'></i> " . $socialUrl. "</a>";
                 }
                 if ($socialMedia == "X") {
-                  echo "<p><i class='fa-brands fa-x-twitter'></i> " . $socialUrl. "</p>";
+                  echo "<a href='$socialUrl'><i class='fa-brands fa-x-twitter'></i> " . $socialUrl. "</a>";
                 }
                 if ($socialMedia == "Instagram") {
-                  echo "<p><i class='fa-brands fa-instagram'></i> " . $socialUrl. "</p>";
+                  echo "<a href='$socialUrl'><i class='fa-brands fa-instagram'></i> " . $socialUrl. "</a>";
                 }
               }
               ?>
