@@ -71,29 +71,6 @@ if ($row = $result->fetch()) {
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="homepage.php">Main</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="profile.php">Profile</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/spotify/explore_page.php">Explore Music</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="community.php">Community</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="user_event.php">Event</a>
-                    </li>
-                    <?php
-                    if ($organizerBool) {
-                        echo <<<_END
-                    <li class="nav-item">
-                        <a class="nav-link" href="event_coord.php">Event Coordinator</a>
-                    </li>
-                    _END;
-                    }
-                    ?>
-
-                </ul>
                 <div class="my-3 mx-4">
                     <form method="post" action="user_logout.php">
                         <button class="btn btn-secondary" type="submit" name="logout">Log Out</button>
