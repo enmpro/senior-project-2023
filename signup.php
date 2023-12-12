@@ -366,7 +366,7 @@ function update_profile($pdo, $userid, $description, $profilepic, $showgender, $
     $stmtProfile->execute();
 }
 
-function update_social($pdo, $profileID, $platform, $handle, $url)
+function update_social($pdo, $profileID, $platform, $url)
 {
 
     $sqlProfile = "INSERT INTO SocialMediaHandles (ProfileID, Platform, URL) 
