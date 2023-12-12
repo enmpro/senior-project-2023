@@ -309,10 +309,9 @@ while (isset($_POST['FirstName'])) {
         foreach ($handles as $handleData) {
 
             $platform = $handleData['Platform'];
-            $handle = $handleData['Handle'];
             $url = $handleData['URL'];
 
-            update_social($pdo, $newProfileID, $platform, $handle, $url);
+            update_social($pdo, $newProfileID, $platform, $url);
         }
 
         $flag = true;
@@ -370,13 +369,12 @@ function update_profile($pdo, $userid, $description, $profilepic, $showgender, $
 function update_social($pdo, $profileID, $platform, $handle, $url)
 {
 
-    $sqlProfile = "INSERT INTO SocialMediaHandles (ProfileID, Platform, Handle, URL) 
+    $sqlProfile = "INSERT INTO SocialMediaHandles (ProfileID, Platform, URL) 
                    VALUES (:profileID, :platform, :handle, :url)";
     $stmtProfile = $pdo->prepare($sqlProfile);
 
     $stmtProfile->bindParam(':profileID', $profileID, PDO::PARAM_STR, 11);
     $stmtProfile->bindParam(':platform', $platform, PDO::PARAM_STR, 50);
-    $stmtProfile->bindParam(':handle', $handle, PDO::PARAM_STR, 100);
     $stmtProfile->bindParam(':url', $url, PDO::PARAM_STR, 255);
 
     $stmtProfile->execute();

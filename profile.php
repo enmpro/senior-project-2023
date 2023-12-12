@@ -234,8 +234,9 @@ if ($row3 = $result3->fetch()) {
               $socialResult = $pdo->query($socialQuery);
               $socialCount = 0;
               foreach ($socialResult as $row) {
-                $facebook = $row['Platform'];
-                echo $facebook . "<br>";
+                $socialMedia = $row['Platform'];
+                $socialUrl = $row['URL'];
+                echo $socialMedia . "<br>";
               }
               ?>
             </div>
