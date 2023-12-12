@@ -82,7 +82,7 @@ if ($row = $result->fetch()) {
                     ?>
 
                 </ul>
-                <div class="mt-3 mx-4">
+                <div class="my-3 mx-4">
                     <form method="post" action="user_logout.php">
                         <button class="btn btn-secondary" type="submit" name="logout">Log Out</button>
 
