@@ -234,8 +234,17 @@ if ($row3 = $result3->fetch()) {
               $socialResult = $pdo->query($socialQuery);
               $socialCount = 0;
               foreach ($socialResult as $row) {
-                $facebook = $row['Platform'];
-                echo $facebook . "<br>";
+                $socialMedia = $row['Platform'];
+                $socialUrl = $row['URL'];
+                if ($socialMedia == "Facebook") {
+                  echo "<p><i class='fa-brands fa-facebook'></i> <a href='$socialUrl'>" . $socialUrl. "</a></p>";
+                }
+                if ($socialMedia == "X") {
+                  echo "<p><i class='fa-brands fa-x-twitter'></i> <a href='$socialUrl'>" . $socialUrl. "</a></p>";
+                }
+                if ($socialMedia == "Instagram") {
+                  echo "<p><i class='fa-brands fa-instagram'></i> <a href='$socialUrl'>" . $socialUrl. "</a></p>";
+                }
               }
               ?>
             </div>
