@@ -165,7 +165,7 @@ if ($row3 = $result3->fetch()) {
   <div class="container mb-5">
     <div class="row">
       <div class="col-md-4">
-        <div class="profile-container">
+        <div class="profile-container card">
           <div class="container mb-5">
             <a class="btn btn-primary submit-btn" href="profile_edit_page.php">Edit Profile</a>
           </div>
