@@ -1,74 +1,305 @@
 <!DOCTYPE html>
+<html lang="en">
 
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>sign up</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-            <!-- Latest compiled and minified CSS -->
+<head>
+    <meta charset="UTF-8">
+    <title>Multi-Section Signup</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="signup.css">
-    <!-- Latest compiled JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
-    </head>
-    <body>
-        <a class="m-3 btn btn-primary back-btn" href="login.html">Go Back</a>
+    <style>
+        @media (min-width: 1025px) {
+            .h-custom {
+                height: 100vh !important;
+            }
+        }
 
-        <div class="preloader-wrapper">
-            <div class="spinner-border text-primary">
-                <span class="visually-hidden">Loading...</span>
+        .card-registration .select-input.form-control[readonly]:not([disabled]) {
+            font-size: 1rem;
+            line-height: 2.15;
+            padding-left: .75em;
+            padding-right: .75em;
+        }
+
+        .card-registration .select-arrow {
+            top: 13px;
+        }
+
+        .gradient-custom-2 {
+            /* fallback for old browsers */
+            background: #a1c4fd;
+
+            /* Chrome 10-25, Safari 5.1-6 */
+            background: -webkit-linear-gradient(to right, rgba(161, 196, 253, 1), rgba(194, 233, 251, 1));
+
+            /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+            background: linear-gradient(to right, rgba(161, 196, 253, 1), rgba(194, 233, 251, 1))
+        }
+
+        .bg-indigo {
+            background-color: #4835d4;
+        }
+
+        @media (min-width: 992px) {
+            .card-registration-2 .bg-indigo {
+                border-top-right-radius: 15px;
+                border-bottom-right-radius: 15px;
+            }
+        }
+
+        @media (max-width: 991px) {
+            .card-registration-2 .bg-indigo {
+                border-bottom-left-radius: 15px;
+                border-bottom-right-radius: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <form action="signup.php" method="post">
+        <section class="h-100 h-custom">
+            <div class="container py-5 h-100">
+                <div class="row d-flex justify-content-center align-items-center h-100">
+                    <div class="col-12">
+                        <div class="card card-registration card-registration-2 shadow" style="border-radius: 15px;">
+                            <div class="card-body p-0">
+                                <div class="row g-0">
+                                    <div class="col-lg-6">
+                                        <div class="p-5">
+                                            <h3 class="fw-normal mb-5" style="color: #4835d4;">General Information</h3>
+                                            <div class=" mb-4 pb-2">
+                                                <div class="form-floating form-outline">
+                                                    <input class="form-control form-control-lg" id="Username"
+                                                        type="text" name="Username" placeholder="#" required />
+                                                    <label for="Username">
+                                                        Username
+                                                    </label>
+                                                </div>
+
+                                            </div>
+                                            <div class="mb-4 pb-2">
+                                                <div class="form-outline form-floating">
+                                                    <input type="email" id="Email" name="Email"
+                                                        class="form-control form-control-lg" placeholder="#" required />
+                                                    <label class="form-label" for="Email">Your Email</label>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6 mb-4 pb-2">
+                                                    <div class="form-floating form-outline">
+                                                        <input class="form-control form-control-lg" id="FirstName"
+                                                            type="text" name="FirstName" placeholder="Enter Username"
+                                                            required />
+                                                        <label for="FirstName">
+                                                            First Name
+                                                        </label>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="col-md-6 mb-4 pb-2">
+                                                    <div class="form-floating form-outline">
+                                                        <input class="form-control form-control-lg" id="LastName"
+                                                            type="text" name="LastName" placeholder="Enter Username"
+                                                            required />
+                                                        <label for="LastName">
+                                                            Last Name
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="container-fluid mt-3 col-md-6 mb-4 pb-2">
+
+                                                    <label for="gender" class="form-label">Gender</label>
+                                                    <select class="form-select" name="gender" id="gender" required>
+                                                        <option value="" selected disabled hidden>Select an option
+                                                        </option>
+                                                        <option value="Male">Male</option>
+                                                        <option value="Female">Female</option>
+                                                        <option value="Non-binary">Non-binary</option>
+                                                        <option value="Prefer not to say">Prefer not to say</option>
+                                                    </select>
+
+                                                </div>
+
+
+                                                <div class="container-fluid mt-3 col-md-6 mb-4 pb-2">
+                                                    <label class="form-label" for="birthday">Birthday</label>
+                                                    <input class="form-control " type="date" id="birthday"
+                                                        name="birthday" min="1923-01-01" max="2010-01-01" required>
+                                                </div>
+                                                <div class="col-md-6 mb-4 pb-2">
+                                                    <div class="form-floating form-outline">
+                                                        <input class="form-control form-control-lg" id="LastName"
+                                                            type="password" name="Password" placeholder="Enter Username"
+                                                            required />
+                                                        <label for="Password">
+                                                            Password
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 mb-4 pb-2">
+                                                    <div class="form-floating form-outline">
+                                                        <input class="form-control form-control-lg" id="LastName"
+                                                            type="password" name="repword" placeholder="Enter Username"
+                                                            required />
+                                                        <label for="repword">
+                                                            Re-enter Password
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+
+
+
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 bg-indigo">
+                                        <div class="p-5">
+                                            <h3 class="fw-normal mb-5 text-white">Additional Details</h3>
+
+                                            <div class="mb-4 pb-2">
+                                                <label class="form-label text-white" for="event-yesno">Are you an event coordinator?</label>
+                                                <select class="form-select" name="event-yesno" id="event-yesno"
+                                                    onchange="toggleOrganizationDetails(this.value)" required>
+                                                    <option value="" selected hidden disabled>Select an option</option>
+                                                    <option value="yes">Yes</option>
+                                                    <option value="no">No</option>
+                                                </select>
+
+                                            </div>
+                                            <div id="organizationDetails" style="display: none;">
+                                                <!-- Organization Details Section -->
+                                                <h2 class="text-white">Organization Details</h2>
+                                                <div class="form-floating text-black mb-4 pb-2">
+                                                    
+                                                    <input class="form-control" type="text" id="orgName" name="orgName" placeholder="#">
+                                                    <label class="form-label" for="orgName">Organization Name</label>
+                                                </div>
+                                                <div class="mb-4 pb-2">
+                                                    <label class="form-label text-white" for="orgType">Organization Type:</label>
+                                                    <select class="form-select" name="orgType" id="orgType">
+                                                        <option value="" selected hidden disabled>Select an option
+                                                        </option>
+                                                        <option value="Music">Music</option>
+                                                        <option value="Non-profit">Non-profit</option>
+                                                        <option value="For-profit">For-profit</option>
+                                                        <option value="Government">Government</option>
+                                                        <option value="Social and Community">Social and Community
+                                                        </option>
+                                                        <option value="Arts">Arts</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-floating mb-4 pb-2">
+                                                    <textarea class="form-control" id="orgAddress" name="orgAddress" placeholder="#"></textarea>
+                                                    <label class="form-label" for="orgAddress">Address</label>
+                                                </div>
+                                                <div class="form-floating mb-4 pb-2">
+                                                    <input class="form-control" type="tel" id="orgPhone" name="orgPhone" minlength="12" maxlength="12" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="#">
+                                                    <label class="form-label" for="orgPhone">Phone Number</label>
+                                                </div>
+                                                <div class="form-floating mb-4 pb-2">
+                                                    <input class="form-control" type="email" id="orgEmail" name="orgEmail" placeholder="#">
+                                                    <label class="form-label" for="orgEmail">Email Address</label>
+                                                </div>
+                                                <div class="form-floating mb-4 pb-2">
+                                                    <input class="form-control" type="url" id="orgWebsite" name="orgWebsite" placeholder="#" pattern="https://.*"  title="The URL must be in basic URL format.">
+                                                    <label class="form-label" for="orgWebsite">Website URL</label>
+                                                </div>
+                                            </div>
+                                            <div class="mb-4 pb-2">
+                                                <div class="form-outline form-floating">
+                                                    <input type="text" id="Zip" name="Zip"
+                                                        class="form-control form-control-lg" minlength="5" maxlength="5" placeholder="#" required />
+                                                    <label class="form-label" for="Zip">ZIP</label>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-check d-flex justify-content-start mb-4 pb-3">
+                                                <input class="form-check-input me-3" type="checkbox" value=""
+                                                    id="terms" name="terms" required />
+                                                <label class="form-check-label text-white" for="terms">
+                                                    I do accept the <a href="#!" class="text-white"><u>Terms and
+                                                            Conditions</u></a> of your
+                                                    site.
+                                                </label>
+                                            </div>
+
+                                            <button type="submit" class="btn btn-light btn-lg"
+                                                data-mdb-ripple-color="dark">Register</button>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="container-fluid p-2">
-            <header>
-                <p class="display-1 text-center">
-                    Signup
-                </p>
-            </header>
-        </div>
+        </section>
+    </form>
 
-        <div class="container w-50 card mt-3 signup-box">
-            <form action="" method="post">
-                <div class="mb-3 mt-3 form-floating">
-                    <input class="form-control input-box" type="text" name="username" placeholder="Enter Username" required/>
-                    <label for="username">
-                        Username
-                    </label>
-                </div>
-                <div class="mb-3 mt-3 form-floating">
-                    <input class="form-control input-box" type="text" name="fname" placeholder="Enter Username" required/>
-                    <label for="fname">
-                        First Name
-                    </label>
-                </div>
-                <div class="mb-3 mt-3 form-floating">
-                    <input class="form-control input-box" type="text" name="lname" placeholder="Enter Username" required/>
-                    <label for="lname">
-                        Last Name
-                    </label>
-                </div>
-                <div class="mb-3 mt-3 form-floating">
-                    <input class="form-control input-box" type="email" name="email" placeholder="Enter Username" required/>
-                    <label for="email">
-                        Email
-                    </label>
-                </div>
-                <div class="mb-3 form-floating">
-                    <input class="form-control input-box" minlength="8" type="password" name="pword" placeholder="Enter Password" required/>
-                    <label for="password">
-                        Password
-                    </label>
-                </div>
-                <div class="mb-3 form-floating">
-                    <input class="form-control input-box" minlength="8" type="password" name="repword" placeholder="Enter Password" required/>
-                    <label for="repword">
-                        Re-enter Password
-                    </label>
-                </div>
-                <div class="text-center">
-                    <input class="my-3 btn btn-primary signup-btn" type="submit" value="Sign up">
-                </div>
-            </form>
-    <script src="signup.js"></script>
-    </body>
+    <script>
+        // Function to toggle the visibility of the organization details section
+        function toggleOrganizationDetails(value) {
+            const organizationDetails = document.getElementById("organizationDetails");
+            if (value === "yes") {
+                organizationDetails.style.display = "block";
+            } else {
+                organizationDetails.style.display = "none";
+            }
+
+            var isCoordinator = document.getElementById("event-yesno").value;
+
+            // Get the input fields you want to conditionally require
+            var eventDetails1 = document.getElementById("orgName");
+
+            // Get the input fields you want to conditionally require
+            var eventDetails2 = document.getElementById("orgType");
+
+            // Get the input fields you want to conditionally require
+            var eventDetails3 = document.getElementById("orgAddress");
+
+            // Get the input fields you want to conditionally require
+            var eventDetails4 = document.getElementById("orgPhone");
+
+            // Get the input fields you want to conditionally require
+            var eventDetails5 = document.getElementById("orgEmail");
+
+            // Get the input fields you want to conditionally require
+            var eventDetails6 = document.getElementById("orgWebsite");
+
+            // Set the 'required' attribute based on the user's choice
+            eventDetails1.required = isCoordinator === "yes";
+
+            // Set the 'required' attribute based on the user's choice
+            eventDetails2.required = isCoordinator === "yes";
+
+            // Set the 'required' attribute based on the user's choice
+            eventDetails3.required = isCoordinator === "yes";
+
+            // Set the 'required' attribute based on the user's choice
+            eventDetails4.required = isCoordinator === "yes";
+
+            // Set the 'required' attribute based on the user's choice
+            eventDetails5.required = isCoordinator === "yes";
+
+            // Set the 'required' attribute based on the user's choice
+            eventDetails6.required = isCoordinator === "yes";
+        }
+
+        // Initialize the form
+        function initForm() {
+            const organizationSelect = document.getElementById("organization");
+            toggleOrganizationDetails(organizationSelect.value);
+        }
+
+        // Show organization details section based on initial value
+        initForm();
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>
