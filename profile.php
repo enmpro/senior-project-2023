@@ -330,7 +330,7 @@ if ($row3 = $result3->fetch()) {
                             <option value="Attending" disabled>Attending</option>
                             <option value="Interested">Interested</option>
                           </select>
-                          <button type="submit" class="btn btn-secondary">Save Changes</button>
+                          <button type="submit" class="btn btn-success">Save Changes</button>
                         </form>
                         <form action="user_deleteEvent.php" method="post">
                           <input type="hidden" name="event_id" value="<?php echo $eventID; ?>">
