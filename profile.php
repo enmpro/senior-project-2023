@@ -327,7 +327,7 @@ if ($row3 = $result3->fetch()) {
                           <select class="form-select mb-3" name="eventStatus" id="eventStatus" required>
                             <option value="" selected hidden disabled>Select an option
                             </option>
-                            <option value="Attending">Attending</option>
+                            <option value="Attending" disabled>Attending</option>
                             <option value="Interested">Interested</option>
                           </select>
                           <button type="submit" class="btn btn-secondary">Save Changes</button>
@@ -366,7 +366,7 @@ if ($row3 = $result3->fetch()) {
                             <option value="" selected hidden disabled>Select an option
                             </option>
                             <option value="Attending">Attending</option>
-                            <option value="Interested">Interested</option>
+                            <option value="Interested" disabled>Interested</option>
                           </select>
                           <button type="submit" class="btn btn-success">Save Changes</button>
                         </form>
